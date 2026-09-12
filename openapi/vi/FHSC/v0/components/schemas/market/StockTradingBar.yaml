@@ -1,0 +1,21 @@
+type: object
+description: Một phiên trong chuỗi giao dịch tổng.
+required:
+  - date
+  - total
+properties:
+  date:
+    type: string
+    format: date
+    description: Ngày của phiên (`YYYY-MM-DD`).
+    example: "2026-05-27"
+  total:
+    $ref: "TradedAmount.yaml"
+  matched:
+    allOf:
+      - $ref: "TradedAmount.yaml"
+    description: Phần khớp lệnh. `null` khi nguồn không tách được phương thức.
+  put_through:
+    allOf:
+      - $ref: "TradedAmount.yaml"
+    description: Phần thoả thuận. `null` khi nguồn không tách được phương thức.

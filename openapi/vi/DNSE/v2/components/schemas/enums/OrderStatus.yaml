@@ -1,0 +1,52 @@
+type: string
+description: |-
+  Trạng thái lệnh.
+
+  - `Pending`: Chờ gửi
+  - `PendingNew`: Chờ gửi
+  - `New`: Chờ khớp hoặc chờ kích hoạt
+  - `PendingReplace`: Chờ sửa
+  - `PendingCancel`: Chờ hủy
+  - `PartiallyFilled`: Khớp một phần
+  - `Filled`: Khớp toàn bộ
+  - `Canceled`: Đã hủy
+  - `Rejected`: Bị từ chối
+  - `Expired`: Hết hạn trong phiên
+  - `DoneForDay`: Được giải tỏa do không khớp trong phiên
+enum:
+  - Pending
+  - PendingNew
+  - New
+  - PendingReplace
+  - PendingCancel
+  - PartiallyFilled
+  - Filled
+  - Canceled
+  - Rejected
+  - Expired
+  - DoneForDay
+x-enum-descriptions:
+  - "Chờ gửi"
+  - "Chờ gửi"
+  - "Chờ khớp hoặc chờ kích hoạt"
+  - "Chờ sửa"
+  - "Chờ hủy"
+  - "Khớp một phần"
+  - "Khớp toàn bộ"
+  - "Đã hủy"
+  - "Bị từ chối"
+  - "Hết hạn trong phiên"
+  - "Được giải tỏa do không khớp trong phiên"
+x-enum-varnames:
+  - PENDING
+  - PENDING_NEW
+  - NEW
+  - PENDING_REPLACE
+  - PENDING_CANCEL
+  - PARTIALLY_FILLED
+  - FILLED
+  - CANCELED
+  - REJECTED
+  - EXPIRED
+  - DONE_FOR_DAY
+example: New

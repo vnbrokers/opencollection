@@ -1,0 +1,15 @@
+type: object
+description: Tỷ lệ nắm giữ của một nhóm sở hữu.
+properties:
+  volume:
+    type:
+      - number
+      - "null"
+    description: Khối lượng cổ phiếu nắm giữ.
+    example: 736000000
+  pct:
+    type:
+      - number
+      - "null"
+    description: Tỷ lệ nắm giữ (%).
+    example: 36

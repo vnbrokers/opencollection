@@ -1,0 +1,46 @@
+get:
+  operationId: symbol_getClosePrice
+  tags:
+    - market
+  summary: Giá đóng cửa
+  parameters:
+    - $ref: ../../components/parameters/XApiKey.yaml
+    - $ref: ../../components/parameters/XAuxDate.yaml
+    - $ref: ../../components/parameters/XSignature.yaml
+    - name: symbol
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: boardId
+      in: query
+      schema:
+        $ref: ../../components/schemas/enums/BoardId.yaml
+      description: |-
+        Mã bảng giao dịch
+        - G1: Lô chẵn
+        - G4: Lô lẻ
+        - T1: Thỏa thuận trong giờ (9h - 14h45)
+        - T3: Thỏa thuận sau giờ (14h45 - 15h)
+        - T4: Thỏa thuận lô lẻ trong giờ (9h - 14h45)
+        - T6: Thỏa thuận lô lẻ sau giờ  (14h45 - 15h)
+      example: G1
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/market/ClosePriceResponse.yaml
+          example:
+            prices:
+              - marketId: STO
+                boardId: G1
+                isin: VN000000HPG4
+                symbol: HPG
+                closePrice: 26.8
+                time: "2026-04-08 02:14:59.775"
+    "400":
+      $ref: ../../components/responses/BadRequest.yaml
+    "500":
+      $ref: ../../components/responses/InternalError.yaml

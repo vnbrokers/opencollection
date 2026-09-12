@@ -1,0 +1,38 @@
+get:
+  operationId: quotesGetStock
+  tags:
+    - market-data
+
+  summary: Giá realtime cổ phiếu
+  description: Dữ liệu realtime của 1 mã cổ phiếu. `symbol` không phân biệt hoa thường.
+  parameters:
+    - name: symbol
+      in: path
+      required: true
+      description: "Mã cổ phiếu (ticker). VD: VNM, FPT, AAPL."
+      schema:
+        type: string
+        example: VNM
+  responses:
+    "200":
+      description: "`data` là object quote của mã cổ phiếu."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/QuoteStockResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/quotes/stocks/VNM"

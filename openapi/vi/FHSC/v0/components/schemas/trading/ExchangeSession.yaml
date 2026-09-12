@@ -1,6 +1,7 @@
 type: string
 description: |
   Trạng thái phiên giao dịch hiện tại của 1 sàn.
+
   | Giá trị | Ý nghĩa |
   |---------|---------|
   | `OPEN` | ATO — phiên khớp mở cửa |

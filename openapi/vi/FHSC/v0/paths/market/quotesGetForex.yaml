@@ -1,0 +1,38 @@
+get:
+  operationId: quotesGetForex
+  tags:
+    - market-data
+
+  summary: Giá realtime forex
+  description: Dữ liệu realtime của 1 mã forex. `symbol` không phân biệt hoa thường.
+  parameters:
+    - name: symbol
+      in: path
+      required: true
+      description: "Cặp forex 6 ký tự. VD: USDVND, EURUSD."
+      schema:
+        type: string
+        example: USDVND
+  responses:
+    "200":
+      description: "`data` là object quote của mã forex."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/QuoteForexResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/quotes/forex/USDVND"

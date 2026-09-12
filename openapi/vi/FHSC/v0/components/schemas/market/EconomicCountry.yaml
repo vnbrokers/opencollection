@@ -1,8 +1,8 @@
 type: string
 description: |
-  Tên quốc gia hiển thị (full name) cho dữ liệu kinh tế lịch sử và lịch sự
-  kiện kinh tế. Dùng chung cho `/market/financial-data/trading-economics`
-  và `/market/financial-data/economic-calendar-events`.
+  Tên quốc gia hiển thị (full name) cho dữ liệu kinh tế. Dùng trong
+  `/market/calendar`.
+
   | Giá trị | Ý nghĩa |
   |---------|---------|
   | `China` | Trung Quốc |

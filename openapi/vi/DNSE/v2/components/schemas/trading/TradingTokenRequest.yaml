@@ -1,0 +1,13 @@
+type: object
+properties:
+  otpType:
+    type: string
+    example: email_otp
+    description: |-
+      Phương thức xác thực OTP
+      - email_otp: Áp dụng cho tài khoản đăng ký phương thức xác thực lớp thứ 2 là Email OTP
+      - smart_otp: Áp dụng cho tài khoản đăng ký phương thức xác thực lớp thứ 2 là Smart OTP
+  passcode:
+    type: string
+    example: "519752"
+    description: Mã OTP tương ứng với phương thức xác thực

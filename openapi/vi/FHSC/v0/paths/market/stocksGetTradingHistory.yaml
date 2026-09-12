@@ -1,0 +1,64 @@
+get:
+  operationId: stocksGetTradingHistory
+  tags:
+    - market-data
+
+  summary: Lịch sử giao dịch tổng
+  description: |
+    Chuỗi khối lượng / giá trị giao dịch theo phiên của 1 mã. `from`/`to` phải truyền cùng nhau (dạng `YYYY-MM-DD`, khoảng tối đa 5 năm); bỏ trống cả hai → 3 tháng gần nhất. Phiên không có giao dịch bị bỏ qua. Chưa phân trang.
+  parameters:
+    - name: symbol
+      in: path
+      required: true
+      description: "Mã cổ phiếu niêm yết (3–10 ký tự chữ/số, không phân biệt hoa thường). VD: VNM, FPT."
+      schema:
+        type: string
+        example: HPG
+    - name: from
+      in: query
+      required: false
+      description: Ngày bắt đầu (bao gồm), dạng `YYYY-MM-DD`. Phải đi kèm `to`.
+      schema:
+        type: string
+        format: date
+        example: "2026-01-01"
+    - name: to
+      in: query
+      required: false
+      description: Ngày kết thúc (bao gồm), dạng `YYYY-MM-DD`. Phải đi kèm `from`, không sớm hơn `from`, và khoảng cách tối đa 5 năm.
+      schema:
+        type: string
+        format: date
+        example: "2026-03-31"
+    - name: resolution
+      in: query
+      required: false
+      description: Độ phân giải của bar. Hiện chỉ hỗ trợ `1D` (mặc định `1D`).
+      schema:
+        type: string
+        enum:
+          - 1D
+        example: 1D
+  responses:
+    "200":
+      description: "`data.data` là chuỗi giao dịch theo phiên."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/StockTradingHistoryResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/stocks/HPG/trading/history?from=2026-01-01&to=2026-03-31"

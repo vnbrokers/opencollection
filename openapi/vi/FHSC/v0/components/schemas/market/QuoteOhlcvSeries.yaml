@@ -1,0 +1,22 @@
+type: object
+description: Chuỗi giá OHLCV theo thời gian.
+required:
+  - symbol
+  - series
+properties:
+  symbol:
+    type: string
+    description: Mã định danh (canonical, viết hoa).
+    example: VNM
+  currency:
+    type: string
+    description: Đơn vị tiền tệ (bỏ qua với chỉ số).
+    example: USD
+  resolution:
+    type: string
+    description: Độ phân giải nến.
+    example: 1D
+  series:
+    type: array
+    items:
+      $ref: "QuoteOhlcvBar.yaml"

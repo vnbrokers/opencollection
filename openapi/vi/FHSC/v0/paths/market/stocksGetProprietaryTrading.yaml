@@ -1,0 +1,47 @@
+get:
+  operationId: stocksGetProprietaryTrading
+  tags:
+    - market-data
+
+  summary: Giao dịch tự doanh (phiên gần nhất)
+  description: |
+    Giá trị và khối lượng mua / bán / ròng của khối tự doanh công ty chứng khoán với 1 mã trong một phiên, tách theo phương thức (khớp lệnh / thoả thuận).
+  parameters:
+    - name: symbol
+      in: path
+      required: true
+      description: "Mã cổ phiếu niêm yết (3–10 ký tự chữ/số, không phân biệt hoa thường). VD: VNM, FPT."
+      schema:
+        type: string
+        example: HPG
+    - name: date
+      in: query
+      required: false
+      description: Ngày phiên cần lấy, dạng `YYYY-MM-DD`; không được ở tương lai. Bỏ trống → phiên gần nhất có dữ liệu.
+      schema:
+        type: string
+        format: date
+        example: "2026-05-27"
+  responses:
+    "200":
+      description: "`data` là dòng tiền tự doanh của phiên."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/TradingFlowResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/stocks/HPG/trading/proprietary"

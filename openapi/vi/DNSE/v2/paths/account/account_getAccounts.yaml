@@ -1,0 +1,52 @@
+get:
+  operationId: account_getAccounts
+  summary: Tài khoản giao dịch
+  parameters:
+    - $ref: ../../components/parameters/XApiKey.yaml
+    - $ref: ../../components/parameters/XAuxDate.yaml
+    - $ref: ../../components/parameters/XSignature.yaml
+  responses:
+    "200":
+      description: OK
+      headers:
+        Content-Length:
+          $ref: ../../components/headers/ContentLength.yaml
+        Date:
+          $ref: ../../components/headers/Date.yaml
+        Vary:
+          $ref: ../../components/headers/Vary.yaml
+        X-Ratelimit-Limit:
+          $ref: ../../components/headers/XRateLimitLimit.yaml
+        X-Ratelimit-Remaining:
+          $ref: ../../components/headers/XRateLimitRemaining.yaml
+        X-Ratelimit-Reset:
+          $ref: ../../components/headers/XRateLimitReset.yaml
+        X-Tyk-Api-Expires:
+          deprecated: false
+          schema: {}
+          example: Thu, 02 Jan 3000 15:04:00 UTC
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/account/AccountsResponse.yaml
+          example:
+            name: Phạm Thị Thùy
+            custodyCode: 064CSUN032
+            investorId: "1000005917"
+            accounts:
+              - id: "0001179019"
+                dealAccount: true
+                derivativeAccount: true
+                derivative:
+                  status: ACTIVE
+              - id: "0331000126"
+                dealAccount: false
+                derivativeAccount: true
+                derivative:
+                  status: ACTIVE
+    "400":
+      $ref: ../../components/responses/BadRequest.yaml
+    "500":
+      $ref: ../../components/responses/InternalError.yaml
+  tags:
+    - account

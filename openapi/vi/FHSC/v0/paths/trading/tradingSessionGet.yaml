@@ -1,7 +1,8 @@
 get:
   operationId: tradingSessionGet
   tags:
-    - Phiên giao dịch
+    - trading-session
+
   summary: Trạng thái phiên giao dịch
   description: |
     Trạng thái phiên giao dịch hiện tại của 1 sàn cùng danh sách order type

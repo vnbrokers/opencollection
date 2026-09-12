@@ -1,0 +1,108 @@
+get:
+  operationId: account_getCorporateActionHistory
+  tags:
+    - account
+  summary: Lịch sử sự kiện quyền
+  parameters:
+    - $ref: ../../components/parameters/XApiKey.yaml
+    - $ref: ../../components/parameters/XAuxDate.yaml
+    - $ref: ../../components/parameters/XSignature.yaml
+    - name: accountNo
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: symbol
+      in: query
+      schema:
+        type: string
+      description: Mã chứng khoán
+      example: MSB
+    - name: caType
+      in: query
+      schema:
+        type: string
+      example: cashDividend
+      description: "Phân loại sự kiện quyền \n- cashDividend: Sự kiện quyền trả cổ tức bằng tiền\n- stockDividend: Sự kiện quyền trả cổ tức cổ phiếu\n- stockBonus: Sự kiện quyền trả cổ phiếu thưởng \n- rightsOffering: Sự kiện quyền mua cổ phiếu phát hành thêm"
+    - name: caStatus
+      in: query
+      schema:
+        $ref: ../../components/schemas/enums/CorporateActionStatus.yaml
+      example: pending
+      description: "Trạng thái xử lý sự kiện quyền \n- pending: Quyền đang chờ xử lý hoặc đang được thực hiện\n- completed: Quyền đã được xử lý hoàn tất\n- canceled: Quyền đã hủy thành công"
+    - name: pageIndex
+      in: query
+      schema:
+        type: integer
+        format: int32
+      description: Trang hiện tại
+      example: 0
+    - name: pageSize
+      in: query
+      schema:
+        type: integer
+        format: int32
+      description: Số lượng bản ghi trên mỗi trang
+      example: 30
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/account/CorporateActionHistoryResponse.yaml
+          example:
+            accountNo: "0001179019"
+            data:
+              cashDividend:
+                - id: 617210
+                  symbol: MSB
+                  caStatus: pending
+                  recordDate: "2026-04-24"
+                  processDate: "2026-05-13"
+                  holdingQuantity: 600
+                  dividendValue: 500
+                  grossAmount: 300000
+                  taxAmount: 15000
+                  netAmount: 285000
+              stockDividend:
+                - id: 618949
+                  symbol: OIL
+                  caStatus: pending
+                  recordDate: "2026-04-29"
+                  processDate: "2026-05-14"
+                  holdingQuantity: 3211
+                  ratio: 5/3
+                  receivedQuantity: 1926
+              stockBonus:
+                - id: 617276
+                  symbol: MSB
+                  caStatus: completed
+                  recordDate: "2026-04-24"
+                  processDate: "2026-05-13"
+                  holdingQuantity: 600
+                  ratio: 15/6
+                  receivedQuantity: 240
+              rightsOffering:
+                - id: 623428
+                  symbol: OIL
+                  caStatus: pending
+                  recordDate: "2026-04-29"
+                  processDate: "2026-05-14"
+                  holdingQuantity: 5137
+                  ratio: 3/1
+                  rightPrice: 11000
+                  rightsQuantity: 1712
+                  registeredQuantity: 170
+                  startDateTransfer: "2026-05-04"
+                  endDateTransfer: "2026-05-13"
+                  startDateSubscription: "2026-05-04"
+                  endDateSubscription: "2026-05-13"
+            pagination:
+              pageIndex: 0
+              pageSize: 100
+              totalRecords: 100
+    "400":
+      $ref: ../../components/responses/BadRequest.yaml
+    "500":
+      $ref: ../../components/responses/InternalError.yaml

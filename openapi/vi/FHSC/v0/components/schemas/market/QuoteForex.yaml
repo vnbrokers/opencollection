@@ -1,0 +1,45 @@
+type: object
+description: Quote forex — bid/ask. Chỉ USDVND có spread thực; các cặp khác bid=ask.
+required:
+  - symbol
+  - bid
+  - ask
+properties:
+  symbol:
+    type: string
+    description: Cặp forex.
+    example: USDVND
+  name:
+    type: string
+    description: Tên cặp.
+    example: US Dollar / Vietnamese Dong
+  bid:
+    type: number
+    description: Giá mua vào.
+    example: 25420
+  ask:
+    type: number
+    description: Giá bán ra.
+    example: 25445
+  open:
+    $ref: "QuoteForexSide.yaml"
+  high:
+    $ref: "QuoteForexSide.yaml"
+  low:
+    $ref: "QuoteForexSide.yaml"
+  reference:
+    $ref: "QuoteForexSide.yaml"
+  change:
+    $ref: "QuoteForexSide.yaml"
+  change_percent:
+    $ref: "QuoteForexSide.yaml"
+  volume:
+    type:
+      - number
+      - "null"
+    description: Luôn `null` với forex.
+  updated_at:
+    type: string
+    description: Thời điểm dữ liệu (ISO 8601 kèm offset).
+    example: "2026-05-27T14:30:15+07:00"
+    format: date-time

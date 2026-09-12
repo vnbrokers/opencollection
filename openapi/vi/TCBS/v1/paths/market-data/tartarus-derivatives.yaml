@@ -1,7 +1,7 @@
 "get":
   operationId: getTartarusDerivatives
   tags:
-    - Dữ liệu thị trường
+    - market-data
   "summary": "Thông tin mã, giá phái sinh"
   "description": "Lấy thông tin mã và giá của thị trường phái sinh."
   responses:

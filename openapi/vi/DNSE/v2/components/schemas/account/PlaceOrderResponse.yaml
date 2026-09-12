@@ -1,0 +1,105 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1631"
+    description: Id lệnh giao dịch
+  symbol:
+    type: string
+    example: MBS
+    description: Mã chứng khoán
+  side:
+    allOf:
+      - $ref: ../enums/OrderSide.yaml
+    example: NB
+    description: "Chiều đặt lệnh
+
+      - NB: Mua
+
+      - NS: Bán"
+  orderType:
+    allOf:
+      - $ref: ../enums/OrderType.yaml
+    example: LO
+    description: "Loại lệnh
+
+      - LO: Lệnh giới hạn
+
+      - MOK/MAK/MTL: Lệnh thị trường
+
+      - ATO/ATC: Lệnh phiên định kỳ mở cửa/đóng cửa
+
+      - PLO: Lệnh khớp lệnh sau giờ"
+  orderStatus:
+    allOf:
+      - $ref: ../enums/OrderStatus.yaml
+    example: Pending
+    description: "Trạng thái lệnh khi đặt thành công
+
+      - PendingNew: Chờ gửi (lệnh thường NORMAL)
+
+      - New: Chờ kích hoạt (lệnh STOP/OCO)"
+  price:
+    type: number
+    format: double
+    example: 18600
+    description: Giá đặt
+  averagePrice:
+    type: number
+  quantity:
+    type: integer
+    format: int32
+    example: 300
+    description: Khối lượng đặt
+  fillQuantity:
+    type: integer
+  canceledQuantity:
+    type: integer
+  leaveQuantity:
+    type: integer
+  accountNo:
+    type: string
+    example: "0001179019"
+    description: Số tiểu khoản
+  marketType:
+    allOf:
+      - $ref: ../enums/MarketType.yaml
+    example: STOCK
+    description: "Loại thị trường
+
+      - STOCK: Giao dịch cơ sở
+
+      - DERIVATIVE: Giao dịch phái sinh
+
+      - BOND: Giao dịch trái phiếu"
+  orderCategory:
+    allOf:
+      - $ref: ../enums/OrderCategory.yaml
+    example: NORMAL
+    description: "Phân loại lệnh
+
+      - NORMAL: Lệnh thường
+
+      - STOP: Lệnh dừng có điều kiện
+
+      - OCO: Lệnh OCO phái sinh"
+  transDate:
+    type: string
+    format: date
+    example: "2026-01-29"
+    description: Ngày giao dịch
+  createdDate:
+    type: string
+    format: date-time
+    example: "2026-08-03T07:27:34.272131175Z"
+    description: Thời điểm tạo lệnh
+  modifiedDate:
+    type: string
+    format: date-time
+    example: "2026-08-03T07:27:34.272132175Z"
+    description: Thời điểm cập nhật lệnh
+  loanPackageId:
+    type: integer
+    format: int32
+    example: 1036
+    description: ID gói vay

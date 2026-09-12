@@ -1,0 +1,63 @@
+get:
+  operationId: symbol_getQuotesLatest
+  tags:
+    - market
+  summary: Dữ liệu bid/ask gần nhất
+  parameters:
+    - $ref: ../../components/parameters/XApiKey.yaml
+    - $ref: ../../components/parameters/XAuxDate.yaml
+    - $ref: ../../components/parameters/XSignature.yaml
+    - name: symbol
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: boardId
+      in: query
+      schema:
+        $ref: ../../components/schemas/enums/BoardId.yaml
+      required: false
+      description: |-
+        Mã bảng giao dịch
+        - G1: Lô chẵn
+        - G4: Lô lẻ
+        - T1: Thỏa thuận trong giờ (9h - 14h45)
+        - T3: Thỏa thuận sau giờ (14h45 - 15h)
+        - T4: Thỏa thuận lô lẻ trong giờ (9h - 14h45)
+        - T6: Thỏa thuận lô lẻ sau giờ  (14h45 - 15h)
+      deprecated: false
+      example: G1
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/market/QuotesLatestResponse.yaml
+          example:
+            quotes:
+              - marketId: STO
+                boardId: G1
+                isin: VN000000ACB8
+                symbol: ACB
+                bid:
+                  - price: 24.55
+                    quantity: 60590
+                  - price: 24.5
+                    quantity: 30250
+                  - price: 24.45
+                    quantity: 19600
+                offer:
+                  - price: 24.6
+                    quantity: 10450
+                  - price: 24.65
+                    quantity: 8450
+                  - price: 24.7
+                    quantity: 23080
+                totalOfferQtty: 0
+                totalBidQtty: 0
+                time: "2026-05-27 09:49:01.001"
+    "400":
+      $ref: ../../components/responses/BadRequest.yaml
+    "500":
+      $ref: ../../components/responses/InternalError.yaml

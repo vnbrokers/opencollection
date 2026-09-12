@@ -1,0 +1,29 @@
+type: object
+additionalProperties: true
+description: ""
+properties:
+  foreigners:
+    type: array
+    description: Danh sách dữ liệu giao dịch của nhà đầu tư nước ngoài theo mã chứng khoán.
+    example:
+      - marketId: STO
+        boardId: G1
+        symbol: ACB
+        tradingSessionId: "40"
+        sellVolume: 200
+        sellTradedAmount: 19800000
+        buyVolume: 500
+        buyTradedAmount: 49350000
+        totalSellVolume: 200
+        totalSellTradedAmount: 19800000
+        totalBuyVolume: 500
+        totalBuyTradedAmount: 49350000
+        foreignerOrderLimitQuantity: 62397864
+        foreignerBuyPossibleQuantity: 265119351
+        time: "2026-08-03 11:30:00.091"
+    items:
+      $ref: ./ForeignTrading.yaml
+  nextPageToken:
+    type: string
+    example: Nl8yXzQwX0FDQl8yMDI2LTA2LTExVDA2OjU0OjAwLjM2OFo=
+    description: Token dùng để lấy trang dữ liệu tiếp theo. Giá trị null nếu không còn dữ liệu.

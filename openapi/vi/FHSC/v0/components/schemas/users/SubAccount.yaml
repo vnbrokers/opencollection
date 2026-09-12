@@ -2,6 +2,7 @@ type: object
 description: |
   1 item tiểu khoản trong response của
   `GET /users/v1/users/{userId}/sub-accounts`.
+
   Bootstrap flow dùng `id` (làm `subAccountId` cho path) và `type` (chọn
   `Normal` hay `Margin` tuỳ nhu cầu).
 properties:

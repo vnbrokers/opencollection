@@ -1,6 +1,7 @@
 type: string
 description: |
   Trạng thái xử lý quyền cổ đông (phía hệ thống).
+
   | Giá trị | Ý nghĩa |
   |---------|---------|
   | `WAIT_FOR_REVIEW` | Chờ review |

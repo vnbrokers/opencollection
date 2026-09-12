@@ -1,0 +1,56 @@
+type: object
+properties:
+  accountNo:
+    type: string
+    example: "0001179019"
+    description: Số tiểu khoản
+  fillQuantity:
+    type: integer
+    format: int32
+    example: 0
+    description: Tổng khối lượng đã khớp
+  total:
+    type: integer
+    format: int32
+    example: 8
+    description: Tổng số bản ghi
+  start:
+    type: integer
+    format: int32
+    example: 0
+    description: Vị trí bắt đầu của tập bản ghi được trả về
+  end:
+    type: integer
+    format: int32
+    example: 8
+    description: Vị trí kết thúc của tập bản ghi được trả về
+  marketType:
+    allOf:
+      - $ref: ../enums/MarketType.yaml
+    example: STOCK
+    description: "Loại thị trường
+
+      - STOCK: Gói vay giao dịch cơ sở
+
+      - DERIVATIVE: Gói vay giao dịch phái sinh"
+  data:
+    type: array
+    example:
+      - id: "20260312_241"
+        symbol: HPG
+        side: NB
+        orderType: LO
+        orderStatus: Expired
+        price: 27200
+        quantity: 200
+        fillQuantity: 0
+        leaveQuantity: 0
+        canceledQuantity: 200
+        averagePrice: 0
+        loanPackageId: 5765
+        transDate: "2026-03-12"
+        createdDate: "2026-03-17T06:44:18.813804Z"
+        modifiedDate: "2026-03-18T15:28:24.44026Z"
+    items:
+      $ref: ./OrdersHistoryItem.yaml
+    description: Danh sách lệnh giao dịch

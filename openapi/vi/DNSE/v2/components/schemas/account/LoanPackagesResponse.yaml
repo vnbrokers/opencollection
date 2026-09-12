@@ -1,0 +1,45 @@
+type: object
+properties:
+  symbolType:
+    allOf:
+      - $ref: ../enums/SymbolType.yaml
+    example: VN30F1M
+    description: "Phân loại mã hợp đồng phái sinh theo thời gian đáo hạn (áp dụng cho DERIVATIVE)
+
+      - VN30F1M: HĐTL chỉ số VN30 1 tháng
+
+      - VN30F2M: HĐTL chỉ số VN30 2 tháng
+
+      - VN30F1Q: HĐTL chỉ số VN30 1 quý
+
+      - VN30F2Q: HĐTL chỉ số VN30 2 quý"
+  marketType:
+    allOf:
+      - $ref: ../enums/MarketType.yaml
+    example: DERIVATIVE
+    description: "Loại thị trường
+
+      - STOCK: Gói vay giao dịch cơ sở
+
+      - DERIVATIVE: Gói vay giao dịch phái sinh
+
+      - BOND: Gói vay giao dịch trái phiếu"
+  loanPackages:
+    type: array
+    description: Danh sách gói vay
+    items:
+      $ref: ./LoanPackage.yaml
+    example:
+      - id: 1775
+        name: GD Tiền mặt
+        initialRate: 1
+        interestRate: 0.125
+        liquidRate: 0.3
+        maintenanceRate: 0.4
+        type: M
+        brokerFirmBuyingFeeRate: 0
+        brokerFirmSellingFeeRate: 0
+  symbol:
+    type: string
+    example: ACB
+    description: Mã chứng khoán

@@ -1,7 +1,8 @@
 get:
   operationId: ordersGetOrderBookDetail
   tags:
-    - Sổ lệnh
+    - order-book
+
   security:
     - FinhayApiKey: []
       FinhayTimestamp: []
@@ -18,7 +19,7 @@ get:
     - name: orderId
       in: path
       required: true
-      description: Mã lệnh trả về từ `ordersGetOrderBook` (`orderid`). Định dạng `ORD\d+`.
+      description: Mã lệnh. Chỉ dùng giá trị `orderid` có sẵn trong một lệnh thuộc sổ lệnh đã lấy trước đó — không tự tạo. Định dạng `ORD\d+`.
       schema:
         type: string
         example: ORD123456

@@ -1,0 +1,20 @@
+type: object
+description: Thống kê một chiều lệnh khớp chủ động trong phiên.
+required:
+  - order_count
+  - volume
+properties:
+  order_count:
+    type: number
+    description: Số lệnh khớp về phía này.
+    example: 18422
+  volume:
+    type: number
+    description: Tổng khối lượng khớp về phía này (số cổ phiếu).
+    example: 9871300
+  avg_volume_per_order:
+    type:
+      - number
+      - "null"
+    description: Khối lượng trung bình mỗi lệnh. `null` khi `order_count = 0` (không có trung bình để tính).
+    example: 535.8

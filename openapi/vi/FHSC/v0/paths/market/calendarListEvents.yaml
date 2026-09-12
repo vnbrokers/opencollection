@@ -1,0 +1,104 @@
+get:
+  operationId: calendarListEvents
+  tags:
+    - macroeconomics
+
+  summary: Lịch sự kiện thị trường
+  description: |
+    Lịch các sự kiện thị trường theo ngày, **không gắn với mã cổ phiếu**. Hiện trả về sự kiện công bố số liệu vĩ mô (FOMC / quyết định lãi suất, CPI, GDP, PMI, …) của 6 nền kinh tế — Trung Quốc, Khu vực đồng Euro, Nhật Bản, Mỹ, Anh, Việt Nam.
+
+    Mỗi sự kiện có `type` phân loại (hiện chỉ `ECONOMIC`) và phần đặc thù nằm trong `detail`. Với sự kiện vĩ mô, `detail` gồm số liệu `actual` (thực tế), `previous` (kỳ trước), `consensus` (đồng thuận thị trường) và `forecast` (dự báo) — các trường này là `null` khi sự kiện chưa diễn ra hoặc nguồn chưa có số.
+
+    Khoảng thời gian lọc qua `from`/`to` (Unix timestamp tính bằng GIÂY). Bỏ trống cả hai thì mặc định lấy sự kiện từ hôm nay trở đi. Sort theo `detail.date` tăng dần, phân trang qua `page`/`page_size`.
+  parameters:
+    - name: country
+      in: query
+      required: false
+      description: Lọc theo quốc gia. Bỏ qua để lấy mọi quốc gia hỗ trợ.
+      schema:
+        $ref: "../../components/schemas/market/EconomicCountry.yaml"
+    - name: from
+      in: query
+      required: false
+      description: Mốc đầu khoảng lọc — Unix timestamp tính bằng GIÂY.
+      schema:
+        type: integer
+        minimum: 0
+        example: 1767225600
+    - name: to
+      in: query
+      required: false
+      description: Mốc cuối khoảng lọc — Unix timestamp tính bằng GIÂY, phải >= `from`.
+      schema:
+        type: integer
+        minimum: 0
+        example: 1769904000
+    - name: page
+      in: query
+      required: false
+      description: Trang (bắt đầu từ 1). Mặc định 1.
+      schema:
+        type: integer
+        minimum: 1
+        example: 1
+    - name: page_size
+      in: query
+      required: false
+      description: Số sự kiện mỗi trang (1–50). Mặc định 20.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 50
+        example: 20
+  responses:
+    "200":
+      description: "`data` là trang sự kiện kèm `results` và thông tin phân trang."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/CalendarEventsPageResponse.yaml"
+          example:
+            error_code: "0"
+            message: success
+            data:
+              results:
+                - type: ECONOMIC
+                  country: United States
+                  title: Fed Interest Rate Decision
+                  detail:
+                    date: "2026-07-29T01:00:00+07:00"
+                    category: Interest Rate
+                    actual: null
+                    previous: 5.25%
+                    consensus: 5.50%
+                    forecast: 5.50%
+                - type: ECONOMIC
+                  country: Vietnam
+                  title: CPI MoM
+                  detail:
+                    date: "2026-07-29T00:00:00+07:00"
+                    category: Inflation
+                    actual: null
+                    previous: 0.2%
+                    consensus: 0.3%
+                    forecast: 0.3%
+              total: 137
+              current_page: 1
+              next_page: 2
+              previous_page: 1
+              page_size: 20
+              page_total: 7
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/calendar?country=United%20States&page=1&page_size=20"

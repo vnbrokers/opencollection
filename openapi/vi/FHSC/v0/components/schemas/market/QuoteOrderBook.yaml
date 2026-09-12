@@ -1,0 +1,28 @@
+type: object
+description: Độ sâu bid/ask.
+required:
+  - symbol
+  - bids
+  - asks
+properties:
+  symbol:
+    type: string
+    description: Mã định danh (canonical, viết hoa).
+    example: VNM
+  currency:
+    type: string
+    description: Đơn vị tiền tệ.
+    example: VND
+  bids:
+    type: array
+    items:
+      $ref: "QuoteOrderBookLevel.yaml"
+  asks:
+    type: array
+    items:
+      $ref: "QuoteOrderBookLevel.yaml"
+  updated_at:
+    type: string
+    description: Thời điểm dữ liệu (ISO 8601 kèm offset).
+    example: "2026-05-27T14:30:15+07:00"
+    format: date-time

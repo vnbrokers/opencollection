@@ -1,0 +1,76 @@
+get:
+  operationId: stocksGetTechnicals
+  tags:
+    - market-data
+
+  summary: Chỉ báo kỹ thuật
+  description: |
+    Giá trị 16 chỉ báo kỹ thuật của 1 mã, tính trực tiếp từ lịch sử giá **khung ngày** (`1D` — không có khung intraday).
+
+    Chọn chỉ báo và tham số bằng ký pháp trader quen viết: `indicators=RSI(14),SMA(20),MACD(12,26,9)`. Viết tên trần (`RSI`) thì dùng bộ tham số mặc định của chỉ báo đó.
+
+    Một endpoint phục vụ cả hai chế độ: bỏ trống `from`/`to` → phiên gần nhất đã chốt; truyền cả cặp → chuỗi theo phiên. Một phiên trong quá khứ là `from` và `to` cùng đặt vào ngày đó — không có param `date` riêng. Hình dạng response không đổi giữa hai chế độ: snapshot là chuỗi có đúng một phần tử.
+
+    Chỉ trả **giá trị**, không quy ra khuyến nghị mua/bán.
+  parameters:
+    - name: symbol
+      in: path
+      required: true
+      description: "Mã cổ phiếu niêm yết (3–10 ký tự chữ/số, không phân biệt hoa thường). VD: VNM, FPT."
+      schema:
+        type: string
+        example: HPG
+    - name: indicators
+      in: query
+      required: false
+      description: |-
+        Danh sách chỉ báo, ngăn bởi dấu phẩy, mỗi cái theo ký pháp `TÊN(tham số)` — tối đa 20 chỉ báo.
+
+        Xu hướng: `SMA(period)`, `EMA(period)`, `ADX(period)`, `SUPERTREND(period,multiplier)`, `PSAR(step,max_step)`, `ICHIMOKU(tenkan,kijun,senkou_b,displacement)`.
+        Động lượng: `RSI(period)`, `MACD(fast,slow,signal)`, `STOCH(period,k_smooth,d_smooth)`, `CCI(period)`, `WILLIAMS_R(period)`.
+        Biến động: `BBANDS(period,std_dev)`, `ATR(period)`.
+        Khối lượng: `OBV()`, `MFI(period)`, `VOLUME_SMA(period)`.
+
+        Bỏ trống → bộ mặc định phủ cả 4 nhóm: `SMA(20),SMA(50),EMA(20),RSI(14),MACD(12,26,9),BBANDS(20,2),VOLUME_SMA(20)`.
+      schema:
+        type: string
+        example: RSI(14),SMA(20),MACD(12,26,9)
+    - name: from
+      in: query
+      required: false
+      description: Ngày bắt đầu (bao gồm), dạng `YYYY-MM-DD`. Phải đi kèm `to`.
+      schema:
+        type: string
+        format: date
+        example: "2026-05-01"
+    - name: to
+      in: query
+      required: false
+      description: Ngày kết thúc (bao gồm), dạng `YYYY-MM-DD`. Phải đi kèm `from`, không sớm hơn `from`, không ở tương lai, khoảng cách tối đa 5 năm.
+      schema:
+        type: string
+        format: date
+        example: "2026-07-31"
+  responses:
+    "200":
+      description: "`data` gồm `prices` (giá đóng cửa của cửa sổ) và `indicators` (mỗi chỉ báo một chuỗi)."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/StockTechnicalsResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/stocks/HPG/technicals?indicators=RSI(14),MACD(12,26,9)"

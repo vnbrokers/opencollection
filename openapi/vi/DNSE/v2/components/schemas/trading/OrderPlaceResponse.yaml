@@ -1,0 +1,118 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int32
+    example: 1626
+    description: Id lệnh giao dịch
+  symbol:
+    type: string
+    example: 41I1G4000
+    description: Mã chứng khoán
+  side:
+    allOf:
+      - $ref: ../enums/OrderSide.yaml
+    example: NS
+    description: "Chiều đặt lệnh
+
+      NB: Mua
+
+      NS: Bán"
+  orderType:
+    allOf:
+      - $ref: ../enums/OrderType.yaml
+    example: LO
+    description: "Loại lệnh
+
+      - LO: Lệnh giới hạn
+
+      - MOK/MAK/MTL: Lệnh thị trường
+
+      - ATO/ATC: Lệnh phiên định kỳ mở cửa/đóng cửa
+
+      - PLO: Lệnh khớp lệnh sau giờ"
+  orderStatus:
+    allOf:
+      - $ref: ../enums/OrderStatus.yaml
+    example: Pending
+    description: "Trạng thái lệnh
+
+      - PendingNew: Chờ gửi
+
+      - New: Chờ khớp
+
+      - PendingReplace: Chờ sửa
+
+      - PartiallyFilled: Khớp một phần
+
+      - Filled: Khớp toàn bộ
+
+      - Canceled: Đã hủy
+
+      - Rejected: Bị từ chối
+
+      - Expired: Hết hạn trong phiên
+
+      - DoneForDay: Giải tỏa trong phiên"
+  price:
+    type: number
+    format: double
+    example: 1861.5
+    description: Giá đặt
+  averagePrice:
+    type: integer
+    format: int32
+    example: 0
+    description: Giá khớp trung bình
+  quantity:
+    type: integer
+    format: int32
+    example: 3
+    description: Khối lượng đặt
+  fillQuantity:
+    type: integer
+    format: int32
+    example: 0
+    description: Khối lượng khớp
+  canceledQuantity:
+    type: integer
+    format: int32
+    example: 0
+    description: Khối lượng đã hủy
+  leaveQuantity:
+    type: integer
+    format: int32
+    example: 3
+    description: Khối lượng còn lại
+  accountNo:
+    type: string
+    example: "0001179019"
+    description: Số tiểu khoản
+  marketType:
+    allOf:
+      - $ref: ../enums/MarketType.yaml
+    example: DERIVATIVE
+    description: "Loại thị trường
+
+      - STOCK: Lệnh cơ sở
+
+      - DERIVATIVE: Lệnh phái sinh"
+  orderCategory:
+    allOf:
+      - $ref: ../enums/OrderCategory.yaml
+    example: NORMAL
+    description: Phân loại lệnh thường (mặc định NORMAL)
+  transDate:
+    type: string
+    example: "2026-03-16"
+    description: Ngày giao dịch
+  createdDate:
+    type: string
+    format: date-time
+    example: "2026-03-24T04:09:50.761146893Z"
+    description: Thời điểm tạo
+  modifiedDate:
+    type: string
+    format: date-time
+    example: "2026-03-24T04:09:50.761151529Z"
+    description: Thời điểm cập nhật

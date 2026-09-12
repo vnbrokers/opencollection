@@ -1,7 +1,7 @@
 get:
   operationId: getDerivativeOrder
   tags:
-    - Phái sinh
+    - derivatives
   summary: Lấy chi tiết lệnh
   description: Lấy chi tiết lệnh Phái Sinh theo orderId.
   parameters:
@@ -25,7 +25,7 @@ get:
 delete:
   operationId: cancelDerivativeOrder
   tags:
-    - Phái sinh
+    - derivatives
   summary: Hủy lệnh
   description: Hủy lệnh Phái Sinh theo orderId.
   parameters:

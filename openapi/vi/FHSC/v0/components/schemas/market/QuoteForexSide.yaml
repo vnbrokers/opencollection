@@ -1,0 +1,15 @@
+type: object
+description: Cặp bid/ask.
+properties:
+  bid:
+    type:
+      - number
+      - "null"
+    description: Giá mua vào.
+    example: 25405
+  ask:
+    type:
+      - number
+      - "null"
+    description: Giá bán ra.
+    example: 25430

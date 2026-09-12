@@ -1,0 +1,60 @@
+get:
+  operationId: quotesGetIndexHistory
+  tags:
+    - market-data
+
+  summary: Lịch sử giá chỉ số
+  description: Lịch sử chỉ số — chuỗi nến `{t, o, h, l, c, v}`. `resolution` mặc định `1D`. Chỉ số VN trả OHLCV đầy đủ; chỉ số quốc tế chỉ có giá đóng cửa (`o`/`h`/`l`/`v` = null). `from`/`to` là Unix timestamp tính bằng **giây**.
+  parameters:
+    - name: symbol
+      in: path
+      required: true
+      description: "Mã chỉ số. VD: VNINDEX, HNXINDEX, SP500."
+      schema:
+        type: string
+        example: VNINDEX
+    - name: resolution
+      in: query
+      required: false
+      description: Chỉ hỗ trợ `1D` (mặc định).
+      schema:
+        $ref: "../../components/schemas/market/ResolutionDaily.yaml"
+    - name: from
+      in: query
+      required: true
+      description: Thời điểm bắt đầu, Unix timestamp tính bằng **giây**.
+      schema:
+        type: integer
+        minimum: 0
+        example: 1717200000
+    - name: to
+      in: query
+      required: true
+      description: Thời điểm kết thúc, Unix timestamp tính bằng **giây**.
+      schema:
+        type: integer
+        minimum: 0
+        example: 1717545600
+  responses:
+    "200":
+      description: "`data.series` là mảng nến `{t, o, h, l, c, v}`."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/QuoteOhlcvHistoryResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/quotes/indices/VNINDEX/history?resolution=1D&from=1717200000&to=1717545600"

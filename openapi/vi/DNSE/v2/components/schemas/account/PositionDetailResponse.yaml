@@ -1,0 +1,99 @@
+type: object
+properties:
+  data:
+    $ref: ./PositionDetail.yaml
+  id:
+    type: integer
+    format: int32
+    example: 9589
+    description: ID vị thế
+  symbol:
+    type: string
+    example: BVS
+    description: Mã chứng khoán
+  accountNo:
+    type: string
+    example: "0001179019"
+    description: Số tiểu khoản
+  status:
+    allOf:
+      - $ref: ../enums/PositionStatus.yaml
+    example: OPEN
+    description: "Trạng thái của vị thế
+
+      - OPEN: Đang mở
+
+      - PENDING_CLOSE: Chờ đóng
+
+      - CLOSED: Đã đóng
+
+      - ODD_LOT: Lô lẻ (cơ sở)"
+  loanPackageId:
+    type: integer
+    format: int32
+    example: 5757
+    description: Gói vay cơ sở hoặc phái sinh
+  side:
+    allOf:
+      - $ref: ../enums/OrderSide.yaml
+    example: NB
+    description: "Loại vị thế
+
+      - NB: Mua
+
+      - NS: Bán"
+  accumulateQuantity:
+    type: integer
+    format: int32
+    example: 3400
+    description: Khối lượng cộng dồn
+  tradeQuantity:
+    type: integer
+    format: int32
+    example: 3400
+    description: Khối lượng được giao dịch
+  closedQuantity:
+    type: integer
+    format: int32
+    example: 0
+    description: Khối lượng đã đóng
+  openQuantity:
+    type: integer
+    format: int32
+    example: 3400
+    description: Khối lượng mở
+  costPrice:
+    type: integer
+    format: int32
+    example: 28000
+    description: Giá vốn trung bình của khối lượng mở
+  averageCostPrice:
+    type: integer
+    format: int32
+    example: 28000
+    description: Giá vốn trung bình
+  averageClosePrice:
+    type: integer
+    format: int32
+    example: 0
+    description: Giá đóng trung bình
+  marketPrice:
+    type: integer
+    format: int32
+    example: 25200
+    description: Giá thị trường
+  breakEvenPrice:
+    type: number
+    format: double
+    example: 28043.4752
+    description: Giá hòa vốn
+  createdDate:
+    type: string
+    format: date-time
+    example: "2026-07-20T04:22:38.904283Z"
+    description: Thời điểm mở
+  modifiedDate:
+    type: string
+    format: date-time
+    example: "2026-07-30T11:20:44.65933Z"
+    description: Thời điểm cập nhật

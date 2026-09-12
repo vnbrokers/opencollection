@@ -1,7 +1,8 @@
 put:
   operationId: ordersModify
   tags:
-    - Thực thi lệnh
+    - order-execution
+
   security:
     - FinhayApiKey: []
       FinhayTimestamp: []
@@ -110,7 +111,8 @@ put:
 delete:
   operationId: ordersCancel
   tags:
-    - Thực thi lệnh
+    - order-execution
+
   security:
     - FinhayApiKey: []
       FinhayTimestamp: []

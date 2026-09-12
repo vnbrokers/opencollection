@@ -1,0 +1,52 @@
+get:
+  operationId: symbol_getExpectedPrice
+  tags:
+    - market
+  summary: Giá dự khớp
+  parameters:
+    - $ref: ../../components/parameters/XApiKey.yaml
+    - $ref: ../../components/parameters/XAuxDate.yaml
+    - $ref: ../../components/parameters/XSignature.yaml
+    - name: symbol
+      in: path
+      required: true
+      description: Mã chứng khoán
+      schema:
+        type: string
+    - name: boardId
+      in: query
+      required: true
+      description: Mã bảng giao dịch
+      schema:
+        $ref: ../../components/schemas/enums/BoardId.yaml
+    - name: from
+      in: query
+      required: true
+      description: Thời gian bắt đầu theo Unix timestamp
+      schema:
+        type: string
+    - name: to
+      in: query
+      required: true
+      description: Thời gian kết thúc; khoảng truy vấn không vượt quá một ngày
+      schema:
+        type: string
+    - name: limit
+      in: query
+      schema:
+        type: integer
+    - name: nextPageToken
+      in: query
+      schema:
+        type: string
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/market/ExpectedPriceResponse.yaml
+    "400":
+      $ref: ../../components/responses/BadRequest.yaml
+    "500":
+      $ref: ../../components/responses/InternalError.yaml

@@ -1,0 +1,24 @@
+type: object
+description: Lãi suất của một kỳ hạn cụ thể.
+required:
+  - percent
+  - duration_name
+properties:
+  effective_date:
+    type: string
+    description: Ngày áp dụng, định dạng `D/M/YYYY`.
+    example: 31/7/2026
+  percent:
+    type: string
+    description: Lãi suất dạng chuỗi kèm dấu `%`, phần thập phân dùng dấu phẩy (vd `4,4%`).
+    example: 4,4%
+  duration_name:
+    type: string
+    description: Tên kỳ hạn.
+    example: 12 Tháng
+  bank_icon_url:
+    type:
+      - string
+      - "null"
+    format: uri
+    description: Logo ngân hàng.

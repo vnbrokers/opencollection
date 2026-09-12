@@ -1,0 +1,17 @@
+type: object
+properties:
+  fromQuantity:
+    type: number
+    format: double
+    example: 2001
+    description: Khối lượng bắt đầu
+  toQuantity:
+    type: number
+    format: double
+    example: 3000
+    description: Khối lượng kết thúc
+  fee:
+    type: number
+    format: double
+    example: 2196
+    description: Mức phí

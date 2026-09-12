@@ -1,0 +1,30 @@
+type: object
+description: Hồ sơ doanh nghiệp.
+required:
+  - symbol
+properties:
+  symbol:
+    type: string
+    description: Mã cổ phiếu.
+    example: VNM
+  name_vn:
+    type: string
+    description: Tên tiếng Việt.
+    example: CTCP Sữa Việt Nam
+  name_en:
+    type:
+      - string
+      - "null"
+    description: Tên tiếng Anh.
+    example: Vietnam Dairy Products JSC
+  sector:
+    type: array
+    description: Cây ngành từ cấp cao xuống cấp thấp.
+    items:
+      $ref: "CompanyProfileSectorNode.yaml"
+  about:
+    type:
+      - string
+      - "null"
+    description: Mô tả hoạt động kinh doanh.
+    example: Sản xuất và kinh doanh sữa và các sản phẩm từ sữa.

@@ -1,0 +1,20 @@
+type: string
+description: |-
+  Loại nhóm thị trường.
+
+  - `STOCK`: Cổ phiếu
+  - `DERIVATIVE`: Phái sinh
+  - `INDEX`: Chỉ số
+enum:
+  - "STOCK"
+  - "DERIVATIVE"
+  - "INDEX"
+x-enum-descriptions:
+  - "Cổ phiếu"
+  - "Phái sinh"
+  - "Chỉ số"
+x-enum-varnames:
+  - STOCK
+  - DERIVATIVE
+  - INDEX
+example: STOCK

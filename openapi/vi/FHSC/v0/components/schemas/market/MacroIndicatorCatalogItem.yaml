@@ -1,0 +1,24 @@
+type: object
+required:
+  - indicator
+  - name
+  - tags
+  - unit
+properties:
+  indicator:
+    type: string
+    description: Slug định danh của chỉ tiêu — dùng giá trị này để lấy giá trị của chỉ tiêu theo kỳ.
+    example: vn-cpi
+  name:
+    type: string
+    example: CPI Việt Nam
+  tags:
+    type: array
+    items:
+      type: string
+    example:
+      - inflation
+      - vn
+  unit:
+    type: string
+    example: "%"

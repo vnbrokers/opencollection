@@ -1,0 +1,29 @@
+type: object
+description: Chuỗi của một chỉ báo đã yêu cầu.
+required:
+  - indicator
+  - params
+  - display_name
+  - data
+properties:
+  indicator:
+    type: string
+    description: Tên chỉ báo.
+    example: MACD
+  params:
+    type: string
+    description: Tham số đã áp dụng, ngăn bởi dấu phẩy (rỗng với `OBV`).
+    example: 12,26,9
+  display_name:
+    type: string
+    description: Ký pháp đầy đủ để hiển thị.
+    example: MACD(12,26,9)
+  data:
+    type: array
+    description: Chuỗi theo phiên; đúng 1 phần tử ở chế độ phiên gần nhất. Rỗng khi không tính được — khi đó xem `note`, các chỉ báo khác vẫn trả bình thường.
+    items:
+      $ref: "StockTechnicalPoint.yaml"
+  note:
+    type: string
+    description: Lý do `data` rỗng (vd `SUPERTREND`/`PSAR` cần tối thiểu 200 phiên). Chỉ xuất hiện khi có.
+    example: Cần tối thiểu 200 phiên, mã hiện có 143

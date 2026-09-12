@@ -1,0 +1,99 @@
+get:
+  operationId: account_getOrders
+  summary: Sổ lệnh
+  tags:
+    - account
+  parameters:
+    - $ref: ../../components/parameters/XApiKey.yaml
+    - $ref: ../../components/parameters/XAuxDate.yaml
+    - $ref: ../../components/parameters/XSignature.yaml
+    - name: marketType
+      in: query
+      required: true
+      description: "Loại thị trường \n- STOCK: Sổ lệnh cơ sở\n- DERIVATIVE: Sổ lệnh phái sinh\n- BOND: Sổ lệnh trái phiếu"
+      deprecated: false
+      schema:
+        $ref: ../../components/schemas/enums/MarketType.yaml
+      example: STOCK
+    - name: orderCategory
+      in: query
+      required: true
+      description: Phân loại lệnh thường, lệnh điều kiện (mặc định NORMAL)
+      deprecated: false
+      schema:
+        $ref: ../../components/schemas/enums/OrderCategory.yaml
+      example: NORMAL
+    - name: pageIndex
+      in: query
+      required: true
+      description: Chỉ số trang hiện tại, bắt đầu từ 0
+      schema:
+        type: integer
+        format: int32
+      example: 0
+    - name: pageSize
+      in: query
+      required: true
+      description: Số bản ghi trên mỗi trang
+      schema:
+        type: integer
+        format: int32
+      example: 10
+  responses:
+    "200":
+      description: OK
+      headers:
+        Content-Length:
+          $ref: ../../components/headers/ContentLength.yaml
+        Date:
+          $ref: ../../components/headers/Date.yaml
+        Vary:
+          $ref: ../../components/headers/Vary.yaml
+        X-Ratelimit-Limit:
+          $ref: ../../components/headers/XRateLimitLimit.yaml
+        X-Ratelimit-Remaining:
+          $ref: ../../components/headers/XRateLimitRemaining.yaml
+        X-Ratelimit-Reset:
+          $ref: ../../components/headers/XRateLimitReset.yaml
+        X-Tyk-Api-Expires:
+          schema:
+            type: string
+          example: Thu, 02 Jan 3000 15:04:00 UTC
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/account/OrdersResponse.yaml
+          example:
+            orders:
+              - id: 141
+                side: NB
+                accountNo: "0001179019"
+                symbol: BCM
+                price: 51200
+                priceSecure: 51200
+                averagePrice: 0
+                quantity: 300
+                fillQuantity: 0
+                canceledQuantity: 0
+                leaveQuantity: 300
+                orderType: LO
+                orderCategory: NORMAL
+                orderStatus: New
+                loanPackageId: 7937
+                marketType: STOCK
+                transDate: "2026-03-16"
+                createdDate: "2026-03-24T03:15:22.226297778Z"
+                modifiedDate: "2026-03-24T03:15:22.358568266Z"
+    "400":
+      $ref: ../../components/responses/BadRequest.yaml
+    "500":
+      $ref: ../../components/responses/InternalError.yaml
+parameters:
+  - name: accountNo
+    in: path
+    required: true
+    description: Số tiểu khoản
+    deprecated: false
+    schema:
+      type: string
+    example: "0001179019"

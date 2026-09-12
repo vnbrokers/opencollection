@@ -1,7 +1,8 @@
 get:
   operationId: portfolioGetHoldings
   tags:
-    - Danh mục đầu tư
+    - portfolio
+
   security:
     - FinhayApiKey: []
       FinhayTimestamp: []

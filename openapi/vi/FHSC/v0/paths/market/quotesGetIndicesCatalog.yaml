@@ -1,0 +1,30 @@
+get:
+  operationId: quotesGetIndicesCatalog
+  tags:
+    - market-data
+
+  summary: Danh mục chỉ số
+  description: Danh sách mã chỉ số được hỗ trợ kèm metadata tĩnh. Gọi `/market/quotes/indices/{symbol}` để lấy dữ liệu realtime.
+  responses:
+    "200":
+      description: "`data` là mảng mã chỉ số."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/QuoteIndicesCatalogResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/quotes/indices"

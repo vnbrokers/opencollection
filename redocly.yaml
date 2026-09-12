@@ -2,16 +2,16 @@ extends:
   - recommended
 
 apis:
-  entrade-v1:
-    root: openapi/vi/Entrade/v1/openapi.yaml
-  dnse-v2:
-    root: openapi/vi/DNSE/v2/openapi.yaml
-  fhsc-v0:
-    root: openapi/vi/FHSC/v0/openapi.yaml
-  ssi-v3:
-    root: openapi/vi/SSI/v3/openapi.yaml
-  tcbs-v1:
-    root: openapi/vi/TCBS/v1/openapi.yaml
+  entrade:
+    root: openapi/vi/Entrade/latest/openapi.yaml
+  dnse:
+    root: openapi/vi/DNSE/latest/openapi.yaml
+  fhsc:
+    root: openapi/vi/FHSC/latest/openapi.yaml
+  ssi:
+    root: openapi/vi/SSI/latest/openapi.yaml
+  tcbs:
+    root: openapi/vi/TCBS/latest/openapi.yaml
 
 rules:
   operation-operationId: error

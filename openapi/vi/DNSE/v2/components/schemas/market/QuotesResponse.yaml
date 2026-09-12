@@ -1,0 +1,35 @@
+type: object
+additionalProperties: true
+description: Danh sách dữ liệu sổ lệnh (Market Depth) cùng thông tin phân trang.
+properties:
+  quotes:
+    type: array
+    description: Danh sách dữ liệu sổ lệnh của mã chứng khoán
+    example:
+      - marketId: STO
+        boardId: G1
+        isin: VN000000ACB8
+        symbol: ACB
+        bid:
+          - price: 101
+            quantity: 10
+          - price: 100
+            quantity: 50
+          - price: 99.5
+            quantity: 10
+        offer:
+          - price: 106
+            quantity: 4870
+          - price: 106.1
+            quantity: 500
+          - price: 110
+            quantity: 30
+        totalOfferQtty: 0
+        totalBidQtty: 0
+        time: "2026-08-03 10:59:12.336"
+    items:
+      $ref: ./Quote.yaml
+  nextPageToken:
+    type: string
+    example: MTM2NDYxOV8yMDI2LTA1LTI2VDA0OjI3OjQyLjQyNFo=
+    description: Token dùng để lấy trang dữ liệu tiếp theo. Không có hoặc rỗng nếu không còn dữ liệu

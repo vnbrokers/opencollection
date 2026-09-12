@@ -1,0 +1,95 @@
+type: object
+properties:
+  marketId:
+    allOf:
+      - $ref: ../enums/MarketId.yaml
+    example: STO
+    description: "Mã thị trường niêm yết mã chứng khoán
+
+      - DVX: Phái sinh sàn HNX
+
+      - HCX: Trái phiếu doanh nghiệp HNX
+
+      - STO: Cổ phiếu sàn HOSE
+
+      - STX: Cổ phiếu sàn HNX
+
+      - UPX: Cổ phiếu sàn Upcom"
+  boardId:
+    allOf:
+      - $ref: ../enums/BoardId.yaml
+    example: G1
+    description: "Mã bảng giao dịch
+
+      - G1: Lô chẵn
+
+      - G4: Lô lẻ
+
+      - T1: Thỏa thuận trong giờ (9h - 14h45)
+
+      - T3: Thỏa thuận sau giờ (14h45 - 15h)
+
+      - T4: Thỏa thuận lô lẻ trong giờ (9h - 14h45)
+
+      - T6: Thỏa thuận lô lẻ sau giờ (14h45 - 15h)"
+  isin:
+    type: string
+    example: VN000000ACB8
+    description: Mã định danh quốc tế
+  symbol:
+    type: string
+    example: ACB
+    description: Mã chứng khoán
+  matchPrice:
+    type: number
+    format: double
+    example: 23.35
+    description: Giá khớp lệnh của giao dịch
+  matchQtty:
+    type: integer
+    format: int32
+    example: 20
+    description: Khối lượng khớp của giao dịch
+  side:
+    allOf:
+      - $ref: ../enums/Side.yaml
+    example: SELL
+    description: "Phía giao dịch chủ động
+
+      - BUY: Bên mua chủ động
+
+      - SELL: Bên bán chủ động"
+  avgPrice:
+    type: number
+    format: double
+    example: 23.435
+    description: Giá khớp trung bình
+  totalVolumeTraded:
+    type: integer
+    format: int32
+    example: 427980
+    description: Tổng khối lượng đã giao dịch trong ngày
+  grossTradeAmount:
+    type: number
+    format: double
+    example: 100.295515
+    description: Tổng giá trị giao dịch trong nngày
+  highestPrice:
+    type: number
+    format: double
+    example: 23.55
+    description: Giá khớp cao nhất trong ngày
+  lowestPrice:
+    type: number
+    format: double
+    example: 23.35
+    description: Giá khớp thấp nhất trong ngày
+  openPrice:
+    type: number
+    format: float
+    example: 23.5
+    description: Giá mở cửa
+  time:
+    type: string
+    example: "2026-03-19 04:08:29"
+    description: Thời gian khớp lệnh (theo định dạng yyyy-MM-dd HH:mm:ss)

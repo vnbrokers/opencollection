@@ -1,0 +1,5 @@
+type: string
+description: Độ phân giải nến — các endpoint này **chỉ hỗ trợ `1D`**; truyền giá trị khác trả `400 INVALID_PARAMETER`.
+default: 1D
+enum:
+  - 1D

@@ -1,0 +1,77 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "1636"
+    description: ID lệnh giao dịch dạng chuỗi
+    format: int32
+  side:
+    allOf:
+      - $ref: ../enums/OrderSide.yaml
+    example: NS
+    description: "Chiều đặt lệnh
+
+      - NB: Mua
+
+      - NS: Bán"
+  accountNo:
+    type: string
+    example: "0001179019"
+    description: Số tiểu khoản
+  symbol:
+    type: string
+    example: 41I1G4000
+    description: Mã chứng khoán
+  price:
+    type: number
+    format: double
+    example: 1618.2
+    description: Giá đặt
+  quantity:
+    type: integer
+    format: int32
+    example: 1
+    description: Khối lượng đặt
+  orderType:
+    allOf:
+      - $ref: ../enums/OrderType.yaml
+    example: LO
+    description: "Loại lệnh
+
+      - LO: Lệnh giới hạn
+
+      - MOK/MAK/MTL: Lệnh thị trường
+
+      - ATO/ATC: Lệnh phiên định kỳ mở cửa/đóng cửa
+
+      - PLO: Lệnh khớp lệnh sau giờ"
+  fillQuantity:
+    type: integer
+    format: int32
+    example: 0
+    description: Khối lượng khớp
+  leaveQuantity:
+    type: integer
+    format: int32
+    example: 0
+    description: Khối lượng còn lại
+  canceledQuantity:
+    type: integer
+    format: int32
+    example: 0
+    description: Khối lượng đã hủy
+  loanPackageId:
+    type: integer
+    format: int32
+    example: 2278
+    description: Mã gói vay
+  createdDate:
+    type: string
+    format: date-time
+    example: "2026-03-24T04:20:55.63Z"
+    description: Thời điểm tạo
+  modifiedDate:
+    type: string
+    format: date-time
+    example: "2026-03-24T04:20:55.63Z"
+    description: Thời điểm cập nhật

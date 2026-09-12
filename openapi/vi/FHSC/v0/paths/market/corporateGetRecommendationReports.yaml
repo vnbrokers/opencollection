@@ -1,7 +1,8 @@
 get:
   operationId: corporateGetRecommendationReports
   tags:
-    - Tin tức-sự kiện
+    - news-events
+
   summary: Báo cáo khuyến nghị theo stock
   description: |
     Báo cáo khuyến nghị (research report) của các công ty chứng khoán cho 1

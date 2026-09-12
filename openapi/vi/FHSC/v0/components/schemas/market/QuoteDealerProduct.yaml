@@ -1,0 +1,38 @@
+type: object
+description: Báo giá 1 sản phẩm dealer nội địa.
+required:
+  - code
+properties:
+  symbol:
+    type: string
+    description: Mã hàng hoá gốc.
+    example: XAU
+  code:
+    type: string
+    description: Mã sản phẩm dealer.
+    example: SJC-1L
+  name:
+    type: string
+    description: Tên sản phẩm.
+    example: Vàng miếng SJC 1 lượng
+  dealer:
+    type: string
+    description: Nhà cung cấp.
+    example: SJC
+  currency:
+    type: string
+    description: Đơn vị tiền tệ.
+    example: VND
+  buy:
+    type: number
+    description: Giá mua vào.
+    example: 8200000
+  sell:
+    type: number
+    description: Giá bán ra.
+    example: 8250000
+  updated_at:
+    type: string
+    description: Thời điểm dữ liệu (ISO 8601 kèm offset).
+    example: "2026-05-27T14:30:15+07:00"
+    format: date-time

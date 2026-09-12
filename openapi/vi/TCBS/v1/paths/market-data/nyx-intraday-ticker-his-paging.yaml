@@ -1,7 +1,7 @@
 "get":
   operationId: getNyxIntradayTickerHisPaging
   tags:
-    - Dữ liệu thị trường
+    - market-data
   "summary": "Lịch sử giá khớp"
   "description": "Lấy lịch sử giá khớp trong phiên của mã cổ phiếu."
   "parameters":

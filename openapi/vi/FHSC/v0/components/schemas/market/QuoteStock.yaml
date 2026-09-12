@@ -1,0 +1,67 @@
+type: object
+description: Quote cổ phiếu realtime.
+required:
+  - symbol
+  - price
+properties:
+  symbol:
+    type: string
+    description: Mã định danh (canonical, viết hoa).
+    example: VNM
+  name:
+    type: string
+    description: Tên hiển thị.
+    example: Vinamilk
+  exchange:
+    type: string
+    description: Sàn niêm yết.
+    example: HOSE
+  currency:
+    type: string
+    description: Đơn vị tiền tệ.
+    example: VND
+  price:
+    type: number
+    description: Giá hiện tại.
+    example: 68500
+  open:
+    type: number
+    description: Giá mở cửa.
+    example: 68000
+  high:
+    type: number
+    description: Giá cao nhất.
+    example: 68900
+  low:
+    type: number
+    description: Giá thấp nhất.
+    example: 67800
+  reference:
+    type: number
+    description: Giá tham chiếu.
+    example: 68200
+  ceiling:
+    type: number
+    description: Giá trần trong ngày. `null` với cổ phiếu Mỹ (không có biên độ).
+    example: 72900
+  floor:
+    type: number
+    description: Giá sàn trong ngày. `null` với cổ phiếu Mỹ (không có biên độ).
+    example: 63500
+  change:
+    type: number
+    description: Thay đổi tuyệt đối.
+    example: 300
+  change_percent:
+    type: number
+    description: Thay đổi %.
+    example: 0.44
+  volume:
+    type: number
+    description: Khối lượng khớp.
+    example: 1284500
+  updated_at:
+    type: string
+    description: Thời điểm dữ liệu (ISO 8601 kèm offset).
+    example: "2026-05-27T14:30:15+07:00"
+    format: date-time

@@ -1,0 +1,14 @@
+type: object
+description: Cặp khối lượng / giá trị của một dòng giao dịch.
+required:
+  - volume
+  - value
+properties:
+  volume:
+    type: number
+    description: Khối lượng (số cổ phiếu).
+    example: 12543200
+  value:
+    type: number
+    description: Giá trị giao dịch (VND).
+    example: 341175200000

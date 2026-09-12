@@ -1,0 +1,21 @@
+type: object
+description: Tóm tắt room ngoại trong cơ cấu sở hữu.
+properties:
+  max_pct:
+    type:
+      - number
+      - "null"
+    description: Trần sở hữu nước ngoài (%).
+    example: 100
+  max_volume:
+    type:
+      - number
+      - "null"
+    description: Trần sở hữu nước ngoài (số cổ phiếu).
+    example: 2089955445
+  available:
+    type:
+      - number
+      - "null"
+    description: Room ngoại còn lại (số cổ phiếu).
+    example: 120000000

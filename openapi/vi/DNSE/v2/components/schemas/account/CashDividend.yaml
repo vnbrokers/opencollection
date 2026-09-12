@@ -1,0 +1,55 @@
+type: object
+properties:
+  id:
+    type: integer
+    example: 617210
+    description: ID sự kiện quyền
+    format: int32
+  symbol:
+    type: string
+    example: MSB
+    description: Mã chứng khoán
+  caStatus:
+    allOf:
+      - $ref: ../enums/CorporateActionStatus.yaml
+    example: pending
+    description: "Trạng thái xử lý sự kiện quyền
+
+      - pending: Quyền đang chờ xử lý hoặc đang được thực hiện
+
+      - completed: Quyền đã được xử lý hoàn tất
+
+      - canceled: Quyền đã hủy thành công"
+  recordDate:
+    type: string
+    example: "2026-04-24"
+    description: Ngày đăng ký cuối cùng sự kiện quyền
+  processDate:
+    type: string
+    example: "2026-05-13"
+    description: Ngày thanh toán dự kiến
+  holdingQuantity:
+    type: integer
+    example: 600
+    description: Số lượng chứng khoán sở hữu tại ngày chốt quyền
+    format: int32
+  dividendValue:
+    type: integer
+    example: 500
+    description: Giá trị cổ tức trên mỗi cổ phiếu
+    format: int32
+  grossAmount:
+    type: integer
+    example: 300000
+    description: Tổng giá trị tiền cổ tức trước thuế
+    format: int32
+  taxAmount:
+    type: integer
+    example: 15000
+    description: Số tiền thuế bị khấu trừ
+    format: int32
+  netAmount:
+    type: integer
+    example: 285000
+    description: Số tiền thực nhận sau thuế
+    format: int32

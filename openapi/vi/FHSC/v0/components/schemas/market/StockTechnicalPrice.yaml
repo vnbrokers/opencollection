@@ -1,0 +1,15 @@
+type: object
+description: Giá đóng cửa của một phiên trong cửa sổ, để đối chiếu với chỉ báo.
+required:
+  - date
+  - close
+properties:
+  date:
+    type: string
+    format: date
+    description: Ngày của phiên (`YYYY-MM-DD`).
+    example: "2026-07-31"
+  close:
+    type: number
+    description: Giá đóng cửa (nghìn đồng).
+    example: 21.7

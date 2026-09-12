@@ -1,0 +1,47 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int32
+    example: 2279
+    description: Id gói vay
+  name:
+    type: string
+    example: Gói giao dịch 02
+    description: Tên gói vay
+  initialRate:
+    type: number
+    format: double
+    example: 0.1848
+    description: Tỷ lệ ban đầu
+  maintenanceRate:
+    type: number
+    format: double
+    example: 0.1735
+    description: Tỷ lệ duy trì (call margin)
+  liquidRate:
+    type: number
+    format: double
+    example: 0.1731
+    description: Tỷ lệ xử lý (force sell)
+  tradingFee:
+    $ref: ./TradingFee.yaml
+  interestRate:
+    type: number
+    format: float
+    example: 0.125
+    description: Tỷ lệ lãi vay
+  type:
+    type: string
+    example: M
+    description: Loại gói vay
+  brokerFirmBuyingFeeRate:
+    type: number
+    format: double
+    example: 0
+    description: Phí giao dịch chiều mua công ty chứng khoán thu
+  brokerFirmSellingFeeRate:
+    type: number
+    format: double
+    example: 0
+    description: Phí giao dịch chiều bán công ty chứng khoán thu

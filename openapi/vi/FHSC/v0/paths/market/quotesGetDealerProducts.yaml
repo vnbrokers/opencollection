@@ -1,0 +1,38 @@
+get:
+  operationId: quotesGetDealerProducts
+  tags:
+    - market-data
+
+  summary: Sản phẩm dealer nội địa (hàng hoá)
+  description: Danh sách báo giá dealer nội địa (VN) cho 1 hàng hoá — VD vàng SJC/PNJ/DOJI. Hàng hoá không có dealer trả mảng rỗng (200), không phải lỗi.
+  parameters:
+    - name: symbol
+      in: path
+      required: true
+      description: "Mã hàng hoá ISO. VD: XAU (vàng), XAG (bạc), CL (dầu)."
+      schema:
+        type: string
+        example: XAU
+  responses:
+    "200":
+      description: "`data` là mảng sản phẩm dealer."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/QuoteDealerProductsResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/quotes/commodities/XAU/dealer-products"

@@ -1,7 +1,7 @@
 post:
   operationId: setDealTakeProfit
   tags:
-    - Tài khoản
+    - account
   summary: Đặt lệnh chốt lời
   description: Đặt lệnh chốt lời cho deal.
   requestBody:

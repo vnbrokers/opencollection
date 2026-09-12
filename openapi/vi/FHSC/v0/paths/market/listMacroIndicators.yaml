@@ -1,0 +1,46 @@
+get:
+  operationId: listMacroIndicators
+  tags:
+    - macroeconomics
+
+  summary: Danh mục chỉ tiêu vĩ mô
+  description: |
+    Danh mục các chỉ tiêu vĩ mô khả dụng (GDP, CPI, lãi suất…) kèm `indicator` (slug), tên, `tags` phân loại và `unit`. Gọi tool này trước để tra `slug` hợp lệ dùng cho `/market/macro/indicators/{indicator}`. Lọc tùy chọn bằng `tags` (CSV) hoặc `search`.
+  parameters:
+    - name: tags
+      in: query
+      required: false
+      description: Lọc theo tag, phân tách bằng dấu phẩy (vd `inflation,vn`).
+      schema:
+        type: string
+        example: inflation
+    - name: search
+      in: query
+      required: false
+      description: Từ khóa tìm theo tên/slug chỉ tiêu.
+      schema:
+        type: string
+        example: CPI
+  responses:
+    "200":
+      description: "`data` là mảng chỉ tiêu vĩ mô kèm slug và unit."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/MacroIndicatorCatalogResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/macro/indicators"

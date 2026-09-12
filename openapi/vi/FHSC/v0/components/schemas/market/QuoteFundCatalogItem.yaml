@@ -1,0 +1,24 @@
+type: object
+required:
+  - symbol
+properties:
+  symbol:
+    type: string
+    description: Mã CCQ quỹ mở.
+    example: VESAF
+  name:
+    type: string
+    description: Tên hiển thị.
+    example: Vinamilk
+  fund_company:
+    type: string
+    description: Công ty quản lý quỹ.
+    example: VinaCapital
+  type:
+    type: string
+    description: Loại quỹ.
+    example: equity
+  valuation_frequency:
+    type: string
+    description: Tần suất định giá.
+    example: daily

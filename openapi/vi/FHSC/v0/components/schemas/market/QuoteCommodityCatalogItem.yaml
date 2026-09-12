@@ -1,0 +1,16 @@
+type: object
+required:
+  - symbol
+properties:
+  symbol:
+    type: string
+    description: Mã hàng hoá ISO.
+    example: XAU
+  name:
+    type: string
+    description: Tên hàng hoá.
+    example: Gold
+  unit:
+    type: string
+    description: Đơn vị định giá.
+    example: ounce

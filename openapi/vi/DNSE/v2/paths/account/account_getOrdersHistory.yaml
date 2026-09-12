@@ -1,0 +1,198 @@
+get:
+  operationId: account_getOrdersHistory
+  summary: Lịch sử lệnh
+  parameters:
+    - $ref: ../../components/parameters/XApiKey.yaml
+    - $ref: ../../components/parameters/XAuxDate.yaml
+    - $ref: ../../components/parameters/XSignature.yaml
+    - name: marketType
+      in: query
+      required: true
+      description: "Loại thị trường \n- STOCK: Gói vay giao dịch cơ sở\n- DERIVATIVE: Gói vay giao dịch phái sinh\n- BOND: Giao dịch trái phiếu"
+      deprecated: false
+      schema:
+        $ref: ../../components/schemas/enums/MarketType.yaml
+      example: STOCK
+    - name: from
+      in: query
+      required: true
+      description: "Ngày bắt đầu (yyyy-mm-dd) \n- Thời gian tra cứu tối đa trong 1 năm tính từ ngày hiện tại"
+      deprecated: false
+      schema:
+        type: string
+      example: "2026-02-15"
+    - name: to
+      in: query
+      required: true
+      description: "Ngày kết thúc (yyyy-mm-dd) \n- Lớn hơn hoặc bằng ngày bắt đầu và không vượt quá ngày hiện tại"
+      deprecated: false
+      schema:
+        type: string
+      example: "2026-03-18"
+  responses:
+    "200":
+      description: OK
+      headers:
+        Content-Length:
+          $ref: ../../components/headers/ContentLength.yaml
+        Date:
+          $ref: ../../components/headers/Date.yaml
+        Vary:
+          $ref: ../../components/headers/Vary.yaml
+        X-Ratelimit-Limit:
+          $ref: ../../components/headers/XRateLimitLimit.yaml
+        X-Ratelimit-Remaining:
+          $ref: ../../components/headers/XRateLimitRemaining.yaml
+        X-Ratelimit-Reset:
+          $ref: ../../components/headers/XRateLimitReset.yaml
+        X-Tyk-Api-Expires:
+          deprecated: false
+          schema: {}
+          example: Thu, 02 Jan 3000 15:04:00 UTC
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/account/OrdersHistoryResponse.yaml
+          example:
+            accountNo: "0001179019"
+            fillQuantity: 0
+            total: 8
+            start: 0
+            end: 8
+            marketType: STOCK
+            data:
+              - id: "20260312_241"
+                symbol: HPG
+                side: NB
+                orderType: LO
+                orderStatus: Expired
+                price: 27200
+                quantity: 200
+                fillQuantity: 0
+                leaveQuantity: 0
+                canceledQuantity: 200
+                averagePrice: 0
+                loanPackageId: 5765
+                transDate: "2026-03-12"
+                createdDate: "2026-03-17T06:44:18.813804Z"
+                modifiedDate: "2026-03-18T15:28:24.44026Z"
+              - id: "20260312_201"
+                symbol: HPG
+                side: NB
+                orderType: LO
+                orderStatus: Canceled
+                price: 27200
+                quantity: 100
+                fillQuantity: 0
+                leaveQuantity: 0
+                canceledQuantity: 100
+                averagePrice: 0
+                loanPackageId: 5765
+                transDate: "2026-03-12"
+                createdDate: "2026-03-17T04:38:39.589764Z"
+                modifiedDate: "2026-03-17T06:44:18.80718Z"
+              - id: "20260312_191"
+                symbol: HPG
+                side: NB
+                orderType: LO
+                orderStatus: Canceled
+                price: 27000
+                quantity: 100
+                fillQuantity: 0
+                leaveQuantity: 0
+                canceledQuantity: 100
+                averagePrice: 0
+                loanPackageId: 5765
+                transDate: "2026-03-12"
+                createdDate: "2026-03-17T04:37:55.076343Z"
+                modifiedDate: "2026-03-17T04:38:39.58558Z"
+              - id: "20260312_171"
+                symbol: HPG
+                side: NB
+                orderType: LO
+                orderStatus: Rejected
+                price: 27200
+                quantity: 300
+                fillQuantity: 0
+                leaveQuantity: 0
+                canceledQuantity: 300
+                averagePrice: 0
+                loanPackageId: 5765
+                transDate: "2026-03-12"
+                createdDate: "2026-03-17T04:27:07.160028Z"
+                modifiedDate: "2026-03-17T04:27:07.16518Z"
+              - id: "20260312_161"
+                symbol: HPG
+                side: NB
+                orderType: LO
+                orderStatus: Canceled
+                price: 27200
+                quantity: 200
+                fillQuantity: 0
+                leaveQuantity: 0
+                canceledQuantity: 200
+                averagePrice: 0
+                loanPackageId: 5765
+                transDate: "2026-03-12"
+                createdDate: "2026-03-17T04:26:29.007723Z"
+                modifiedDate: "2026-03-17T04:27:07.156301Z"
+              - id: "20260312_151"
+                symbol: HPG
+                side: NB
+                orderType: LO
+                orderStatus: Canceled
+                price: 27100
+                quantity: 100
+                fillQuantity: 0
+                leaveQuantity: 0
+                canceledQuantity: 100
+                averagePrice: 0
+                loanPackageId: 5765
+                transDate: "2026-03-12"
+                createdDate: "2026-03-17T04:22:19.045725Z"
+                modifiedDate: "2026-03-17T04:26:28.9999Z"
+              - id: "20260305_61"
+                symbol: ACB
+                side: NB
+                orderType: LO
+                orderStatus: Expired
+                price: 23200
+                quantity: 100
+                fillQuantity: 0
+                leaveQuantity: 0
+                canceledQuantity: 100
+                averagePrice: 0
+                loanPackageId: 5757
+                transDate: "2026-03-05"
+                createdDate: "2026-03-11T08:32:01.401474Z"
+                modifiedDate: "2026-03-11T14:35:53.763802Z"
+              - id: "20260224_181"
+                symbol: FPT
+                side: NB
+                orderType: LO
+                orderStatus: Expired
+                price: 95000
+                quantity: 100
+                fillQuantity: 0
+                leaveQuantity: 0
+                canceledQuantity: 100
+                averagePrice: 0
+                loanPackageId: 1372
+                transDate: "2026-02-24"
+                createdDate: "2026-02-26T08:25:18.060101Z"
+                modifiedDate: "2026-02-26T14:41:52.221586Z"
+    "400":
+      $ref: ../../components/responses/BadRequest.yaml
+    "500":
+      $ref: ../../components/responses/InternalError.yaml
+  tags:
+    - account
+parameters:
+  - name: accountNo
+    in: path
+    required: true
+    description: Số tiểu khoản
+    deprecated: false
+    schema:
+      type: string
+    example: "0001179019"

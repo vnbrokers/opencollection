@@ -1,0 +1,107 @@
+type: object
+properties:
+  marketId:
+    allOf:
+      - $ref: ../enums/MarketId.yaml
+    example: STO
+    description: "Mã thị trường niêm yết mã chứng khoán
+
+      - DVX: Phái sinh sàn HNX
+
+      - HCX: Trái phiếu doanh nghiệp HNX
+
+      - STO: Cổ phiếu sàn HOSE
+
+      - STX: Cổ phiếu sàn HNX
+
+      - UPX: Cổ phiếu sàn Upcom"
+  boardId:
+    allOf:
+      - $ref: ../enums/BoardId.yaml
+    example: G1
+    description: "Mã bảng giao dịch
+
+      - G1: Lô chẵn
+
+      - G4: Lô lẻ
+
+      - T1: Thỏa thuận trong giờ (9h - 14h45)
+
+      - T3: Thỏa thuận sau giờ (14h45 - 15h)
+
+      - T4: Thỏa thuận lô lẻ trong giờ (9h - 14h45)
+
+      - T6: Thỏa thuận lô lẻ sau giờ (14h45 - 15h)"
+  symbol:
+    type: string
+    example: ACB
+    description: Mã chứng khoán
+  tradingSessionId:
+    allOf:
+      - $ref: ../enums/TradingSessionId.yaml
+    example: "40"
+    description: "Mã phiên giao dịch hiện tại
+
+      - 10: Phiên ATO
+
+      - 30: Phiên ATC
+
+      - 40: Phiên liên tục
+
+      - 80: PCA Mã halt
+
+      - 99: Đóng bảng"
+  sellVolume:
+    type: integer
+    format: int32
+    example: 200
+    description: Khối lượng bán khớp lệnh của nhà đầu tư nước ngoài trong phiên
+  sellTradedAmount:
+    type: integer
+    format: int32
+    example: 19800000
+    description: Giá trị bán khớp lệnh của nhà đầu tư nước ngoài trong phiên
+  buyVolume:
+    type: integer
+    format: int32
+    example: 500
+    description: Khối lượng mua khớp lệnh của nhà đầu tư nước ngoài trong phiên
+  buyTradedAmount:
+    type: integer
+    format: int32
+    example: 49350000
+    description: Giá trị mua khớp lệnh của nhà đầu tư nước ngoài trong phiên
+  totalSellVolume:
+    type: integer
+    format: int32
+    example: 200
+    description: Tổng khối lượng bán lũy kế của nhà đầu tư nước ngoài
+  totalSellTradedAmount:
+    type: integer
+    format: int32
+    example: 19800000
+    description: Tổng giá trị bán lũy kế của nhà đầu tư nước ngoài
+  totalBuyVolume:
+    type: integer
+    format: int32
+    example: 500
+    description: Tổng khối lượng mua lũy kế của nhà đầu tư nước ngoà
+  totalBuyTradedAmount:
+    type: integer
+    format: int32
+    example: 49350000
+    description: Tổng giá trị mua lũy kế của nhà đầu tư nước ngoài
+  foreignerOrderLimitQuantity:
+    type: integer
+    format: int32
+    example: 62397864
+    description: Giới hạn khối lượng sở hữu tối đa dành cho nhà đầu tư nước ngoài
+  foreignerBuyPossibleQuantity:
+    type: integer
+    format: int32
+    example: 265119351
+    description: Khối lượng còn lại mà nhà đầu tư nước ngoài được phép mua
+  time:
+    type: string
+    example: "2026-08-03 11:30:00.091"
+    description: "Thời gian ghi nhận. Định dạng: YYYY-MM-DD HH:mm:ss.SSS (GMT+7)."

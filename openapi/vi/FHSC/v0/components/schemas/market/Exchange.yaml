@@ -1,6 +1,7 @@
 type: string
 description: |
   Mã sàn chứng khoán Việt Nam.
+
   | Giá trị | Ý nghĩa |
   |---------|---------|
   | `HOSE` | Sở Giao dịch Chứng khoán TP. HCM |

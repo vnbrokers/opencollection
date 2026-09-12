@@ -1,0 +1,405 @@
+get:
+  operationId: stocksScreen
+  tags:
+    - market-data
+
+  summary: Sàng lọc cổ phiếu (screener)
+  description: |
+    Sàng lọc cổ phiếu trên toàn thị trường: kết hợp filter phạm vi (`exchange`, `index`, `sector`), filter số dạng `<field>_gt` / `<field>_lt`, `sort`, `window` (hoặc `date`) và `fields`. Riêng `price_gt` / `price_lt` nhận thêm `ma50` / `ma200` để so giá với chính đường trung bình động của mã đó. `window` quét tới phiên đang chạy; `date` quét đúng một phiên quá khứ đã đóng, khi đó mọi số liệu lấy từ lịch sử lưu trữ nên các field không có giá trị quá khứ (`market_cap`, `shares_outstanding`, `pe`, `pb`, `eps`, `value`, `ma50`, `ma200`) trả về `null` và không dùng để `sort` / filter được. Kết quả phân trang, mặc định sắp xếp theo vốn hoá giảm dần (theo `volume` khi dùng `date`).
+  parameters:
+    - name: exchange
+      in: query
+      required: false
+      description: Lọc theo sàn niêm yết.
+      schema:
+        type: string
+        enum:
+          - HOSE
+          - HNX
+          - UPCOM
+        example: HOSE
+    - name: index
+      in: query
+      required: false
+      description: Lọc theo rổ chỉ số.
+      schema:
+        type: string
+        enum:
+          - VN30
+          - HNX30
+        example: VN30
+    - name: sector
+      in: query
+      required: false
+      description: Lọc theo slug ngành cấp 1.
+      schema:
+        type: string
+        enum:
+          - technology
+          - telecommunications
+          - healthcare
+          - financials
+          - real-estate
+          - consumer-discretionary
+          - consumer-staples
+          - industrials
+          - basic-materials
+          - energy
+          - utilities
+        example: financials
+    - name: window
+      in: query
+      required: false
+      description: Cửa sổ luỹ kế cho các field dòng tiền (foreign_*, proprietary_*, volume, value), kết thúc ở phiên hiện tại. Các field trạng thái (pe, market_cap…) không chịu ảnh hưởng. Mặc định `1D`. Không dùng chung với `date`.
+      schema:
+        type: string
+        enum:
+          - 1D
+          - 1W
+          - 1M
+          - 3M
+          - 6M
+          - 1Y
+          - YTD
+        default: 1D
+        example: YTD
+    - name: date
+      in: query
+      required: false
+      description: Quét đúng một phiên quá khứ đã đóng (`YYYY-MM-DD`, phải nhỏ hơn ngày hôm nay — phiên đang chạy dùng `window=1D`). Không dùng chung với `window`. Khi có `date`, các field chỉ tồn tại ở thời điểm hiện tại (`market_cap`, `shares_outstanding`, `pe`, `pb`, `eps`, `value`, `ma50`, `ma200`) trả về `null`, và `sort` / filter theo chúng bị từ chối 400.
+      schema:
+        type: string
+        format: date
+        example: "2026-08-05"
+    - name: sort
+      in: query
+      required: false
+      description: Field số để sắp xếp, thêm tiền tố `-` cho giảm dần. VD `-market_cap`, `foreign_net_value`. Mặc định `-market_cap`, riêng khi dùng `date` mặc định là `-volume`. Không sắp xếp được theo `ma50`/`ma200`; khi dùng `date` cũng không sắp xếp được theo các field không có giá trị quá khứ (`market_cap`, `shares_outstanding`, `pe`, `pb`, `eps`, `value`).
+      schema:
+        type: string
+        example: "-foreign_net_value"
+    - name: fields
+      in: query
+      required: false
+      description: "Danh sách field cần trả về, phân tách bằng dấu phẩy. Mặc định `symbol,exchange,name,price,change_percent`. Field dùng trong `sort`/filter luôn được thêm vào. Field hợp lệ: `symbol`, `name`, `exchange`, `sector`, `price`, `change_percent`, `market_cap`, `shares_outstanding`, `pe`, `pb`, `eps`, `volume`, `value`, `foreign_buy_value`, `foreign_sell_value`, `foreign_net_value`, `foreign_net_volume`, `foreign_room_available`, `foreign_room_available_pct`, `proprietary_buy_value`, `proprietary_sell_value`, `proprietary_net_value`, `proprietary_net_volume`, `ma50`, `ma200`. `ma50`/`ma200` chỉ hiển thị được qua `fields` — không dùng làm `sort` hay filter trực tiếp, chỉ làm vế phải của `price_gt`/`price_lt`."
+      schema:
+        type: string
+        example: symbol,name,pe,market_cap
+    - name: price_gt
+      in: query
+      required: false
+      description: Chỉ lấy mã có giá hiện tại lớn hơn giá trị này. Nhận một số (vnd), hoặc `ma50` / `ma200` để lấy các mã đang giao dịch trên đường trung bình động của chính mã đó.
+      schema:
+        oneOf:
+          - type: number
+            example: 20000
+          - type: string
+            enum:
+              - ma50
+              - ma200
+            example: ma50
+    - name: price_lt
+      in: query
+      required: false
+      description: Chỉ lấy mã có giá hiện tại nhỏ hơn giá trị này. Nhận một số (vnd), hoặc `ma50` / `ma200` để lấy các mã đang giao dịch dưới đường trung bình động của chính mã đó.
+      schema:
+        oneOf:
+          - type: number
+            example: 20000
+          - type: string
+            enum:
+              - ma50
+              - ma200
+            example: ma50
+    - name: change_percent_gt
+      in: query
+      required: false
+      description: Chỉ lấy mã có thay đổi giá (%) lớn hơn giá trị này.
+      schema:
+        type: number
+        example: 3
+    - name: change_percent_lt
+      in: query
+      required: false
+      description: Chỉ lấy mã có thay đổi giá (%) nhỏ hơn giá trị này.
+      schema:
+        type: number
+        example: 3
+    - name: market_cap_gt
+      in: query
+      required: false
+      description: Chỉ lấy mã có vốn hoá (vnd) lớn hơn giá trị này.
+      schema:
+        type: number
+        example: 1000000000000
+    - name: market_cap_lt
+      in: query
+      required: false
+      description: Chỉ lấy mã có vốn hoá (vnd) nhỏ hơn giá trị này.
+      schema:
+        type: number
+        example: 1000000000000
+    - name: shares_outstanding_gt
+      in: query
+      required: false
+      description: Chỉ lấy mã có số cổ phiếu lưu hành lớn hơn giá trị này.
+      schema:
+        type: number
+        example: 100000000
+    - name: shares_outstanding_lt
+      in: query
+      required: false
+      description: Chỉ lấy mã có số cổ phiếu lưu hành nhỏ hơn giá trị này.
+      schema:
+        type: number
+        example: 100000000
+    - name: pe_gt
+      in: query
+      required: false
+      description: Chỉ lấy mã có p/e lớn hơn giá trị này.
+      schema:
+        type: number
+        example: 15
+    - name: pe_lt
+      in: query
+      required: false
+      description: Chỉ lấy mã có p/e nhỏ hơn giá trị này.
+      schema:
+        type: number
+        example: 15
+    - name: pb_gt
+      in: query
+      required: false
+      description: Chỉ lấy mã có p/b lớn hơn giá trị này.
+      schema:
+        type: number
+        example: 2
+    - name: pb_lt
+      in: query
+      required: false
+      description: Chỉ lấy mã có p/b nhỏ hơn giá trị này.
+      schema:
+        type: number
+        example: 2
+    - name: eps_gt
+      in: query
+      required: false
+      description: Chỉ lấy mã có eps (vnd) lớn hơn giá trị này.
+      schema:
+        type: number
+        example: 3000
+    - name: eps_lt
+      in: query
+      required: false
+      description: Chỉ lấy mã có eps (vnd) nhỏ hơn giá trị này.
+      schema:
+        type: number
+        example: 3000
+    - name: volume_gt
+      in: query
+      required: false
+      description: Chỉ lấy mã có khối lượng khớp lớn hơn giá trị này.
+      schema:
+        type: number
+        example: 1000000
+    - name: volume_lt
+      in: query
+      required: false
+      description: Chỉ lấy mã có khối lượng khớp nhỏ hơn giá trị này.
+      schema:
+        type: number
+        example: 1000000
+    - name: value_gt
+      in: query
+      required: false
+      description: Chỉ lấy mã có giá trị khớp (vnd) lớn hơn giá trị này.
+      schema:
+        type: number
+        example: 50000000000
+    - name: value_lt
+      in: query
+      required: false
+      description: Chỉ lấy mã có giá trị khớp (vnd) nhỏ hơn giá trị này.
+      schema:
+        type: number
+        example: 50000000000
+    - name: foreign_net_value_gt
+      in: query
+      required: false
+      description: Chỉ lấy mã có giá trị mua ròng khối ngoại (vnd) lớn hơn giá trị này.
+      schema:
+        type: number
+        example: 0
+    - name: foreign_net_value_lt
+      in: query
+      required: false
+      description: Chỉ lấy mã có giá trị mua ròng khối ngoại (vnd) nhỏ hơn giá trị này.
+      schema:
+        type: number
+        example: 0
+    - name: foreign_net_volume_gt
+      in: query
+      required: false
+      description: Chỉ lấy mã có khối lượng mua ròng khối ngoại trong `window` lớn hơn giá trị này.
+      schema:
+        type: number
+        example: 0
+    - name: foreign_net_volume_lt
+      in: query
+      required: false
+      description: Chỉ lấy mã có khối lượng mua ròng khối ngoại trong `window` nhỏ hơn giá trị này.
+      schema:
+        type: number
+        example: 0
+    - name: foreign_buy_value_gt
+      in: query
+      required: false
+      description: Chỉ lấy mã có giá trị khối ngoại MUA trong `window` (vnd) lớn hơn giá trị này. Đây là chiều mua, không phải mua ròng — mua ròng dùng `foreign_net_value_gt`.
+      schema:
+        type: number
+        example: 10000000000
+    - name: foreign_buy_value_lt
+      in: query
+      required: false
+      description: Chỉ lấy mã có giá trị khối ngoại MUA trong `window` (vnd) nhỏ hơn giá trị này.
+      schema:
+        type: number
+        example: 10000000000
+    - name: foreign_sell_value_gt
+      in: query
+      required: false
+      description: Chỉ lấy mã có giá trị khối ngoại BÁN trong `window` (vnd) lớn hơn giá trị này. Đây là chiều bán, không phải bán ròng — bán ròng dùng `foreign_net_value_lt`.
+      schema:
+        type: number
+        example: 10000000000
+    - name: foreign_sell_value_lt
+      in: query
+      required: false
+      description: Chỉ lấy mã có giá trị khối ngoại BÁN trong `window` (vnd) nhỏ hơn giá trị này.
+      schema:
+        type: number
+        example: 10000000000
+    - name: foreign_room_available_gt
+      in: query
+      required: false
+      description: Chỉ lấy mã có room ngoại còn lại (số cổ phiếu) lớn hơn giá trị này. Muốn so theo tỷ lệ thì dùng `foreign_room_available_pct_gt`.
+      schema:
+        type: number
+        example: 1000000
+    - name: foreign_room_available_lt
+      in: query
+      required: false
+      description: Chỉ lấy mã có room ngoại còn lại (số cổ phiếu) nhỏ hơn giá trị này.
+      schema:
+        type: number
+        example: 1000000
+    - name: foreign_room_available_pct_gt
+      in: query
+      required: false
+      description: Chỉ lấy mã có room ngoại còn lại (% so với trần sở hữu nước ngoài, 0–100) lớn hơn giá trị này.
+      schema:
+        type: number
+        example: 50
+    - name: foreign_room_available_pct_lt
+      in: query
+      required: false
+      description: Chỉ lấy mã có room ngoại còn lại (% so với trần sở hữu nước ngoài, 0–100) nhỏ hơn giá trị này. VD `foreign_room_available_pct_lt=5` để tìm các mã gần kín room.
+      schema:
+        type: number
+        example: 5
+    - name: proprietary_net_value_gt
+      in: query
+      required: false
+      description: Chỉ lấy mã có giá trị mua ròng của tự doanh trong `window` (vnd) lớn hơn giá trị này. VD `proprietary_net_value_gt=0` để lấy các mã tự doanh mua ròng.
+      schema:
+        type: number
+        example: 0
+    - name: proprietary_net_value_lt
+      in: query
+      required: false
+      description: Chỉ lấy mã có giá trị mua ròng của tự doanh trong `window` (vnd) nhỏ hơn giá trị này. VD `proprietary_net_value_lt=0` để lấy các mã tự doanh bán ròng.
+      schema:
+        type: number
+        example: 0
+    - name: proprietary_net_volume_gt
+      in: query
+      required: false
+      description: Chỉ lấy mã có khối lượng mua ròng của tự doanh trong `window` lớn hơn giá trị này.
+      schema:
+        type: number
+        example: 0
+    - name: proprietary_net_volume_lt
+      in: query
+      required: false
+      description: Chỉ lấy mã có khối lượng mua ròng của tự doanh trong `window` nhỏ hơn giá trị này.
+      schema:
+        type: number
+        example: 0
+    - name: proprietary_buy_value_gt
+      in: query
+      required: false
+      description: Chỉ lấy mã có giá trị tự doanh MUA trong `window` (vnd) lớn hơn giá trị này. Đây là chiều mua, không phải mua ròng — mua ròng dùng `proprietary_net_value_gt`.
+      schema:
+        type: number
+        example: 5000000000
+    - name: proprietary_buy_value_lt
+      in: query
+      required: false
+      description: Chỉ lấy mã có giá trị tự doanh MUA trong `window` (vnd) nhỏ hơn giá trị này.
+      schema:
+        type: number
+        example: 5000000000
+    - name: proprietary_sell_value_gt
+      in: query
+      required: false
+      description: Chỉ lấy mã có giá trị tự doanh BÁN trong `window` (vnd) lớn hơn giá trị này. Đây là chiều bán, không phải bán ròng — bán ròng dùng `proprietary_net_value_lt`.
+      schema:
+        type: number
+        example: 5000000000
+    - name: proprietary_sell_value_lt
+      in: query
+      required: false
+      description: Chỉ lấy mã có giá trị tự doanh BÁN trong `window` (vnd) nhỏ hơn giá trị này.
+      schema:
+        type: number
+        example: 5000000000
+    - name: page
+      in: query
+      required: false
+      description: Trang, bắt đầu từ 1. Mặc định 1.
+      schema:
+        type: integer
+        minimum: 1
+        example: 1
+    - name: page_size
+      in: query
+      required: false
+      description: Số mã mỗi trang (1–50). Mặc định 20.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 50
+        example: 20
+  responses:
+    "200":
+      description: "`data.items` là danh sách mã, mỗi item chỉ chứa các field được chọn qua `fields`."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/StockScreenerResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/stocks?exchange=HOSE&sort=-market_cap&page_size=20"

@@ -1,0 +1,39 @@
+type: object
+description: Phần đặc thù của sự kiện vĩ mô (`type = ECONOMIC`).
+required:
+  - date
+  - category
+properties:
+  date:
+    type: string
+    format: date-time
+    description: Thời điểm diễn ra sự kiện, ISO 8601 kèm offset (giờ Việt Nam).
+    example: "2026-07-29T01:00:00+07:00"
+  category:
+    type: string
+    description: Phân loại sự kiện (ví dụ "Interest Rate", "Inflation", "Employment").
+    example: Interest Rate
+  actual:
+    type:
+      - string
+      - "null"
+    description: Số liệu thực tế đã công bố. `null` khi sự kiện chưa diễn ra.
+    example: 5.50%
+  previous:
+    type:
+      - string
+      - "null"
+    description: Số liệu kỳ trước. `null` nếu nguồn không có.
+    example: 5.25%
+  consensus:
+    type:
+      - string
+      - "null"
+    description: Đồng thuận thị trường (consensus). `null` nếu nguồn không có.
+    example: 5.50%
+  forecast:
+    type:
+      - string
+      - "null"
+    description: Dự báo nhà phân tích. `null` nếu nguồn không có.
+    example: 5.50%

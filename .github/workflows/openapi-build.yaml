@@ -4,12 +4,14 @@ on:
   push:
     paths:
       - "openapi/**"
+      - "asyncapi/**"
       - "package.json"
       - "redocly.yaml"
       - ".github/workflows/openapi-build.yaml"
   pull_request:
     paths:
       - "openapi/**"
+      - "asyncapi/**"
       - "package.json"
       - "redocly.yaml"
       - ".github/workflows/openapi-build.yaml"

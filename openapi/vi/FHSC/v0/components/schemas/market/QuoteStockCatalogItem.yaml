@@ -1,0 +1,12 @@
+type: object
+required:
+  - symbol
+properties:
+  symbol:
+    type: string
+    description: Mã định danh (canonical, viết hoa).
+    example: VNM
+  name:
+    type: string
+    description: Tên hiển thị.
+    example: Vinamilk

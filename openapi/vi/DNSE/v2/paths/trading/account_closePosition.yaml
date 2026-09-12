@@ -1,0 +1,75 @@
+parameters:
+  - name: positionId
+    in: path
+    required: true
+    description: Id vị thế
+    deprecated: false
+    schema:
+      type: string
+    example: "177410795472387"
+post:
+  operationId: account_closePosition
+  summary: Đóng vị thế
+  parameters:
+    - $ref: ../../components/parameters/XApiKey.yaml
+    - $ref: ../../components/parameters/XAuxDate.yaml
+    - $ref: ../../components/parameters/XSignature.yaml
+    - $ref: ../../components/parameters/TradingToken.yaml
+    - name: marketType
+      in: query
+      required: true
+      description: "Loại thị trường \n- STOCK: Danh sách Deal cơ sở\n- DERIVATIVE: Danh sách Deal phái sinh\nHiện tại chỉ hỗ trợ phái sinh"
+      deprecated: false
+      schema:
+        $ref: ../../components/schemas/enums/MarketType.yaml
+      example: DERIVATIVE
+  responses:
+    "200":
+      description: OK
+      headers:
+        Access-Control-Allow-Credentials:
+          $ref: ../../components/headers/AccessControlAllowCredentials.yaml
+        Content-Encoding:
+          deprecated: false
+          schema: {}
+          example: br
+        Content-Length:
+          $ref: ../../components/headers/ContentLength.yaml
+        Date:
+          $ref: ../../components/headers/Date.yaml
+        Vary:
+          $ref: ../../components/headers/Vary.yaml
+        X-Ratelimit-Limit:
+          $ref: ../../components/headers/XRateLimitLimit.yaml
+        X-Ratelimit-Remaining:
+          $ref: ../../components/headers/XRateLimitRemaining.yaml
+        X-Ratelimit-Reset:
+          $ref: ../../components/headers/XRateLimitReset.yaml
+        X-Tyk-Api-Expires:
+          deprecated: false
+          schema: {}
+          example: Thu, 02 Jan 3000 15:04:00 UTC
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/trading/PositionCloseResponse.yaml
+          example:
+            id: "1636"
+            side: NS
+            accountNo: "0001179019"
+            symbol: 41I1G4000
+            price: 1618.2
+            quantity: 1
+            orderType: LO
+            fillQuantity: 0
+            leaveQuantity: 0
+            canceledQuantity: 0
+            loanPackageId: 2278
+            createdDate: "2026-03-24T04:20:55.63Z"
+            modifiedDate: "2026-03-24T04:20:55.63Z"
+    "400":
+      $ref: ../../components/responses/BadRequest.yaml
+    "500":
+      $ref: ../../components/responses/InternalError.yaml
+  tags:
+    - trading

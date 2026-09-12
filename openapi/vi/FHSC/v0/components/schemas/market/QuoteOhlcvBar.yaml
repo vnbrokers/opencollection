@@ -1,0 +1,45 @@
+type: object
+description: 1 cây nến OHLCV. Với trái phiếu Chính phủ, nến chỉ có `{t, yield}` — `c` là `null`.
+required:
+  - t
+properties:
+  t:
+    type: integer
+    description: Unix timestamp (giây) mốc bắt đầu nến.
+    example: 1717200000
+  o:
+    type:
+      - number
+      - "null"
+    description: Giá mở cửa. `null` với chuỗi close-only.
+    example: 192.9
+  h:
+    type:
+      - number
+      - "null"
+    description: Giá cao nhất. `null` với chuỗi close-only.
+    example: 194.35
+  l:
+    type:
+      - number
+      - "null"
+    description: Giá thấp nhất. `null` với chuỗi close-only.
+    example: 191.1
+  c:
+    type:
+      - number
+      - "null"
+    description: Giá đóng cửa. `null` với nến yield-only (trái phiếu Chính phủ).
+    example: 193.42
+  v:
+    type:
+      - number
+      - "null"
+    description: Khối lượng. `null` với chuỗi close-only.
+    example: 51824100
+  yield:
+    type:
+      - number
+      - "null"
+    description: Lợi suất (%). Chỉ xuất hiện với lịch sử trái phiếu Chính phủ; các nến khác không có trường này.
+    example: 3.85

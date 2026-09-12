@@ -1,0 +1,12 @@
+type: object
+required:
+  - symbol
+properties:
+  symbol:
+    type: string
+    description: Cặp forex 6 ký tự.
+    example: USDVND
+  name:
+    type: string
+    description: Tên cặp.
+    example: US Dollar / Vietnamese Dong

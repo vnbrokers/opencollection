@@ -1,0 +1,24 @@
+type: string
+description: |-
+  Trạng thái vị thế.
+
+  - `OPEN`: Đang mở
+  - `PENDING_CLOSE`: Chờ đóng
+  - `CLOSED`: Đã đóng
+  - `ODD_LOT`: Lô lẻ (cơ sở)
+enum:
+  - OPEN
+  - PENDING_CLOSE
+  - CLOSED
+  - ODD_LOT
+x-enum-descriptions:
+  - "Đang mở"
+  - "Chờ đóng"
+  - "Đã đóng"
+  - "Lô lẻ (cơ sở)"
+x-enum-varnames:
+  - OPEN
+  - PENDING_CLOSE
+  - CLOSED
+  - ODD_LOT
+example: OPEN

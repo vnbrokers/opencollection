@@ -1,0 +1,199 @@
+overlay: 1.0.0
+info:
+  title: DNSE OpenAPI - Mintlify customization
+  version: 2.0.0
+extends: ./dnse.openapi.yaml
+
+actions:
+  - target: "$.paths['/registration/send-email-otp'].post"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/trading/send-email-otp
+        metadata:
+          sidebarTitle: Gửi Email OTP
+  - target: "$.paths['/registration/trading-token'].post"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/trading/verify-2-fa
+        metadata:
+          sidebarTitle: Xác thực OTP
+  - target: "$.paths['/accounts/{accountNo}/orders/{orderId}'].put"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/trading/replace-order
+        metadata:
+          sidebarTitle: Sửa lệnh
+  - target: "$.paths['/accounts/{accountNo}/orders/{orderId}'].delete"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/trading/cancel-order
+        metadata:
+          sidebarTitle: Hủy lệnh
+  - target: "$.paths['/accounts/{accountNo}/orders/{orderId}'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/trading/get-order-detail
+        metadata:
+          sidebarTitle: Chi tiết lệnh theo ID
+  - target: "$.paths['/positions/{positionId}/close'].post"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/trading/close-position
+        metadata:
+          sidebarTitle: Đóng vị thế
+  - target: "$.paths['/accounts/{accountNo}/balances'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/account/get-balances
+        metadata:
+          sidebarTitle: Thông tin tiền
+  - target: "$.paths['/accounts'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/account/get-accounts
+        metadata:
+          sidebarTitle: Tài khoản giao dịch
+  - target: "$.paths['/accounts/{accountNo}/loan-packages'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/account/get-loan-packages
+        metadata:
+          sidebarTitle: Danh sách gói vay
+  - target: "$.paths['/accounts/{accountNo}/ppse'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/account/get-ppse
+        metadata:
+          sidebarTitle: Sức mua, sức bán
+  - target: "$.paths['/accounts/{accountNo}/orders'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/account/get-orders
+        metadata:
+          sidebarTitle: Sổ lệnh
+  - target: "$.paths['/accounts/{accountNo}/orders'].post"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/trading/place-order
+        metadata:
+          sidebarTitle: Đặt lệnh
+  - target: "$.paths['/accounts/{accountNo}/orders/history'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/account/get-orders-history
+        metadata:
+          sidebarTitle: Lịch sử lệnh
+  - target: "$.paths['/accounts/{accountNo}/positions'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/account/get-positions
+        metadata:
+          sidebarTitle: Vị thế nắm giữ
+  - target: "$.paths['/accounts/{accountNo}/corporate-action-history'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/account/get-corporate-action-history
+        metadata:
+          sidebarTitle: Lịch sử sự kiện quyền
+  - target: "$.paths['/accounts/{accountNo}/executions/{orderId}'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/account/get-executions
+        metadata:
+          sidebarTitle: Chi tiết trạng thái lệnh
+  - target: "$.paths['/positions/{positionId}/pnl-configs'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/account/get-pnl-configs-position
+        metadata:
+          sidebarTitle: Cấu hình chốt lời, cắt lỗ của vị thế
+  - target: "$.paths['/positions/{positionId}/pnl-configs'].post"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/trading/set-pnl-config
+        metadata:
+          sidebarTitle: Cài đặt chốt lời, cắt lỗ cho vị thế
+  - target: "$.paths['/positions/{positionId}'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/account/get-position-by-id
+        metadata:
+          sidebarTitle: Chi tiết vị thế theo ID
+  - target: "$.paths['/price/{symbol}/secdef'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/market/get-secdef
+        metadata:
+          sidebarTitle: Thông tin giao dịch chứng khoán
+  - target: "$.paths['/instruments'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/market/get-instruments
+        metadata:
+          sidebarTitle: Chi tiết mã chứng khoán
+  - target: "$.paths['/price/ohlc'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/market/get-ohlc
+        metadata:
+          sidebarTitle: Lịch sử OHLC
+  - target: "$.paths['/price/{symbol}/trades'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/market/get-history-trades
+        metadata:
+          sidebarTitle: Lịch sử khớp lệnh
+  - target: "$.paths['/price/{symbol}/trades/latest'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/market/get-latest-trades
+        metadata:
+          sidebarTitle: Dữ liệu khớp gần nhất
+  - target: "$.paths['/price/{symbol}/foreign-trading'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/market/get-foreign-trading
+        metadata:
+          sidebarTitle: Dữ liệu nhà đầu tư nước ngoài
+  - target: "$.paths['/price/{symbol}/quotes'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/market/get-quotes
+        metadata:
+          sidebarTitle: Lịch sử bid/ask
+  - target: "$.paths['/price/{symbol}/quotes/latest'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/market/get-latest-quotes
+        metadata:
+          sidebarTitle: Dữ liệu bid/ask gần nhất
+  - target: "$.paths['/price/{symbol}/close'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/market/get-price-symbol-close
+        metadata:
+          sidebarTitle: Giá đóng cửa
+  - target: "$.paths['/price/{symbol}/expected-price'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/market/get-expected-price
+        metadata:
+          sidebarTitle: Giá dự khớp
+  - target: "$.paths['/market/trading-session'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/market/get-trading-session
+        metadata:
+          sidebarTitle: Thông tin phiên giao dịch
+  - target: "$.paths['/market/working-dates'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/market/get-working-dates
+        metadata:
+          sidebarTitle: Ngày làm việc
+  - target: "$.paths['/brokers/accounts/care-by'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/account/get-care-by
+        metadata:
+          sidebarTitle: Danh sách tiểu khoản quản lý

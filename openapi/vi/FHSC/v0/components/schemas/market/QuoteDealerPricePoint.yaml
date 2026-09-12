@@ -1,0 +1,14 @@
+type: object
+description: 1 điểm giá dealer.
+required:
+  - t
+  - price
+properties:
+  t:
+    type: integer
+    description: Unix timestamp (giây).
+    example: 1717200000
+  price:
+    type: number
+    description: Giá dealer.
+    example: 8250000

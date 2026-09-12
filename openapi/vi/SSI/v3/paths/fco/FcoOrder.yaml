@@ -1,7 +1,7 @@
 post:
   operationId: placeConditionalOrder
   tags:
-    - Lệnh điều kiện
+    - conditional-orders
   summary: Đặt lệnh điều kiện
   description: Đặt lệnh điều kiện mới. Hỗ trợ các loại lệnh điều kiện bao gồm stop, stop_limit, gtd, bullbear, oco, trailing_stop, trailing_stop_limit.
   security:
@@ -35,7 +35,7 @@ post:
 delete:
   operationId: cancelConditionalOrder
   tags:
-    - Lệnh điều kiện
+    - conditional-orders
   summary: Hủy lệnh điều kiện
   description: Đặt lệnh điều kiện mới. Hỗ trợ các loại lệnh điều kiện bao gồm stop, stop_limit, gtd, bullbear, oco, trailing_stop, trailing_stop_limit.
   security:

@@ -1,7 +1,8 @@
 post:
   operationId: ordersPlace
   tags:
-    - Thực thi lệnh
+    - order-execution
+
   security:
     - FinhayApiKey: []
       FinhayTimestamp: []

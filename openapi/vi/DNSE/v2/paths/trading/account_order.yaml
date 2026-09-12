@@ -1,0 +1,340 @@
+parameters:
+  - name: accountNo
+    in: path
+    required: true
+    description: Số tiểu khoản
+    deprecated: false
+    schema:
+      type: string
+    example: "0001179019"
+  - name: orderId
+    in: path
+    required: true
+    description: Mã lệnh giao dịch
+    deprecated: false
+    schema:
+      type: integer
+    example: 96
+
+post:
+  operationId: account_placeOrder
+  summary: Đặt lệnh
+  parameters:
+    - $ref: ../../components/parameters/XApiKey.yaml
+    - $ref: ../../components/parameters/XAuxDate.yaml
+    - $ref: ../../components/parameters/XSignature.yaml
+    - $ref: ../../components/parameters/TradingToken.yaml
+    - name: marketType
+      in: query
+      required: true
+      description: |-
+        Loại thị trường 
+        - STOCK: Đặt lệnh cơ sở
+        - DERIVATIVE: Đặt lệnh phái sinh
+      deprecated: false
+      schema:
+        $ref: ../../components/schemas/enums/MarketType.yaml
+      example: DERIVATIVE
+    - name: orderCategory
+      in: query
+      required: true
+      description: Phân loại lệnh thường, lệnh điều kiện (mặc định NORMAL)
+      deprecated: false
+      schema:
+        $ref: ../../components/schemas/enums/OrderCategory.yaml
+      example: NORMAL
+  responses:
+    "200":
+      description: OK
+      headers:
+        Content-Length:
+          $ref: "../../components/headers/ContentLength.yaml"
+        Date:
+          $ref: "../../components/headers/Date.yaml"
+        Vary:
+          $ref: "../../components/headers/Vary.yaml"
+        X-Ratelimit-Limit:
+          $ref: "../../components/headers/XRateLimitLimit.yaml"
+        X-Ratelimit-Remaining:
+          $ref: "../../components/headers/XRateLimitRemaining.yaml"
+        X-Ratelimit-Reset:
+          $ref: "../../components/headers/XRateLimitReset.yaml"
+        X-Tyk-Api-Expires:
+          schema:
+            type: string
+          example: Thu, 02 Jan 3000 15:04:00 UTC
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/trading/OrderPlaceResponse.yaml
+          example:
+            id: 1626
+            symbol: 41I1G4000
+            side: NS
+            orderType: LO
+            orderStatus: Pending
+            price: 1861.5
+            averagePrice: 0
+            quantity: 3
+            fillQuantity: 0
+            canceledQuantity: 0
+            leaveQuantity: 3
+            accountNo: "0001179019"
+            marketType: DERIVATIVE
+            orderCategory: NORMAL
+            transDate: "2026-03-16"
+            createdDate: "2026-03-24T04:09:50.761146893Z"
+            modifiedDate: "2026-03-24T04:09:50.761151529Z"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  tags:
+    - trading
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/schemas/trading/OrderPlaceRequest.yaml
+        example:
+          accountNo: "0001179019"
+          loanPackageId: 2278
+          orderType: LO
+          price: 1861.5
+          quantity: 3
+          side: NS
+          symbol: 41I1G4000
+
+get:
+  operationId: account_getOrderDetail
+  summary: Chi tiết lệnh theo ID
+  parameters:
+    - $ref: ../../components/parameters/XApiKey.yaml
+    - $ref: ../../components/parameters/XAuxDate.yaml
+    - $ref: ../../components/parameters/XSignature.yaml
+    - name: marketType
+      in: query
+      required: true
+      description: "Loại thị trường \n- STOCK: Sổ lệnh cơ sở\n- DERIVATIVE: Sổ lệnh phái sinh"
+      deprecated: false
+      schema:
+        $ref: ../../components/schemas/enums/MarketType.yaml
+      example: DERIVATIVE
+    - name: orderCategory
+      in: query
+      required: true
+      description: Phân loại lệnh thường, lệnh điều kiện (mặc định NORMAL)
+      deprecated: false
+      schema:
+        $ref: ../../components/schemas/enums/OrderCategory.yaml
+      example: NORMAL
+  responses:
+    "200":
+      description: OK
+      headers:
+        Content-Length:
+          $ref: ../../components/headers/ContentLength.yaml
+        Date:
+          $ref: ../../components/headers/Date.yaml
+        Vary:
+          $ref: ../../components/headers/Vary.yaml
+        X-Ratelimit-Limit:
+          $ref: ../../components/headers/XRateLimitLimit.yaml
+        X-Ratelimit-Remaining:
+          $ref: ../../components/headers/XRateLimitRemaining.yaml
+        X-Ratelimit-Reset:
+          $ref: ../../components/headers/XRateLimitReset.yaml
+        X-Tyk-Api-Expires:
+          deprecated: false
+          schema: {}
+          example: Thu, 02 Jan 3000 15:04:00 UTC
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/trading/OrderDetailResponse.yaml
+          example:
+            id: 966
+            side: NS
+            accountNo: "0001179019"
+            symbol: 41I1G4000
+            price: 1706.1
+            quantity: 5
+            orderType: LO
+            loanPackageId: 2278
+            orderCategory: NORMAL
+            orderStatus: Filled
+            fillQuantity: 5
+            lastQuantity: 2
+            lastPrice: 1706.1
+            averagePrice: 1750.96
+            transDate: "2026-03-16"
+            taxRate: 0
+            exchangeFeeRate: 0
+            feeRate: 0
+            leaveQuantity: 0
+            canceledQuantity: 0
+            error: ""
+            marketType: DERIVATIVE
+            priceSecure: 1706.1
+            createdDate: "2026-03-23T03:10:06.556826794Z"
+            modifiedDate: "2026-03-23T04:07:45.683977124Z"
+            metadata: '{"orderSession":"OPEN","dealId":"1.77410795472387E14","releaseSecureOnFilled":"false","originMaker":"1000005917-close_deal_177410795472387","dtaAccountNo":"D000113702","isForeigner":false,"probType":"CUSTOMER","eventNo":5}'
+    "400":
+      $ref: ../../components/responses/BadRequest.yaml
+    "500":
+      $ref: ../../components/responses/InternalError.yaml
+  tags:
+    - trading
+
+put:
+  operationId: account_replaceOrder
+  summary: Sửa lệnh
+  parameters:
+    - $ref: ../../components/parameters/XApiKey.yaml
+    - $ref: ../../components/parameters/XAuxDate.yaml
+    - $ref: ../../components/parameters/XSignature.yaml
+    - $ref: ../../components/parameters/TradingToken.yaml
+    - name: marketType
+      in: query
+      required: true
+      description: "Loại thị trường \n- STOCK: Gói vay giao dịch cơ sở\n- DERIVATIVE: Gói vay giao dịch phái sinh"
+      deprecated: false
+      schema:
+        $ref: ../../components/schemas/enums/MarketType.yaml
+      example: DERIVATIVE
+    - name: orderCategory
+      in: query
+      required: true
+      description: Phân loại lệnh thường, lệnh điều kiện (mặc định NORMAL)
+      deprecated: false
+      schema:
+        $ref: ../../components/schemas/enums/OrderCategory.yaml
+      example: NORMAL
+  responses:
+    "200":
+      description: OK
+      headers:
+        Content-Length:
+          $ref: ../../components/headers/ContentLength.yaml
+        Date:
+          $ref: ../../components/headers/Date.yaml
+        Vary:
+          $ref: ../../components/headers/Vary.yaml
+        X-Ratelimit-Limit:
+          $ref: ../../components/headers/XRateLimitLimit.yaml
+        X-Ratelimit-Remaining:
+          $ref: ../../components/headers/XRateLimitRemaining.yaml
+        X-Ratelimit-Reset:
+          $ref: ../../components/headers/XRateLimitReset.yaml
+        X-Tyk-Api-Expires:
+          schema:
+            type: string
+          example: Thu, 02 Jan 3000 15:04:00 UTC
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/trading/OrderReplaceResponse.yaml
+          example:
+            id: 1626
+            accountNo: "0001179019"
+            side: NS
+            loanPackageId: 2278
+            symbol: 41I1G4000
+            orderType: LO
+            orderCategory: NORMAL
+            price: 1851
+            quantity: 3
+            fillQuantity: 0
+            canceledQuantity: 0
+            marketType: DERIVATIVE
+            transDate: "2026-03-16"
+            createdDate: "2026-03-24T04:09:50.761146893Z"
+            modifiedDate: "2026-03-24T04:14:21.004856492Z"
+    "400":
+      $ref: ../../components/responses/BadRequest.yaml
+    "500":
+      $ref: ../../components/responses/InternalError.yaml
+  tags:
+    - trading
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/schemas/trading/OrderReplaceRequest.yaml
+        example:
+          price: 1851
+          quantity: 3
+
+delete:
+  operationId: account_cancelOrder
+  summary: Hủy lệnh
+  parameters:
+    - $ref: ../../components/parameters/XApiKey.yaml
+    - $ref: ../../components/parameters/XAuxDate.yaml
+    - $ref: ../../components/parameters/XSignature.yaml
+    - $ref: ../../components/parameters/TradingToken.yaml
+    - name: marketType
+      in: query
+      required: true
+      description: "Loại thị trường \n- STOCK: Đặt lệnh cơ sở\n- DERIVATIVE: Đặt lệnh phái sinh"
+      deprecated: false
+      schema:
+        $ref: ../../components/schemas/enums/MarketType.yaml
+      example: DERIVATIVE
+    - name: orderCategory
+      in: query
+      required: true
+      description: Phân loại lệnh thường, lệnh điều kiện (mặc định NORMAL)
+      deprecated: false
+      schema:
+        $ref: ../../components/schemas/enums/OrderCategory.yaml
+      example: NORMAL
+  responses:
+    "200":
+      description: OK
+      headers:
+        Content-Length:
+          $ref: ../../components/headers/ContentLength.yaml
+        Date:
+          $ref: ../../components/headers/Date.yaml
+        Vary:
+          $ref: ../../components/headers/Vary.yaml
+        X-Ratelimit-Limit:
+          $ref: ../../components/headers/XRateLimitLimit.yaml
+        X-Ratelimit-Remaining:
+          $ref: ../../components/headers/XRateLimitRemaining.yaml
+        X-Ratelimit-Reset:
+          $ref: ../../components/headers/XRateLimitReset.yaml
+        X-Tyk-Api-Expires:
+          deprecated: false
+          schema: {}
+          example: Thu, 02 Jan 3000 15:04:00 UTC
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/trading/OrderCancelResponse.yaml
+          example:
+            id: 1626
+            symbol: 41I1G4000
+            side: NS
+            orderType: LO
+            orderStatus: PendingCancel
+            loanPackageId: 2278
+            price: 1851
+            averagePrice: 0
+            quantity: 3
+            fillQuantity: 0
+            canceledQuantity: 0
+            leaveQuantity: 3
+            accountNo: "0001179019"
+            orderCategory: NORMAL
+            marketType: DERIVATIVE
+            transDate: "2026-03-16"
+            createdDate: "2026-03-24T04:09:50.761146893Z"
+            modifiedDate: "2026-03-24T04:16:12.469115348Z"
+    "400":
+      $ref: ../../components/responses/BadRequest.yaml
+    "500":
+      $ref: ../../components/responses/InternalError.yaml
+  tags:
+    - trading

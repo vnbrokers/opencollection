@@ -1,7 +1,7 @@
 "get":
   operationId: getTartarusTickerCommons
   tags:
-    - Dữ liệu thị trường
+    - market-data
   "summary": "Thông tin mã, giá"
   "description": "Lấy thông tin mã và giá của thị trường cơ sở."
   "parameters":

@@ -1,0 +1,51 @@
+get:
+  operationId: stocksGetOrderStatistic
+  tags:
+    - market-data
+
+  summary: Thống kê lệnh mua/bán chủ động (phiên gần nhất)
+  description: |
+    Đây KHÔNG phải lệnh chờ trong sổ lệnh: là **lệnh đã khớp, phân loại theo bên chủ động** — mua chủ động (lifted the offer) và bán chủ động (hit the bid), bao gồm cả thoả thuận.
+
+    Nguồn chỉ có dữ liệu **sau khi đóng phiên**: trong giờ giao dịch, request không kèm `date` trả về phiên đã đóng gần nhất, không phải hôm nay.
+
+    `avg_volume_per_order` là `null` khi `order_count = 0`; `net_volume` có thể âm.
+  parameters:
+    - name: symbol
+      in: path
+      required: true
+      description: "Mã cổ phiếu niêm yết (3–10 ký tự chữ/số, không phân biệt hoa thường). VD: VNM, FPT."
+      schema:
+        type: string
+        example: HPG
+    - name: date
+      in: query
+      required: false
+      description: Ngày phiên cần lấy, dạng `YYYY-MM-DD`; không được ở tương lai. Bỏ trống → phiên đã đóng gần nhất.
+      schema:
+        type: string
+        format: date
+        example: "2026-05-27"
+  responses:
+    "200":
+      description: "`data` là thống kê lệnh chủ động của phiên."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/StockOrderStatisticResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/stocks/HPG/trading/orders"

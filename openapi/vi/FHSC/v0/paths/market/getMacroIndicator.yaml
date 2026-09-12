@@ -1,0 +1,62 @@
+get:
+  operationId: getMacroIndicator
+  tags:
+    - macroeconomics
+
+  summary: Giá trị chỉ tiêu vĩ mô
+  description: |
+    Giá trị của một chỉ tiêu vĩ mô cho một quốc gia (xác định bởi `indicator` slug lấy từ `/market/macro/indicators`). Bỏ trống `from`/`to` → chỉ trả về kỳ mới nhất; truyền khoảng thời gian → chuỗi theo kỳ (sort mới nhất ở đầu). `period` có dạng `yyyy`, `yyyy-Qn` hoặc `yyyy-MM`. `value` có thể `null` khi nguồn chưa có dữ liệu.
+  parameters:
+    - name: indicator
+      in: path
+      required: true
+      description: "Slug chỉ tiêu vĩ mô. Chỉ dùng slug có sẵn trong danh mục chỉ tiêu vĩ mô đã tra trước đó — không tự đoán, slug sai sẽ không khớp chỉ tiêu nào. VD: `vn-cpi`."
+      schema:
+        type: string
+        example: vn-cpi
+    - name: from
+      in: query
+      required: false
+      description: Kỳ bắt đầu (bao gồm). Dạng `yyyy`, `yyyy-Qn` hoặc `yyyy-MM`.
+      schema:
+        type: string
+        example: 2024-01
+    - name: to
+      in: query
+      required: false
+      description: Kỳ kết thúc (bao gồm). Dạng `yyyy`, `yyyy-Qn` hoặc `yyyy-MM`.
+      schema:
+        type: string
+        example: 2024-12
+    - name: limit
+      in: query
+      required: false
+      description: Số kỳ tối đa trả về (1–500). Mặc định 100 khi có khoảng thời gian; 1 khi bỏ trống `from`/`to`.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 500
+        example: 100
+  responses:
+    "200":
+      description: "`data.series` là mảng `{period, value}` theo kỳ."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/MacroIndicatorSeriesResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/macro/indicators/vn-cpi?from=2024-01&to=2024-12"

@@ -1,0 +1,67 @@
+type: object
+description: Quote ETF realtime (shape như cổ phiếu).
+required:
+  - symbol
+  - price
+properties:
+  symbol:
+    type: string
+    description: Mã ETF.
+    example: FUEVFVND
+  name:
+    type: string
+    description: Tên hiển thị.
+    example: Vinamilk
+  exchange:
+    type: string
+    description: Sàn.
+    example: HOSE
+  currency:
+    type: string
+    description: Đơn vị tiền tệ.
+    example: VND
+  price:
+    type: number
+    description: Giá hiện tại.
+    example: 32150
+  open:
+    type: number
+    description: Mở cửa.
+    example: 31900
+  high:
+    type: number
+    description: Cao nhất.
+    example: 32200
+  low:
+    type: number
+    description: Thấp nhất.
+    example: 31850
+  reference:
+    type: number
+    description: Tham chiếu.
+    example: 31950
+  ceiling:
+    type: number
+    description: Giá trần trong ngày.
+    example: 34150
+  floor:
+    type: number
+    description: Giá sàn trong ngày.
+    example: 29750
+  change:
+    type: number
+    description: Thay đổi tuyệt đối.
+    example: 200
+  change_percent:
+    type: number
+    description: Thay đổi %.
+    example: 0.63
+  volume:
+    type: number
+    description: Khối lượng khớp.
+    example: 2845100
+  updated_at:
+    type: string
+    description: Thời điểm dữ liệu (ISO 8601 kèm offset).
+    example: "2026-05-27T14:30:15+07:00"
+    format: date-time

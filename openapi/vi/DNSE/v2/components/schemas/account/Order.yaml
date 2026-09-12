@@ -1,0 +1,132 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int32
+    example: 141
+    description: Id lệnh giao dịch
+  side:
+    allOf:
+      - $ref: ../enums/OrderSide.yaml
+    example: NB
+    description: "Chiều giao dịch
+
+      NB: Mua
+
+      NS: Bán"
+  accountNo:
+    type: string
+    example: "0001179019"
+    description: Số tiểu khoản
+  symbol:
+    type: string
+    example: BCM
+    description: Mã chứng khoán
+  price:
+    type: number
+    format: double
+    example: 51200
+    description: Giá đặt
+  priceSecure:
+    type: number
+    format: double
+    example: 51200
+    description: Giá dùng để kiểm tra sức mua/đặt lệnh
+  averagePrice:
+    type: number
+    format: double
+    example: 0
+    description: Giá khớp trung bình
+  quantity:
+    type: integer
+    format: int32
+    example: 300
+    description: Khối lượng đặt
+  fillQuantity:
+    type: integer
+    format: int32
+    example: 0
+    description: Khối lượng đã khớp
+  canceledQuantity:
+    type: integer
+    format: int32
+    example: 0
+    description: Khối lượng đã hủy
+  leaveQuantity:
+    type: integer
+    format: int32
+    example: 300
+    description: Khối lượng còn lại
+  orderType:
+    allOf:
+      - $ref: ../enums/OrderType.yaml
+    example: LO
+    description: "Loại lệnh
+
+      - LO: Lệnh giới hạn
+
+      - MOK/MAK/MTL: Lệnh thị trường
+
+      - ATO/ATC: Lệnh phiên định kỳ mở cửa/đóng cửa
+
+      - PLO: Lệnh khớp lệnh sau giờ"
+  orderCategory:
+    allOf:
+      - $ref: ../enums/OrderCategory.yaml
+    example: NORMAL
+    description: Phân loại lệnh thường, lệnh điều kiện (mặc định NORMAL)
+  orderStatus:
+    allOf:
+      - $ref: ../enums/OrderStatus.yaml
+    example: New
+    description: "Trạng thái lệnh
+
+      - Pending/PendingNew: Chờ gửi
+
+      - New: Chờ khớp
+
+      - PendingReplace: Chờ sửa
+
+      - PendingCancel: Chờ hủy
+
+      - PartiallyFilled: Khớp một phần
+
+      - Filled: Khớp toàn bộ
+
+      - Canceled: Đã hủy
+
+      - Rejected: Bị từ chối
+
+      - Expired: Hết hạn trong phiên
+
+      - DoneForDay: Lệnh được giải tỏa do không khớp trong phiên"
+  loanPackageId:
+    type: integer
+    format: int32
+    example: 7937
+    description: Gói vay áp dụng cho mã chứng khoán
+  marketType:
+    allOf:
+      - $ref: ../enums/MarketType.yaml
+    example: STOCK
+    description: "Loại thị trường
+
+      STOCK: Lệnh cơ sở
+
+      DERIVATIVE: Lệnh phái sinh
+
+      BOND: Lệnh trái phiếu"
+  transDate:
+    type: string
+    example: "2026-03-16"
+    description: Ngày giao dịch
+  createdDate:
+    type: string
+    format: date-time
+    example: "2026-03-24T03:15:22.226297778Z"
+    description: Thời điểm tạo
+  modifiedDate:
+    type: string
+    format: date-time
+    example: "2026-03-24T03:15:22.358568266Z"
+    description: Thời điểm cập nhật

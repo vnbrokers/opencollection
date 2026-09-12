@@ -1,0 +1,13 @@
+type: object
+properties:
+  expectedPrices:
+    type: array
+    items:
+      $ref: ./ExpectedPrice.yaml
+    description: Danh sách dữ liệu giá khớp dự kiến của mã chứng khoán.
+  nextPageToken:
+    type: string
+    nullable: true
+    example: null
+    description: Token dùng để lấy trang dữ liệu tiếp theo. Giá trị null nếu không còn dữ liệu.
+description: Danh sách dữ liệu giá khớp dự kiến cùng thông tin phân trang.

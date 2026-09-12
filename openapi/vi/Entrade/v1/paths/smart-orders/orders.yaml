@@ -1,7 +1,7 @@
 get:
   operationId: listSmartOrders
   tags:
-    - Smart Order
+    - smart-order
   summary: Lấy thông tin lệnh điều kiện
   description: Lấy danh sách lệnh điều kiện (Smart Order).
   servers:
@@ -37,7 +37,7 @@ get:
 post:
   operationId: placeSmartOrder
   tags:
-    - Smart Order
+    - smart-order
   summary: Đặt lệnh điều kiện
   description: Đặt lệnh điều kiện (Smart Order).
   servers:
@@ -94,7 +94,7 @@ post:
 delete:
   operationId: cancelAllSmartOrders
   tags:
-    - Smart Order
+    - smart-order
   summary: Hủy tất cả lệnh điều kiện
   description: Hủy tất cả lệnh điều kiện theo investorAccountId và investorId.
   servers:

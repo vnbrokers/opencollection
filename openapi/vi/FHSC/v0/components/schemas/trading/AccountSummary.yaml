@@ -1,6 +1,7 @@
 type: object
 description: |
   Chi tiết tiểu khoản, trả về từ `/trading/accounts/{subAccountId}/summary`.
+
   Mọi giá trị tiền là `int64` VND trừ khi ghi chú khác.
 properties:
   balance:

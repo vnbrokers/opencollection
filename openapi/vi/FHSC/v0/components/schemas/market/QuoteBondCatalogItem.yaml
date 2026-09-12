@@ -1,0 +1,42 @@
+type: object
+required:
+  - symbol
+properties:
+  symbol:
+    type: string
+    description: Mã trái phiếu HNX.
+    example: VIC12103
+  name:
+    type: string
+    description: Tên hiển thị.
+    example: Vinamilk
+  issuer:
+    type: string
+    description: Tổ chức phát hành.
+    example: Vingroup
+  type:
+    type: string
+    description: Loại trái phiếu (`corporate`/`government`).
+    example: corporate
+  face_value:
+    type: number
+    description: Mệnh giá.
+    example: 100000
+  coupon_rate:
+    type: number
+    description: Lãi suất coupon (%).
+    example: 9.5
+  coupon_frequency:
+    type: integer
+    description: Số kỳ trả coupon mỗi năm.
+    example: 2
+  issue_date:
+    type: string
+    description: Ngày phát hành.
+    example: "2021-06-15"
+    format: date
+  maturity_date:
+    type: string
+    description: Ngày đáo hạn.
+    example: "2026-06-15"
+    format: date

@@ -1,6 +1,7 @@
 type: string
 description: |
   Loại báo cáo dùng cho `/market/v2/financial-statement/statement`.
+
   | Giá trị | Ý nghĩa |
   |---------|---------|
   | `income-statement` | Báo cáo kết quả kinh doanh |

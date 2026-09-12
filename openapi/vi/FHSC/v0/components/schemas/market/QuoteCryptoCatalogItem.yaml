@@ -1,0 +1,12 @@
+type: object
+required:
+  - symbol
+properties:
+  symbol:
+    type: string
+    description: Mã crypto.
+    example: BTC
+  name:
+    type: string
+    description: Tên crypto.
+    example: Bitcoin

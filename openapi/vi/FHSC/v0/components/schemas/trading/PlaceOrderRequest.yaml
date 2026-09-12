@@ -2,6 +2,7 @@ type: object
 description: |
   Body của request đặt lệnh mới
   (`POST /trading/oa/sub-accounts/{subAccountId}/orders`).
+
   Quy tắc field giá theo `type`:
   - `type = LIMIT` → set `limit_price` (VND); `market_price` để `null`.
   - `type = MARKET` → set `market_price` (enum `MarketPriceCode`); `limit_price` để `null`.

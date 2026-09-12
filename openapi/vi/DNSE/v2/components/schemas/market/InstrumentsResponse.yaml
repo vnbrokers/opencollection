@@ -1,0 +1,33 @@
+type: object
+properties:
+  data:
+    type: array
+    description: Danh sách thông tin mã chứng khoán
+    example:
+      - symbol: ACB
+        marketId: STO
+        securityGroupId: ST
+        symbolType: ""
+        listedDate: "2020-12-09"
+        shortName: Ngân hàng Á Châu
+        name: Ngân hàng TMCP Á Châu
+        indexName:
+          - VN100
+          - VN30
+    items:
+      $ref: ./Instrument.yaml
+  total:
+    type: integer
+    format: int32
+    example: 5
+    description: Tổng số bản ghi
+  page:
+    type: integer
+    format: int32
+    example: 1
+    description: Trang hiện tại (bắt đầu từ 1)
+  pageSize:
+    type: integer
+    format: int32
+    example: 100
+    description: Số bản ghi trên mỗi trang

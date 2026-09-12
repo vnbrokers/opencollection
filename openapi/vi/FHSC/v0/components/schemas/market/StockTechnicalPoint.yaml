@@ -1,0 +1,23 @@
+type: object
+description: |-
+  Một phiên trong chuỗi của một chỉ báo: `date` cộng các thành phần mà chính chỉ báo đó sinh ra.
+
+  Tên thành phần theo từng chỉ báo — chỉ báo một đường (SMA, EMA, RSI, ATR, CCI, WILLIAMS_R, OBV, MFI, VOLUME_SMA) trả `value`; `MACD` trả `macd_line`/`signal_line`/`histogram`; `BBANDS` trả `upper`/`middle`/`lower`; `STOCH` trả `k`/`d`; `ADX` trả `value`/`plus_di`/`minus_di`; `SUPERTREND` và `PSAR` trả `value` kèm `direction` (`UP`/`DOWN`); `ICHIMOKU` trả `tenkan`/`kijun`/`senkou_a`/`senkou_b`/`chikou`.
+required:
+  - date
+properties:
+  date:
+    type: string
+    format: date
+    description: Ngày của phiên (`YYYY-MM-DD`).
+    example: "2026-07-31"
+additionalProperties:
+  type:
+    - number
+    - string
+  description: Giá trị một thành phần của chỉ báo; `direction` là chuỗi, còn lại là số.
+example:
+  date: "2026-07-31"
+  macd_line: -0.179
+  signal_line: 0.014
+  histogram: -0.193

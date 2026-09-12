@@ -1,0 +1,37 @@
+type: object
+properties:
+  accountNo:
+    type: string
+    example: "0001179019"
+    description: Số tiểu khoản
+  data:
+    type: object
+    additionalProperties:
+      type: array
+      items:
+        type: object
+        additionalProperties: true
+    description: Danh sách quyền chứng khoán của tiểu khoản, được phân loại theo từng loại quyền
+    properties:
+      cashDividend:
+        type: array
+        description: Danh sách quyền trả cổ tức bằng tiền
+        items:
+          $ref: ./CashDividend.yaml
+      stockDividend:
+        type: array
+        description: Danh sách quyền trả cổ tức bằng cổ phiếu
+        items:
+          $ref: ./StockDividend.yaml
+      stockBonus:
+        type: array
+        description: Danh sách quyền trả cổ phiếu thưởng
+        items:
+          $ref: ./StockBonus.yaml
+      rightsOffering:
+        type: array
+        description: Danh sách quyền mua cổ phiếu phát hành thêm
+        items:
+          $ref: ./RightsOffering.yaml
+  pagination:
+    $ref: ./Pagination.yaml

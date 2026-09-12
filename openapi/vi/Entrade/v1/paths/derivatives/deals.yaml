@@ -1,7 +1,7 @@
 get:
   operationId: listDerivativeDeals
   tags:
-    - Phái sinh
+    - derivatives
   summary: Lấy danh sách deals
   description: Lấy danh sách deals Phái Sinh.
   parameters:

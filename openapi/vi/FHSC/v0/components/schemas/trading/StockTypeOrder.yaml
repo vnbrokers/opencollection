@@ -5,6 +5,7 @@ description: |
   (`POST /trading/oa/sub-accounts/{subAccountId}/orders`). Hẹp hơn
   `StockType` chung — không bao gồm `CW` (đã gộp vào `WARRANT`) và
   `FUTURES` (phái sinh chưa hỗ trợ trên surface này).
+
   | Giá trị | Ý nghĩa |
   |---------|---------|
   | `STOCK`            | Cổ phiếu thường (mặc định nếu bỏ trống) |

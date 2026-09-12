@@ -1,0 +1,14 @@
+type: object
+required:
+  - period
+  - value
+properties:
+  period:
+    type: string
+    description: Kỳ dữ liệu (`yyyy`, `yyyy-Qn` hoặc `yyyy-MM`).
+    example: 2024-12
+  value:
+    type:
+      - number
+      - "null"
+    example: 3.97

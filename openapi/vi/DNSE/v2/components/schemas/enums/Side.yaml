@@ -1,0 +1,20 @@
+type: string
+description: |-
+  Chiều xác định mua/bán chủ động.
+
+  - `UNSPECIFIED`: Không xác định
+  - `BUY`: Mua chủ động
+  - `SELL`: Bán chủ động
+enum:
+  - "UNSPECIFIED"
+  - "BUY"
+  - "SELL"
+x-enum-descriptions:
+  - "Không xác định"
+  - "Mua chủ động"
+  - "Bán chủ động"
+x-enum-varnames:
+  - UNSPECIFIED
+  - BUY
+  - SELL
+example: BUY

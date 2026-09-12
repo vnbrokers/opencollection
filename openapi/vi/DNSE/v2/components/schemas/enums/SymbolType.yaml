@@ -1,0 +1,28 @@
+type: string
+description: |-
+  Phân loại mã hợp đồng phái sinh theo thời gian đáo hạn.
+
+  - ``: Không áp dụng cho mã không phải hợp đồng phái sinh
+  - `VN30F1M`: HĐTL chỉ số VN30 1 tháng
+  - `VN30F2M`: HĐTL chỉ số VN30 2 tháng
+  - `VN30F1Q`: HĐTL chỉ số VN30 1 quý
+  - `VN30F2Q`: HĐTL chỉ số VN30 2 quý
+enum:
+  - ""
+  - VN30F1M
+  - VN30F2M
+  - VN30F1Q
+  - VN30F2Q
+x-enum-descriptions:
+  - "Không áp dụng"
+  - "HĐTL chỉ số VN30 1 tháng"
+  - "HĐTL chỉ số VN30 2 tháng"
+  - "HĐTL chỉ số VN30 1 quý"
+  - "HĐTL chỉ số VN30 2 quý"
+x-enum-varnames:
+  - UNSPECIFIED
+  - VN30F1M
+  - VN30F2M
+  - VN30F1Q
+  - VN30F2Q
+example: VN30F1M

@@ -1,0 +1,21 @@
+type: object
+required:
+  - symbol
+  - series
+properties:
+  symbol:
+    type: string
+    description: Mã định danh (canonical, viết hoa).
+    example: VNM
+  code:
+    type: string
+    description: Mã sản phẩm dealer.
+    example: SJC-1L
+  currency:
+    type: string
+    description: Đơn vị tiền tệ.
+    example: VND
+  series:
+    type: array
+    items:
+      $ref: "QuoteDealerPricePoint.yaml"

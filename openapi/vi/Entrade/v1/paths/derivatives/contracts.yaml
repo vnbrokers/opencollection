@@ -1,7 +1,7 @@
 get:
   operationId: listDerivativeContracts
   tags:
-    - Phái sinh
+    - derivatives
   summary: Lấy danh sách mã Phái Sinh
   description: Lấy danh sách mã Phái Sinh.
   responses:

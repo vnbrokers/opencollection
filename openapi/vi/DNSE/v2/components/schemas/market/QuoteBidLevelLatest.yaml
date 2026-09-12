@@ -1,0 +1,12 @@
+type: object
+properties:
+  price:
+    type: number
+    format: double
+    example: 24.55
+    description: Giá đặt mua
+  quantity:
+    type: integer
+    format: int32
+    example: 60590
+    description: Khối lượng đặt mua tại mức giá tương ứng

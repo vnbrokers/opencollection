@@ -11,18 +11,24 @@ servers:
 security:
   - bearerAuth: []
 tags:
-  - name: Xác thực
+  - name: authentication
     description: Xác thực và cấp token truy cập.
-  - name: Tài khoản
+    x-group: Xác thực
+  - name: account
     description: Thông tin tài khoản, tài sản và hạn mức.
-  - name: Dữ liệu thị trường
+    x-group: Tài khoản
+  - name: market-data
     description: Dữ liệu chứng khoán và phái sinh.
-  - name: Tiền
+    x-group: Dữ liệu thị trường
+  - name: cash
     description: Giao dịch và thông tin tiền.
-  - name: Lệnh cổ phiếu
+    x-group: Tiền
+  - name: stock-orders
     description: Đặt, sửa, hủy và tra cứu lệnh cổ phiếu.
-  - name: Lệnh phái sinh
+    x-group: Lệnh cổ phiếu
+  - name: derivative-orders
     description: Đặt, sửa, hủy và tra cứu lệnh phái sinh.
+    x-group: Lệnh phái sinh
 paths:
   /aion/v1/accounts/{accountNo}/cashInvestments:
     $ref: "./paths/accounts/aion-accounts-account-no-cash-investments.yaml"

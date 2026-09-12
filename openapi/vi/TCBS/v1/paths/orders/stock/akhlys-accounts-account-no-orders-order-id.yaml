@@ -1,7 +1,7 @@
 patch:
   operationId: patchAkhlysAccountsAccountNoOrdersOrderId
   tags:
-    - Lệnh cổ phiếu
+    - stock-orders
   summary: Sửa lệnh cổ phiếu
   description: Cập nhật giá hoặc khối lượng của lệnh.
   parameters:

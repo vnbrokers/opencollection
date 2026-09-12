@@ -1,0 +1,45 @@
+get:
+  operationId: quotesGetDealerProduct
+  tags:
+    - market-data
+
+  summary: Báo giá 1 sản phẩm dealer
+  description: Báo giá realtime của 1 sản phẩm dealer cụ thể theo `code` (lấy từ danh sách dealer-products).
+  parameters:
+    - name: symbol
+      in: path
+      required: true
+      description: "Mã hàng hoá ISO. VD: XAU (vàng), XAG (bạc), CL (dầu)."
+      schema:
+        type: string
+        example: XAU
+    - name: code
+      in: path
+      required: true
+      description: Mã sản phẩm dealer (VD nhãn hiệu/loại vàng miếng).
+      schema:
+        type: string
+        example: SJC-1L
+  responses:
+    "200":
+      description: "`data` là quote của sản phẩm dealer."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/QuoteDealerProductResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/quotes/commodities/XAU/dealer-products/SJC-1L"

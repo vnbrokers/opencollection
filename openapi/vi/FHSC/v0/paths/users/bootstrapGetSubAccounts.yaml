@@ -1,7 +1,8 @@
 get:
   operationId: bootstrapGetSubAccounts
   tags:
-    - Khởi tạo
+    - bootstrap
+
   security:
     - FinhayApiKey: []
       FinhayTimestamp: []

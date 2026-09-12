@@ -1,0 +1,49 @@
+type: object
+description: NAV mới nhất của quỹ mở. Không có open/high/low/volume.
+required:
+  - symbol
+  - nav
+  - nav_date
+properties:
+  symbol:
+    type: string
+    description: Mã CCQ.
+    example: VESAF
+  name:
+    type: string
+    description: Tên hiển thị.
+    example: Vinamilk
+  currency:
+    type: string
+    description: Đơn vị tiền tệ.
+    example: VND
+  nav:
+    type: number
+    description: NAV/CCQ (giá tài sản).
+    example: 28412.51
+  reference:
+    type: number
+    description: NAV kỳ định giá trước.
+    example: 28250.1
+  change:
+    type: number
+    description: Thay đổi tuyệt đối.
+    example: 162.41
+  change_percent:
+    type: number
+    description: Thay đổi %.
+    example: 0.57
+  total_nav:
+    type: number
+    description: Tổng tài sản ròng của quỹ (tuỳ chọn).
+    example: 1842000000000
+  nav_date:
+    type: string
+    description: Ngày định giá T (đọc NAV theo mốc này).
+    example: "2026-07-06"
+    format: date
+  updated_at:
+    type: string
+    description: Thời điểm công bố (thường T+1).
+    example: "2026-07-07T09:15:00+07:00"
+    format: date-time

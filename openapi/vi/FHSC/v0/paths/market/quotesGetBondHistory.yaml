@@ -1,0 +1,60 @@
+get:
+  operationId: quotesGetBondHistory
+  tags:
+    - market-data
+
+  summary: Lịch sử giá trái phiếu
+  description: "Lịch sử giá OHLCV của 1 mã trái phiếu — chuỗi nến `{t, o, h, l, c, v}`. `from`/`to` là Unix timestamp tính bằng **giây**. Với trái phiếu Chính phủ (VN10Y, US10Y, JP10Y, DE10Y): mỗi điểm chỉ có `{t, yield}` (lợi suất %) và luôn ở độ phân giải `1D`."
+  parameters:
+    - name: symbol
+      in: path
+      required: true
+      description: "Mã trái phiếu HNX (VD: VIC12103, TD2434125) hoặc trái phiếu Chính phủ 10 năm (VN10Y, US10Y, JP10Y, DE10Y)."
+      schema:
+        type: string
+        example: VIC12103
+    - name: resolution
+      in: query
+      required: false
+      description: Độ phân giải nến. Mặc định `1D`.
+      schema:
+        $ref: "../../components/schemas/market/Resolution.yaml"
+    - name: from
+      in: query
+      required: true
+      description: Thời điểm bắt đầu, Unix timestamp tính bằng **giây**.
+      schema:
+        type: integer
+        minimum: 0
+        example: 1717200000
+    - name: to
+      in: query
+      required: true
+      description: Thời điểm kết thúc, Unix timestamp tính bằng **giây**.
+      schema:
+        type: integer
+        minimum: 0
+        example: 1717545600
+  responses:
+    "200":
+      description: "`data.series` là mảng nến `{t, o, h, l, c, v}`."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/QuoteOhlcvHistoryResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/quotes/bonds/VIC12103/history?resolution=1D&from=1717200000&to=1717545600"

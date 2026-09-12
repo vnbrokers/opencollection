@@ -1,0 +1,15 @@
+type: object
+description: Một cấp trong cây ngành của doanh nghiệp.
+properties:
+  slug:
+    type: string
+    description: Slug ngành.
+    example: consumer-staples
+  name:
+    type: string
+    description: Tên ngành.
+    example: Hàng tiêu dùng thiết yếu
+  level:
+    type: integer
+    description: Cấp ngành (1 là cấp cao nhất).
+    example: 1

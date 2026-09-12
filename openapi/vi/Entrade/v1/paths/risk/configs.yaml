@@ -1,7 +1,7 @@
 get:
   operationId: listRiskConfigs
   tags:
-    - Tài khoản
+    - account
   summary: Lấy cấu hình cắt lỗ
   description: Lấy cấu hình mặc định cắt lỗ (cut loss config).
   parameters:

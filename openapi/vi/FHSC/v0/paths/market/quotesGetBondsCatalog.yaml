@@ -1,0 +1,30 @@
+get:
+  operationId: quotesGetBondsCatalog
+  tags:
+    - market-data
+
+  summary: Danh mục trái phiếu
+  description: Danh sách mã trái phiếu được hỗ trợ kèm metadata tĩnh, gồm cả trái phiếu Chính phủ 10 năm (VN10Y, US10Y, JP10Y, DE10Y — dữ liệu lấy từ vĩ mô, chỉ có lợi suất). Gọi `/market/quotes/bonds/{symbol}` để lấy dữ liệu realtime.
+  responses:
+    "200":
+      description: "`data` là mảng mã trái phiếu."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/QuoteBondsCatalogResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/quotes/bonds"

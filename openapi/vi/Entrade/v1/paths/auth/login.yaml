@@ -1,7 +1,7 @@
 post:
   operationId: login
   tags:
-    - Xác thực
+    - authentication
   summary: Đăng nhập
   description: API đăng nhập, trả về JWT token dùng cho tất cả các API khác (hiệu
     lực 8 giờ).

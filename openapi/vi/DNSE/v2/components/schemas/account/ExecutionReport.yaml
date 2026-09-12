@@ -1,0 +1,143 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int32
+    example: 1651
+    description: ID lệnh
+  side:
+    allOf:
+      - $ref: ../enums/OrderSide.yaml
+    example: NB
+    description: "Chiều giao dịch
+
+      - NB: Mua
+
+      - NS: Bán"
+  accountNo:
+    type: string
+    example: "0001179019"
+    description: Số tiểu khoản
+  symbol:
+    type: string
+    example: HPG
+    description: Mã chứng khoán
+  price:
+    type: integer
+    format: int32
+    example: 24250
+    description: Giá đặt lệnh
+  quantity:
+    type: integer
+    format: int32
+    example: 500
+    description: Khối lượng đặt lệnh
+  orderType:
+    allOf:
+      - $ref: ../enums/OrderType.yaml
+    example: LO
+    description: "Loại lệnh
+
+      - LO: Lệnh giới hạn
+
+      - MOK/MAK/MTL: Lệnh thị trường
+
+      - ATO/ATC: Lệnh phiên định kỳ mở cửa/đóng cửa
+
+      - PLO: Lệnh khớp lệnh sau giờ"
+  orderStatus:
+    allOf:
+      - $ref: ../enums/OrderStatus.yaml
+    example: PartiallyFilled
+    description: "Trạng thái lệnh
+
+      - Pending/PendingNew: Chờ gửi
+
+      - New: Chờ khớp
+
+      - PartiallyFilled: Khớp một phần
+
+      - Filled: Khớp toàn bộ
+
+      - Rejected: Bị từ chối
+
+      - Expired: Hết hạn trong phiên
+
+      - DoneForDay: Lệnh được giải tỏa do không khớp trong phiên"
+  fillQuantity:
+    type: integer
+    format: int32
+    example: 100
+    description: Khối lượng đã khớp
+  lastQuantity:
+    type: integer
+    format: int32
+    example: 100
+    description: Khối lượng khớp gần nhất
+  lastPrice:
+    type: integer
+    format: int32
+    example: 24250
+    description: Giá khớp gần nhất
+  averagePrice:
+    type: integer
+    format: int32
+    example: 24250
+    description: Giá khớp trung bình
+  transDate:
+    type: string
+    example: "2026-07-13"
+    description: Ngày giao dịch
+  createdDate:
+    type: string
+    format: date-time
+    example: "2026-07-13T06:50:36.532741Z"
+    description: Thời điểm tạo lệnh
+  modifiedDate:
+    type: string
+    format: date-time
+    example: "2026-07-13T06:50:51.613222Z"
+    description: Thời điểm cập nhật lệnh
+  taxRate:
+    type: integer
+    format: int32
+    example: 0
+    description: Tỷ lệ thuế
+  exchangeFeeRate:
+    type: integer
+    format: int32
+    example: 0
+    description: Tỷ lệ phí trả Sở giao dịch
+  feeRate:
+    type: number
+    format: double
+    example: 0.00027
+    description: Tổng tỷ lệ phí của lệnh
+  leaveQuantity:
+    type: integer
+    format: int32
+    example: 400
+    description: Khối lượng còn lại chưa khớp
+  canceledQuantity:
+    type: integer
+    format: int32
+    example: 0
+    description: Khối lượng đã hủy
+  error:
+    type: string
+    example: ""
+    description: Mã lỗi nếu lệnh bị từ chối
+  priceSecure:
+    type: integer
+    format: int32
+    example: 24250
+    description: Giá dùng để kiểm tra sức mua/đặt lệnh
+  metadata:
+    type: string
+    example: '{"orderSession":"OPEN","ip":"202.60.110.58","maker":"1000005917","isForeigner":false,"reqId":"24534","probType":"CUSTOMER_8000","eventNo":3}'
+    description: Thông tin bổ sung của lệnh
+  loanPackageId:
+    type: integer
+    format: int32
+    example: 5757
+    description: ID gói vay

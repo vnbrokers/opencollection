@@ -1,0 +1,38 @@
+type: object
+description: Chỉ báo kỹ thuật của một mã trên cửa sổ đã tính.
+required:
+  - symbol
+  - resolution
+  - from
+  - to
+  - prices
+  - indicators
+properties:
+  symbol:
+    type: string
+    description: Mã cổ phiếu.
+    example: HPG
+  resolution:
+    type: string
+    description: Khung thời gian của bar; luôn là `1D`.
+    example: 1D
+  from:
+    type: string
+    format: date
+    description: Phiên đầu tiên thực sự được tính — đã lùi khỏi ngày nghỉ, không phải ngày client gửi lên.
+    example: "2026-05-04"
+  to:
+    type: string
+    format: date
+    description: Phiên cuối cùng được tính. Bằng `from` ở chế độ phiên gần nhất.
+    example: "2026-07-31"
+  prices:
+    type: array
+    description: Giá đóng cửa của cửa sổ, liệt kê một lần ở cấp trên thay vì lặp trong từng chỉ báo. Align với chuỗi chỉ báo theo `date`.
+    items:
+      $ref: "StockTechnicalPrice.yaml"
+  indicators:
+    type: array
+    description: Mỗi chỉ báo đã yêu cầu một phần tử, theo đúng thứ tự yêu cầu.
+    items:
+      $ref: "StockTechnicalSeries.yaml"

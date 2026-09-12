@@ -1,0 +1,55 @@
+type: object
+description: Quote hàng hoá realtime (giá quốc tế).
+required:
+  - symbol
+  - price
+properties:
+  symbol:
+    type: string
+    description: Mã hàng hoá ISO.
+    example: XAU
+  name:
+    type: string
+    description: Tên hàng hoá.
+    example: Gold
+  currency:
+    type: string
+    description: Tiền tệ.
+    example: USD
+  price:
+    type: number
+    description: Giá hiện tại.
+    example: 4725.89
+  open:
+    type: number
+    description: Mở cửa.
+    example: 4750.2
+  high:
+    type: number
+    description: Cao nhất.
+    example: 4762.15
+  low:
+    type: number
+    description: Thấp nhất.
+    example: 4720.3
+  reference:
+    type: number
+    description: Tham chiếu.
+    example: 4753
+  change:
+    type: number
+    description: Thay đổi tuyệt đối.
+    example: -27.11
+  change_percent:
+    type: number
+    description: Thay đổi %.
+    example: -0.57
+  volume:
+    type: number
+    description: Khối lượng.
+    example: 218400
+  updated_at:
+    type: string
+    description: Thời điểm dữ liệu (ISO 8601 kèm offset).
+    example: "2026-05-27T14:30:15+07:00"
+    format: date-time

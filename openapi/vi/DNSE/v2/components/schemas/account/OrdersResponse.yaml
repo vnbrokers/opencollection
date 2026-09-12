@@ -1,0 +1,35 @@
+type: object
+properties:
+  orders:
+    type: array
+    example:
+      - id: 141
+        side: NB
+        accountNo: "0001179019"
+        symbol: BCM
+        price: 51200
+        priceSecure: 51200
+        averagePrice: 0
+        quantity: 300
+        fillQuantity: 0
+        canceledQuantity: 0
+        leaveQuantity: 300
+        orderType: LO
+        orderCategory: NORMAL
+        orderStatus: New
+        loanPackageId: 7937
+        marketType: STOCK
+        transDate: "2026-03-16"
+        createdDate: "2026-03-24T03:15:22.226297778Z"
+        modifiedDate: "2026-03-24T03:15:22.358568266Z"
+    items:
+      $ref: ./Order.yaml
+    description: Danh sách lệnh giao dịch
+  pageIndex:
+    type: integer
+  pageSize:
+    type: integer
+  totalPages:
+    type: integer
+  totalRecords:
+    type: integer

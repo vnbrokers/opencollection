@@ -1,0 +1,38 @@
+get:
+  operationId: quotesGetBond
+  tags:
+    - market-data
+
+  summary: Giá realtime trái phiếu
+  description: "Dữ liệu realtime của 1 mã trái phiếu kèm `yield` (lợi suất %). `symbol` không phân biệt hoa thường. Với trái phiếu Chính phủ (VN10Y, US10Y, JP10Y, DE10Y): chỉ có `yield`, các trường giá là `null`."
+  parameters:
+    - name: symbol
+      in: path
+      required: true
+      description: "Mã trái phiếu HNX (VD: VIC12103, TD2434125) hoặc trái phiếu Chính phủ 10 năm (VN10Y, US10Y, JP10Y, DE10Y)."
+      schema:
+        type: string
+        example: VIC12103
+  responses:
+    "200":
+      description: "`data` là object quote của mã trái phiếu."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/QuoteBondResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/quotes/bonds/VIC12103"

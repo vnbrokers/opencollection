@@ -1,7 +1,7 @@
 "get":
   operationId: getKhronosAccountPortfolioStatus
   tags:
-    - Tài khoản
+    - account
   "summary": "Tài sản, vị thế mở"
   "description": "Tra cứu vị thế mở phái sinh."
   "parameters":

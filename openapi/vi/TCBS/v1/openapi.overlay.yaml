@@ -1,0 +1,277 @@
+overlay: 1.0.0
+info:
+  title: TCBS OpenAPI - Mintlify customization
+  version: 1.0.0
+extends: ./tcbs.openapi.yaml
+
+actions:
+  - target: "$.paths['/aion/v1/accounts/{accountNo}/cashInvestments'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/account/get-cash-balance
+        metadata:
+          sidebarTitle: "Thông tin số dư tiền"
+  - target: "$.paths['/aion/v1/accounts/{accountNo}/matching-details'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/stock-orders/get-matching-details
+        metadata:
+          sidebarTitle: "Thông tin khớp lệnh"
+  - target: "$.paths['/aion/v1/accounts/{accountNo}/orders'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/stock-orders/get-order-book
+        metadata:
+          sidebarTitle: "Lấy sổ lệnh"
+  - target: "$.paths['/aion/v1/accounts/{accountNo}/orders/{orderID}'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/stock-orders/get-order-by-id
+        metadata:
+          sidebarTitle: "Lấy sổ lệnh theo Order ID"
+  - target: "$.paths['/aion/v1/accounts/{accountNo}/ppse'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/stock-orders/get-purchasing-power
+        metadata:
+          sidebarTitle: "Lấy sức mua"
+  - target: "$.paths['/aion/v1/accounts/{accountNo}/ppse/{symbol}'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/stock-orders/get-purchasing-power-by-symbol
+        metadata:
+          sidebarTitle: "Lấy sức mua theo mã"
+  - target: "$.paths['/aion/v1/accounts/{accountNo}/ppse/{symbol}/{price}'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/stock-orders/get-purchasing-power-by-symbol-price
+        metadata:
+          sidebarTitle: "Lấy sức mua theo mã, giá"
+  - target: "$.paths['/aion/v1/accounts/{accountNo}/se'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/account/get-stock-assets
+        metadata:
+          sidebarTitle: "Tra cứu tài sản cổ phiếu"
+  - target: "$.paths['/aion/v1/customers/{custodyId}/accounts'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/account/get-margin-limit
+        metadata:
+          sidebarTitle: "Hạn mức margin"
+  - target: "$.paths['/akhlys/v1/accounts/{accountNo}/cancel-orders'].put"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/stock-orders/cancel-order
+        metadata:
+          sidebarTitle: "Hủy lệnh thường"
+  - target: "$.paths['/akhlys/v1/accounts/{accountNo}/orders'].post"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/stock-orders/place-order
+        metadata:
+          sidebarTitle: "Đặt lệnh thường"
+  - target: "$.paths['/akhlys/v1/accounts/{accountNo}/orders/{orderId}'].patch"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/stock-orders/modify-order
+        metadata:
+          sidebarTitle: "Sửa lệnh cổ phiếu"
+  - target: "$.paths['/ananke/v1/securities'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/market-data/get-securities
+        metadata:
+          sidebarTitle: "Tra cứu thông tin chứng khoán"
+  - target: "$.paths['/api/v1/derivatives/contracts'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/market-data/get-derivative-quotes
+        metadata:
+          sidebarTitle: "Bảng giá phái sinh (WebSocket)"
+  - target: "$.paths['/campaign-management/v1/margin/subscription/{accountNo}/addons/detail'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/account/get-margin-package
+        metadata:
+          sidebarTitle: "Gói vay bổ trợ"
+  - target: "$.paths['/erebos/v2/digital/margin-info'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/cash/get-debt
+        metadata:
+          sidebarTitle: "Tra cứu nợ"
+  - target: "$.paths['/erebos/v2/digital/trans-hist-cashStatements'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/cash/get-cash-statement
+        metadata:
+          sidebarTitle: "Thông tin sao kê tiền"
+  - target: "$.paths['/eros/v2/get-profile/by-username/{custodyCode}'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/account/get-sub-account
+        metadata:
+          sidebarTitle: "Thông tin tiểu khoản"
+  - target: "$.paths['/gaia/v1/oauth2/openapi/request-otp'].post"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/authentication/request-otp
+        metadata:
+          sidebarTitle: "Yêu cầu OTP để lấy JWT Token"
+  - target: "$.paths['/gaia/v1/oauth2/openapi/token'].post"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/authentication/exchange-token
+        metadata:
+          sidebarTitle: "Trao đổi API Key để lấy JWT Token"
+  - target: "$.paths['/hydros/v1/account/{accountNo}/pricing-policy'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/account/get-interest-rate-package
+        metadata:
+          sidebarTitle: "Gói lãi suất margin"
+  - target: "$.paths['/hydros/v1/account/{accountNo}/risk'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/account/get-margin-risk
+        metadata:
+          sidebarTitle: "Tỷ lệ margin và rủi ro"
+  - target: "$.paths['/khaos/v1/loan/{accountNo}'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/account/get-loans
+        metadata:
+          sidebarTitle: "Danh sách khoản vay"
+  - target: "$.paths['/khronos/v1/account/portfolio/position/close'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/account/get-closed-positions
+        metadata:
+          sidebarTitle: "Tài sản, vị thế đóng"
+  - target: "$.paths['/khronos/v1/account/portfolio/status'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/account/get-open-positions
+        metadata:
+          sidebarTitle: "Tài sản, vị thế mở"
+  - target: "$.paths['/khronos/v1/account/status'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/account/get-derivative-account
+        metadata:
+          sidebarTitle: "Tổng quan tiền, ký quỹ"
+  - target: "$.paths['/khronos/v1/cash/deposit/update'].post"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/cash/deposit-margin
+        metadata:
+          sidebarTitle: "Nộp ký quỹ"
+  - target: "$.paths['/khronos/v1/cash/withdraw/update'].post"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/cash/withdraw-margin
+        metadata:
+          sidebarTitle: "Rút ký quỹ"
+  - target: "$.paths['/khronos/v1/order/cancel'].post"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/derivative-orders/cancel-order
+        metadata:
+          sidebarTitle: "Hủy lệnh thường phái sinh"
+  - target: "$.paths['/khronos/v1/order/change'].post"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/derivative-orders/modify-order
+        metadata:
+          sidebarTitle: "Sửa lệnh thường phái sinh"
+  - target: "$.paths['/khronos/v1/order/condition/cancel'].post"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/derivative-orders/cancel-conditional-order
+        metadata:
+          sidebarTitle: "Hủy lệnh điều kiện phái sinh"
+  - target: "$.paths['/khronos/v1/order/condition/detail'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/derivative-orders/get-conditional-order-book
+        metadata:
+          sidebarTitle: "Tra cứu sổ lệnh điều kiện phái sinh"
+  - target: "$.paths['/khronos/v1/order/condition/place'].post"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/derivative-orders/place-conditional-order
+        metadata:
+          sidebarTitle: "Đặt lệnh điều kiện phái sinh"
+  - target: "$.paths['/khronos/v1/order/in-day'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/derivative-orders/get-derivative-order-book
+        metadata:
+          sidebarTitle: "Tra cứu sổ lệnh thường phái sinh"
+  - target: "$.paths['/khronos/v1/order/place'].post"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/derivative-orders/place-derivative-order
+        metadata:
+          sidebarTitle: "Đặt lệnh thường phái sinh"
+  - target: "$.paths['/khronos/v2/order/condition/change'].post"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/derivative-orders/modify-conditional-order
+        metadata:
+          sidebarTitle: "Sửa lệnh điều kiện phái sinh"
+  - target: "$.paths['/nyx/v1/intraday/{ticker}/bsa'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/market-data/get-daily-order-flow
+        metadata:
+          sidebarTitle: "Cung cầu theo ngày"
+  - target: "$.paths['/nyx/v1/intraday/{ticker}/bsa-ext'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/market-data/get-session-order-flow
+        metadata:
+          sidebarTitle: "Cung cầu trong phiên (15 phút)"
+  - target: "$.paths['/nyx/v1/intraday/{ticker}/bsa-month'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/market-data/get-monthly-order-flow
+        metadata:
+          sidebarTitle: "Cung cầu theo tháng"
+  - target: "$.paths['/nyx/v1/intraday/{ticker}/his/paging'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/market-data/get-trade-history
+        metadata:
+          sidebarTitle: "Lịch sử giá khớp"
+  - target: "$.paths['/physis/v1/stock/transfer'].post"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/cash/internal-transfer
+        metadata:
+          sidebarTitle: "Chuyển tiền nội bộ"
+  - target: "$.paths['/tartarus/v1/derivatives'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/market-data/get-derivatives
+        metadata:
+          sidebarTitle: "Thông tin mã, giá phái sinh"
+  - target: "$.paths['/tartarus/v1/putThroughSnaps'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/market-data/get-through
+        metadata:
+          sidebarTitle: "Thông tin thỏa thuận"
+  - target: "$.paths['/tartarus/v1/tickerCommons'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/market-data/get-ticker
+        metadata:
+          sidebarTitle: "Thông tin mã, giá"
+  - target: "$.paths['/tartarus/v1/tickerSnaps'].get"
+    update:
+      x-mint:
+        href: vi/tcbs/openapi/market-data/get-foreign-room
+        metadata:
+          sidebarTitle: "Thông tin room nước ngoài"

@@ -1,0 +1,7 @@
+type: object
+properties:
+  takeProfit:
+    $ref: ./PnlConfig.yaml
+  stopLoss:
+    $ref: ./PnlConfig.yaml
+description: Cấu hình chốt lời, cắt lỗ

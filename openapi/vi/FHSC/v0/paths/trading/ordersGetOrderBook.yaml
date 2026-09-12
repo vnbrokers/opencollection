@@ -1,7 +1,8 @@
 get:
   operationId: ordersGetOrderBook
   tags:
-    - Sổ lệnh
+    - order-book
+
   security:
     - FinhayApiKey: []
       FinhayTimestamp: []

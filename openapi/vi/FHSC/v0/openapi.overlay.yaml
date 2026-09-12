@@ -1,0 +1,307 @@
+overlay: 1.0.0
+info:
+  title: FHSC OpenAPI - Mintlify customization
+  version: 0.2.0-preview.3
+extends: ./fhsc.openapi.yaml
+
+actions:
+  - target: "$.paths['/users/v1/users/me'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/bootstrap/get-current-user
+        metadata:
+          sidebarTitle: "Lấy thông tin user hiện tại"
+  - target: "$.paths['/users/v1/users/{userId}/sub-accounts'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/bootstrap/get-sub-accounts
+        metadata:
+          sidebarTitle: "Danh sách tiểu khoản của user"
+  - target: "$.paths['/market/stock-realtime'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/market-data/get-stock-realtime
+        metadata:
+          sidebarTitle: "Giá stock realtime"
+  - target: "$.paths['/market/index-realtime'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/market-data/get-market-index-realtime
+        metadata:
+          sidebarTitle: "Chỉ số thị trường realtime"
+  - target: "$.paths['/market/news'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/news-events/get-corporate-news
+        metadata:
+          sidebarTitle: "Sự kiện doanh nghiệp-tin tức stock"
+  - target: "$.paths['/market/financial-data'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/aggregated/get-financial-data
+        metadata:
+          sidebarTitle: "Tổng hợp mọi loại dữ liệu tài chính"
+  - target: "$.paths['/market/financial-data/gold'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/commodities/get-gold-price
+        metadata:
+          sidebarTitle: "Giá vàng"
+  - target: "$.paths['/market/financial-data/silver'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/commodities/get-silver-price
+        metadata:
+          sidebarTitle: "Giá bạc"
+  - target: "$.paths['/market/financial-data/gold-chart'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/commodities/get-gold-chart
+        metadata:
+          sidebarTitle: "Biểu đồ giá vàng"
+  - target: "$.paths['/market/financial-data/silver-chart'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/commodities/get-silver-chart
+        metadata:
+          sidebarTitle: "Biểu đồ giá bạc"
+  - target: "$.paths['/market/financial-data/gold-providers'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/commodities/get-gold-by-provider
+        metadata:
+          sidebarTitle: "Giá vàng theo nhà cung cấp"
+  - target: "$.paths['/market/financial-data/metal-providers'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/commodities/get-metals-by-provider
+        metadata:
+          sidebarTitle: "Giá vàng và bạc theo nhà cung cấp"
+  - target: "$.paths['/market/financial-data/bank-interest-rates'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/macroeconomics/get-bank-interest-rates
+        metadata:
+          sidebarTitle: "Lãi suất tiền gửi ngân hàng"
+  - target: "$.paths['/market/financial-data/cryptos/top-trending'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/commodities/get-trending-cryptos
+        metadata:
+          sidebarTitle: "Top crypto đang trending"
+  - target: "$.paths['/market/financial-data/macro'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/macroeconomics/get-macro-data
+        metadata:
+          sidebarTitle: "Dữ liệu vĩ mô"
+  - target: "$.paths['/market/financial-data/trading-economics'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/macroeconomics/get-trading-economics
+        metadata:
+          sidebarTitle: "Chỉ số kinh tế lịch sử (Trading Economics)"
+  - target: "$.paths['/market/financial-data/economic-calendar-events'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/macroeconomics/get-economic-calendar
+        metadata:
+          sidebarTitle: "Lịch sự kiện kinh tế sắp tới"
+  - target: "$.paths['/market/financial-data/market'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/aggregated/get-global-market
+        metadata:
+          sidebarTitle: "Lịch sử giá instrument toàn cầu (index / Mag7 / hàng hoá / forex)"
+  - target: "$.paths['/market/financial-data/global-news'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/news-events/get-global-news
+        metadata:
+          sidebarTitle: "Tin tức tài chính toàn cầu (phân trang)"
+  - target: "$.paths['/market/financial-data/global-news/{id}'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/news-events/get-global-news-detail
+        metadata:
+          sidebarTitle: "Chi tiết 1 bài tin tức tài chính toàn cầu"
+  - target: "$.paths['/market/recommendation-reports/{symbol}'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/news-events/get-recommendation-reports
+        metadata:
+          sidebarTitle: "Báo cáo khuyến nghị theo stock"
+  - target: "$.paths['/market/price-histories-chart'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/market-data/get-price-chart
+        metadata:
+          sidebarTitle: "Lịch sử giá dạng biểu đồ"
+  - target: "$.paths['/market/company-financial/overview'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/fundamental-analysis/get-financial-overview
+        metadata:
+          sidebarTitle: "Chỉ số tài chính tổng quan của doanh nghiệp"
+  - target: "$.paths['/market/company-financial/analysis'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/fundamental-analysis/get-financial-analysis
+        metadata:
+          sidebarTitle: "Phân tích tài chính doanh nghiệp theo kỳ"
+  - target: "$.paths['/market/v2/financial-statement/statement'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/fundamental-analysis/get-financial-statements
+        metadata:
+          sidebarTitle: "Báo cáo tài chính"
+  - target: "$.paths['/trading/accounts/{subAccountId}/summary'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/sub-account/get-account-summary
+        metadata:
+          sidebarTitle: "Chi tiết số dư, margin, dư nợ của tiểu khoản"
+  - target: "$.paths['/trading/v1/accounts/{subAccountId}/order-book'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/order-book/get-order-book
+        metadata:
+          sidebarTitle: "Lấy sổ lệnh trong ngày"
+  - target: "$.paths['/trading/v1/accounts/{subAccountId}/order-book/{orderId}'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/order-book/get-order-detail
+        metadata:
+          sidebarTitle: "Chi tiết 1 lệnh trong sổ lệnh"
+  - target: "$.paths['/trading/v2/sub-accounts/{subAccountId}/portfolio'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/portfolio/get-holdings
+        metadata:
+          sidebarTitle: "Danh mục stock đang nắm giữ của tiểu khoản"
+  - target: "$.paths['/trading/v5/account/{subAccountId}/user-rights'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/shareholder-rights/get-shareholder-rights
+        metadata:
+          sidebarTitle: "Quyền cổ đông của tiểu khoản"
+  - target: "$.paths['/trading/pnl-today/{userId}'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/pnl/get-pnl-today
+        metadata:
+          sidebarTitle: "Lãi-lỗ hôm nay"
+  - target: "$.paths['/trading/market/session'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/trading-session/get-trading-session
+        metadata:
+          sidebarTitle: "Trạng thái phiên giao dịch"
+  - target: "$.paths['/trading/oa/sub-accounts/{subAccountId}/orders'].post"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/order-execution/place-order
+        metadata:
+          sidebarTitle: "Đặt lệnh mới"
+  - target: "$.paths['/trading/oa/sub-accounts/{subAccountId}/orders/{orderId}'].put"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/order-execution/modify-order
+        metadata:
+          sidebarTitle: "Sửa lệnh"
+  - target: "$.paths['/trading/oa/sub-accounts/{subAccountId}/orders/{orderId}'].delete"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/order-execution/cancel-order
+        metadata:
+          sidebarTitle: "Huỷ lệnh"
+  - target: "$.paths['/users/v3/users/{userId}/assets/summary'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/total-assets/get-asset-summary
+        metadata:
+          sidebarTitle: "Tổng quan tài sản của user"
+  - target: "$.paths['/fund-trading/public/fund-certificates'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/mutual-funds/get-fund-list
+        metadata:
+          sidebarTitle: "Danh sách quỹ mở theo phân loại"
+  - target: "$.paths['/fund-trading/public/fund-companies'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/mutual-funds/get-fund-companies
+        metadata:
+          sidebarTitle: "Danh sách công ty quản lý quỹ"
+  - target: "$.paths['/fund-trading/public/fund-certificates/{fundName}/nav-histories'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/mutual-funds/get-fund-nav-history
+        metadata:
+          sidebarTitle: "Lịch sử NAV của quỹ kèm benchmark"
+  - target: "$.paths['/fund-trading/public/fund-certificates/{fundName}/portfolio'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/mutual-funds/get-fund-portfolio
+        metadata:
+          sidebarTitle: "Danh mục nắm giữ của quỹ"
+  - target: "$.paths['/fund-trading/public/fund-certificates/{fundName}/asset-allocation'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/mutual-funds/get-fund-asset-allocation
+        metadata:
+          sidebarTitle: "Phân bổ tài sản của quỹ (bond / stock / others)"
+  - target: "$.paths['/fund-trading/public/fund-certificates/{fundName}/sector-allocation'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/mutual-funds/get-fund-sector-allocation
+        metadata:
+          sidebarTitle: "Phân bổ theo ngành của quỹ"
+  - target: "$.paths['/fund-trading/public/fund-certificates/{fundName}/suggestions'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/mutual-funds/get-fund-suggestions
+        metadata:
+          sidebarTitle: "Quỹ tương tự được gợi ý"
+  - target: "$.paths['/fund-trading/public/fund-certificates/top-aum'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/mutual-funds/get-top-funds-by-aum
+        metadata:
+          sidebarTitle: "Danh sách quỹ theo AUM"
+  - target: "$.paths['/fund-trading/public/fund-certificates/top-investor'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/mutual-funds/get-top-funds-by-investors
+        metadata:
+          sidebarTitle: "Danh sách quỹ theo số nhà đầu tư"
+  - target: "$.paths['/fund-trading/public/fund-certificates/top-fund-flow'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/mutual-funds/get-top-funds-by-flow
+        metadata:
+          sidebarTitle: "Danh sách quỹ theo dòng tiền ròng"
+  - target: "$.paths['/fund-trading/public/fund-certificates/top-holding-symbols'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/mutual-funds/get-top-held-symbols
+        metadata:
+          sidebarTitle: "Danh sách mã được nhiều quỹ giữ nhất"
+  - target: "$.paths['/fund-trading/public/fund-certificates/benchmark/growth'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/mutual-funds/get-benchmark-growth
+        metadata:
+          sidebarTitle: "Mô phỏng tăng trưởng của số tiền đầu tư cố định qua nhiều quỹ"
+  - target: "$.paths['/fund-trading/public/fund-certificates/benchmark/nav'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/mutual-funds/get-benchmark-nav
+        metadata:
+          sidebarTitle: "So sánh chuỗi NAV theo thời gian của nhiều quỹ"
+  - target: "$.paths['/fund-trading/public/fund-certificates/benchmark/operation'].get"
+    update:
+      x-mint:
+        href: vi/fhsc/openapi/mutual-funds/get-benchmark-operation
+        metadata:
+          sidebarTitle: "So sánh các chỉ số hoạt động (AUM / số nhà đầu tư / dòng tiền) của nhiều quỹ"

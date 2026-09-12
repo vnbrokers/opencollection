@@ -31,43 +31,59 @@ servers:
 security:
   - FinhayApiKey: []
 tags:
-  - name: Khởi tạo
+  - name: bootstrap
     description: Khởi tạo client — lấy `user_id` và `subAccountId`. Gọi 1 lần khi khởi tạo SDK rồi cache lại.
-  - name: Dữ liệu giao dịch
+    x-group: Khởi tạo
+  - name: market-data
     description: Giá stock realtime và lịch sử OHLCV (dạng columnar, phục vụ charting / time-series).
-  - name: Phân tích cơ bản
+    x-group: Dữ liệu giao dịch
+  - name: fundamental-analysis
     description: Chỉ số tài chính cơ bản của doanh nghiệp — chỉ số tổng quan, phân tích theo kỳ và báo cáo tài chính chuẩn (income statement / balance sheet / cash flow).
-  - name: Tin tức-sự kiện
+    x-group: Phân tích cơ bản
+  - name: news-events
     description: Sự kiện doanh nghiệp (cổ tức, quyền mua, ĐHCĐ, …), tin tức stock, tin tức tài chính toàn cầu (forex / commodities / economic-indicators / stock-market / cryptocurrency) và báo cáo khuyến nghị từ analyst.
-  - name: Kinh tế vĩ mô
+    x-group: Tin tức-sự kiện
+  - name: macroeconomics
     description: Chỉ số kinh tế vĩ mô (CPI, PMI, PCE, GDP, …) và lãi suất tiền gửi ngân hàng.
-  - name: Hàng hoá
+    x-group: Kinh tế vĩ mô
+  - name: commodities
     description: Hàng hoá và tài sản thay thế — vàng, bạc (spot / chart / theo nhà cung cấp) và crypto trending.
-  - name: Tổng hợp đa loại
+    x-group: Hàng hoá
+  - name: aggregated
     description: Endpoint composite tổng hợp cross-domain (vàng / bạc / crypto / FX / lãi suất / US index) trong 1 call. Nên dùng endpoint chuyên biệt nếu chỉ cần 1 loại.
-  - name: Quỹ mở
+    x-group: Tổng hợp đa loại
+  - name: mutual-funds
     description: Quỹ mở (open-ended funds) — danh sách quỹ, công ty quản lý, NAV history, holdings, ranking và benchmark cross-fund.
-  - name: Tổng tài sản
+    x-group: Quỹ mở
+  - name: total-assets
     description: Tổng quan tài sản cấp user — cross-product (stock, fund, bond, hay0) kèm cash, debt, PnL.
-  - name: Tiểu khoản
+    x-group: Tổng tài sản
+  - name: sub-account
     description: Thông tin tiểu khoản — số dư, margin, dư nợ và ngân hàng liên kết.
-  - name: Danh mục đầu tư
+    x-group: Tiểu khoản
+  - name: portfolio
     description: Danh mục stock đang nắm giữ kèm giá realtime và PnL theo vị thế.
-  - name: Sổ lệnh
+    x-group: Danh mục đầu tư
+  - name: order-book
     description: Quản lý lệnh — sổ lệnh trong ngày, danh sách đầy đủ hoặc chi tiết theo `orderId`.
-  - name: Lãi-lỗ
+    x-group: Sổ lệnh
+  - name: pnl
     description: PnL và analytics cá nhân — lãi / lỗ trong ngày tổng hợp theo user.
-  - name: Quyền cổ đông
+    x-group: Lãi-lỗ
+  - name: shareholder-rights
     description: Quyền cổ đông (cổ tức, quyền mua, bỏ phiếu, …) của tiểu khoản.
-  - name: Phiên giao dịch
+    x-group: Quyền cổ đông
+  - name: trading-session
     description: Hạ tầng trading — trạng thái phiên giao dịch và order type khả dụng của mỗi exchange.
-  - name: Thực thi lệnh
+    x-group: Phiên giao dịch
+  - name: order-execution
     description: |
       ⚠️ Nhóm endpoint này đang ở giai đoạn **preview**.
 
       Đặt / sửa / huỷ lệnh trên sàn — write operation nhạy cảm, yêu cầu
       Tier 2 HMAC đầy đủ + `X-FH-BODYHASH` + `X-FH-2FA-TOKEN` (daily 2FA
       session).
+    x-group: Thực thi lệnh
 paths:
   /users/v1/users/me:
     $ref: "./paths/users/bootstrapGetMe.yaml"
@@ -75,65 +91,11 @@ paths:
   /users/v1/users/{userId}/sub-accounts:
     $ref: "./paths/users/bootstrapGetSubAccounts.yaml"
 
-  /market/stock-realtime:
-    $ref: "./paths/market/marketDataGetStockRealtime.yaml"
-
-  /market/index-realtime:
-    $ref: "./paths/market/marketDataGetIndexRealtime.yaml"
-
-  /market/news:
-    $ref: "./paths/market/corporateGetNews.yaml"
-
-  /market/financial-data:
-    $ref: "./paths/market/aggregatedGetFinancialData.yaml"
-
-  /market/financial-data/gold:
-    $ref: "./paths/market/commoditiesGetGold.yaml"
-
-  /market/financial-data/silver:
-    $ref: "./paths/market/commoditiesGetSilver.yaml"
-
-  /market/financial-data/gold-chart:
-    $ref: "./paths/market/commoditiesGetGoldChart.yaml"
-
-  /market/financial-data/silver-chart:
-    $ref: "./paths/market/commoditiesGetSilverChart.yaml"
-
-  /market/financial-data/gold-providers:
-    $ref: "./paths/market/commoditiesGetGoldProviders.yaml"
-
-  /market/financial-data/metal-providers:
-    $ref: "./paths/market/commoditiesGetMetalProviders.yaml"
-
   /market/financial-data/bank-interest-rates:
     $ref: "./paths/market/macroGetBankInterestRates.yaml"
 
-  /market/financial-data/cryptos/top-trending:
-    $ref: "./paths/market/commoditiesGetTopTrendingCryptos.yaml"
-
-  /market/financial-data/macro:
-    $ref: "./paths/market/macroGetMacroData.yaml"
-
-  /market/financial-data/trading-economics:
-    $ref: "./paths/market/macroGetTradingEconomics.yaml"
-
-  /market/financial-data/economic-calendar-events:
-    $ref: "./paths/market/macroGetEconomicCalendarEvents.yaml"
-
-  /market/financial-data/market:
-    $ref: "./paths/market/aggregatedGetGlobalMarket.yaml"
-
-  /market/financial-data/global-news:
-    $ref: "./paths/market/corporateGetGlobalNews.yaml"
-
-  /market/financial-data/global-news/{id}:
-    $ref: "./paths/market/corporateGetGlobalNewsDetail.yaml"
-
   /market/recommendation-reports/{symbol}:
     $ref: "./paths/market/corporateGetRecommendationReports.yaml"
-
-  /market/price-histories-chart:
-    $ref: "./paths/market/marketDataGetPriceHistoriesChart.yaml"
 
   /market/company-financial/overview:
     $ref: "./paths/market/fundamentalGetOverview.yaml"
@@ -174,47 +136,155 @@ paths:
   /users/v3/users/{userId}/assets/summary:
     $ref: "./paths/users/assetGetSummary.yaml"
 
-  /fund-trading/public/fund-certificates:
-    $ref: "./paths/fund-trading/fundsListCertificates.yaml"
+  /market/macro/indicators:
+    $ref: "./paths/market/listMacroIndicators.yaml"
 
-  /fund-trading/public/fund-companies:
-    $ref: "./paths/fund-trading/fundsListCompanies.yaml"
+  /market/macro/indicators/{indicator}:
+    $ref: "./paths/market/getMacroIndicator.yaml"
 
-  /fund-trading/public/fund-certificates/{fundName}/nav-histories:
-    $ref: "./paths/fund-trading/fundsGetNavHistories.yaml"
+  /market/calendar:
+    $ref: "./paths/market/calendarListEvents.yaml"
 
-  /fund-trading/public/fund-certificates/{fundName}/portfolio:
-    $ref: "./paths/fund-trading/fundsGetPortfolio.yaml"
+  /market/market-news:
+    $ref: "./paths/market/corporateGetMarketNews.yaml"
 
-  /fund-trading/public/fund-certificates/{fundName}/asset-allocation:
-    $ref: "./paths/fund-trading/fundsGetAssetAllocation.yaml"
+  /market/market-news/{id}:
+    $ref: "./paths/market/corporateGetMarketNewsDetail.yaml"
 
-  /fund-trading/public/fund-certificates/{fundName}/sector-allocation:
-    $ref: "./paths/fund-trading/fundsGetSectorAllocation.yaml"
+  /market/quotes/stocks:
+    $ref: "./paths/market/quotesGetStocksCatalog.yaml"
 
-  /fund-trading/public/fund-certificates/{fundName}/suggestions:
-    $ref: "./paths/fund-trading/fundsGetSuggestions.yaml"
+  /market/quotes/stocks/{symbol}:
+    $ref: "./paths/market/quotesGetStock.yaml"
 
-  /fund-trading/public/fund-certificates/top-aum:
-    $ref: "./paths/fund-trading/fundsTopAum.yaml"
+  /market/quotes/stocks/{symbol}/order-book:
+    $ref: "./paths/market/quotesGetStockOrderBook.yaml"
 
-  /fund-trading/public/fund-certificates/top-investor:
-    $ref: "./paths/fund-trading/fundsTopInvestor.yaml"
+  /market/quotes/stocks/{symbol}/history:
+    $ref: "./paths/market/quotesGetStockHistory.yaml"
 
-  /fund-trading/public/fund-certificates/top-fund-flow:
-    $ref: "./paths/fund-trading/fundsTopFundFlow.yaml"
+  /market/quotes/indices:
+    $ref: "./paths/market/quotesGetIndicesCatalog.yaml"
 
-  /fund-trading/public/fund-certificates/top-holding-symbols:
-    $ref: "./paths/fund-trading/fundsTopHoldingSymbols.yaml"
+  /market/quotes/indices/{symbol}:
+    $ref: "./paths/market/quotesGetIndex.yaml"
 
-  /fund-trading/public/fund-certificates/benchmark/growth:
-    $ref: "./paths/fund-trading/fundsBenchmarkGrowth.yaml"
+  /market/quotes/indices/{symbol}/history:
+    $ref: "./paths/market/quotesGetIndexHistory.yaml"
 
-  /fund-trading/public/fund-certificates/benchmark/nav:
-    $ref: "./paths/fund-trading/fundsBenchmarkNav.yaml"
+  /market/quotes/forex:
+    $ref: "./paths/market/quotesGetForexCatalog.yaml"
 
-  /fund-trading/public/fund-certificates/benchmark/operation:
-    $ref: "./paths/fund-trading/fundsBenchmarkOperation.yaml"
+  /market/quotes/forex/{symbol}:
+    $ref: "./paths/market/quotesGetForex.yaml"
+
+  /market/quotes/forex/{symbol}/history:
+    $ref: "./paths/market/quotesGetForexHistory.yaml"
+
+  /market/quotes/cryptos:
+    $ref: "./paths/market/quotesGetCryptosCatalog.yaml"
+
+  /market/quotes/cryptos/{symbol}:
+    $ref: "./paths/market/quotesGetCrypto.yaml"
+
+  /market/quotes/cryptos/{symbol}/history:
+    $ref: "./paths/market/quotesGetCryptoHistory.yaml"
+
+  /market/quotes/commodities:
+    $ref: "./paths/market/quotesGetCommoditiesCatalog.yaml"
+
+  /market/quotes/commodities/{symbol}:
+    $ref: "./paths/market/quotesGetCommodity.yaml"
+
+  /market/quotes/commodities/{symbol}/history:
+    $ref: "./paths/market/quotesGetCommodityHistory.yaml"
+
+  /market/quotes/funds:
+    $ref: "./paths/market/quotesGetFundsCatalog.yaml"
+
+  /market/quotes/funds/{symbol}:
+    $ref: "./paths/market/quotesGetFund.yaml"
+
+  /market/quotes/funds/{symbol}/history:
+    $ref: "./paths/market/quotesGetFundHistory.yaml"
+
+  /market/quotes/bonds:
+    $ref: "./paths/market/quotesGetBondsCatalog.yaml"
+
+  /market/quotes/bonds/{symbol}:
+    $ref: "./paths/market/quotesGetBond.yaml"
+
+  /market/quotes/bonds/{symbol}/order-book:
+    $ref: "./paths/market/quotesGetBondOrderBook.yaml"
+
+  /market/quotes/bonds/{symbol}/history:
+    $ref: "./paths/market/quotesGetBondHistory.yaml"
+
+  /market/quotes/etfs:
+    $ref: "./paths/market/quotesGetEtfsCatalog.yaml"
+
+  /market/quotes/etfs/{symbol}:
+    $ref: "./paths/market/quotesGetEtf.yaml"
+
+  /market/quotes/etfs/{symbol}/order-book:
+    $ref: "./paths/market/quotesGetEtfOrderBook.yaml"
+
+  /market/quotes/etfs/{symbol}/history:
+    $ref: "./paths/market/quotesGetEtfHistory.yaml"
+
+  /market/quotes/commodities/{symbol}/dealer-products:
+    $ref: "./paths/market/quotesGetDealerProducts.yaml"
+
+  /market/quotes/commodities/{symbol}/dealer-products/{code}:
+    $ref: "./paths/market/quotesGetDealerProduct.yaml"
+
+  /market/quotes/commodities/{symbol}/dealer-products/{code}/history:
+    $ref: "./paths/market/quotesGetDealerProductHistory.yaml"
+
+  /market/stocks:
+    $ref: "./paths/market/stocksScreen.yaml"
+
+  /market/stocks/{symbol}/profile:
+    $ref: "./paths/market/stocksGetProfile.yaml"
+
+  /market/stocks/{symbol}/listing:
+    $ref: "./paths/market/stocksGetListing.yaml"
+
+  /market/stocks/{symbol}/ownership:
+    $ref: "./paths/market/stocksGetOwnership.yaml"
+
+  /market/stocks/{symbol}/ownership/foreign-room:
+    $ref: "./paths/market/stocksGetForeignRoom.yaml"
+
+  /market/stocks/{symbol}/ownership/foreign-room/history:
+    $ref: "./paths/market/stocksGetForeignRoomHistory.yaml"
+
+  /market/stocks/{symbol}/technicals:
+    $ref: "./paths/market/stocksGetTechnicals.yaml"
+
+  /market/stocks/{symbol}/trading:
+    $ref: "./paths/market/stocksGetTrading.yaml"
+
+  /market/stocks/{symbol}/trading/history:
+    $ref: "./paths/market/stocksGetTradingHistory.yaml"
+
+  /market/stocks/{symbol}/trading/foreign:
+    $ref: "./paths/market/stocksGetForeignTrading.yaml"
+
+  /market/stocks/{symbol}/trading/foreign/history:
+    $ref: "./paths/market/stocksGetForeignTradingHistory.yaml"
+
+  /market/stocks/{symbol}/trading/proprietary:
+    $ref: "./paths/market/stocksGetProprietaryTrading.yaml"
+
+  /market/stocks/{symbol}/trading/proprietary/history:
+    $ref: "./paths/market/stocksGetProprietaryTradingHistory.yaml"
+
+  /market/stocks/{symbol}/trading/orders:
+    $ref: "./paths/market/stocksGetOrderStatistic.yaml"
+
+  /market/stocks/{symbol}/trading/orders/history:
+    $ref: "./paths/market/stocksGetOrderStatisticHistory.yaml"
 components:
   securitySchemes:
     FinhayApiKey:
@@ -244,100 +314,12 @@ components:
       $ref: "./components/schemas/users/SubAccountsResponse.yaml"
     Exchange:
       $ref: "./components/schemas/market/Exchange.yaml"
-    StockType:
-      $ref: "./components/schemas/market/StockType.yaml"
-    StockRealtime:
-      $ref: "./components/schemas/market/StockRealtime.yaml"
-    StockRealtimeResponse:
-      $ref: "./components/schemas/market/StockRealtimeResponse.yaml"
-    MarketIndex:
-      $ref: "./components/schemas/market/MarketIndex.yaml"
-    IndexRealtime:
-      $ref: "./components/schemas/market/IndexRealtime.yaml"
-    IndexRealtimeResponse:
-      $ref: "./components/schemas/market/IndexRealtimeResponse.yaml"
-    StockEvent:
-      $ref: "./components/schemas/market/StockEvent.yaml"
-    StockEventsResponse:
-      $ref: "./components/schemas/market/StockEventsResponse.yaml"
-    FinancialDataBuySellValue:
-      $ref: "./components/schemas/market/FinancialDataBuySellValue.yaml"
-    FinancialDataSingleValue:
-      $ref: "./components/schemas/market/FinancialDataSingleValue.yaml"
-    FinancialData:
-      $ref: "./components/schemas/market/FinancialData.yaml"
-    FinancialDataResponse:
-      $ref: "./components/schemas/market/FinancialDataResponse.yaml"
-    CommodityIndexData:
-      $ref: "./components/schemas/market/CommodityIndexData.yaml"
-    GoldResponse:
-      $ref: "./components/schemas/market/GoldResponse.yaml"
-    SilverResponse:
-      $ref: "./components/schemas/market/SilverResponse.yaml"
-    GoldChartPoint:
-      $ref: "./components/schemas/market/GoldChartPoint.yaml"
-    GoldChartResponse:
-      $ref: "./components/schemas/market/GoldChartResponse.yaml"
-    SilverChartPoint:
-      $ref: "./components/schemas/market/SilverChartPoint.yaml"
-    SilverChartResponse:
-      $ref: "./components/schemas/market/SilverChartResponse.yaml"
-    CommodityProviderGroup:
-      $ref: "./components/schemas/market/CommodityProviderGroup.yaml"
-    GoldProvidersResponse:
-      $ref: "./components/schemas/market/GoldProvidersResponse.yaml"
-    MetalProvidersResponse:
-      $ref: "./components/schemas/market/MetalProvidersResponse.yaml"
     BankInterestRates:
       $ref: "./components/schemas/market/BankInterestRates.yaml"
     BankInterestRatesResponse:
       $ref: "./components/schemas/market/BankInterestRatesResponse.yaml"
-    CryptoCurrency:
-      $ref: "./components/schemas/market/CryptoCurrency.yaml"
-    CryptosTopTrendingResponse:
-      $ref: "./components/schemas/market/CryptosTopTrendingResponse.yaml"
-    MacroType:
-      $ref: "./components/schemas/market/MacroType.yaml"
-    Country:
-      $ref: "./components/schemas/market/Country.yaml"
-    Period:
-      $ref: "./components/schemas/market/Period.yaml"
-    MacroData:
-      $ref: "./components/schemas/market/MacroData.yaml"
-    MacroDataResponse:
-      $ref: "./components/schemas/market/MacroDataResponse.yaml"
     EconomicCountry:
       $ref: "./components/schemas/market/EconomicCountry.yaml"
-    TradingEconomicsCategory:
-      $ref: "./components/schemas/market/TradingEconomicsCategory.yaml"
-    TradingEconomicsEntry:
-      $ref: "./components/schemas/market/TradingEconomicsEntry.yaml"
-    TradingEconomicsResponse:
-      $ref: "./components/schemas/market/TradingEconomicsResponse.yaml"
-    EconomicCalendarEvent:
-      $ref: "./components/schemas/market/EconomicCalendarEvent.yaml"
-    EconomicCalendarEventsResponse:
-      $ref: "./components/schemas/market/EconomicCalendarEventsResponse.yaml"
-    GlobalMarketDataType:
-      $ref: "./components/schemas/market/GlobalMarketDataType.yaml"
-    GlobalMarketCountry:
-      $ref: "./components/schemas/market/GlobalMarketCountry.yaml"
-    GlobalMarketDataEntry:
-      $ref: "./components/schemas/market/GlobalMarketDataEntry.yaml"
-    GlobalMarketDataResponse:
-      $ref: "./components/schemas/market/GlobalMarketDataResponse.yaml"
-    GlobalNewsCategory:
-      $ref: "./components/schemas/market/GlobalNewsCategory.yaml"
-    GlobalNewsListItem:
-      $ref: "./components/schemas/market/GlobalNewsListItem.yaml"
-    GlobalNewsPage:
-      $ref: "./components/schemas/market/GlobalNewsPage.yaml"
-    GlobalNewsListResponse:
-      $ref: "./components/schemas/market/GlobalNewsListResponse.yaml"
-    GlobalNewsDetail:
-      $ref: "./components/schemas/market/GlobalNewsDetail.yaml"
-    GlobalNewsDetailResponse:
-      $ref: "./components/schemas/market/GlobalNewsDetailResponse.yaml"
     IndexRecommendationReport:
       $ref: "./components/schemas/market/IndexRecommendationReport.yaml"
     RecommendationReport:
@@ -346,10 +328,6 @@ components:
       $ref: "./components/schemas/market/RecommendationReportsResponse.yaml"
     Resolution:
       $ref: "./components/schemas/market/Resolution.yaml"
-    PriceHistoriesChart:
-      $ref: "./components/schemas/market/PriceHistoriesChart.yaml"
-    PriceHistoriesChartResponse:
-      $ref: "./components/schemas/market/PriceHistoriesChartResponse.yaml"
     FinancialOverview:
       $ref: "./components/schemas/market/FinancialOverview.yaml"
     FinancialOverviewResponse:
@@ -444,72 +422,226 @@ components:
       $ref: "./components/schemas/users/UserAssetsSummary.yaml"
     UserAssetsSummaryResponse:
       $ref: "./components/schemas/users/UserAssetsSummaryResponse.yaml"
-    FundType:
-      $ref: "./components/schemas/fund-trading/FundType.yaml"
-    FundCertificate:
-      $ref: "./components/schemas/fund-trading/FundCertificate.yaml"
-    FundCertificatesResponse:
-      $ref: "./components/schemas/fund-trading/FundCertificatesResponse.yaml"
-    FundCompany:
-      $ref: "./components/schemas/fund-trading/FundCompany.yaml"
-    FundCompaniesResponse:
-      $ref: "./components/schemas/fund-trading/FundCompaniesResponse.yaml"
-    FundPeriod:
-      $ref: "./components/schemas/fund-trading/FundPeriod.yaml"
-    FundNavHistoryPoint:
-      $ref: "./components/schemas/fund-trading/FundNavHistoryPoint.yaml"
-    FundNavHistories:
-      $ref: "./components/schemas/fund-trading/FundNavHistories.yaml"
-    FundNavHistoriesResponse:
-      $ref: "./components/schemas/fund-trading/FundNavHistoriesResponse.yaml"
-    FundPortfolioItem:
-      $ref: "./components/schemas/fund-trading/FundPortfolioItem.yaml"
-    FundPortfolioResponse:
-      $ref: "./components/schemas/fund-trading/FundPortfolioResponse.yaml"
-    FundAssetAllocation:
-      $ref: "./components/schemas/fund-trading/FundAssetAllocation.yaml"
-    FundAssetAllocationResponse:
-      $ref: "./components/schemas/fund-trading/FundAssetAllocationResponse.yaml"
-    FundSectorAllocation:
-      $ref: "./components/schemas/fund-trading/FundSectorAllocation.yaml"
-    FundSectorAllocationResponse:
-      $ref: "./components/schemas/fund-trading/FundSectorAllocationResponse.yaml"
-    FundSuggestionCriteria:
-      $ref: "./components/schemas/fund-trading/FundSuggestionCriteria.yaml"
-    FundSuggestion:
-      $ref: "./components/schemas/fund-trading/FundSuggestion.yaml"
-    FundSuggestionsResponse:
-      $ref: "./components/schemas/fund-trading/FundSuggestionsResponse.yaml"
-    FundAumEntry:
-      $ref: "./components/schemas/fund-trading/FundAumEntry.yaml"
-    FundTopAumResponse:
-      $ref: "./components/schemas/fund-trading/FundTopAumResponse.yaml"
-    FundInvestorEntry:
-      $ref: "./components/schemas/fund-trading/FundInvestorEntry.yaml"
-    FundTopInvestorResponse:
-      $ref: "./components/schemas/fund-trading/FundTopInvestorResponse.yaml"
-    FundFlowEntry:
-      $ref: "./components/schemas/fund-trading/FundFlowEntry.yaml"
-    FundTopFundFlowResponse:
-      $ref: "./components/schemas/fund-trading/FundTopFundFlowResponse.yaml"
-    FundTopHoldingSymbol:
-      $ref: "./components/schemas/fund-trading/FundTopHoldingSymbol.yaml"
-    FundTopHoldingSymbolsResponse:
-      $ref: "./components/schemas/fund-trading/FundTopHoldingSymbolsResponse.yaml"
-    FundGrowthBenchmark:
-      $ref: "./components/schemas/fund-trading/FundGrowthBenchmark.yaml"
-    FundGrowthBenchmarkResponse:
-      $ref: "./components/schemas/fund-trading/FundGrowthBenchmarkResponse.yaml"
-    FundNavBenchmarkPoint:
-      $ref: "./components/schemas/fund-trading/FundNavBenchmarkPoint.yaml"
-    FundNavBenchmark:
-      $ref: "./components/schemas/fund-trading/FundNavBenchmark.yaml"
-    FundNavBenchmarkResponse:
-      $ref: "./components/schemas/fund-trading/FundNavBenchmarkResponse.yaml"
-    FundOperationBenchmark:
-      $ref: "./components/schemas/fund-trading/FundOperationBenchmark.yaml"
-    FundOperationBenchmarkResponse:
-      $ref: "./components/schemas/fund-trading/FundOperationBenchmarkResponse.yaml"
+    BankInterestRate:
+      $ref: "./components/schemas/market/BankInterestRate.yaml"
+    BankInterestRateGroup:
+      $ref: "./components/schemas/market/BankInterestRateGroup.yaml"
+    MacroIndicatorCatalogItem:
+      $ref: "./components/schemas/market/MacroIndicatorCatalogItem.yaml"
+    MacroIndicatorCatalogResponse:
+      $ref: "./components/schemas/market/MacroIndicatorCatalogResponse.yaml"
+    MacroIndicatorObservation:
+      $ref: "./components/schemas/market/MacroIndicatorObservation.yaml"
+    MacroIndicatorSeries:
+      $ref: "./components/schemas/market/MacroIndicatorSeries.yaml"
+    MacroIndicatorSeriesResponse:
+      $ref: "./components/schemas/market/MacroIndicatorSeriesResponse.yaml"
+    PageMeta:
+      $ref: "./components/schemas/common/PageMeta.yaml"
+    EconomicEventDetail:
+      $ref: "./components/schemas/market/EconomicEventDetail.yaml"
+    CalendarEvent:
+      $ref: "./components/schemas/market/CalendarEvent.yaml"
+    CalendarEventsPage:
+      $ref: "./components/schemas/market/CalendarEventsPage.yaml"
+    CalendarEventsPageResponse:
+      $ref: "./components/schemas/market/CalendarEventsPageResponse.yaml"
+    MarketNewsTopic:
+      $ref: "./components/schemas/market/MarketNewsTopic.yaml"
+    MarketNewsItem:
+      $ref: "./components/schemas/market/MarketNewsItem.yaml"
+    MarketNewsPage:
+      $ref: "./components/schemas/market/MarketNewsPage.yaml"
+    MarketNewsPageResponse:
+      $ref: "./components/schemas/market/MarketNewsPageResponse.yaml"
+    MarketNewsDetail:
+      $ref: "./components/schemas/market/MarketNewsDetail.yaml"
+    MarketNewsDetailResponse:
+      $ref: "./components/schemas/market/MarketNewsDetailResponse.yaml"
+    QuoteStockCatalogItem:
+      $ref: "./components/schemas/market/QuoteStockCatalogItem.yaml"
+    QuoteStocksCatalogResponse:
+      $ref: "./components/schemas/market/QuoteStocksCatalogResponse.yaml"
+    QuoteStock:
+      $ref: "./components/schemas/market/QuoteStock.yaml"
+    QuoteStockResponse:
+      $ref: "./components/schemas/market/QuoteStockResponse.yaml"
+    QuoteOrderBookLevel:
+      $ref: "./components/schemas/market/QuoteOrderBookLevel.yaml"
+    QuoteOrderBook:
+      $ref: "./components/schemas/market/QuoteOrderBook.yaml"
+    QuoteOrderBookResponse:
+      $ref: "./components/schemas/market/QuoteOrderBookResponse.yaml"
+    QuoteOhlcvBar:
+      $ref: "./components/schemas/market/QuoteOhlcvBar.yaml"
+    QuoteOhlcvSeries:
+      $ref: "./components/schemas/market/QuoteOhlcvSeries.yaml"
+    QuoteOhlcvHistoryResponse:
+      $ref: "./components/schemas/market/QuoteOhlcvHistoryResponse.yaml"
+    QuoteIndexCatalogItem:
+      $ref: "./components/schemas/market/QuoteIndexCatalogItem.yaml"
+    QuoteIndicesCatalogResponse:
+      $ref: "./components/schemas/market/QuoteIndicesCatalogResponse.yaml"
+    QuoteIndex:
+      $ref: "./components/schemas/market/QuoteIndex.yaml"
+    QuoteIndexResponse:
+      $ref: "./components/schemas/market/QuoteIndexResponse.yaml"
+    ResolutionDaily:
+      $ref: "./components/schemas/market/ResolutionDaily.yaml"
+    QuoteForexCatalogItem:
+      $ref: "./components/schemas/market/QuoteForexCatalogItem.yaml"
+    QuoteForexCatalogResponse:
+      $ref: "./components/schemas/market/QuoteForexCatalogResponse.yaml"
+    QuoteForexSide:
+      $ref: "./components/schemas/market/QuoteForexSide.yaml"
+    QuoteForex:
+      $ref: "./components/schemas/market/QuoteForex.yaml"
+    QuoteForexResponse:
+      $ref: "./components/schemas/market/QuoteForexResponse.yaml"
+    QuoteCryptoCatalogItem:
+      $ref: "./components/schemas/market/QuoteCryptoCatalogItem.yaml"
+    QuoteCryptosCatalogResponse:
+      $ref: "./components/schemas/market/QuoteCryptosCatalogResponse.yaml"
+    QuoteCrypto:
+      $ref: "./components/schemas/market/QuoteCrypto.yaml"
+    QuoteCryptoResponse:
+      $ref: "./components/schemas/market/QuoteCryptoResponse.yaml"
+    QuoteCommodityCatalogItem:
+      $ref: "./components/schemas/market/QuoteCommodityCatalogItem.yaml"
+    QuoteCommoditiesCatalogResponse:
+      $ref: "./components/schemas/market/QuoteCommoditiesCatalogResponse.yaml"
+    QuoteCommodity:
+      $ref: "./components/schemas/market/QuoteCommodity.yaml"
+    QuoteCommodityResponse:
+      $ref: "./components/schemas/market/QuoteCommodityResponse.yaml"
+    QuoteFundCatalogItem:
+      $ref: "./components/schemas/market/QuoteFundCatalogItem.yaml"
+    QuoteFundsCatalogResponse:
+      $ref: "./components/schemas/market/QuoteFundsCatalogResponse.yaml"
+    QuoteFund:
+      $ref: "./components/schemas/market/QuoteFund.yaml"
+    QuoteFundResponse:
+      $ref: "./components/schemas/market/QuoteFundResponse.yaml"
+    QuoteNavPoint:
+      $ref: "./components/schemas/market/QuoteNavPoint.yaml"
+    QuoteNavSeries:
+      $ref: "./components/schemas/market/QuoteNavSeries.yaml"
+    QuoteNavHistoryResponse:
+      $ref: "./components/schemas/market/QuoteNavHistoryResponse.yaml"
+    QuoteBondCatalogItem:
+      $ref: "./components/schemas/market/QuoteBondCatalogItem.yaml"
+    QuoteBondsCatalogResponse:
+      $ref: "./components/schemas/market/QuoteBondsCatalogResponse.yaml"
+    QuoteBond:
+      $ref: "./components/schemas/market/QuoteBond.yaml"
+    QuoteBondResponse:
+      $ref: "./components/schemas/market/QuoteBondResponse.yaml"
+    QuoteEtfCatalogItem:
+      $ref: "./components/schemas/market/QuoteEtfCatalogItem.yaml"
+    QuoteEtfsCatalogResponse:
+      $ref: "./components/schemas/market/QuoteEtfsCatalogResponse.yaml"
+    QuoteEtf:
+      $ref: "./components/schemas/market/QuoteEtf.yaml"
+    QuoteEtfResponse:
+      $ref: "./components/schemas/market/QuoteEtfResponse.yaml"
+    QuoteDealerProductCatalogItem:
+      $ref: "./components/schemas/market/QuoteDealerProductCatalogItem.yaml"
+    QuoteDealerProductsResponse:
+      $ref: "./components/schemas/market/QuoteDealerProductsResponse.yaml"
+    QuoteDealerProduct:
+      $ref: "./components/schemas/market/QuoteDealerProduct.yaml"
+    QuoteDealerProductResponse:
+      $ref: "./components/schemas/market/QuoteDealerProductResponse.yaml"
+    QuoteDealerPricePoint:
+      $ref: "./components/schemas/market/QuoteDealerPricePoint.yaml"
+    QuoteDealerPriceSeries:
+      $ref: "./components/schemas/market/QuoteDealerPriceSeries.yaml"
+    QuoteDealerProductHistoryResponse:
+      $ref: "./components/schemas/market/QuoteDealerProductHistoryResponse.yaml"
+    StockSector:
+      $ref: "./components/schemas/market/StockSector.yaml"
+    StockScreenerItem:
+      $ref: "./components/schemas/market/StockScreenerItem.yaml"
+    StockScreenerResult:
+      $ref: "./components/schemas/market/StockScreenerResult.yaml"
+    StockScreenerResponse:
+      $ref: "./components/schemas/market/StockScreenerResponse.yaml"
+    CompanyProfileSectorNode:
+      $ref: "./components/schemas/market/CompanyProfileSectorNode.yaml"
+    CompanyProfile:
+      $ref: "./components/schemas/market/CompanyProfile.yaml"
+    CompanyProfileResponse:
+      $ref: "./components/schemas/market/CompanyProfileResponse.yaml"
+    StockListing:
+      $ref: "./components/schemas/market/StockListing.yaml"
+    StockListingResponse:
+      $ref: "./components/schemas/market/StockListingResponse.yaml"
+    OwnershipStake:
+      $ref: "./components/schemas/market/OwnershipStake.yaml"
+    MajorShareholder:
+      $ref: "./components/schemas/market/MajorShareholder.yaml"
+    ForeignRoomSummary:
+      $ref: "./components/schemas/market/ForeignRoomSummary.yaml"
+    StockOwnership:
+      $ref: "./components/schemas/market/StockOwnership.yaml"
+    StockOwnershipResponse:
+      $ref: "./components/schemas/market/StockOwnershipResponse.yaml"
+    ForeignRoom:
+      $ref: "./components/schemas/market/ForeignRoom.yaml"
+    ForeignRoomResponse:
+      $ref: "./components/schemas/market/ForeignRoomResponse.yaml"
+    ForeignRoomBar:
+      $ref: "./components/schemas/market/ForeignRoomBar.yaml"
+    ForeignRoomHistory:
+      $ref: "./components/schemas/market/ForeignRoomHistory.yaml"
+    ForeignRoomHistoryResponse:
+      $ref: "./components/schemas/market/ForeignRoomHistoryResponse.yaml"
+    StockTechnicalPrice:
+      $ref: "./components/schemas/market/StockTechnicalPrice.yaml"
+    StockTechnicalPoint:
+      $ref: "./components/schemas/market/StockTechnicalPoint.yaml"
+    StockTechnicalSeries:
+      $ref: "./components/schemas/market/StockTechnicalSeries.yaml"
+    StockTechnicals:
+      $ref: "./components/schemas/market/StockTechnicals.yaml"
+    StockTechnicalsResponse:
+      $ref: "./components/schemas/market/StockTechnicalsResponse.yaml"
+    TradedAmount:
+      $ref: "./components/schemas/market/TradedAmount.yaml"
+    StockTrading:
+      $ref: "./components/schemas/market/StockTrading.yaml"
+    StockTradingResponse:
+      $ref: "./components/schemas/market/StockTradingResponse.yaml"
+    StockTradingBar:
+      $ref: "./components/schemas/market/StockTradingBar.yaml"
+    StockTradingHistory:
+      $ref: "./components/schemas/market/StockTradingHistory.yaml"
+    StockTradingHistoryResponse:
+      $ref: "./components/schemas/market/StockTradingHistoryResponse.yaml"
+    TradingMethodBreakdown:
+      $ref: "./components/schemas/market/TradingMethodBreakdown.yaml"
+    TradingFlow:
+      $ref: "./components/schemas/market/TradingFlow.yaml"
+    TradingFlowResponse:
+      $ref: "./components/schemas/market/TradingFlowResponse.yaml"
+    TradingFlowBar:
+      $ref: "./components/schemas/market/TradingFlowBar.yaml"
+    TradingFlowHistory:
+      $ref: "./components/schemas/market/TradingFlowHistory.yaml"
+    TradingFlowHistoryResponse:
+      $ref: "./components/schemas/market/TradingFlowHistoryResponse.yaml"
+    OrderSideStatistic:
+      $ref: "./components/schemas/market/OrderSideStatistic.yaml"
+    StockOrderStatistic:
+      $ref: "./components/schemas/market/StockOrderStatistic.yaml"
+    StockOrderStatisticResponse:
+      $ref: "./components/schemas/market/StockOrderStatisticResponse.yaml"
+    StockOrderStatisticBar:
+      $ref: "./components/schemas/market/StockOrderStatisticBar.yaml"
+    StockOrderStatisticHistory:
+      $ref: "./components/schemas/market/StockOrderStatisticHistory.yaml"
+    StockOrderStatisticHistoryResponse:
+      $ref: "./components/schemas/market/StockOrderStatisticHistoryResponse.yaml"
   responses:
     BadRequest:
       $ref: "./components/responses/BadRequest.yaml"
@@ -529,28 +661,12 @@ components:
   parameters:
     UserId:
       $ref: "./components/parameters/UserId.yaml"
-    FromDateNews:
-      $ref: "./components/parameters/FromDateNews.yaml"
-    ToDateNews:
-      $ref: "./components/parameters/ToDateNews.yaml"
     SubAccountId:
       $ref: "./components/parameters/SubAccountId.yaml"
     DeviceId:
       $ref: "./components/parameters/DeviceId.yaml"
     OrderId:
       $ref: "./components/parameters/OrderId.yaml"
-    FundTypeQuery:
-      $ref: "./components/parameters/FundTypeQuery.yaml"
-    FundName:
-      $ref: "./components/parameters/FundName.yaml"
-    FundPeriodQuery:
-      $ref: "./components/parameters/FundPeriodQuery.yaml"
-    FundNamesCsv:
-      $ref: "./components/parameters/FundNamesCsv.yaml"
-    FromMonth:
-      $ref: "./components/parameters/FromMonth.yaml"
-    ToMonth:
-      $ref: "./components/parameters/ToMonth.yaml"
 x-finhay-signing:
   algorithm: HMAC-SHA256
   encoding: hex-lowercase
@@ -574,7 +690,6 @@ x-finhay-signing:
       - GET /market/**
       - GET /trading/market/**
       - GET /trading/securities/**
-      - GET /fund-trading/public/**
     fullHmac:
       description: All other routes — including every `/users/**` and `/trading/**` path not listed above — require the full HMAC signing block.
     twoFactor:
@@ -588,7 +703,7 @@ x-finhay-signing:
         - PUT /trading/oa/sub-accounts/{subAccountId}/orders/{orderId}
         - DELETE /trading/oa/sub-accounts/{subAccountId}/orders/{orderId}
   headers:
-    apiKey: X-FH-APIKEY
+    apiKey: "***"
     timestamp: X-FH-TIMESTAMP
     nonce: X-FH-NONCE
     signature: X-FH-SIGNATURE
@@ -596,25 +711,25 @@ x-finhay-signing:
 x-tagGroups:
   - name: Khởi tạo
     tags:
-      - Khởi tạo
+      - bootstrap
   - name: Dữ liệu thị trường
     tags:
-      - Dữ liệu giao dịch
-      - Phân tích cơ bản
-      - Tin tức-sự kiện
-      - Kinh tế vĩ mô
-      - Hàng hoá
-      - Tổng hợp đa loại
-      - Quỹ mở
+      - market-data
+      - fundamental-analysis
+      - news-events
+      - macroeconomics
+      - commodities
+      - aggregated
+      - mutual-funds
   - name: Người dùng
     tags:
-      - Tổng tài sản
+      - total-assets
   - name: Giao dịch
     tags:
-      - Tiểu khoản
-      - Danh mục đầu tư
-      - Sổ lệnh
-      - Lãi-lỗ
-      - Quyền cổ đông
-      - Phiên giao dịch
-      - Thực thi lệnh
+      - sub-account
+      - portfolio
+      - order-book
+      - pnl
+      - shareholder-rights
+      - trading-session
+      - order-execution

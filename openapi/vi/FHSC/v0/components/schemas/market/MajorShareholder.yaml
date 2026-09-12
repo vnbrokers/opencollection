@@ -1,0 +1,29 @@
+type: object
+description: Một cổ đông lớn.
+properties:
+  name:
+    type: string
+    description: Tên cổ đông.
+    example: Tổng công ty Đầu tư và Kinh doanh vốn Nhà nước
+  type:
+    type: string
+    description: Loại cổ đông (tổ chức / cá nhân / nhà nước…).
+    example: ORGANIZATION
+  volume:
+    type:
+      - number
+      - "null"
+    description: Khối lượng nắm giữ.
+    example: 736000000
+  pct:
+    type:
+      - number
+      - "null"
+    description: Tỷ lệ nắm giữ (%).
+    example: 36
+  updated_at:
+    type:
+      - string
+      - "null"
+    description: Thời điểm cập nhật tỷ lệ.
+    example: "2026-03-31"

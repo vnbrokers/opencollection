@@ -1,6 +1,7 @@
 type: string
 description: |
   Loại quyền cổ đông.
+
   | Giá trị | Ý nghĩa |
   |---------|---------|
   | `OTC_BOND_INTEREST` | Trả lãi trái phiếu OTC |

@@ -2,6 +2,7 @@ type: object
 description: |
   Payload portfolio — trường `data` của
   `GET /trading/v2/sub-accounts/{subAccountId}/portfolio`.
+
   `is_snapshot` cho biết response có phải từ cache hay không.
 properties:
   portfolio:

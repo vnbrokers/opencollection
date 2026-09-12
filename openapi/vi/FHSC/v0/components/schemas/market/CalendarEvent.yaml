@@ -1,0 +1,26 @@
+type: object
+description: 1 sự kiện trên lịch thị trường. Các trường chung nằm ở cấp ngoài, phần đặc thù theo `type` nằm trong `detail` — thêm loại lịch mới không phá contract cũ.
+required:
+  - type
+  - country
+  - title
+  - detail
+properties:
+  type:
+    type: string
+    enum:
+      - ECONOMIC
+    description: Loại sự kiện. Hiện chỉ có `ECONOMIC` (công bố số liệu vĩ mô).
+    example: ECONOMIC
+  country:
+    allOf:
+      - $ref: "EconomicCountry.yaml"
+    description: Quốc gia của sự kiện.
+  title:
+    type: string
+    description: Tên sự kiện (ví dụ "Fed Interest Rate Decision", "CPI MoM").
+    example: Fed Interest Rate Decision
+  detail:
+    allOf:
+      - $ref: "EconomicEventDetail.yaml"
+    description: Chi tiết theo `type`; với `ECONOMIC` là số liệu công bố.

@@ -1,0 +1,32 @@
+type: object
+description: |
+  Metadata phân trang dùng chung cho mọi list API. Dữ liệu của trang nằm ở `results`.
+required:
+  - total
+  - current_page
+  - page_size
+properties:
+  total:
+    type: integer
+    description: Tổng số bản ghi khớp bộ lọc.
+    example: 137
+  current_page:
+    type: integer
+    description: Trang hiện tại.
+    example: 1
+  next_page:
+    type: integer
+    description: Trang kế tiếp; bằng `current_page` khi đã ở trang cuối.
+    example: 2
+  previous_page:
+    type: integer
+    description: Trang trước; bằng 1 khi đang ở trang đầu.
+    example: 1
+  page_size:
+    type: integer
+    description: Số bản ghi mỗi trang.
+    example: 20
+  page_total:
+    type: integer
+    description: Tổng số trang.
+    example: 7

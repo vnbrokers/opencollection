@@ -1,7 +1,7 @@
 "post":
   operationId: postKhronosOrderChange
   tags:
-    - Lệnh phái sinh
+    - derivative-orders
   "summary": "Sửa lệnh thường phái sinh"
   "description": "Sửa lệnh thường phái sinh."
   responses:

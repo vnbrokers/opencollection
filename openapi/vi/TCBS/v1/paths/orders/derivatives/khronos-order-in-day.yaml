@@ -1,7 +1,7 @@
 "get":
   operationId: getKhronosOrderInDay
   tags:
-    - Lệnh phái sinh
+    - derivative-orders
   "summary": "Tra cứu sổ lệnh thường phái sinh"
   "description": "Tra cứu sổ lệnh thường phái sinh."
   "parameters":

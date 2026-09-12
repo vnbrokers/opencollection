@@ -1,0 +1,18 @@
+type: object
+description: Thông tin phân trang dữ liệu
+properties:
+  pageIndex:
+    type: integer
+    example: 0
+    description: Trang hiện tại
+    format: int32
+  pageSize:
+    type: integer
+    example: 100
+    description: Số lượng bản ghi trên mỗi trang
+    format: int32
+  totalRecords:
+    type: integer
+    example: 100
+    description: Tổng số bản ghi
+    format: int32

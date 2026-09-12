@@ -1,0 +1,9 @@
+allOf:
+  - $ref: "MarketNewsItem.yaml"
+  - type: object
+    properties:
+      content:
+        type:
+          - string
+          - "null"
+        description: Toàn văn bài viết.

@@ -1,7 +1,9 @@
 type: string
 description: |
   Trạng thái lệnh trong vòng đời từ lúc đặt tới khi kết thúc.
+
   Nhóm chính:
+
   | Nhóm | Trạng thái |
   |------|------------|
   | Đang xử lý nội bộ | `WAITING_TO_ACTIVATE`, `WAITING_TO_SEND`, `SENDING`, `INTERNAL_SENDING`, `SENDING_TO_CORE`, `WAIT_FOR_ACCEPTING`, `ACCEPTING` |
@@ -10,6 +12,7 @@ description: |
   | Khớp | `MATCHED`, `MATCHED_ALL` |
   | Kết thúc thành công | `COMPLETED` |
   | Huỷ / từ chối / lỗi | `CANCELLED`, `INTERNAL_CANCELLED`, `CANCEL_BY_STOCK_EVENT`, `REJECTED`, `REJECTING`, `FAILED`, `EXPIRED`, `EXPIRED_ACTIVATION_TIME`, `EXPIRED_AUTHORIZATION` |
+
   Sau `place-order`, trạng thái khởi tạo phổ biến là `SENT` (đã đẩy lên
   sàn) hoặc `REJECTED` (sàn từ chối ngay). Sau `modify-order` /
   `cancel-order`, trạng thái phản ánh kết quả thao tác trên phần lệnh

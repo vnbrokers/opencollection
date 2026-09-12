@@ -1,0 +1,37 @@
+type: object
+required:
+  - id
+  - title
+  - url
+  - published_at
+  - topic
+properties:
+  id:
+    type: string
+    example: abc123
+  title:
+    type: string
+  url:
+    type: string
+    format: uri
+  summary:
+    type:
+      - string
+      - "null"
+    description: Tóm tắt ngắn nội dung bài viết.
+  source:
+    type:
+      - string
+      - "null"
+    description: Nguồn tin (hãng tin / trang đăng).
+  published_at:
+    type: string
+    format: date-time
+  topic:
+    $ref: "MarketNewsTopic.yaml"
+  symbols:
+    type:
+      - array
+      - "null"
+    items:
+      type: string

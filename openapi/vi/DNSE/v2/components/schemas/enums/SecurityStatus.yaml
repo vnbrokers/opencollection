@@ -1,0 +1,19 @@
+type: string
+description: |-
+  Trạng thái của mã chứng khoán.
+
+  - `HALT`: Ngừng giao dịch
+  - `NO_HALT`: Không ngừng giao dịch
+enum:
+  - "UNSPECIFIED"
+  - "HALT"
+  - "NO_HALT"
+x-enum-descriptions:
+  - "Không xác định"
+  - "Ngừng giao dịch"
+  - "Không ngừng giao dịch"
+x-enum-varnames:
+  - UNSPECIFIED
+  - HALT
+  - NO_HALT
+example: NO_HALT

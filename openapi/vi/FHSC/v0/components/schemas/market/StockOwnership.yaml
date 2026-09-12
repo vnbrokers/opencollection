@@ -1,0 +1,26 @@
+type: object
+description: Cơ cấu sở hữu hiện tại của một mã.
+required:
+  - symbol
+properties:
+  symbol:
+    type: string
+    description: Mã cổ phiếu.
+    example: VNM
+  structure:
+    type: object
+    description: Tỷ lệ sở hữu theo nhóm.
+    properties:
+      state:
+        $ref: "OwnershipStake.yaml"
+      foreign:
+        $ref: "OwnershipStake.yaml"
+      other:
+        $ref: "OwnershipStake.yaml"
+  major_shareholders:
+    type: array
+    description: Danh sách cổ đông lớn.
+    items:
+      $ref: "MajorShareholder.yaml"
+  foreign_room:
+    $ref: "ForeignRoomSummary.yaml"

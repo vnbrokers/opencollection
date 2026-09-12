@@ -1,0 +1,59 @@
+get:
+  operationId: stocksGetOrderStatisticHistory
+  tags:
+    - market-data
+
+  summary: Lịch sử lệnh mua/bán chủ động
+  description: |
+    Đây KHÔNG phải lệnh chờ trong sổ lệnh: là **lệnh đã khớp, phân loại theo bên chủ động** — mua chủ động (lifted the offer) và bán chủ động (hit the bid), bao gồm cả thoả thuận.
+
+    Nguồn chỉ có dữ liệu **sau khi đóng phiên**: trong giờ giao dịch, request không kèm `date` trả về phiên đã đóng gần nhất, không phải hôm nay.
+
+    Chuỗi theo phiên. `from`/`to` phải truyền cùng nhau (dạng `YYYY-MM-DD`, khoảng tối đa 5 năm); bỏ trống cả hai → 3 tháng gần nhất. Lịch sử chỉ lưu **từ 2021-01-01** — xin sớm hơn sẽ được cắt về mốc này. Chưa phân trang.
+  parameters:
+    - name: symbol
+      in: path
+      required: true
+      description: "Mã cổ phiếu niêm yết (3–10 ký tự chữ/số, không phân biệt hoa thường). VD: VNM, FPT."
+      schema:
+        type: string
+        example: HPG
+    - name: from
+      in: query
+      required: false
+      description: Ngày bắt đầu (bao gồm), dạng `YYYY-MM-DD`. Phải đi kèm `to`. Sớm hơn `2021-01-01` sẽ bị cắt về mốc đó.
+      schema:
+        type: string
+        format: date
+        example: "2026-01-01"
+    - name: to
+      in: query
+      required: false
+      description: Ngày kết thúc (bao gồm), dạng `YYYY-MM-DD`. Phải đi kèm `from`, không sớm hơn `from`, và khoảng cách tối đa 5 năm.
+      schema:
+        type: string
+        format: date
+        example: "2026-03-31"
+  responses:
+    "200":
+      description: "`data.items` là chuỗi thống kê lệnh chủ động theo phiên."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/StockOrderStatisticHistoryResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/stocks/HPG/trading/orders/history?from=2026-01-01&to=2026-03-31"

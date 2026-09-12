@@ -1,7 +1,7 @@
 get:
   operationId: listDerivativeOrders
   tags:
-    - Phái sinh
+    - derivatives
   summary: Lấy sổ lệnh
   description: Lấy sổ lệnh (Order Book) của Phái Sinh.
   parameters:
@@ -44,7 +44,7 @@ get:
 post:
   operationId: placeDerivativeOrder
   tags:
-    - Phái sinh
+    - derivatives
   summary: Đặt lệnh Phái Sinh
   description: Đặt lệnh Phái Sinh (Long/Short).
   requestBody:

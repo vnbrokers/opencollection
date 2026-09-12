@@ -1,0 +1,16 @@
+type: object
+required:
+  - code
+properties:
+  code:
+    type: string
+    description: Mã sản phẩm dealer.
+    example: SJC-1L
+  name:
+    type: string
+    description: Tên sản phẩm.
+    example: Vàng miếng SJC 1 lượng
+  dealer:
+    type: string
+    description: Nhà cung cấp.
+    example: SJC

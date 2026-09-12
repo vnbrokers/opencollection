@@ -1,7 +1,7 @@
 get:
   operationId: getDerivativePurchasingPower
   tags:
-    - Phái sinh
+    - derivatives
   summary: Lấy sức mua
   description: Lấy sức mua (ppse) và số lượng tối đa có thể đặt (qmax).
   parameters:

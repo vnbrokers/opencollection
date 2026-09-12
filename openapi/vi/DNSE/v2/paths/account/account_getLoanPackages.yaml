@@ -1,0 +1,134 @@
+get:
+  operationId: account_getLoanPackages
+  summary: Danh sách gói vay
+  parameters:
+    - $ref: ../../components/parameters/XApiKey.yaml
+    - $ref: ../../components/parameters/XAuxDate.yaml
+    - $ref: ../../components/parameters/XSignature.yaml
+    - name: marketType
+      in: query
+      required: true
+      description: "Loại thị trường \n- STOCK: Gói vay giao dịch cơ sở\n- DERIVATIVE: Gói vay giao dịch phái sinh\n- BOND: Gói vay giao dịch trái phiếu"
+      deprecated: false
+      schema:
+        $ref: ../../components/schemas/enums/MarketType.yaml
+      example: DERIVATIVE
+    - name: symbol
+      in: query
+      required: true
+      description: Mã chứng khoán
+      deprecated: false
+      schema:
+        type: string
+      example: 41I1G4000
+  responses:
+    "200":
+      description: OK
+      headers:
+        Date:
+          $ref: ../../components/headers/Date.yaml
+        Vary:
+          $ref: ../../components/headers/Vary.yaml
+        X-Ratelimit-Limit:
+          $ref: ../../components/headers/XRateLimitLimit.yaml
+        X-Ratelimit-Remaining:
+          $ref: ../../components/headers/XRateLimitRemaining.yaml
+        X-Ratelimit-Reset:
+          $ref: ../../components/headers/XRateLimitReset.yaml
+        X-Tyk-Api-Expires:
+          schema:
+            type: string
+          example: Thu, 02 Jan 3000 15:04:00 UTC
+        Transfer-Encoding:
+          schema:
+            type: string
+          example: chunked
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/account/LoanPackagesResponse.yaml
+          example:
+            symbolType: VN30F1M
+            marketType: DERIVATIVE
+            loanPackages:
+              - id: 2279
+                name: Gói giao dịch 02
+                initialRate: 0.1848
+                maintenanceRate: 0.1735
+                liquidRate: 0.1731
+                tradingFee:
+                  id: 2404
+                  name: 2000/HĐ
+                  scope: PRODUCT
+                  channel: ALL
+                  schemaType: FIXED
+                  createdDate: "2022-12-13T08:22:12.530837Z"
+                  modifiedDate: "2022-12-13T08:22:12.530837Z"
+                  fixedTradingFee: 2000
+                  fixedDailyCloseTradingFee: 2000
+              - id: 5058
+                name: Test Phái sinh 1212
+                initialRate: 0.1
+                maintenanceRate: 0.03
+                liquidRate: 0.02
+                tradingFee:
+                  id: 5057
+                  name: 1500/HĐ
+                  scope: PRODUCT
+                  channel: ALL
+                  schemaType: FIXED
+                  createdDate: "2023-12-12T03:55:37.22881Z"
+                  modifiedDate: "2023-12-12T03:55:37.22881Z"
+                  fixedTradingFee: 1500
+                  fixedDailyCloseTradingFee: 1500
+              - id: 2278
+                name: Gói giao dịch 01
+                initialRate: 0.2065
+                maintenanceRate: 0.1979
+                liquidRate: 0.1938
+                tradingFee:
+                  id: 2436
+                  name: Miễn phí
+                  scope: PRODUCT
+                  channel: ALL
+                  schemaType: FIXED
+                  createdDate: "2023-02-02T04:22:56.199278Z"
+                  modifiedDate: "2023-02-02T04:22:56.199278Z"
+                  fixedTradingFee: 2000
+                  fixedDailyCloseTradingFee: 2000
+              - id: 9990
+                name: Linhpham test
+                initialRate: 0.2065
+                maintenanceRate: 0.1979
+                liquidRate: 0.1938
+                tradingFee:
+                  id: 9989
+                  name: fdfhv
+                  scope: PRODUCT
+                  channel: ALL
+                  schemaType: PROGRESSIVE
+                  createdDate: "2026-01-16T09:09:15.556640382Z"
+                  modifiedDate: "2026-01-16T09:09:15.556640382Z"
+                  progressTradingFee:
+                    - fromQuantity: 1
+                      toQuantity: 2000
+                      fee: 1500
+                  progressDailyCloseTradingFee:
+                    - fromQuantity: 2001
+                      toQuantity: 3000
+                      fee: 2196
+    "400":
+      $ref: ../../components/responses/BadRequest.yaml
+    "500":
+      $ref: ../../components/responses/InternalError.yaml
+  tags:
+    - account
+parameters:
+  - name: accountNo
+    in: path
+    required: true
+    description: Số tiểu khoản
+    deprecated: false
+    schema:
+      type: string
+    example: "0001179019"

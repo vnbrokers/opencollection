@@ -1,0 +1,72 @@
+type: object
+properties:
+  marketId:
+    allOf:
+      - $ref: ../enums/MarketId.yaml
+    example: STO
+    description: "Mã thị trường niêm yết mã chứng khoán
+
+      - DVX: Phái sinh sàn HNX
+
+      - HCX: Trái phiếu doanh nghiệp HNX
+
+      - STO: Cổ phiếu sàn HOSE
+
+      - STX: Cổ phiếu sàn HNX
+
+      - UPX: Cổ phiếu sàn Upcom"
+  boardId:
+    allOf:
+      - $ref: ../enums/BoardId.yaml
+    example: G1
+    description: "Mã bảng giao dịch
+
+      - G1: Lô chẵn
+
+      - G4: Lô lẻ
+
+      - T1: Thỏa thuận trong giờ (9h - 14h45)
+
+      - T3: Thỏa thuận sau giờ (14h45 - 15h)
+
+      - T4: Thỏa thuận lô lẻ trong giờ (9h - 14h45)
+
+      - T6: Thỏa thuận lô lẻ sau giờ (14h45 - 15h)"
+  isin:
+    type: string
+    example: VN000000ACB8
+    description: Mã định danh quốc tế (ISIN) của chứng khoán.
+  symbol:
+    type: string
+    example: ACB
+    description: Mã chứng khoán
+  bid:
+    type: array
+    description: Danh sách các mức giá chào mua
+    example:
+      - price: 101
+        quantity: 10
+    items:
+      $ref: ./QuoteBidLevel.yaml
+  offer:
+    type: array
+    description: Danh sách các mức giá chào bán
+    example:
+      - price: 106
+        quantity: 4870
+    items:
+      $ref: ./QuoteOfferLevel.yaml
+  totalOfferQtty:
+    type: integer
+    format: int32
+    example: 0
+    description: Tổng khối lượng dư bán
+  totalBidQtty:
+    type: integer
+    format: int32
+    example: 0
+    description: Tổng khối lượng dư mua
+  time:
+    type: string
+    example: "2026-08-03 10:59:12.336"
+    description: "Thời gian ghi nhận. Định dạng: YYYY-MM-DD HH:mm:ss.SSS (GMT+7)"

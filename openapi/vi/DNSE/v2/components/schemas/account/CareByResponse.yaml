@@ -1,0 +1,8 @@
+type: object
+properties:
+  careBy:
+    type: array
+    items:
+      $ref: ./CareBy.yaml
+  total:
+    type: integer

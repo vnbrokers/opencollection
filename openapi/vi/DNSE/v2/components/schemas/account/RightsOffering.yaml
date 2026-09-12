@@ -1,0 +1,70 @@
+type: object
+properties:
+  id:
+    type: integer
+    example: 623428
+    description: ID sự kiện quyền
+    format: int32
+  symbol:
+    type: string
+    example: OIL
+    description: Mã chứng khoán
+  caStatus:
+    allOf:
+      - $ref: ../enums/CorporateActionStatus.yaml
+    example: pending
+    description: "Trạng thái xử lý sự kiện quyền
+
+      - pending: Quyền đang chờ xử lý hoặc đang được thực hiện
+
+      - completed: Quyền đã được xử lý hoàn tất
+
+      - canceled: Quyền đã hủy thành công"
+  recordDate:
+    type: string
+    example: "2026-04-29"
+    description: Ngày đăng ký cuối cùng sự kiện quyền để xác định quyền mua
+  processDate:
+    type: string
+    example: "2026-05-14"
+    description: Ngày phân phối cổ phiếu quyền mua dự kiến
+  holdingQuantity:
+    type: integer
+    example: 5137
+    description: Số lượng chứng khoán sở hữu tại ngày chốt quyền
+    format: int32
+  ratio:
+    type: string
+    example: 3/1
+    description: Tỷ lệ thực hiện quyền mua cổ phiếu
+  rightPrice:
+    type: integer
+    example: 11000
+    description: Giá đăng ký mua cổ phiếu phát hành thêm
+    format: int32
+  rightsQuantity:
+    type: integer
+    example: 1712
+    description: Số lượng quyền mua được phân bổ trên tài khoản
+    format: int32
+  registeredQuantity:
+    type: integer
+    example: 170
+    description: Số lượng cổ phiếu phát hành thêm đã đăng ký mua
+    format: int32
+  startDateTransfer:
+    type: string
+    example: "2026-05-04"
+    description: Ngày bắt đầu được phép chuyển nhượng quyền mua
+  endDateTransfer:
+    type: string
+    example: "2026-05-13"
+    description: Ngày kết thúc chuyển nhượng quyền mua
+  startDateSubscription:
+    type: string
+    example: "2026-05-04"
+    description: Ngày bắt đầu đăng ký thực hiện quyền mua
+  endDateSubscription:
+    type: string
+    example: "2026-05-13"
+    description: Ngày kết thúc đăng ký thực hiện quyền mua

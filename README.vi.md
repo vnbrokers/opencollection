@@ -1,64 +1,42 @@
-# VNBrokers
+# VNBrokers OpenCollection
 
 [English](README.md)
 
 ## Giới thiệu
 
-**vnbrokers-bruno** là bộ sưu tập OpenAPI của các công ty chứng khoán Việt Nam.
+**@vnbrokers/opencollection** là bộ sưu tập OpenAPI của các công ty chứng khoán/nền tảng giao dịch tài chính Việt Nam.
 
-## Cài đặt
+## Cấu trúc dự án
 
-1. Clone repository
+Dự án được tổ chức thành ba phần chính:
 
-```bash
-git clone https://github.com/vnbrokers/vnbrokers-bruno.git
+```text
+.
+|-- collections/  # `opencollection`: Định dạng OpenCollection do Bruno đề xuất
+|-- openapi/      # Các đặc tả OpenAPI cho REST API
+|-- asyncapi/     # Các đặc tả AsyncAPI cho API thời gian thực và WebSocket
 ```
 
-Hoặc tải dự án về và giải nén vào thư mục tuỳ chọn
+### Tài nguyên chính thức dành cho nhà phát triển
 
-2. **Open workspace** trong ứng dụng Bruno tại như mục có chứa tập tin `workspace.yml`
+#### Các công ty chứng khoán
 
-3. Sao chép một environment cho từng bộ sưu tập Open API của mỗi công ty chứng khoán và thiết lập các biến/secret
+- **DNSE** — https://developers.dnse.com.vn/docs/guide/intro/api_platform
+- **Entrade** — https://hdsd2.entrade.com.vn/entrade-api
+- **FHSC** — https://developers.fhsc.com.vn/introduction
+- **SSI** — https://developers.ssi.com.vn/docs/api-reference
+- **TCBS** — https://developers.tcbs.com.vn/docs/v1.0.0/introduction
 
-- **DNSEv2**: Thiết lập `apiKey` và `apiSecret` trong environment, và thiết lập `otp` trong request Get `trading-token`. `x-signature`, `date`
+#### Các công ty / nền tảng giao dịch tài chính khác
 
-  Truy vấn `Lấy thông tin tài khoản giao dịch` đầu tiên để tự động lấy `accountNo` và Bruno Pre Request script sẽ tự cập nhật lại vào biến môi trường
+- **FireAnt** (Shinhan/Fmarket) — https://api.fireant.vn
 
-- **TCBS**: Thiết lập `apiKey` và `otp` trong environment.
+#### Tài nguyên phát triển tham khảo khác
 
-  Bruno Pre Request script ở cấp collection sẽ gán lại `accessToken` vào biến environment `accessToken` để tạo Authorization header cho các request tiếp theo khi gọi request `2.1.1. Trao đổi API Key để lấy JWT Token`
-
-- **SSI**: Thiết lập `consumerID` và `consumerSecret` trong environment
-
-  - Đối với FastConnect Data, chọn _Environment_ `environments/SSI.Data.yml`, chỉ cần nhập `consumerID` và `consumerSecret`.
-
-  - Đối với FastConnect Data, chọn _Environment_ `environments/SSI.Trading.yml`, cần nhập `consumerID`, `consumerSecret` và `privateKey` cho mục đích ký số.
-
-  Truy vấn `Token/Lấy Access Token` để lấy `accessToken`, Bruno Pre Request script ở cấp collection sẽ gán lại `accessToken` vào biến environment `accessToken` để tạo Authorization header cho các request tiếp theo.
-
-## Phát triển
-
-```bash
-cd vnbrokers-bruno
-
-mise trust
-mise install
-mise run gen-githooks
-
-git checkout -b testing
-
-```
-
-## Tham khảo
-
-- [DNSE API Platform](https://developers.dnse.com.vn/docs/guide/intro/api_platform)
-- [Entrade](https://hdsd2.entrade.com.vn/entrade-api)
-- [FireAnt RESTful API v1](https://api.fireant.vn/)
-- [SSI FastConnect Data](https://guide.ssi.com.vn/ssi-products/tieng-viet/fastconnect-data)
-- [SSI FastConnect Trading](https://guide.ssi.com.vn/ssi-products/tieng-viet/fastconnect-trading)
-- [TCBS iFlash Open API](https://developers.tcbs.com.vn/)
-- [Bruno Variables](https://docs.usebruno.com/variables/overview)
-- [FHSC OpenAPI](https://fhsc.com.vn/)
+- **Bruno** — https://docs.usebruno.com
+- **OpenAPI Specification** — https://spec.openapis.org/oas/v3.1.0
+- **AsyncAPI Specification** — https://www.asyncapi.com/docs/specifications/3.0.0
+- **VNBrokers Mintlify Documentation** — https://vnbrokers.mintlify.app / https://vnbrokers.mintlify.site
 
 ## Miễn trừ trách nhiệm
 

@@ -1,0 +1,24 @@
+type: object
+properties:
+  name:
+    type: string
+    example: Phạm Thị Thùy
+    description: Họ tên khách hàng
+  custodyCode:
+    type: string
+    example: 064CSUN032
+    description: Số tài khoản lưu ký tại VSD
+  investorId:
+    type: string
+    example: "1000005917"
+    description: Mã định danh khách hàng tại DNSE
+  accounts:
+    type: array
+    example:
+      - id: "0001179019"
+        dealAccount: true
+        derivativeAccount: true
+        derivative:
+          status: ACTIVE
+    items:
+      $ref: ./Account.yaml

@@ -1,0 +1,18 @@
+type: array
+example:
+  - marketId: STO
+    boardId: G1
+    isin: VN000000HPG4
+    symbol: HPG
+    productGrpId: STO
+    securityGroupId: ST
+    basicPrice: 26.8
+    ceilingPrice: 28.65
+    floorPrice: 24.95
+    securityStatus: UNSPECIFIED
+    symbolAdminStatusCode: NRM
+    symbolTradingMethodStatusCode: NRM
+    symbolTradingSanctionStatusCode: NRM
+items:
+  $ref: ./SecdefItem.yaml
+description: ""

@@ -1,0 +1,56 @@
+type: object
+description: Thông tin niêm yết của một mã.
+required:
+  - symbol
+properties:
+  symbol:
+    type: string
+    description: Mã cổ phiếu.
+    example: VNM
+  exchange:
+    type: string
+    description: Sàn niêm yết.
+    example: HOSE
+  listing_date:
+    type:
+      - string
+      - "null"
+    format: date
+    description: Ngày niêm yết (`YYYY-MM-DD`).
+    example: "2006-01-19"
+  listing_reference_price:
+    type:
+      - number
+      - "null"
+    description: Giá tham chiếu ngày niêm yết (VND).
+    example: 53000
+  listed_shares:
+    type:
+      - number
+      - "null"
+    description: Khối lượng cổ phiếu niêm yết.
+    example: 2089955445
+  outstanding_shares:
+    type:
+      - number
+      - "null"
+    description: Khối lượng cổ phiếu lưu hành.
+    example: 2089955445
+  treasury_shares:
+    type:
+      - number
+      - "null"
+    description: Khối lượng cổ phiếu quỹ.
+    example: 0
+  free_float:
+    type:
+      - number
+      - "null"
+    description: Khối lượng cổ phiếu tự do chuyển nhượng.
+    example: 900000000
+  free_float_pct:
+    type:
+      - number
+      - "null"
+    description: Tỷ lệ free-float (%).
+    example: 43.1

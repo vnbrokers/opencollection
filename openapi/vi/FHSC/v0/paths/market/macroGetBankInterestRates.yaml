@@ -1,17 +1,19 @@
 get:
   operationId: macroGetBankInterestRates
   tags:
-    - Kinh tế vĩ mô
+    - macroeconomics
+
   summary: Lãi suất tiền gửi ngân hàng
   description: |
     Lãi suất tiền gửi tiết kiệm của các ngân hàng tại Việt Nam, phân theo
-    kỳ hạn (key dạng `1M`, `3M`, `6M`, `12M`, …). Đơn vị: **% / năm**.
+    kỳ hạn (`1 Tháng`, `3 Tháng`, `6 Tháng`, `12 Tháng`, …).
 
-    Object `data` map từ mã ngân hàng (`VCB`, `BIDV`, `ACB`, …) sang object
-    chứa `bank_name` và `terms` (kỳ hạn → lãi suất).
+    `data.bank_interest_rates` là danh sách ngân hàng; mỗi phần tử có
+    `bank_name` và mảng `rates` — lãi suất từng kỳ hạn, dạng chuỗi kèm dấu
+    `%` (phần thập phân dùng dấu phẩy, vd `4,4%`).
   responses:
     "200":
-      description: Trả về `data` map từ mã ngân hàng sang object `{ bank_name, terms }`; mỗi `terms` là map kỳ hạn → lãi suất % / năm.
+      description: Trả về `data.bank_interest_rates` — danh sách ngân hàng, mỗi ngân hàng kèm lãi suất theo từng kỳ hạn.
       content:
         application/json:
           schema:
@@ -20,20 +22,29 @@ get:
             error_code: "0"
             message: success
             data:
-              VCB:
-                bank_name: Vietcombank
-                terms:
-                  1M: 2.4
-                  3M: 2.7
-                  6M: 3.6
-                  12M: 4.6
-              BIDV:
-                bank_name: BIDV
-                terms:
-                  1M: 2.2
-                  3M: 2.6
-                  6M: 3.5
-                  12M: 4.5
+              no_bank: 20
+              effective_date: 31/7/2026
+              bank_interest_rates:
+                - bank_name: ACB
+                  rates:
+                    - effective_date: 31/7/2026
+                      percent: 3,1%
+                      duration_name: 6 Tháng
+                      bank_icon_url: https://cdn.finhay.com.vn/banks/acb.png
+                    - effective_date: 31/7/2026
+                      percent: 4,4%
+                      duration_name: 12 Tháng
+                      bank_icon_url: https://cdn.finhay.com.vn/banks/acb.png
+                - bank_name: Vietcombank
+                  rates:
+                    - effective_date: 31/7/2026
+                      percent: 2,9%
+                      duration_name: 6 Tháng
+                      bank_icon_url: https://cdn.finhay.com.vn/banks/vcb.png
+                    - effective_date: 31/7/2026
+                      percent: 4,6%
+                      duration_name: 12 Tháng
+                      bank_icon_url: https://cdn.finhay.com.vn/banks/vcb.png
     "400":
       $ref: "../../components/responses/BadRequest.yaml"
     "401":

@@ -1,0 +1,39 @@
+get:
+  operationId: stocksGetProfile
+  tags:
+    - fundamental-analysis
+
+  summary: Hồ sơ doanh nghiệp
+  description: |
+    Hồ sơ doanh nghiệp của 1 mã: tên tiếng Việt/tiếng Anh, cây ngành và mô tả hoạt động kinh doanh. Dữ liệu tham chiếu tĩnh.
+  parameters:
+    - name: symbol
+      in: path
+      required: true
+      description: "Mã cổ phiếu niêm yết (3–10 ký tự chữ/số, không phân biệt hoa thường). VD: VNM, FPT."
+      schema:
+        type: string
+        example: VNM
+  responses:
+    "200":
+      description: "`data` là hồ sơ doanh nghiệp của mã."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/CompanyProfileResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/stocks/VNM/profile"

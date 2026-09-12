@@ -1,0 +1,100 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "20260312_241"
+    description: ID lệnh trên hệ thống
+  symbol:
+    type: string
+    example: HPG
+    description: Mã chứng khoán
+  side:
+    allOf:
+      - $ref: ../enums/OrderSide.yaml
+    example: NB
+    description: "Chiều giao dịch
+
+      NB: Mua
+
+      NS: Bán"
+  orderType:
+    allOf:
+      - $ref: ../enums/OrderType.yaml
+    example: LO
+    description: "Loại lệnh
+
+      - LO: Lệnh giới hạn
+
+      - MOK/MAK/MTL: Lệnh thị trường
+
+      - ATO/ATC: Lệnh phiên định kỳ mở cửa/đóng cửa
+
+      - PLO: Lệnh khớp lệnh sau giờ"
+  orderStatus:
+    allOf:
+      - $ref: ../enums/OrderStatus.yaml
+    example: Expired
+    description: "Trạng thái lệnh
+
+      - Pending/PendingNew: Chờ gửi
+
+      - New: Chờ khớp
+
+      - PartiallyFilled: Khớp một phần
+
+      - Filled: Khớp toàn bộ
+
+      - Rejected: Bị từ chối
+
+      - Expired: Hết hạn trong phiên
+
+      - DoneForDay: Lệnh được giải tỏa do không khớp trong phiên"
+  price:
+    type: integer
+    format: int32
+    example: 27200
+    description: Giá đặt
+  quantity:
+    type: integer
+    format: int32
+    example: 200
+    description: Khối lượng đặt
+  fillQuantity:
+    type: integer
+    format: int32
+    example: 0
+    description: Khối lượng đã khớp
+  leaveQuantity:
+    type: integer
+    format: int32
+    example: 0
+    description: Khối lượng còn lại
+  canceledQuantity:
+    type: integer
+    format: int32
+    example: 200
+    description: Khối lượng đã huỷ
+  averagePrice:
+    type: integer
+    format: int32
+    example: 0
+    description: Giá khớp trung bình
+  loanPackageId:
+    type: integer
+    format: int32
+    example: 5765
+    description: ID gói vay
+  transDate:
+    type: string
+    example: "2026-03-12"
+    description: Ngày giao dịch
+  createdDate:
+    type: string
+    format: date-time
+    example: "2026-03-17T06:44:18.813804Z"
+    description: Thời điểm tạo
+  modifiedDate:
+    type: string
+    format: date-time
+    example: "2026-03-18T15:28:24.44026Z"
+    description: Thời điểm cập nhật

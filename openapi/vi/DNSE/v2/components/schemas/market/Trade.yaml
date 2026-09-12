@@ -1,0 +1,69 @@
+type: object
+properties:
+  marketId:
+    allOf:
+      - $ref: ../enums/MarketId.yaml
+    example: STO
+    description: Mã thị trường
+  boardId:
+    allOf:
+      - $ref: ../enums/BoardId.yaml
+    example: G1
+    description: Mã bảng giao dịch
+  isin:
+    type: string
+    example: VN000000ACB8
+    description: Mã định danh quốc tế
+  symbol:
+    type: string
+    example: ACB
+    description: Mã chứng khoán
+  matchPrice:
+    type: number
+    format: double
+    example: 22.85
+    description: Giá khớp gần nhất
+  matchQtty:
+    type: integer
+    format: int32
+    example: 10
+    description: Khối lượng khớp gần nhất
+  side:
+    allOf:
+      - $ref: ../enums/Side.yaml
+    example: UNSPECIFIED
+    description: Chiều giao dịch
+  avgPrice:
+    type: number
+    format: double
+    example: 22.958
+    description: Giá khớp trung bình
+  totalVolumeTraded:
+    type: integer
+    format: int32
+    example: 764430
+    description: Tổng khối lượng giao dịch trong ngày
+  grossTradeAmount:
+    type: number
+    format: double
+    example: 175.49849
+    description: Tổng giá trị giao dịch trong ngày
+  highestPrice:
+    type: number
+    format: float
+    example: 23.25
+    description: Giá cao nhất trong ngày
+  lowestPrice:
+    type: number
+    format: float
+    example: 22.75
+    description: Giá thấp nhất trong ngày
+  openPrice:
+    type: integer
+    format: int32
+    example: 23
+    description: Giá mở cửa
+  time:
+    type: string
+    example: "2026-03-12 04:29:57"
+    description: Thời gian ghi nhận

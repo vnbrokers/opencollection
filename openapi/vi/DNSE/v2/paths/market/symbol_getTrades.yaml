@@ -1,0 +1,103 @@
+get:
+  operationId: symbol_getTrades
+  summary: Lịch sử khớp lệnh
+  parameters:
+    - $ref: ../../components/parameters/XApiKey.yaml
+    - $ref: ../../components/parameters/XAuxDate.yaml
+    - $ref: ../../components/parameters/XSignature.yaml
+    - name: symbol
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: boardId
+      in: query
+      required: true
+      description: |-
+        Mã bảng giao dịch
+        - G1: Lô chẵn
+        - G4: Lô lẻ
+        - T1: Thỏa thuận trong giờ (9h - 14h45)
+        - T3: Thỏa thuận sau giờ (14h45 - 15h)
+        - T4: Thỏa thuận lô lẻ trong giờ (9h - 14h45)
+        - T6: Thỏa thuận lô lẻ sau giờ  (14h45 - 15h)
+      deprecated: false
+      schema:
+        $ref: ../../components/schemas/enums/BoardId.yaml
+      example: G1
+    - name: from
+      in: query
+      required: true
+      description: Thời gian bắt đầu (timestamp)
+      deprecated: false
+      schema:
+        type: string
+      example: "1773282637"
+    - name: to
+      in: query
+      required: true
+      description: Thời gian kết thúc (timestamp)
+      deprecated: false
+      schema:
+        type: string
+      example: "1773289837"
+    - name: limit
+      in: query
+      schema:
+        type: number
+      example: 100
+  responses:
+    "200":
+      description: OK
+      headers:
+        Content-Length:
+          $ref: ../../components/headers/ContentLength.yaml
+        Date:
+          $ref: ../../components/headers/Date.yaml
+        Vary:
+          $ref: ../../components/headers/Vary.yaml
+        X-Ratelimit-Limit:
+          $ref: ../../components/headers/XRateLimitLimit.yaml
+        X-Ratelimit-Remaining:
+          $ref: ../../components/headers/XRateLimitRemaining.yaml
+        X-Ratelimit-Reset:
+          $ref: ../../components/headers/XRateLimitReset.yaml
+        X-Tyk-Api-Expires:
+          schema:
+            type: string
+          example: Thu, 02 Jan 3000 15:04:00 UTC
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/market/TradesResponse.yaml
+          example:
+            trades:
+              - marketId: STO
+                boardId: G1
+                isin: VN000000ACB8
+                symbol: ACB
+                matchPrice: 22.85
+                matchQtty: 10
+                side: UNSPECIFIED
+                avgPrice: 22.958
+                totalVolumeTraded: 764430
+                grossTradeAmount: 175.49849
+                highestPrice: 23.25
+                lowestPrice: 22.75
+                openPrice: 23
+                time: "2026-03-12 04:29:57"
+            nextPageToken: NDYwMTQ1XzIwMjYtMDMtMTJUMDQ6MjU6MDUuNTZa
+    "400":
+      $ref: ../../components/responses/BadRequest.yaml
+    "500":
+      $ref: ../../components/responses/InternalError.yaml
+  tags:
+    - market
+parameters:
+  - name: symbol
+    in: path
+    required: true
+    description: Mã chứng khoán
+    deprecated: false
+    schema: {}
+    example: ACB

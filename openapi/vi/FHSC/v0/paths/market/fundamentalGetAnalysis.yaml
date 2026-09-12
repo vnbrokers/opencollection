@@ -1,7 +1,8 @@
 get:
   operationId: fundamentalGetAnalysis
   tags:
-    - Phân tích cơ bản
+    - fundamental-analysis
+
   summary: Phân tích tài chính doanh nghiệp theo kỳ
   description: |
     Các chỉ số tài chính theo kỳ. Mỗi row luôn có `year`; `quarter` chỉ có

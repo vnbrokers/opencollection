@@ -1,0 +1,44 @@
+type: object
+properties:
+  positions:
+    type: array
+    example:
+      - id: 177410795472387
+        symbol: 41I1G4000
+        accountNo: "0001179019"
+        status: OPEN
+        loanPackageId: 2278
+        side: NB
+        accumulateQuantity: 6
+        tradeQuantity: 1
+        closedQuantity: 5
+        openQuantity: 1
+        overNightQuantity: 0
+        costPrice: 1834.5
+        marketPrice: 1706.1
+        breakEvenPrice: 1834.95691
+        createdDate: "2026-03-23T03:08:32.773651Z"
+        modifiedDate: "2026-03-23T04:07:45.692156Z"
+    items:
+      $ref: ./Position.yaml
+    description: ""
+  pageIndex:
+    type: integer
+    format: int32
+    example: 0
+    description: Kích thước trang dữ liệu (dành cho phái sinh)
+  pageSize:
+    type: integer
+    format: int32
+    example: 20
+    description: Số bản ghi trên 1 trang (dành cho phái sinh)
+  pageNumber:
+    type: integer
+    format: int32
+    example: 1
+    description: Số trang (chỉ dành cho phái sinh)
+  total:
+    type: integer
+    format: int32
+    example: 1
+    description: Tổng số vị thế (chỉ dành cho phái sinh)

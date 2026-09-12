@@ -12,14 +12,18 @@ servers:
 security:
   - BearerAuth: []
 tags:
-  - name: Xác thực
+  - name: authentication
     description: API đăng nhập và cấp JWT token.
-  - name: Tài khoản
+    x-group: Xác thực
+  - name: account
     description: Thông tin tài khoản, tài sản và cấu hình rủi ro.
-  - name: Phái sinh
+    x-group: Tài khoản
+  - name: derivatives
     description: Giao dịch, sức mua, gói vay và vị thế phái sinh.
-  - name: Smart Order
+    x-group: Phái sinh
+  - name: smart-order
     description: Lệnh điều kiện trên dịch vụ Smart Order.
+    x-group: Smart Order
 paths:
   /v2/auth:
     $ref: ./paths/auth/login.yaml

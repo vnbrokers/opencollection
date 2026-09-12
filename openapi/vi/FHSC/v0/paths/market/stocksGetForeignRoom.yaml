@@ -1,0 +1,39 @@
+get:
+  operationId: stocksGetForeignRoom
+  tags:
+    - market-data
+
+  summary: Room ngoại (phiên gần nhất)
+  description: |
+    Room ngoại của 1 mã tại phiên gần nhất: trần sở hữu nước ngoài (`max_pct`, `max_volume`), khối lượng khối ngoại đang nắm (`owned`) và room còn lại (`available`). Chuỗi theo ngày xem ở `/market/stocks/{symbol}/ownership/foreign-room/history`.
+  parameters:
+    - name: symbol
+      in: path
+      required: true
+      description: "Mã cổ phiếu niêm yết (3–10 ký tự chữ/số, không phân biệt hoa thường). VD: VNM, FPT."
+      schema:
+        type: string
+        example: VNM
+  responses:
+    "200":
+      description: "`data` là room ngoại tại phiên gần nhất."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/ForeignRoomResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/stocks/VNM/ownership/foreign-room"

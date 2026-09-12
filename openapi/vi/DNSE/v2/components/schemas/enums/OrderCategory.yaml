@@ -1,0 +1,24 @@
+type: string
+description: |-
+  Phân loại lệnh.
+
+  - `NORMAL`: Lệnh thường
+  - `STOP`: Lệnh dừng có điều kiện
+  - `OCO`: Lệnh OCO phái sinh
+  - `CONDITIONAL`: Lệnh điều kiện
+enum:
+  - NORMAL
+  - STOP
+  - OCO
+  - CONDITIONAL
+x-enum-descriptions:
+  - "Lệnh thường"
+  - "Lệnh dừng có điều kiện"
+  - "Lệnh OCO phái sinh"
+  - "Lệnh điều kiện"
+x-enum-varnames:
+  - NORMAL
+  - STOP
+  - OCO
+  - CONDITIONAL
+example: NORMAL

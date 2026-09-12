@@ -1,0 +1,51 @@
+type: object
+properties:
+  marketId:
+    allOf:
+      - $ref: ../enums/MarketId.yaml
+    example: STO
+    description: "Mã thị trường niêm yết mã chứng khoán
+
+      - DVX: Phái sinh sàn HNX
+
+      - HCX: Trái phiếu doanh nghiệp HNX
+
+      - STO: Cổ phiếu sàn HOSE
+
+      - STX: Cổ phiếu sàn HNX
+
+      - UPX: Cổ phiếu sàn Upcom"
+  boardId:
+    allOf:
+      - $ref: ../enums/BoardId.yaml
+    example: G1
+    description: "Mã bảng giao dịch
+
+      - G1: Lô chẵn
+
+      - G4: Lô lẻ
+
+      - T1: Thỏa thuận trong giờ (9h - 14h45)
+
+      - T3: Thỏa thuận sau giờ (14h45 - 15h)
+
+      - T4: Thỏa thuận lô lẻ trong giờ (9h - 14h45)
+
+      - T6: Thỏa thuận lô lẻ sau giờ (14h45 - 15h)"
+  isin:
+    type: string
+    example: VN000000HPG4
+    description: Mã định danh quốc tế
+  symbol:
+    type: string
+    example: HPG
+    description: Mã chứng khoán
+  closePrice:
+    type: number
+    format: double
+    example: 26.8
+    description: Giá đóng cửa của mã chứng khoán
+  time:
+    type: string
+    example: "2026-04-08 02:14:59.775"
+    description: Thời gian ghi nhận (YYYY-MM-DD HH:mm:ss.SSS (GMT+7))

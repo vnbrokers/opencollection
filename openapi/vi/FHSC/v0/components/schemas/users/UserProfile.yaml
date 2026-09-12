@@ -1,6 +1,7 @@
 type: object
 description: |
   Profile user trả về từ `GET /users/v1/users/me`.
+
   Chỉ `user_id` là field luôn có — bootstrap flow chỉ cần field này. Các
   field khác là chuẩn của endpoint user Finhay.
 properties:

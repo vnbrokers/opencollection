@@ -1,0 +1,16 @@
+type: string
+description: |-
+  Thời hạn hiệu lực của lệnh.
+
+  - `GTD`: Có hiệu lực đến ngày, giờ chỉ định
+  - `DAY`: Có hiệu lực trong ngày
+enum:
+  - GTD
+  - DAY
+x-enum-descriptions:
+  - "Có hiệu lực đến ngày, giờ chỉ định"
+  - "Có hiệu lực trong ngày"
+x-enum-varnames:
+  - GTD
+  - DAY
+example: GTD

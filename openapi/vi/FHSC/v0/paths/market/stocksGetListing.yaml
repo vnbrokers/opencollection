@@ -1,0 +1,39 @@
+get:
+  operationId: stocksGetListing
+  tags:
+    - fundamental-analysis
+
+  summary: Thông tin niêm yết
+  description: |
+    Thông tin niêm yết của 1 mã: sàn, ngày niêm yết, giá tham chiếu ngày niêm yết, khối lượng niêm yết / lưu hành / quỹ và free-float.
+  parameters:
+    - name: symbol
+      in: path
+      required: true
+      description: "Mã cổ phiếu niêm yết (3–10 ký tự chữ/số, không phân biệt hoa thường). VD: VNM, FPT."
+      schema:
+        type: string
+        example: VNM
+  responses:
+    "200":
+      description: "`data` là thông tin niêm yết của mã."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/StockListingResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/stocks/VNM/listing"

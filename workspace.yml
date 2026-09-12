@@ -1,24 +1,20 @@
 opencollection: 1.0.0
 info:
-  name: "VNBrokers"
+  name: "VNBrokers OpenCollection"
   type: workspace
 
 collections:
-  - name: "DNSE v1"
-    path: "collections/DNSE/v1"
-  - name: "DNSE v2"
+  - name: "DNSE OpenAPI (outdate)"
     path: "collections/DNSE/v2"
-  - name: "Entrade"
-    path: "collections/Entrade"
-  - name: "SSI FastConnect v1"
-    path: "collections/SSI/v1"
-  - name: "SSI FastConnect v3"
+  - name: "Entrade OpenAPI (outdate)"
+    path: "collections/Entrade/v1"
+  - name: "FHSC OpenAPI (outdate)"
+    path: "collections/FHSC/v0"
+  - name: "SSI OpenAPI (outdate)"
     path: "collections/SSI/v3"
-  - name: "TCBS"
-    path: "collections/TCBS"
-  - name: "FireAnt RESTFUL API"
-    path: "collections/FireAnt"
-  - name: "FHSC OpenAPI"
-    path: "collections/FHSC"
+  - name: "TCBS OpenAPI (outdate)"
+    path: "collections/TCBS/v1"
+  - name: "FireAnt OpenAPI (outdate)"
+    path: "collections/FireAnt/v1"
 
-docs: "VNBrokers - A Collection of OpenAPIs from Vietnamese Securities Companies"
+docs: "A Collection of OpenAPIs from Vietnamese Securities Companies/Financial Platforms."

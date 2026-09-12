@@ -1,0 +1,25 @@
+type: object
+description: Một phiên trong chuỗi thống kê lệnh chủ động.
+required:
+  - date
+  - buy
+  - sell
+  - net_volume
+properties:
+  date:
+    type: string
+    format: date
+    description: Ngày của phiên (`YYYY-MM-DD`).
+    example: "2026-05-27"
+  buy:
+    allOf:
+      - $ref: "OrderSideStatistic.yaml"
+    description: Mua chủ động.
+  sell:
+    allOf:
+      - $ref: "OrderSideStatistic.yaml"
+    description: Bán chủ động.
+  net_volume:
+    type: number
+    description: "`buy.volume − sell.volume`; có thể âm."
+    example: -412700

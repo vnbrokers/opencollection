@@ -1,7 +1,7 @@
 delete:
   operationId: cancelSmartOrder
   tags:
-    - Smart Order
+    - smart-order
   summary: Hủy lệnh điều kiện
   description: Hủy lệnh điều kiện (Smart Order) theo order_id.
   servers:

@@ -1,0 +1,35 @@
+type: object
+description: Thống kê lệnh mua / bán chủ động của một mã trong một phiên.
+required:
+  - symbol
+  - date
+  - buy
+  - sell
+  - net_volume
+properties:
+  symbol:
+    type: string
+    description: Mã cổ phiếu.
+    example: HPG
+  date:
+    type: string
+    format: date
+    description: Ngày của phiên (`YYYY-MM-DD`).
+    example: "2026-05-27"
+  buy:
+    allOf:
+      - $ref: "OrderSideStatistic.yaml"
+    description: Mua chủ động (lifted the offer).
+  sell:
+    allOf:
+      - $ref: "OrderSideStatistic.yaml"
+    description: Bán chủ động (hit the bid).
+  net_volume:
+    type: number
+    description: "`buy.volume − sell.volume`. Âm khi bên bán chủ động hơn — đây là số liệu bình thường, không phải lỗi."
+    example: -412700
+  updated_at:
+    type: string
+    format: date-time
+    description: Thời điểm phiên được ghi lần cuối (ISO 8601 kèm offset).
+    example: "2026-05-27T18:05:11+07:00"

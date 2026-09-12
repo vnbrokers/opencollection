@@ -1,0 +1,17 @@
+type: object
+properties:
+  price:
+    type: number
+    format: double
+    example: 1851
+    description: |-
+      Giá mới cho lệnh LO
+      - Đối với lệnh cơ sở, có thể sửa cả giá và khối lượng
+      - Đối với lệnh phái sinh, chỉ được sửa hoặc giá hoặc khối lượng
+  quantity:
+    type: integer
+    format: int32
+    example: 3
+    description: |-
+      Khối lượng mới
+      - Đối với lệnh phái sinh, khối lượng mới phải lớn hơn khối lượng đã khớp (nếu có) của lệnh đã đặt

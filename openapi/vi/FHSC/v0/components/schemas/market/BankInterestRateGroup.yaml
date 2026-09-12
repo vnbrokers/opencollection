@@ -1,0 +1,14 @@
+type: object
+description: Lãi suất của một ngân hàng theo từng kỳ hạn.
+required:
+  - bank_name
+  - rates
+properties:
+  bank_name:
+    type: string
+    description: Tên ngân hàng.
+    example: ACB
+  rates:
+    type: array
+    items:
+      $ref: "BankInterestRate.yaml"

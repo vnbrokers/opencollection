@@ -1,0 +1,46 @@
+type: object
+description: Chuỗi room ngoại theo phiên, đã phân trang.
+required:
+  - symbol
+  - items
+properties:
+  symbol:
+    type: string
+    description: Mã cổ phiếu.
+    example: VNM
+  resolution:
+    type: string
+    description: Độ phân giải của bar.
+    example: 1D
+  from:
+    type: string
+    format: date
+    description: Ngày bắt đầu khoảng đã áp dụng.
+    example: "2026-02-27"
+  to:
+    type: string
+    format: date
+    description: Ngày kết thúc khoảng đã áp dụng.
+    example: "2026-05-27"
+  page:
+    type: integer
+    description: Trang hiện tại.
+    example: 1
+  page_size:
+    type: integer
+    description: Số phiên mỗi trang.
+    example: 20
+  total:
+    type: integer
+    description: Tổng số phiên trong khoảng.
+    example: 61
+  items:
+    type: array
+    description: Chuỗi bar theo phiên.
+    items:
+      $ref: "ForeignRoomBar.yaml"
+  updated_at:
+    type: string
+    format: date-time
+    description: Thời điểm dữ liệu (ISO 8601 kèm offset).
+    example: "2026-05-27T14:30:15+07:00"

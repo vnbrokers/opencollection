@@ -1,0 +1,14 @@
+type: object
+properties:
+  status:
+    allOf:
+      - $ref: ../enums/DerivativeAccountStatus.yaml
+    example: ACTIVE
+    description: Tiểu khoản được phép giao dịch phái sinh hoặc không
+example:
+  status: ACTIVE
+description: "Trạng thái tài khoản phái sinh
+
+  ACTIVE: Đang hoạt động
+
+  INACTIVE: Ngừng hoạt động"

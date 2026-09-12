@@ -1,0 +1,54 @@
+get:
+  operationId: quotesGetFundHistory
+  tags:
+    - market-data
+
+  summary: Lịch sử giá quỹ mở
+  description: Lịch sử NAV của 1 quỹ theo kỳ định giá — chuỗi điểm `{t, nav}`. **Không** có `resolution`; chỉ `from`/`to` (Unix giây).
+  parameters:
+    - name: symbol
+      in: path
+      required: true
+      description: "Mã CCQ quỹ mở. VD: VESAF, DCDS, TCBF."
+      schema:
+        type: string
+        example: VESAF
+    - name: from
+      in: query
+      required: true
+      description: Thời điểm bắt đầu, Unix timestamp tính bằng **giây**.
+      schema:
+        type: integer
+        minimum: 0
+        example: 1717200000
+    - name: to
+      in: query
+      required: true
+      description: Thời điểm kết thúc, Unix timestamp tính bằng **giây**.
+      schema:
+        type: integer
+        minimum: 0
+        example: 1717545600
+  responses:
+    "200":
+      description: "`data.series` là mảng `{t, nav}`."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/QuoteNavHistoryResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/quotes/funds/VESAF/history?from=1751500800&to=1751846400"

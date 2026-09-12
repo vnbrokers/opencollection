@@ -1,0 +1,60 @@
+get:
+  operationId: corporateGetMarketNews
+  tags:
+    - news-events
+
+  summary: Danh sách tin tức thị trường
+  description: |
+    Dòng tin tức tài chính, gồm cả quốc tế và thị trường Việt Nam, kèm phân trang. Lọc tùy chọn theo `topic` (forex / hàng hoá / chứng khoán / crypto / vĩ mô); phân trang qua `page`/`page_size`. Khi `topic=stock`, có thể kết hợp tham số `symbol` để lọc theo mã chứng khoán. Mỗi item là bản tóm tắt (không có toàn văn); dùng `id` gọi `/market/market-news/{id}` để lấy nội dung đầy đủ.
+  parameters:
+    - name: topic
+      in: query
+      required: false
+      description: Lọc theo chủ đề tin tức. Khi `topic=stock`, có thể kết hợp tham số `symbol` để lọc theo mã chứng khoán.
+      schema:
+        $ref: "../../components/schemas/market/MarketNewsTopic.yaml"
+    - name: symbol
+      in: query
+      required: false
+      description: Mã chứng khoán cần lọc. Chỉ áp dụng khi `topic=stock`.
+      schema:
+        type: string
+        example: FPT
+    - name: page
+      in: query
+      required: false
+      description: Trang (bắt đầu từ 1). Mặc định 1.
+      schema:
+        type: integer
+        minimum: 1
+        example: 1
+    - name: page_size
+      in: query
+      required: false
+      description: Số item mỗi trang (1–50). Mặc định 20.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 50
+        example: 20
+  responses:
+    "200":
+      description: "`data` là trang tin tức kèm `items` và thông tin phân trang."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/MarketNewsPageResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/market-news?topic=stock&page=1&page_size=20"

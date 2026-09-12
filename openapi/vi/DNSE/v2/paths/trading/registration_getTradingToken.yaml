@@ -1,0 +1,51 @@
+post:
+  operationId: registration_getTradingToken
+  summary: Xác thực OTP
+  parameters:
+    - $ref: ../../components/parameters/XApiKey.yaml
+    - $ref: ../../components/parameters/XAuxDate.yaml
+    - $ref: ../../components/parameters/XSignature.yaml
+  responses:
+    "200":
+      description: OK
+      headers:
+        Content-Length:
+          $ref: ../../components/headers/ContentLength.yaml
+        Date:
+          $ref: ../../components/headers/Date.yaml
+        Vary:
+          $ref: ../../components/headers/Vary.yaml
+        X-Frame-Options:
+          $ref: ../../components/headers/XFrameOptions.yaml
+        X-Ratelimit-Limit:
+          $ref: ../../components/headers/XRateLimitLimit.yaml
+        X-Ratelimit-Remaining:
+          $ref: ../../components/headers/XRateLimitRemaining.yaml
+        X-Ratelimit-Reset:
+          $ref: ../../components/headers/XRateLimitReset.yaml
+        X-Request-Id:
+          $ref: ../../components/headers/XRequestId.yaml
+        X-Tyk-Api-Expires:
+          deprecated: false
+          schema: {}
+          example: Thu, 02 Jan 3000 15:04:00 UTC
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/trading/TradingTokenResponse.yaml
+          example:
+            tradingToken: 9ab81e9c-8a81-45aa-8190-b69a1c179d52
+    "400":
+      $ref: ../../components/responses/BadRequest.yaml
+    "500":
+      $ref: ../../components/responses/InternalError.yaml
+  tags:
+    - trading
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/schemas/trading/TradingTokenRequest.yaml
+        example:
+          otpType: email_otp
+          passcode: "569542"

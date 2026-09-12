@@ -1,7 +1,7 @@
 post:
   operationId: closeDerivativeDeal
   tags:
-    - Phái sinh
+    - derivatives
   summary: Đóng deal
   description: Đóng deal Phái Sinh theo dealId.
   parameters:

@@ -1,6 +1,7 @@
 type: string
 description: |
   Loại order được đặt.
+
   | Giá trị | Ý nghĩa |
   |---------|---------|
   | `LO` | Giới hạn (Limit Order) |

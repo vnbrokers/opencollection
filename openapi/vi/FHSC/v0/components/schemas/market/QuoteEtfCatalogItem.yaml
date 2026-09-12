@@ -1,0 +1,20 @@
+type: object
+required:
+  - symbol
+properties:
+  symbol:
+    type: string
+    description: Mã ETF niêm yết.
+    example: FUEVFVND
+  name:
+    type: string
+    description: Tên hiển thị.
+    example: Vinamilk
+  fund_company:
+    type: string
+    description: Công ty quản lý quỹ.
+    example: Dragon Capital
+  underlying_index:
+    type: string
+    description: Chỉ số tham chiếu.
+    example: VN Diamond

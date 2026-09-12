@@ -1,0 +1,10 @@
+type: object
+properties:
+  stock:
+    $ref: ./StockBalance.yaml
+  derivative:
+    $ref: ./DerivativeBalance.yaml
+  bond:
+    $ref: ./BondBalance.yaml
+  egg:
+    $ref: ./EggBalance.yaml

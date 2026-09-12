@@ -1,114 +1,277 @@
 openapi: 3.0.0
 info:
-  title: DNSE LightSpeed API v2
-  version: 1.0.0
-  description: DNSE OpenAPI spec and tests
+  title: DNSE OpenAPI (2026-08-06)
+  version: 2.0.0
+  description: DNSE OpenAPI spec
 servers:
   - url: https://openapi.dnse.com.vn
     description: Production
-  - url: https://openapi-uat.dnse.com.vn
-    description: UAT
 tags:
-  - name: Giao dịch
+  - name: trading
     description: Xác thực và các hoạt động đặt lệnh.
-  - name: Tài khoản
+    x-group: Giao dịch
+  - name: account
     description: Tài khoản, số dư, khoản vay, lệnh và vị thế.
-  - name: Dữ liệu thị trường
+    x-group: Tài khoản
+  - name: market
     description: Thông tin mã chứng khoán, báo giá, OHLC và giao dịch.
+    x-group: Dữ liệu thị trường
 security: []
 paths:
   /registration/send-email-otp:
-    $ref: "./paths/trading/RegistrationSendEmailOtp.yaml"
+    $ref: paths/trading/registration_sendEmailOtp.yaml
 
   /registration/trading-token:
-    $ref: "./paths/trading/RegistrationTradingToken.yaml"
-
-  /accounts/{accountNo}/orders/{orderId}:
-    $ref: "./paths/trading/AccountsAccountNoOrdersOrderId.yaml"
-
-  /positions/{positionId}/close:
-    $ref: "./paths/trading/AccountsPositionsPositionIdClose.yaml"
+    $ref: paths/trading/registration_getTradingToken.yaml
 
   /accounts/{accountNo}/balances:
-    $ref: "./paths/account/AccountsAccountNoBalances.yaml"
+    $ref: paths/account/account_getBalances.yaml
 
   /accounts:
-    $ref: "./paths/account/Accounts.yaml"
+    $ref: paths/account/account_getAccounts.yaml
 
   /accounts/{accountNo}/loan-packages:
-    $ref: "./paths/account/AccountsAccountNoLoanPackages.yaml"
+    $ref: paths/account/account_getLoanPackages.yaml
 
   /accounts/{accountNo}/ppse:
-    $ref: "./paths/account/AccountsAccountNoPpse.yaml"
+    $ref: paths/account/account_getPpse.yaml
 
   /accounts/{accountNo}/orders:
-    $ref: "./paths/account/AccountsAccountNoOrders.yaml"
+    $ref: paths/account/account_getOrders.yaml
 
   /accounts/{accountNo}/orders/history:
-    $ref: "./paths/account/AccountsAccountNoOrdersHistory.yaml"
+    $ref: paths/account/account_getOrdersHistory.yaml
+
+  /accounts/{accountNo}/orders/{orderId}:
+    $ref: paths/trading/account_order.yaml
 
   /accounts/{accountNo}/positions:
-    $ref: "./paths/account/AccountsAccountNoPositions.yaml"
+    $ref: paths/account/account_getPositions.yaml
 
   /accounts/{accountNo}/corporate-action-history:
-    $ref: "./paths/account/AccountsCorporateActionHistory.yaml"
+    $ref: paths/account/account_getCorporateActionHistory.yaml
 
   /accounts/{accountNo}/executions/{orderId}:
-    $ref: "./paths/account/AccountsAccountNoExecutionsOrderId.yaml"
+    $ref: paths/account/account_getExecutions.yaml
+
+  /positions/{positionId}/close:
+    $ref: paths/trading/account_closePosition.yaml
 
   /positions/{positionId}/pnl-configs:
-    $ref: "./paths/account/AccountsPositionsPositionIdPnlConfigs.yaml"
+    $ref: paths/account/position_PnlConfigs.yaml
 
   /positions/{positionId}:
-    $ref: "./paths/account/AccountsPositionsPositionId.yaml"
+    $ref: paths/account/account_getPosition.yaml
 
   /price/{symbol}/secdef:
-    $ref: "./paths/market-data/PriceSymbolSecdef.yaml"
+    $ref: "./paths/market/symbol_getSecdef.yaml"
 
   /instruments:
-    $ref: "./paths/market-data/Instruments.yaml"
+    $ref: "./paths/market/symbol_getInstruments.yaml"
 
   /price/ohlc:
-    $ref: "./paths/market-data/PriceOhlc.yaml"
+    $ref: "./paths/market/symbol_getOhlc.yaml"
 
   /price/{symbol}/trades:
-    $ref: "./paths/market-data/PriceSymbolTrades.yaml"
+    $ref: "./paths/market/symbol_getTrades.yaml"
 
   /price/{symbol}/trades/latest:
-    $ref: "./paths/market-data/PriceSymbolTradesLatest.yaml"
+    $ref: paths/market/symbol_getTradesLatest.yaml
 
   /price/{symbol}/foreign-trading:
-    $ref: "./paths/market-data/PriceSymbolForeignTrading.yaml"
+    $ref: paths/market/symbol_getForeignTrading.yaml
 
   /price/{symbol}/quotes:
-    $ref: "./paths/market-data/PriceSymbolQuotes.yaml"
+    $ref: paths/market/symbol_getQuotes.yaml
 
   /price/{symbol}/quotes/latest:
-    $ref: "./paths/market-data/PriceSymbolQuotesLatest.yaml"
+    $ref: "./paths/market/symbol_getQuotesLatest.yaml"
 
   /price/{symbol}/close:
-    $ref: "./paths/market-data/PriceSymbolClose.yaml"
+    $ref: "./paths/market/symbol_getClosePrice.yaml"
 
   /price/{symbol}/expected-price:
-    $ref: "./paths/market-data/PriceSymbolExpectedPrice.yaml"
+    $ref: "./paths/market/symbol_getExpectedPrice.yaml"
 
   /market/trading-session:
-    $ref: "./paths/market-data/TradingSession.yaml"
+    $ref: paths/market/market_getTradingSession.yaml
 
   /market/working-dates:
-    $ref: "./paths/market-data/WorkingDates.yaml"
+    $ref: paths/market/market_getWorkingDates.yaml
 
   /brokers/accounts/care-by:
-    $ref: "./paths/account/BrokerAccountsCareBy.yaml"
+    $ref: paths/account/broker_getCareBy.yaml
 
 components:
   schemas:
+    ConditionOperator:
+      $ref: "./components/schemas/enums/ConditionOperator.yaml"
+    CorporateActionStatus:
+      $ref: "./components/schemas/enums/CorporateActionStatus.yaml"
+    DerivativeAccountStatus:
+      $ref: "./components/schemas/enums/DerivativeAccountStatus.yaml"
     ErrorBody:
       $ref: "./components/schemas/ErrorBody.yaml"
+    MarketType:
+      $ref: "./components/schemas/enums/MarketType.yaml"
+    OrderCategory:
+      $ref: "./components/schemas/enums/OrderCategory.yaml"
+    OrderDurationType:
+      $ref: "./components/schemas/enums/OrderDurationType.yaml"
+    OrderSide:
+      $ref: "./components/schemas/enums/OrderSide.yaml"
+    OrderStatus:
+      $ref: "./components/schemas/enums/OrderStatus.yaml"
+    OrderType:
+      $ref: "./components/schemas/enums/OrderType.yaml"
+    PnlOrderMethod:
+      $ref: "./components/schemas/enums/PnlOrderMethod.yaml"
+    PnlStrategy:
+      $ref: "./components/schemas/enums/PnlStrategy.yaml"
+    PositionStatus:
+      $ref: "./components/schemas/enums/PositionStatus.yaml"
     PnlConfig:
-      $ref: "./components/schemas/PnlConfig.yaml"
-    PnlConfigsPositionResponse:
-      $ref: "./components/schemas/PnlConfigsPositionResponse.yaml"
+      $ref: "./components/schemas/trading/PnlConfig.yaml"
+    PnlConfigsRequest:
+      $ref: "./components/schemas/trading/PnlConfigsRequest.yaml"
+    PnlConfigsResponse:
+      $ref: "./components/schemas/trading/PnlConfigsResponse.yaml"
+    Account:
+      $ref: "./components/schemas/account/Account.yaml"
+    BalancesResponse:
+      $ref: "./components/schemas/account/BalancesResponse.yaml"
+    BondBalance:
+      $ref: "./components/schemas/account/BondBalance.yaml"
+    CareBy:
+      $ref: "./components/schemas/account/CareBy.yaml"
+    CareByResponse:
+      $ref: "./components/schemas/account/CareByResponse.yaml"
+    CashDividend:
+      $ref: "./components/schemas/account/CashDividend.yaml"
+    CorporateActionHistoryResponse:
+      $ref: "./components/schemas/account/CorporateActionHistoryResponse.yaml"
+    DerivativeAccount:
+      $ref: "./components/schemas/account/DerivativeAccount.yaml"
+    DerivativeBalance:
+      $ref: "./components/schemas/account/DerivativeBalance.yaml"
+    EggBalance:
+      $ref: "./components/schemas/account/EggBalance.yaml"
+    ExecutionReport:
+      $ref: "./components/schemas/account/ExecutionReport.yaml"
+    ExecutionsResponse:
+      $ref: "./components/schemas/account/ExecutionsResponse.yaml"
+    LoanPackage:
+      $ref: "./components/schemas/account/LoanPackage.yaml"
+    LoanPackagesResponse:
+      $ref: "./components/schemas/account/LoanPackagesResponse.yaml"
+    Order:
+      $ref: "./components/schemas/account/Order.yaml"
+    OrdersHistoryItem:
+      $ref: "./components/schemas/account/OrdersHistoryItem.yaml"
+    OrdersHistoryResponse:
+      $ref: "./components/schemas/account/OrdersHistoryResponse.yaml"
+    OrdersResponse:
+      $ref: "./components/schemas/account/OrdersResponse.yaml"
+    Pagination:
+      $ref: "./components/schemas/account/Pagination.yaml"
+    PlaceOrderResponse:
+      $ref: "./components/schemas/account/PlaceOrderResponse.yaml"
+    Position:
+      $ref: "./components/schemas/account/Position.yaml"
+    PositionDetail:
+      $ref: "./components/schemas/account/PositionDetail.yaml"
+    PositionDetailResponse:
+      $ref: "./components/schemas/account/PositionDetailResponse.yaml"
+    PositionsResponse:
+      $ref: "./components/schemas/account/PositionsResponse.yaml"
+    PpseResponse:
+      $ref: "./components/schemas/account/PpseResponse.yaml"
+    ProgressiveDailyCloseTradingFee:
+      $ref: "./components/schemas/account/ProgressiveDailyCloseTradingFee.yaml"
+    ProgressiveTradingFee:
+      $ref: "./components/schemas/account/ProgressiveTradingFee.yaml"
+    RightsOffering:
+      $ref: "./components/schemas/account/RightsOffering.yaml"
+    StockBalance:
+      $ref: "./components/schemas/account/StockBalance.yaml"
+    StockBonus:
+      $ref: "./components/schemas/account/StockBonus.yaml"
+    StockDividend:
+      $ref: "./components/schemas/account/StockDividend.yaml"
+    SymbolType:
+      $ref: "./components/schemas/enums/SymbolType.yaml"
+    TradingFeeSchemaType:
+      $ref: "./components/schemas/enums/TradingFeeSchemaType.yaml"
+    TradingFee:
+      $ref: "./components/schemas/account/TradingFee.yaml"
+    ClosePrice:
+      $ref: "./components/schemas/market/ClosePrice.yaml"
+    ExpectedPrice:
+      $ref: "./components/schemas/market/ExpectedPrice.yaml"
+    ForeignTrading:
+      $ref: "./components/schemas/market/ForeignTrading.yaml"
+    Instrument:
+      $ref: "./components/schemas/market/Instrument.yaml"
+    InstrumentsResponse:
+      $ref: "./components/schemas/market/InstrumentsResponse.yaml"
+    OhlcResponse:
+      $ref: components/schemas/market/OhlcResponse.yaml
+    ClosePriceResponse:
+      $ref: "./components/schemas/market/ClosePriceResponse.yaml"
+    ExpectedPriceResponse:
+      $ref: "./components/schemas/market/ExpectedPriceResponse.yaml"
+    ForeignTradingResponse:
+      $ref: "./components/schemas/market/ForeignTradingResponse.yaml"
+    QuotesLatestResponse:
+      $ref: "./components/schemas/market/QuotesLatestResponse.yaml"
+    QuotesResponse:
+      $ref: "./components/schemas/market/QuotesResponse.yaml"
+    SecdefItem:
+      $ref: "./components/schemas/market/SecdefItem.yaml"
+    SecdefResponse:
+      $ref: "./components/schemas/market/SecdefResponse.yaml"
+    TradesLatestResponse:
+      $ref: "./components/schemas/market/TradesLatestResponse.yaml"
+    TradesResponse:
+      $ref: "./components/schemas/market/TradesResponse.yaml"
+    Quote:
+      $ref: "./components/schemas/market/Quote.yaml"
+    QuoteBidLevel:
+      $ref: "./components/schemas/market/QuoteBidLevel.yaml"
+    QuoteBidLevelLatest:
+      $ref: "./components/schemas/market/QuoteBidLevelLatest.yaml"
+    QuoteLatest:
+      $ref: "./components/schemas/market/QuoteLatest.yaml"
+    QuoteOfferLevel:
+      $ref: "./components/schemas/market/QuoteOfferLevel.yaml"
+    QuoteOfferLevelLatest:
+      $ref: "./components/schemas/market/QuoteOfferLevelLatest.yaml"
+    Trade:
+      $ref: "./components/schemas/market/Trade.yaml"
+    TradeLatest:
+      $ref: "./components/schemas/market/TradeLatest.yaml"
+    WorkingDates:
+      $ref: "./components/schemas/market/WorkingDates.yaml"
+    TradingSession:
+      $ref: "./components/schemas/market/TradingSession.yaml"
+    TradingSessionResponse:
+      $ref: "./components/schemas/market/TradingSessionResponse.yaml"
+    OrderPlaceRequest:
+      $ref: "./components/schemas/trading/OrderPlaceRequest.yaml"
+    OrderPlaceResponse:
+      $ref: "./components/schemas/trading/OrderPlaceResponse.yaml"
+    OrderCancelResponse:
+      $ref: "./components/schemas/trading/OrderCancelResponse.yaml"
+    PositionCloseResponse:
+      $ref: "./components/schemas/trading/PositionCloseResponse.yaml"
+    OrderDetailResponse:
+      $ref: "./components/schemas/trading/OrderDetailResponse.yaml"
+    OrderReplaceRequest:
+      $ref: "./components/schemas/trading/OrderReplaceRequest.yaml"
+    OrderReplaceResponse:
+      $ref: "./components/schemas/trading/OrderReplaceResponse.yaml"
+    TradingTokenResponse:
+      $ref: "./components/schemas/trading/TradingTokenResponse.yaml"
   responses:
     BadRequest:
       $ref: "./components/responses/BadRequest.yaml"

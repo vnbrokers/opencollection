@@ -2,6 +2,7 @@ type: string
 description: |
   Kiểu định giá khi đặt lệnh — quyết định field giá nào phải set trong
   request body.
+
   | Giá trị | Ý nghĩa | Field giá phải set |
   |---------|---------|--------------------|
   | `LIMIT`  | Lệnh giới hạn — khớp tại đúng giá `limit_price` hoặc tốt hơn. | `limit_price` (VND); `market_price` = `null`. |

@@ -1,0 +1,16 @@
+type: object
+properties:
+  marketId:
+    $ref: ../enums/MarketId.yaml
+  boardId:
+    $ref: ../enums/BoardId.yaml
+  tscProdGrpId:
+    $ref: ../enums/ProductGrpId.yaml
+  tradingSessionId:
+    $ref: ../enums/TradingSessionId.yaml
+  eventId:
+    $ref: ../enums/EventId.yaml
+  time:
+    type: string
+    example: "2026-06-26 14:45:00.960"
+    description: Thời gian ghi nhận định dạng (YYYY-MM-DD HH:mm:ss.SSS (GMT+7))

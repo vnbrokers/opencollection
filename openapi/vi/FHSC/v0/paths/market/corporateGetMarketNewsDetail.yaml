@@ -1,0 +1,39 @@
+get:
+  operationId: corporateGetMarketNewsDetail
+  tags:
+    - news-events
+
+  summary: Chi tiết tin tức thị trường
+  description: |
+    Nội dung đầy đủ của một bài tin tức thị trường theo `id` (lấy từ danh sách `/market/market-news`). Khác với item trong danh sách, chi tiết có thêm `content` (toàn văn).
+  parameters:
+    - name: id
+      in: path
+      required: true
+      description: ID bài tin. Chỉ dùng giá trị `id` có sẵn trong một bài thuộc danh sách tin đã lấy trước đó — không tự tạo hay đoán.
+      schema:
+        type: string
+        example: abc123
+  responses:
+    "200":
+      description: "`data` là bài tin đầy đủ kèm `content`."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/MarketNewsDetailResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/market-news/abc123"

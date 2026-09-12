@@ -1,0 +1,19 @@
+type: object
+description: Chuỗi dòng tiền theo phiên. Phiên không có giao dịch bị bỏ qua; chưa phân trang.
+required:
+  - symbol
+  - data
+properties:
+  symbol:
+    type: string
+    description: Mã cổ phiếu.
+    example: HPG
+  resolution:
+    type: string
+    description: Độ phân giải của bar.
+    example: 1D
+  data:
+    type: array
+    description: Chuỗi bar theo phiên, phiên gần nhất đứng trước.
+    items:
+      $ref: "TradingFlowBar.yaml"

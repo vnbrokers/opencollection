@@ -1,0 +1,51 @@
+type: object
+description: Quote chỉ số realtime (dùng `value` thay `price`).
+required:
+  - symbol
+  - value
+properties:
+  symbol:
+    type: string
+    description: Mã chỉ số.
+    example: VNINDEX
+  name:
+    type: string
+    description: Tên chỉ số.
+    example: VN-Index
+  value:
+    type: number
+    description: Giá trị chỉ số.
+    example: 1287.42
+  open:
+    type: number
+    description: Mở cửa.
+    example: 1283.24
+  high:
+    type: number
+    description: Cao nhất.
+    example: 1289.75
+  low:
+    type: number
+    description: Thấp nhất.
+    example: 1281.9
+  reference:
+    type: number
+    description: Tham chiếu.
+    example: 1283.24
+  change:
+    type: number
+    description: Thay đổi tuyệt đối.
+    example: 4.18
+  change_percent:
+    type: number
+    description: Thay đổi %.
+    example: 0.33
+  volume:
+    type: number
+    description: Khối lượng toàn thị trường.
+    example: 782450000
+  updated_at:
+    type: string
+    description: Thời điểm dữ liệu (ISO 8601 kèm offset).
+    example: "2026-05-27T14:30:15+07:00"
+    format: date-time

@@ -1,0 +1,16 @@
+type: string
+description: |-
+  Phương thức đặt lệnh khi điều kiện chốt lời hoặc cắt lỗ được kích hoạt.
+
+  - `FASTEST`: Đặt lệnh với giá trần hoặc sàn
+  - `DELTA_PRICE`: Đặt lệnh theo biên độ giá so với giá kích hoạt
+enum:
+  - FASTEST
+  - DELTA_PRICE
+x-enum-descriptions:
+  - "Đặt lệnh với giá trần hoặc sàn"
+  - "Đặt lệnh theo biên độ giá so với giá kích hoạt"
+x-enum-varnames:
+  - FASTEST
+  - DELTA_PRICE
+example: FASTEST

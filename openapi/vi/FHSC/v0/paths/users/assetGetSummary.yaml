@@ -1,7 +1,8 @@
 get:
   operationId: assetGetSummary
   tags:
-    - Tổng tài sản
+    - total-assets
+
   security:
     - FinhayApiKey: []
       FinhayTimestamp: []

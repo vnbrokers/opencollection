@@ -2,6 +2,7 @@ type: string
 description: |
   Mã loại lệnh thị trường — set vào field `market_price` khi `type` =
   `MARKET` ở `POST /trading/oa/sub-accounts/{subAccountId}/orders`.
+
   | Giá trị | Tên | Mô tả |
   |---------|-----|-------|
   | `MP`  | Market Price | Khớp tại giá tốt nhất hiện có (HOSE — ORS auto-convert sang `MTL`). |
@@ -13,6 +14,7 @@ description: |
   | `PLO` | Post Limit Order | Lệnh limit sau phiên ATC (HNX only). |
   | `FOK` | Fill or Kill | Khớp toàn bộ hoặc huỷ — dạng chuẩn hoá của `MOK`. |
   | `FAK` | Fill and Kill | Khớp một phần, huỷ phần còn lại — dạng chuẩn hoá của `MAK`. |
+
   Hỗ trợ order type theo sàn:
   - HOSE: `LO`, `MP`, `ATO`, `ATC`, `MTL`
   - HNX: `LO`, `MTL`, `MOK`, `MAK`, `PLO`, `ATC`

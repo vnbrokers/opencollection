@@ -1,0 +1,303 @@
+get:
+  operationId: account_getExecutions
+  tags:
+    - account
+  summary: Chi tiết trạng thái lệnh
+  parameters:
+    - $ref: ../../components/parameters/XApiKey.yaml
+    - $ref: ../../components/parameters/XAuxDate.yaml
+    - $ref: ../../components/parameters/XSignature.yaml
+    - name: accountNo
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: orderId
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: marketType
+      in: query
+      required: true
+      schema:
+        allOf:
+          - $ref: ../../components/schemas/enums/MarketType.yaml
+        enum:
+          - STOCK
+          - DERIVATIVE
+      description: "Loại thị trường \n- STOCK: Lệnh cơ sở\n- DERIVATIVE: Lệnh phái sinh\n- BOND: Lệnh trái phiếu"
+      example: DERIVATIVE
+    - name: orderCategory
+      in: query
+      schema:
+        allOf:
+          - $ref: ../../components/schemas/enums/OrderCategory.yaml
+        enum:
+          - NORMAL
+          - CONDITIONAL
+      required: true
+      description: Phân loại lệnh thường (mặc định NORMAL)
+      example: NORMAL
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/account/ExecutionsResponse.yaml
+          examples:
+            STOCK:
+              value:
+                id: 1651
+                side: NB
+                accountNo: "0001179019"
+                symbol: HPG
+                price: 24250
+                quantity: 500
+                orderType: LO
+                loanPackageId: 5757
+                orderCategory: NORMAL
+                orderStatus: PartiallyFilled
+                fillQuantity: 200
+                lastQuantity: 100
+                lastPrice: 24250
+                averagePrice: 24250
+                transDate: "2026-07-13"
+                taxRate: 0
+                exchangeFeeRate: 0.00027
+                feeRate: 0.00027
+                leaveQuantity: 300
+                canceledQuantity: 0
+                error: ""
+                marketType: STOCK
+                priceSecure: 24250
+                createdDate: "2026-07-13T06:50:36.532741Z"
+                modifiedDate: "2026-07-13T06:50:59.052768Z"
+                metadata: '{"orderSession":"OPEN","ip":"202.60.110.58","maker":"1000005917","isForeigner":false,"reqId":"24534","probType":"CUSTOMER_8000","eventNo":4.0}'
+                reports:
+                  - id: 1651
+                    side: NB
+                    accountNo: "0001179019"
+                    symbol: HPG
+                    price: 24250
+                    quantity: 500
+                    orderType: LO
+                    orderStatus: PartiallyFilled
+                    fillQuantity: 100
+                    lastQuantity: 100
+                    lastPrice: 24250
+                    averagePrice: 24250
+                    transDate: "2026-07-13"
+                    createdDate: "2026-07-13T06:50:36.532741Z"
+                    modifiedDate: "2026-07-13T06:50:51.613222Z"
+                    taxRate: 0
+                    exchangeFeeRate: 0
+                    feeRate: 0.00027
+                    leaveQuantity: 400
+                    canceledQuantity: 0
+                    error: ""
+                    priceSecure: 24250
+                    metadata: '{"orderSession":"OPEN","ip":"202.60.110.58","maker":"1000005917","isForeigner":false,"reqId":"24534","probType":"CUSTOMER_8000","eventNo":3}'
+                    loanPackageId: 5757
+                  - id: 1651
+                    side: NB
+                    accountNo: "0001179019"
+                    symbol: HPG
+                    price: 24250
+                    quantity: 500
+                    orderType: LO
+                    orderStatus: PartiallyFilled
+                    fillQuantity: 100
+                    lastQuantity: 100
+                    lastPrice: 24250
+                    averagePrice: 24250
+                    transDate: "2026-07-13"
+                    createdDate: "2026-07-13T06:50:36.532741Z"
+                    modifiedDate: "2026-07-13T06:50:51.613222Z"
+                    taxRate: 0
+                    exchangeFeeRate: 0
+                    feeRate: 0.00027
+                    leaveQuantity: 400
+                    canceledQuantity: 0
+                    error: ""
+                    priceSecure: 24250
+                    metadata: '{"orderSession":"OPEN","ip":"202.60.110.58","maker":"1000005917","isForeigner":false,"reqId":"24534","probType":"CUSTOMER_8000","eventNo":3}'
+                    loanPackageId: 5757
+                  - id: 1651
+                    side: NB
+                    accountNo: "0001179019"
+                    symbol: HPG
+                    price: 24250
+                    quantity: 500
+                    orderType: LO
+                    orderStatus: PendingNew
+                    fillQuantity: 0
+                    lastQuantity: 0
+                    lastPrice: 0
+                    averagePrice: 0
+                    transDate: "2026-07-13"
+                    createdDate: "2026-07-13T06:50:36.532741Z"
+                    modifiedDate: "2026-07-13T06:50:36.532743Z"
+                    taxRate: 0
+                    exchangeFeeRate: 0
+                    feeRate: 0.00027
+                    leaveQuantity: 500
+                    canceledQuantity: 0
+                    error: <no value>
+                    priceSecure: 24250
+                    metadata: '{"orderSession":"OPEN","ip":"202.60.110.58","maker":"1000005917","isForeigner":false,"reqId":"24534","probType":"CUSTOMER_8000","eventNo":1}'
+                    loanPackageId: 5757
+                  - id: 1651
+                    side: NB
+                    accountNo: "0001179019"
+                    symbol: HPG
+                    price: 24250
+                    quantity: 500
+                    orderType: LO
+                    orderStatus: New
+                    fillQuantity: 0
+                    lastQuantity: 0
+                    lastPrice: 0
+                    averagePrice: 0
+                    transDate: "2026-07-13"
+                    createdDate: "2026-07-13T06:50:36.532741Z"
+                    modifiedDate: "2026-07-13T06:50:36.545128Z"
+                    taxRate: 0
+                    exchangeFeeRate: 0
+                    feeRate: 0.00027
+                    leaveQuantity: 500
+                    canceledQuantity: 0
+                    error: ""
+                    priceSecure: 24250
+                    metadata: '{"orderSession":"OPEN","ip":"202.60.110.58","maker":"1000005917","isForeigner":false,"reqId":"24534","probType":"CUSTOMER_8000","eventNo":2}'
+                    loanPackageId: 5757
+                  - id: 1651
+                    side: NB
+                    accountNo: "0001179019"
+                    symbol: HPG
+                    price: 24250
+                    quantity: 500
+                    orderType: LO
+                    orderStatus: PartiallyFilled
+                    fillQuantity: 200
+                    lastQuantity: 100
+                    lastPrice: 24250
+                    averagePrice: 24250
+                    transDate: "2026-07-13"
+                    createdDate: "2026-07-13T06:50:36.532741Z"
+                    modifiedDate: "2026-07-13T06:50:59.052768Z"
+                    taxRate: 0
+                    exchangeFeeRate: 0
+                    feeRate: 0.00027
+                    leaveQuantity: 300
+                    canceledQuantity: 0
+                    error: ""
+                    priceSecure: 24250
+                    metadata: '{"orderSession":"OPEN","ip":"202.60.110.58","maker":"1000005917","isForeigner":false,"reqId":"24534","probType":"CUSTOMER_8000","eventNo":4}'
+                    loanPackageId: 5757
+            DERIVATIVE:
+              value:
+                id: 26
+                side: NB
+                accountNo: "0001179019"
+                symbol: 41I1G9000
+                price: 2003
+                quantity: 2
+                orderType: LO
+                loanPackageId: 2279
+                orderCategory: NORMAL
+                orderStatus: Filled
+                fillQuantity: 2
+                lastQuantity: 2
+                lastPrice: 2003
+                averagePrice: 2003
+                transDate: "2026-07-31"
+                taxRate: 0
+                exchangeFeeRate: 0
+                feeRate: 0
+                leaveQuantity: 0
+                canceledQuantity: 0
+                error: ""
+                marketType: DERIVATIVE
+                priceSecure: 2003
+                createdDate: "2026-08-04T02:00:02.855824889Z"
+                modifiedDate: "2026-08-04T02:50:30.56129326Z"
+                metadata: '{"orderSession":"ATO","dealId":178488852178882,"releaseSecureOnFilled":false,"originMaker":"risk-management","dtaAccountNo":"D000113702","maker":"risk-management","isForeigner":false,"probType":"CUSTOMER_8000","eventNo":3}'
+                reports:
+                  - id: 26
+                    side: NB
+                    accountNo: "0001179019"
+                    symbol: 41I1G9000
+                    price: 2003
+                    quantity: 2
+                    orderType: LO
+                    orderStatus: PendingNew
+                    fillQuantity: 0
+                    lastQuantity: 0
+                    lastPrice: 0
+                    averagePrice: 0
+                    transDate: "2026-07-31"
+                    createdDate: "2026-08-04T02:00:02.855824889Z"
+                    modifiedDate: "2026-08-04T02:00:02.855825105Z"
+                    taxRate: 0
+                    exchangeFeeRate: 0
+                    feeRate: 0
+                    leaveQuantity: 2
+                    canceledQuantity: 0
+                    error: <no value>
+                    priceSecure: 2003
+                    metadata: '{"orderSession":"ATO","dealId":178488852178882,"releaseSecureOnFilled":false,"originMaker":"risk-management","dtaAccountNo":"D000113702","maker":"risk-management","isForeigner":false,"probType":"CUSTOMER_8000","eventNo":1}'
+                    loanPackageId: 2279
+                  - id: 26
+                    side: NB
+                    accountNo: "0001179019"
+                    symbol: 41I1G9000
+                    price: 2003
+                    quantity: 2
+                    orderType: LO
+                    orderStatus: New
+                    fillQuantity: 0
+                    lastQuantity: 0
+                    lastPrice: 0
+                    averagePrice: 0
+                    transDate: "2026-07-31"
+                    createdDate: "2026-08-04T02:00:02.855824889Z"
+                    modifiedDate: "2026-08-04T02:00:02.938935544Z"
+                    taxRate: 0
+                    exchangeFeeRate: 0
+                    feeRate: 0
+                    leaveQuantity: 2
+                    canceledQuantity: 0
+                    error: ""
+                    priceSecure: 2003
+                    metadata: '{"orderSession":"ATO","dealId":178488852178882,"releaseSecureOnFilled":false,"originMaker":"risk-management","dtaAccountNo":"D000113702","maker":"risk-management","isForeigner":false,"probType":"CUSTOMER_8000","eventNo":2}'
+                    loanPackageId: 2279
+                  - id: 26
+                    side: NB
+                    accountNo: "0001179019"
+                    symbol: 41I1G9000
+                    price: 2003
+                    quantity: 2
+                    orderType: LO
+                    orderStatus: Filled
+                    fillQuantity: 2
+                    lastQuantity: 2
+                    lastPrice: 2003
+                    averagePrice: 2003
+                    transDate: "2026-07-31"
+                    createdDate: "2026-08-04T02:00:02.855824889Z"
+                    modifiedDate: "2026-08-04T02:50:30.56129326Z"
+                    taxRate: 0
+                    exchangeFeeRate: 0
+                    feeRate: 0
+                    leaveQuantity: 0
+                    canceledQuantity: 0
+                    error: ""
+                    priceSecure: 2003
+                    metadata: '{"orderSession":"ATO","dealId":178488852178882,"releaseSecureOnFilled":false,"originMaker":"risk-management","dtaAccountNo":"D000113702","maker":"risk-management","isForeigner":false,"probType":"CUSTOMER_8000","eventNo":3}'
+                    loanPackageId: 2279
+    "400":
+      $ref: ../../components/responses/BadRequest.yaml
+    "500":
+      $ref: ../../components/responses/InternalError.yaml

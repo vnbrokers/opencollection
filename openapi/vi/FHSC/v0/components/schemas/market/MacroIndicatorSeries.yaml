@@ -1,0 +1,20 @@
+type: object
+required:
+  - indicator
+  - name
+  - unit
+  - series
+properties:
+  indicator:
+    type: string
+    example: vn-cpi
+  name:
+    type: string
+    example: CPI Việt Nam
+  unit:
+    type: string
+    example: "%"
+  series:
+    type: array
+    items:
+      $ref: "MacroIndicatorObservation.yaml"

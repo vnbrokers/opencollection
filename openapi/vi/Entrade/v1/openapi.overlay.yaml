@@ -1,0 +1,121 @@
+overlay: 1.0.0
+info:
+  title: Entrade OpenAPI - Mintlify customization
+  version: 1.0.0
+extends: ./entrade.openapi.yaml
+
+actions:
+  - target: "$.paths['/v2/auth'].post"
+    update:
+      x-mint:
+        href: vi/entrade/openapi/authentication/login
+        metadata:
+          sidebarTitle: "Đăng nhập"
+  - target: "$.paths['/investors/{investorId}/investor_account'].get"
+    update:
+      x-mint:
+        href: vi/entrade/openapi/account/get-master-account
+        metadata:
+          sidebarTitle: "Lấy tiểu khoản Master"
+  - target: "$.paths['/account_balances/{investorId}'].get"
+    update:
+      x-mint:
+        href: vi/entrade/openapi/account/get-account-assets
+        metadata:
+          sidebarTitle: "Lấy thông tin tài sản"
+  - target: "$.paths['/investors/{investorId}/derivative_margin_portfolios'].get"
+    update:
+      x-mint:
+        href: vi/entrade/openapi/derivatives/get-loan-packages
+        metadata:
+          sidebarTitle: "Lấy danh sách gói vay"
+  - target: "$.paths['/derivative/investors/{investorId}/ppse'].get"
+    update:
+      x-mint:
+        href: vi/entrade/openapi/derivatives/get-purchasing-power
+        metadata:
+          sidebarTitle: "Lấy sức mua"
+  - target: "$.paths['/derivatives'].get"
+    update:
+      x-mint:
+        href: vi/entrade/openapi/derivatives/get-contracts
+        metadata:
+          sidebarTitle: "Lấy danh sách mã Phái Sinh"
+  - target: "$.paths['/derivative/orders'].get"
+    update:
+      x-mint:
+        href: vi/entrade/openapi/derivatives/get-order-book
+        metadata:
+          sidebarTitle: "Lấy sổ lệnh"
+  - target: "$.paths['/derivative/orders'].post"
+    update:
+      x-mint:
+        href: vi/entrade/openapi/derivatives/place-order
+        metadata:
+          sidebarTitle: "Đặt lệnh Phái Sinh"
+  - target: "$.paths['/derivative/orders/{orderId}'].get"
+    update:
+      x-mint:
+        href: vi/entrade/openapi/derivatives/get-order-detail
+        metadata:
+          sidebarTitle: "Lấy chi tiết lệnh"
+  - target: "$.paths['/derivative/orders/{orderId}'].delete"
+    update:
+      x-mint:
+        href: vi/entrade/openapi/derivatives/cancel-order
+        metadata:
+          sidebarTitle: "Hủy lệnh"
+  - target: "$.paths['/derivative/deals'].get"
+    update:
+      x-mint:
+        href: vi/entrade/openapi/derivatives/get-deals
+        metadata:
+          sidebarTitle: "Lấy danh sách deals"
+  - target: "$.paths['/derivative/deals/{dealId}/_close_deal'].post"
+    update:
+      x-mint:
+        href: vi/entrade/openapi/derivatives/close-deal
+        metadata:
+          sidebarTitle: "Đóng deal"
+  - target: "$.paths['/risk_configs'].get"
+    update:
+      x-mint:
+        href: vi/entrade/openapi/account/get-risk-config
+        metadata:
+          sidebarTitle: "Lấy cấu hình cắt lỗ"
+  - target: "$.paths['/risk_configs/{investorAccountId}'].patch"
+    update:
+      x-mint:
+        href: vi/entrade/openapi/account/update-risk-config
+        metadata:
+          sidebarTitle: "Sửa cấu hình cắt lỗ"
+  - target: "$.paths['/orders'].get"
+    update:
+      x-mint:
+        href: vi/entrade/openapi/smart-order/get-smart-orders
+        metadata:
+          sidebarTitle: "Lấy thông tin lệnh điều kiện"
+  - target: "$.paths['/orders'].post"
+    update:
+      x-mint:
+        href: vi/entrade/openapi/smart-order/place-order
+        metadata:
+          sidebarTitle: "Đặt lệnh điều kiện"
+  - target: "$.paths['/orders'].delete"
+    update:
+      x-mint:
+        href: vi/entrade/openapi/smart-order/cancel-all-orders
+        metadata:
+          sidebarTitle: "Hủy tất cả lệnh điều kiện"
+  - target: "$.paths['/orders/{orderId}'].delete"
+    update:
+      x-mint:
+        href: vi/entrade/openapi/smart-order/cancel-order
+        metadata:
+          sidebarTitle: "Hủy lệnh điều kiện"
+  - target: "$.paths['/deal_risks'].post"
+    update:
+      x-mint:
+        href: vi/entrade/openapi/account/set-take-profit
+        metadata:
+          sidebarTitle: "Đặt lệnh chốt lời"

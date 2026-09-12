@@ -1,53 +1,44 @@
-# VNBrokers
+# VNBrokers OpenCollection
 
 [Tiếng Việt](README.vi.md)
 
 ## Introduction
 
-**vnbrokers-bruno** is a collection of OpenAPIs from Vietnamese Securities Companies
+**@vnbrokers/opencollection** is a collection of OpenAPIs from Vietnamese Securities Companies
 
-## Setup
+## Project Structure
 
-1. Clone the repository
+The project is organized into three main parts:
 
-```bash
-git clone https://github.com/vnbrokers/vnbrokers-bruno.git
-```
-
-2. Open workspace into Bruno application
-
-3. Copy a environment for each Broker Open API collection and set up the variables/secrets
-
-- **DNSEv2**: Setup `apiKey` and `apiSecret` in environment, and set `otp` in request Get `trading-token`. `x-signature`, `date`
-- **TCBS**: Setup `apiKey` and `otp` in environment.
-
-  Bruno Pre Request script in collection level will set `accessToken` back to environment variable `accessToken` to build a Authorization header for next requests.
-
-- **SSI**: Setup `consumerID` and `consumerSecret` in environment
-
-## Development
-
-```bash
-cd vnbrokers-bruno
-
-mise trust
-mise install
-mise run gen-githooks
-
-git checkout -b testing
-
+```text
+.
+|-- collections/  # `opencollection`: OpenCollection format proposed by Bruno
+|-- openapi/      # OpenAPI specifications for REST APIs
+|-- asyncapi/     # AsyncAPI specifications for real-time APIs and WebSockets
 ```
 
 ## References
 
-- [DNSE API Platform](https://developers.dnse.com.vn/docs/guide/intro/api_platform)
-- [Entrade](https://hdsd2.entrade.com.vn/entrade-api)
-- [FireAnt RESTful API v1](https://api.fireant.vn/)
-- [SSI FastConnect Data](https://guide.ssi.com.vn/ssi-products/tieng-viet/fastconnect-data)
-- [SSI FastConnect Trading](https://guide.ssi.com.vn/ssi-products/tieng-viet/fastconnect-trading)
-- [TCBS iFlash Open API](https://developers.tcbs.com.vn/)
-- [Bruno Variables](https://docs.usebruno.com/variables/overview)
-- [FHSC OpenAPI](https://fhsc.com.vn/)
+### Official Developer Resources
+
+#### Securities companies
+
+- **DNSE** — https://developers.dnse.com.vn/docs/guide/intro/api_platform
+- **Entrade** — https://hdsd2.entrade.com.vn/entrade-api
+- **FHSC** — https://developers.fhsc.com.vn/introduction
+- **SSI** — https://developers.ssi.com.vn/docs/api-reference
+- **TCBS** — https://developers.tcbs.com.vn/docs/v1.0.0/introduction
+
+#### Other companies / Financial Platforms
+
+- **FireAnt** (Shinhan/Fmarket) — https://api.fireant.vn
+
+#### Other developement resources
+
+- **Bruno** — https://docs.usebruno.com
+- **OpenAPI Specification** — https://spec.openapis.org/oas/v3.1.0
+- **AsyncAPI Specification** — https://www.asyncapi.com/docs/specifications/3.0.0
+- **VNBrokers Mintlify Documentation** — https://vnbrokers.mintlify.app / https://vnbrokers.mintlify.site
 
 ## Disclaimer
 

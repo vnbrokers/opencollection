@@ -1,0 +1,16 @@
+type: string
+description: |-
+  Trạng thái tài khoản phái sinh.
+
+  - `ACTIVE`: Đang hoạt động
+  - `INACTIVE`: Ngừng hoạt động
+enum:
+  - ACTIVE
+  - INACTIVE
+x-enum-descriptions:
+  - "Đang hoạt động"
+  - "Ngừng hoạt động"
+x-enum-varnames:
+  - ACTIVE
+  - INACTIVE
+example: ACTIVE

@@ -1,0 +1,14 @@
+type: object
+properties:
+  tradingSessions:
+    type: array
+    items:
+      $ref: ./TradingSession.yaml
+    example:
+      - marketId: STO
+        boardId: G1
+        tscProdGrpId: STO
+        tradingSessionId: "99"
+        eventId: AC2
+        time: "2026-06-26 14:45:00.960"
+    description: ""

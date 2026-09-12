@@ -6,10 +6,7 @@ allOf:
     properties:
       data:
         description: |
-          Returns a `RecommendationReport` object when reports exist, or an
-          empty array `[]` when none are available for the symbol.
+          Payload báo cáo khuyến nghị, hoặc `null` khi symbol không có báo cáo nào.
         oneOf:
           - $ref: "RecommendationReport.yaml"
-          - type: array
-            maxItems: 0
-            items: {}
+          - type: "null"

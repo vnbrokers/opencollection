@@ -1,7 +1,7 @@
 get:
   operationId: listDerivativeMarginPortfolios
   tags:
-    - Phái sinh
+    - derivatives
   summary: Lấy danh sách gói vay
   description: Lấy danh sách gói vay theo investorId.
   parameters:

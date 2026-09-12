@@ -1,7 +1,7 @@
 get:
   operationId: getInvestorAccount
   tags:
-    - Tài khoản
+    - account
   summary: Lấy tiểu khoản Master
   description: Lấy thông tin tiểu khoản Master của khách hàng theo investorId.
   parameters:

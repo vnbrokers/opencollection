@@ -1,0 +1,41 @@
+type: object
+properties:
+  accountNo:
+    type: string
+    example: "0001179019"
+    description: Số tiểu khoản
+  loanPackageId:
+    type: integer
+    format: int32
+    example: 2278
+    description: Id gói vay
+  orderType:
+    allOf:
+      - $ref: ../enums/OrderType.yaml
+    description: |-
+      Loại lệnh
+      - LO: Lệnh giới hạn
+      - MOK/MAK/MTL: Lệnh thị trường
+      - ATO/ATC: Lệnh phiên định kỳ mở cửa/đóng cửa
+      - PLO: Lệnh khớp lệnh sau giờ
+  price:
+    type: number
+    format: double
+    example: 35000
+    description: Giá đặt lệnh
+  quantity:
+    type: integer
+    format: int32
+    example: 300
+    description: Khối lượng đặt lệnh
+  side:
+    allOf:
+      - $ref: ../enums/OrderSide.yaml
+    description: |-
+      Loại lệnh
+      - NB: Mua
+      - NS: Bán
+  symbol:
+    type: string
+    example: TCB
+    description: Mã chứng khoán

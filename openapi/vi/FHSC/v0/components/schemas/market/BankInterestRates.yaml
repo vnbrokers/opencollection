@@ -1,7 +1,19 @@
 type: object
 description: |
-  Dữ liệu lãi suất tiền gửi ngân hàng. 
-  `additionalProperties: true` là **chủ ý** — đây là endpoint duy nhất
-  trong API có shape thật sự phụ thuộc vào data. Các endpoint khác nên khai
-  báo field rõ ràng.
-additionalProperties: true
+  Lãi suất tiền gửi của các ngân hàng, nhóm theo ngân hàng rồi tới kỳ hạn.
+required:
+  - bank_interest_rates
+properties:
+  no_bank:
+    type: integer
+    description: Số ngân hàng có trong danh sách.
+    example: 20
+  effective_date:
+    type: string
+    description: Ngày áp dụng chung của bảng, định dạng `D/M/YYYY`.
+    example: 31/7/2026
+  bank_interest_rates:
+    type: array
+    description: Mỗi phần tử là một ngân hàng kèm lãi suất theo kỳ hạn.
+    items:
+      $ref: "BankInterestRateGroup.yaml"

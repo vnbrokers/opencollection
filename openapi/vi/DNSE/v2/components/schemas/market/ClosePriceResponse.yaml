@@ -1,0 +1,15 @@
+type: object
+additionalProperties: true
+properties:
+  prices:
+    type: array
+    description: Danh sách thông tin giá đóng cửa của các mã chứng khoán.
+    example:
+      - marketId: STO
+        boardId: G1
+        isin: VN000000HPG4
+        symbol: HPG
+        closePrice: 26.8
+        time: "2026-04-08 02:14:59.775"
+    items:
+      $ref: ./ClosePrice.yaml

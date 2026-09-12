@@ -1,0 +1,14 @@
+type: object
+description: 1 điểm NAV.
+required:
+  - t
+  - nav
+properties:
+  t:
+    type: integer
+    description: Unix timestamp (giây) ngày định giá.
+    example: 1751500800
+  nav:
+    type: number
+    description: NAV tại kỳ định giá.
+    example: 28105.32

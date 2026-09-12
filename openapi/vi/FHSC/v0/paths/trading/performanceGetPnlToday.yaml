@@ -1,7 +1,8 @@
 get:
   operationId: performanceGetPnlToday
   tags:
-    - Lãi-lỗ
+    - pnl
+
   security:
     - FinhayApiKey: []
       FinhayTimestamp: []

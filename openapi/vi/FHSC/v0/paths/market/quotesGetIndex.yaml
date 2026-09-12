@@ -1,0 +1,38 @@
+get:
+  operationId: quotesGetIndex
+  tags:
+    - market-data
+
+  summary: Giá realtime chỉ số
+  description: Dữ liệu realtime của 1 mã chỉ số. `symbol` không phân biệt hoa thường.
+  parameters:
+    - name: symbol
+      in: path
+      required: true
+      description: "Mã chỉ số. VD: VNINDEX, HNXINDEX, SP500."
+      schema:
+        type: string
+        example: VNINDEX
+  responses:
+    "200":
+      description: "`data` là object quote của mã chỉ số."
+      content:
+        application/json:
+          schema:
+            $ref: "../../components/schemas/market/QuoteIndexResponse.yaml"
+    "400":
+      $ref: "../../components/responses/BadRequest.yaml"
+    "401":
+      $ref: "../../components/responses/Unauthorized.yaml"
+    "404":
+      $ref: "../../components/responses/NotFound.yaml"
+    "429":
+      $ref: "../../components/responses/RateLimited.yaml"
+    "500":
+      $ref: "../../components/responses/InternalError.yaml"
+  x-codeSamples:
+    - lang: bash
+      label: cURL
+      source: |
+        curl -H "X-FH-APIKEY: $FINHAY_API_KEY" \
+          "https://open-api.fhsc.com.vn/market/quotes/indices/VNINDEX"

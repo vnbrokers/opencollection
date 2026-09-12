@@ -1,0 +1,28 @@
+type: string
+description: |-
+  Tình trạng giao dịch của mã chứng khoán.
+
+  - `UNSPECIFIED`: Không xác định
+  - `NRM`: Bình thường
+  - `SUS`: Tạm ngừng
+  - `DTL`: Hủy niêm yết chuyển sàn
+  - `TFR`: Ngưng giao dịch do hạn chế
+enum:
+  - "UNSPECIFIED"
+  - "NRM"
+  - "SUS"
+  - "DTL"
+  - "TFR"
+x-enum-descriptions:
+  - "Không xác định"
+  - "Bình thường"
+  - "Tạm ngừng"
+  - "Hủy niêm yết chuyển sàn"
+  - "Ngưng giao dịch do hạn chế"
+x-enum-varnames:
+  - UNSPECIFIED
+  - NRM
+  - SUS
+  - DTL
+  - TFR
+example: NRM

@@ -1,0 +1,16 @@
+type: object
+properties:
+  id:
+    type: string
+    example: "0001179019"
+    description: Số tiểu khoản
+  dealAccount:
+    type: boolean
+    example: true
+    description: Tiểu khoản theo DEAL hoặc không
+  derivativeAccount:
+    type: boolean
+    example: true
+    description: ""
+  derivative:
+    $ref: ./DerivativeAccount.yaml

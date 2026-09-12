@@ -8,16 +8,21 @@ servers:
 security:
   - SsiBearerAuth: []
 tags:
-  - name: Xác thực
+  - name: authentication
     description: Xác thực và quản lý token.
-  - name: Tài khoản
+    x-group: Xác thực
+  - name: account
     description: Thông tin tài khoản giao dịch.
-  - name: Dữ liệu thị trường
+    x-group: Tài khoản
+  - name: market-data
     description: Dữ liệu thị trường.
-  - name: Giao dịch
+    x-group: Dữ liệu thị trường
+  - name: trading
     description: Giao dịch và quản lý lệnh.
-  - name: Lệnh điều kiện
+    x-group: Giao dịch
+  - name: conditional-orders
     description: Lệnh điều kiện.
+    x-group: Lệnh điều kiện
 paths:
   "/api/v3/auth/token":
     $ref: "./paths/auth/AuthToken.yaml"

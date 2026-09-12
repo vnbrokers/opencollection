@@ -1,0 +1,102 @@
+type: object
+properties:
+  t:
+    type: array
+    example:
+      - 1773715500
+    items:
+      type: integer
+      format: int32
+      example: 1773715500
+      description: Thời gian nến (timestamp)
+    description: Danh sách thời gian nến
+  o:
+    type: array
+    example:
+      - 23.8
+    items:
+      type: number
+      format: double
+      example: 23.8
+      description: Giá mở cửa của nến
+    description: Danh sách giá mở cửa của nến theo thời gian tương ứng
+  h:
+    type: array
+    example:
+      - 23.8
+    items:
+      type: number
+      format: double
+      example: 23.8
+      description: Giá cao nhất trong nến
+    description: Danh sách giá cao nhất trong nến theo thời gian tương ứng
+  l:
+    type: array
+    example:
+      - 23.7
+    items:
+      type: number
+      format: double
+      example: 23.7
+      description: Giá thấp nhất trong nến
+    description: Danh sách giá thấp nhất trong nến theo thời gian tương ứng
+  c:
+    type: array
+    example:
+      - 23.75
+    items:
+      type: number
+      format: float
+      example: 23.75
+      description: Giá đóng cửa của nến
+    description: Danh sách giá đóng cửa của nến theo thời gian tương ứng
+  v:
+    type: array
+    example:
+      - 2530900
+    items:
+      type: integer
+      format: int32
+      example: 2530900
+      description: Khối lượng giao dịch
+    description: Danh sách khối lượng giao dịch theo thời gian tương ứng
+  nextTime:
+    type: integer
+    format: int32
+    example: 0
+    description: Timestamp của cây nến tiếp theo (nếu có), 0 nếu không còn
+description: Dữ liệu biểu đồ nến (OHLCV) theo từng khoảng thời gian.
+required:
+  - t
+  - o
+  - h
+  - l
+  - c
+  - v
+  - nextTime
+example:
+  t:
+    - 1773715500
+    - 1773716400
+    - 1773800100
+  o:
+    - 23.8
+    - 23.75
+    - 23.75
+  h:
+    - 23.8
+    - 23.8
+    - 23.9
+  l:
+    - 23.7
+    - 23.7
+    - 23.7
+  c:
+    - 23.75
+    - 23.75
+    - 23.8
+  v:
+    - 2530900
+    - 514100
+    - 494000
+  nextTime: 0

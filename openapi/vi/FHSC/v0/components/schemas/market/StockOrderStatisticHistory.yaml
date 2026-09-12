@@ -1,0 +1,15 @@
+type: object
+description: Chuỗi thống kê lệnh chủ động theo phiên. Chưa phân trang.
+required:
+  - symbol
+  - items
+properties:
+  symbol:
+    type: string
+    description: Mã cổ phiếu.
+    example: HPG
+  items:
+    type: array
+    description: Chuỗi bar theo phiên.
+    items:
+      $ref: "StockOrderStatisticBar.yaml"

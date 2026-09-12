@@ -1,0 +1,14 @@
+type: object
+description: 1 mức giá trong sổ lệnh.
+required:
+  - price
+  - volume
+properties:
+  price:
+    type: number
+    description: Giá đặt.
+    example: 68400
+  volume:
+    type: number
+    description: Khối lượng tại mức giá.
+    example: 12500

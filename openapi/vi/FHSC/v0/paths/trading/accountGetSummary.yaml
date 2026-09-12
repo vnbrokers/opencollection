@@ -1,7 +1,8 @@
 get:
   operationId: accountGetSummary
   tags:
-    - Tiểu khoản
+    - sub-account
+
   security:
     - FinhayApiKey: []
       FinhayTimestamp: []

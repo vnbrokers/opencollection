@@ -2,6 +2,7 @@ type: object
 description: |
   Kết quả thao tác đặt / sửa / huỷ lệnh — phản ánh trạng thái của 1 lệnh
   trên sàn sau khi server xử lý.
+
   > **Semantic cảnh báo**: HTTP 200 **không** đồng nghĩa với lệnh đã được
   > sàn chấp nhận. Nếu `code` non-null thì sàn từ chối lệnh (`order_status`
   > thường là `REJECTED` hoặc `FAILED`), `rejected_reason` chứa lý do dịch

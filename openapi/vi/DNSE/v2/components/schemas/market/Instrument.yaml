@@ -1,0 +1,70 @@
+type: object
+properties:
+  symbol:
+    type: string
+    example: ACB
+    description: Mã chứng khoán
+  marketId:
+    allOf:
+      - $ref: ../enums/MarketId.yaml
+    example: STO
+    description: "Mã thị trường niêm yết
+
+      - STO: Cổ phiếu sàn HOSE
+
+      - STX: Cổ phiếu sàn HNX
+
+      - UPX: Cổ phiếu sàn UPCOM
+
+      - DVX: Phái sinh
+
+      - HCX: Trái phiếu doanh nghiệp"
+  securityGroupId:
+    allOf:
+      - $ref: ../enums/SecurityGroupId.yaml
+    example: ST
+    description: "Nhóm chứng khoán
+
+      - ST: Cổ phiếu
+
+      - EF: Quỹ ETF
+
+      - EW: Chứng quyền
+
+      - FU: Hợp đồng tương lai
+
+      - BS: Trái phiếu"
+  symbolType:
+    allOf:
+      - $ref: ../enums/SymbolType.yaml
+    example: ""
+    description: "Phân loại mã hợp đồng phái sinh theo thời gian đáo hạn (áp dụng cho DERIVATIVE)
+
+      - VN30F1M: HĐTL chỉ số VN30 1 tháng
+
+      - VN30F2M: HĐTL chỉ số VN30 2 tháng
+
+      - VN30F1Q: HĐTL chỉ số VN30 1 quý
+
+      - VN30F2Q: HĐTL chỉ số VN30 2 quý"
+  listedDate:
+    type: string
+    example: "2020-12-09"
+    description: Ngày niêm yết
+  shortName:
+    type: string
+    example: Ngân hàng Á Châu
+    description: Tên viết tắt của tổ chức phát hành
+  name:
+    type: string
+    example: Ngân hàng TMCP Á Châu
+    description: Tên đầy đủ của tổ chức phát hành
+  indexName:
+    type: array
+    description: Danh sách chỉ số mà mã chứng khoán thuộc về (nếu có)
+    example:
+      - VN100
+    items:
+      type: string
+      example: VN100
+      description: Tên chỉ số

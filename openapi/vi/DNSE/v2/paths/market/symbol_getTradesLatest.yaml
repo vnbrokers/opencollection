@@ -1,0 +1,82 @@
+get:
+  operationId: symbol_getTradesLatest
+  summary: Dữ liệu khớp gần nhất
+  parameters:
+    - $ref: ../../components/parameters/XApiKey.yaml
+    - $ref: ../../components/parameters/XAuxDate.yaml
+    - $ref: ../../components/parameters/XSignature.yaml
+    - name: symbol
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: boardId
+      in: query
+      required: true
+      description: |-
+        Mã bảng giao dịch
+        - G1: Lô chẵn
+        - G4: Lô lẻ
+        - T1: Thỏa thuận trong giờ (9h - 14h45)
+        - T3: Thỏa thuận sau giờ (14h45 - 15h)
+        - T4: Thỏa thuận lô lẻ trong giờ (9h - 14h45)
+        - T6: Thỏa thuận lô lẻ sau giờ  (14h45 - 15h)
+      deprecated: false
+      schema:
+        $ref: ../../components/schemas/enums/BoardId.yaml
+      example: G1
+  responses:
+    "200":
+      description: OK
+      headers:
+        Content-Length:
+          $ref: ../../components/headers/ContentLength.yaml
+        Date:
+          $ref: ../../components/headers/Date.yaml
+        Vary:
+          $ref: ../../components/headers/Vary.yaml
+        X-Ratelimit-Limit:
+          $ref: ../../components/headers/XRateLimitLimit.yaml
+        X-Ratelimit-Remaining:
+          $ref: ../../components/headers/XRateLimitRemaining.yaml
+        X-Ratelimit-Reset:
+          $ref: ../../components/headers/XRateLimitReset.yaml
+        X-Tyk-Api-Expires:
+          deprecated: false
+          schema: {}
+          example: Thu, 02 Jan 3000 15:04:00 UTC
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/market/TradesLatestResponse.yaml
+          example:
+            trades:
+              - marketId: STO
+                boardId: G1
+                isin: VN000000ACB8
+                symbol: ACB
+                matchPrice: 23.35
+                matchQtty: 20
+                side: SELL
+                avgPrice: 23.435
+                totalVolumeTraded: 427980
+                grossTradeAmount: 100.295515
+                highestPrice: 23.55
+                lowestPrice: 23.35
+                openPrice: 23.5
+                time: "2026-03-19 04:08:29"
+    "400":
+      $ref: ../../components/responses/BadRequest.yaml
+    "500":
+      $ref: ../../components/responses/InternalError.yaml
+  tags:
+    - market
+parameters:
+  - name: symbol
+    in: path
+    required: true
+    description: "Mã chứng khoán "
+    deprecated: false
+    schema:
+      type: string
+    example: ACB

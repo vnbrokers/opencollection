@@ -1,0 +1,32 @@
+type: string
+description: |-
+  Mã phiên giao dịch theo từng mã.
+
+  - `UNSPECIFIED`: Không xác định
+  - `10`: ATO
+  - `30`: ATC
+  - `40`: Phiên liên tục
+  - `80`: PCA mã halt
+  - `99`: Đóng bảng
+enum:
+  - UNSPECIFIED
+  - "10"
+  - "30"
+  - "40"
+  - "80"
+  - "99"
+x-enum-descriptions:
+  - "Không xác định"
+  - "ATO"
+  - "ATC"
+  - "Phiên liên tục"
+  - "PCA mã halt"
+  - "Đóng bảng"
+x-enum-varnames:
+  - UNSPECIFIED
+  - V10
+  - V30
+  - V40
+  - V80
+  - V99
+example: "99"

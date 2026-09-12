@@ -1,0 +1,31 @@
+type: object
+additionalProperties: true
+description: Dữ liệu sổ lệnh (Market Depth) gần nhất
+properties:
+  quotes:
+    type: array
+    description: Dữ liệu sổ lệnh của mã chứng khoán
+    example:
+      - marketId: STO
+        boardId: G1
+        isin: VN000000ACB8
+        symbol: ACB
+        bid:
+          - price: 24.55
+            quantity: 60590
+          - price: 24.5
+            quantity: 30250
+          - price: 24.45
+            quantity: 19600
+        offer:
+          - price: 24.6
+            quantity: 10450
+          - price: 24.65
+            quantity: 8450
+          - price: 24.7
+            quantity: 23080
+        totalOfferQtty: 0
+        totalBidQtty: 0
+        time: "2026-05-27 09:49:01.001"
+    items:
+      $ref: ./QuoteLatest.yaml

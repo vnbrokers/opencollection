@@ -1,14 +1,16 @@
 type: string
 description: |
-  Độ phân giải của biểu đồ `/market/price-histories-chart`.
+  Độ phân giải nến cho các endpoint `/market/quotes/{class}/{symbol}/history`.
+
   | Giá trị | Ý nghĩa |
   |---------|---------|
-  | `1D` | Theo ngày |
+  | `1D` | Theo ngày (mặc định) |
   | `5` | 5 phút |
   | `15` | 15 phút |
   | `30` | 30 phút |
   | `1H` | Theo giờ |
   | `4H` | 4 giờ |
+default: 1D
 enum:
   - 1D
   - "5"

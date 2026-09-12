@@ -1,7 +1,7 @@
 "get":
   operationId: getAionAccountsAccountNoPpse
   tags:
-    - Lệnh cổ phiếu
+    - stock-orders
   "summary": "Lấy sức mua"
   "description": "Lấy sức mua của tiểu khoản."
   "parameters":

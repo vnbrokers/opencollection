@@ -1,0 +1,13 @@
+type:
+  - object
+  - "null"
+description: Ngành của mã (cấp 1).
+properties:
+  slug:
+    type: string
+    description: Slug ngành.
+    example: consumer-staples
+  name:
+    type: string
+    description: Tên ngành.
+    example: Hàng tiêu dùng thiết yếu

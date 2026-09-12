@@ -3,6 +3,7 @@ description: |
   1 row báo cáo tài chính cho 1 kỳ, trả về từ
   `/market/v2/financial-statement/statement`. `year` luôn có; `quarter`
   chỉ có khi `period=quarterly` (giá trị `1`–`4`).
+
   Các key còn lại là **metric code động** (tên romanized tiếng Việt, ví
   dụ `luuchuyentienthuantuhoatdongkinhdoanh`, `tienvatuongduongtiendaunam`,
   `loinhuanlotruocthue`, …) nhận giá trị số hoặc `null`. Bộ key phụ thuộc

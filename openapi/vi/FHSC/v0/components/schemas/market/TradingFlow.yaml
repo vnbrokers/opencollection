@@ -1,0 +1,35 @@
+type: object
+description: Dòng tiền mua / bán / ròng của một nhóm nhà đầu tư trong một phiên.
+required:
+  - symbol
+  - date
+  - buy
+  - sell
+  - net
+properties:
+  symbol:
+    type: string
+    description: Mã cổ phiếu.
+    example: HPG
+  date:
+    type: string
+    format: date
+    description: Ngày của phiên (`YYYY-MM-DD`).
+    example: "2026-05-27"
+  buy:
+    allOf:
+      - $ref: "TradingMethodBreakdown.yaml"
+    description: Chiều mua.
+  sell:
+    allOf:
+      - $ref: "TradingMethodBreakdown.yaml"
+    description: Chiều bán.
+  net:
+    allOf:
+      - $ref: "TradingMethodBreakdown.yaml"
+    description: Ròng = mua − bán. Âm nghĩa là bán ròng.
+  updated_at:
+    type: string
+    format: date-time
+    description: Thời điểm trả dữ liệu (ISO 8601 kèm offset).
+    example: "2026-05-27T14:45:02+07:00"

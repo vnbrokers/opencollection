@@ -1,0 +1,69 @@
+type: object
+description: Quote trái phiếu realtime.
+required:
+  - symbol
+  - price
+properties:
+  symbol:
+    type: string
+    description: Mã trái phiếu.
+    example: VIC12103
+  name:
+    type: string
+    description: Tên hiển thị.
+    example: Vinamilk
+  exchange:
+    type: string
+    description: Sàn.
+    example: HNX
+  currency:
+    type:
+      - string
+      - "null"
+    description: Đơn vị tiền tệ. `null` với trái phiếu Chính phủ (yield-only).
+    example: VND
+  price:
+    type:
+      - number
+      - "null"
+    description: Giá khớp/trái phiếu (VND, không phải %). `null` với trái phiếu Chính phủ.
+    example: 101200
+  open:
+    type: number
+    description: Mở cửa.
+    example: 101000
+  high:
+    type: number
+    description: Cao nhất.
+    example: 101500
+  low:
+    type: number
+    description: Thấp nhất.
+    example: 100800
+  reference:
+    type: number
+    description: Tham chiếu.
+    example: 100950
+  change:
+    type: number
+    description: Thay đổi tuyệt đối.
+    example: 250
+  change_percent:
+    type: number
+    description: Thay đổi %.
+    example: 0.25
+  yield:
+    type:
+      - number
+      - "null"
+    description: Lợi suất (%). `null` với trái phiếu doanh nghiệp chưa tính được; với trái phiếu Chính phủ là lợi suất 10 năm.
+    example: 9.42
+  volume:
+    type: number
+    description: Số trái phiếu khớp.
+    example: 15200
+  updated_at:
+    type: string
+    description: Thời điểm dữ liệu (ISO 8601 kèm offset).
+    example: "2026-05-27T14:30:15+07:00"
+    format: date-time

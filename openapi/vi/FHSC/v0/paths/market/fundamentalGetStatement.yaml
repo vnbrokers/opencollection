@@ -1,7 +1,8 @@
 get:
   operationId: fundamentalGetStatement
   tags:
-    - Phân tích cơ bản
+    - fundamental-analysis
+
   summary: Báo cáo tài chính
   description: |
     Báo cáo kết quả kinh doanh / bảng cân đối kế toán / lưu chuyển tiền tệ

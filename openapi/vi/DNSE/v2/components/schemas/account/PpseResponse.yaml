@@ -1,0 +1,24 @@
+type: object
+properties:
+  qmaxBuy:
+    type: integer
+    format: int32
+    example: 1209
+    description: Khối lượng mua tối đa
+  qmaxSell:
+    type: integer
+    format: int32
+    example: 700
+    description: Khối lượng bán tối đa
+  pp0Buy:
+    type: number
+    description: Sức mua tối đa
+    format: int32
+  pp0Short:
+    type: number
+    description: Sức bán khống tối đa
+  price:
+    type: number
+    format: double
+    example: 23000
+    description: Giá đặt

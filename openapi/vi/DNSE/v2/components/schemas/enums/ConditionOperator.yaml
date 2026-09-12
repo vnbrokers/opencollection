@@ -1,0 +1,16 @@
+type: string
+description: |-
+  Điều kiện so sánh để kích hoạt lệnh dừng.
+
+  - `>=`: Kích hoạt khi giá thị trường lớn hơn hoặc bằng giá điều kiện
+  - `<=`: Kích hoạt khi giá thị trường nhỏ hơn hoặc bằng giá điều kiện
+enum:
+  - ">="
+  - "<="
+x-enum-descriptions:
+  - "Lớn hơn hoặc bằng"
+  - "Nhỏ hơn hoặc bằng"
+x-enum-varnames:
+  - GREATER_THAN_OR_EQUAL
+  - LESS_THAN_OR_EQUAL
+example: ">="

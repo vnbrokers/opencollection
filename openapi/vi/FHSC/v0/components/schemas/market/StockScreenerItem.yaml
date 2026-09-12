@@ -1,0 +1,143 @@
+type: object
+description: Một dòng kết quả screener. Chỉ chứa các field được chọn qua `fields` (mặc định `symbol`, `exchange`, `name`, `price`, `change_percent`), cộng thêm field dùng trong `sort`/filter.
+properties:
+  symbol:
+    type: string
+    description: Mã cổ phiếu.
+    example: VNM
+  name:
+    type: string
+    description: Tên doanh nghiệp.
+    example: CTCP Sữa Việt Nam
+  exchange:
+    type: string
+    description: Sàn niêm yết.
+    example: HOSE
+  sector:
+    $ref: "StockSector.yaml"
+  price:
+    type:
+      - number
+      - "null"
+    description: Giá hiện tại (VND).
+    example: 68500
+  change_percent:
+    type:
+      - number
+      - "null"
+    description: Thay đổi giá so với tham chiếu (%).
+    example: 0.44
+  market_cap:
+    type:
+      - number
+      - "null"
+    description: Vốn hoá (VND).
+    example: 143000000000000
+  shares_outstanding:
+    type:
+      - number
+      - "null"
+    description: Số cổ phiếu lưu hành.
+    example: 2089955445
+  pe:
+    type:
+      - number
+      - "null"
+    description: P/E.
+    example: 15.2
+  pb:
+    type:
+      - number
+      - "null"
+    description: P/B.
+    example: 2.8
+  eps:
+    type:
+      - number
+      - "null"
+    description: EPS (VND).
+    example: 4500
+  volume:
+    type:
+      - number
+      - "null"
+    description: Khối lượng khớp trong `window`.
+    example: 1284500
+  value:
+    type:
+      - number
+      - "null"
+    description: Giá trị khớp trong `window` (VND).
+    example: 87000000000
+  foreign_buy_value:
+    type:
+      - number
+      - "null"
+    description: Giá trị khối ngoại mua trong `window` (VND).
+    example: 12000000000
+  foreign_sell_value:
+    type:
+      - number
+      - "null"
+    description: Giá trị khối ngoại bán trong `window` (VND).
+    example: 9000000000
+  foreign_net_value:
+    type:
+      - number
+      - "null"
+    description: Giá trị khối ngoại mua ròng trong `window` (VND).
+    example: 3000000000
+  foreign_net_volume:
+    type:
+      - number
+      - "null"
+    description: Khối lượng khối ngoại mua ròng trong `window`.
+    example: 43000
+  foreign_room_available:
+    type:
+      - number
+      - "null"
+    description: Room ngoại còn lại (số cổ phiếu).
+    example: 120000000
+  foreign_room_available_pct:
+    type:
+      - number
+      - "null"
+    description: Room ngoại còn lại tính theo % trần sở hữu nước ngoài (0–100). Càng gần 0 là càng kín room.
+    example: 5.7
+  proprietary_buy_value:
+    type:
+      - number
+      - "null"
+    description: Giá trị tự doanh mua trong `window` (VND).
+    example: 4000000000
+  proprietary_sell_value:
+    type:
+      - number
+      - "null"
+    description: Giá trị tự doanh bán trong `window` (VND).
+    example: 5000000000
+  proprietary_net_value:
+    type:
+      - number
+      - "null"
+    description: Giá trị tự doanh mua ròng trong `window` (VND).
+    example: -1000000000
+  proprietary_net_volume:
+    type:
+      - number
+      - "null"
+    description: Khối lượng tự doanh mua ròng trong `window`.
+    example: -14000
+  ma50:
+    type:
+      - number
+      - "null"
+    description: Trung bình động 50 phiên (VND), cùng thang với `price`. `null` khi mã chưa đủ lịch sử.
+    example: 66200
+  ma200:
+    type:
+      - number
+      - "null"
+    description: Trung bình động 200 phiên (VND), cùng thang với `price`. `null` khi mã chưa đủ lịch sử.
+    example: 61800

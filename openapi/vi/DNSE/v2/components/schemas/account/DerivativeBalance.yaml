@@ -1,0 +1,40 @@
+type: object
+properties:
+  pendingDepositWithdraw:
+    type: integer
+    format: int32
+    example: 826996062
+    description: Tiền nộp/rút cọc chờ xử lý
+  remainSecure:
+    type: integer
+    format: int64
+    example: 122363429600
+    description: Cọc còn lại
+  usedSecure:
+    type: integer
+    format: int32
+    example: 102098277
+    description: Cọc đã sử dụng
+  pendingSecure:
+    type: integer
+    format: int32
+    example: 826996062
+    description: Cọc chờ duyệt
+  holdTaxAndFee:
+    type: integer
+    format: int32
+    example: 0
+    description: Thuế và phí tạm giữ
+  totalLoanDebt:
+    type: integer
+    format: int32
+    example: 0
+    description: Khoản ứng chưa hoàn
+example:
+  pendingDepositWithdraw: 826996062
+  remainSecure: 122363429600
+  usedSecure: 102098277
+  pendingSecure: 826996062
+  holdTaxAndFee: 0
+  totalLoanDebt: 0
+description: ""

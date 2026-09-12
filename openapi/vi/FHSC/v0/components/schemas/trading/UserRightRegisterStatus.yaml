@@ -1,6 +1,7 @@
 type: string
 description: |
   Trạng thái đăng ký quyền cổ đông (phía user).
+
   | Giá trị | Ý nghĩa |
   |---------|---------|
   | `UNREGISTER` | Chưa đăng ký |

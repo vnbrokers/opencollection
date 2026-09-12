@@ -1,0 +1,151 @@
+overlay: 1.0.0
+info:
+  title: SSI OpenAPI - Mintlify customization
+  version: 3.0.0
+extends: ./ssi.openapi.yaml
+
+actions:
+  - target: "$.paths['/api/v3/auth/token'].post"
+    update:
+      x-mint:
+        href: vi/ssi/openapi/authentication/exchange-token
+        metadata:
+          sidebarTitle: "Cấp access token và refresh token"
+  - target: "$.paths['/api/v3/auth/requestOtp'].post"
+    update:
+      x-mint:
+        href: vi/ssi/openapi/authentication/request-otp
+        metadata:
+          sidebarTitle: "Yêu cầu OTP"
+  - target: "$.paths['/api/v3/auth/refresh'].post"
+    update:
+      x-mint:
+        href: vi/ssi/openapi/authentication/refresh-token
+        metadata:
+          sidebarTitle: "Làm mới access token"
+  - target: "$.paths['/api/v3/account/info'].get"
+    update:
+      x-mint:
+        href: vi/ssi/openapi/account/get-account-info
+        metadata:
+          sidebarTitle: "Thông tin tài khoản"
+  - target: "$.paths['/api/v3/data/indexList'].get"
+    update:
+      x-mint:
+        href: vi/ssi/openapi/market-data/get-index-list
+        metadata:
+          sidebarTitle: "Danh sách chỉ số"
+  - target: "$.paths['/api/v3/data/indexSummary'].get"
+    update:
+      x-mint:
+        href: vi/ssi/openapi/market-data/get-index-summary
+        metadata:
+          sidebarTitle: "Tổng hợp chỉ số"
+  - target: "$.paths['/api/v3/data/file'].get"
+    update:
+      x-mint:
+        href: vi/ssi/openapi/market-data/get-market-file
+        metadata:
+          sidebarTitle: "File dữ liệu thị trường"
+  - target: "$.paths['/api/v3/data/masterdata'].get"
+    update:
+      x-mint:
+        href: vi/ssi/openapi/market-data/get-master-data
+        metadata:
+          sidebarTitle: "Dữ liệu tham chiếu thị trường"
+  - target: "$.paths['/api/v3/data/ohlc'].get"
+    update:
+      x-mint:
+        href: vi/ssi/openapi/market-data/get-ohlcv
+        metadata:
+          sidebarTitle: "Dữ liệu OHLCV"
+  - target: "$.paths['/api/v3/data/securitiesByBoard'].get"
+    update:
+      x-mint:
+        href: vi/ssi/openapi/market-data/get-securities
+        metadata:
+          sidebarTitle: "Danh sách chứng khoán"
+  - target: "$.paths['/api/v3/data/securitiesSummary'].get"
+    update:
+      x-mint:
+        href: vi/ssi/openapi/market-data/get-securities-summary
+        metadata:
+          sidebarTitle: "Tổng hợp giao dịch chứng khoán"
+  - target: "$.paths['/api/v3/trading/accountBalance'].get"
+    update:
+      x-mint:
+        href: vi/ssi/openapi/trading/get-account-balance
+        metadata:
+          sidebarTitle: "Số dư tài khoản"
+  - target: "$.paths['/api/v3/trading/maxBuySell'].get"
+    update:
+      x-mint:
+        href: vi/ssi/openapi/trading/get-max-buy-sell
+        metadata:
+          sidebarTitle: "Khối lượng mua bán tối đa"
+  - target: "$.paths['/api/v3/trading/orderBook'].get"
+    update:
+      x-mint:
+        href: vi/ssi/openapi/trading/get-order-book
+        metadata:
+          sidebarTitle: "Sổ lệnh"
+  - target: "$.paths['/api/v3/trading/position'].get"
+    update:
+      x-mint:
+        href: vi/ssi/openapi/trading/get-positions
+        metadata:
+          sidebarTitle: "Vị thế"
+  - target: "$.paths['/api/v3/trading/ppmmrAccount'].get"
+    update:
+      x-mint:
+        href: vi/ssi/openapi/trading/get-pp-mmr
+        metadata:
+          sidebarTitle: "PP/MMR tài khoản"
+  - target: "$.paths['/api/v3/trading/order'].post"
+    update:
+      x-mint:
+        href: vi/ssi/openapi/trading/place-order
+        metadata:
+          sidebarTitle: "Đặt lệnh"
+  - target: "$.paths['/api/v3/trading/order'].put"
+    update:
+      x-mint:
+        href: vi/ssi/openapi/trading/modify-order
+        metadata:
+          sidebarTitle: "Sửa lệnh"
+  - target: "$.paths['/api/v3/trading/order'].delete"
+    update:
+      x-mint:
+        href: vi/ssi/openapi/trading/cancel-order
+        metadata:
+          sidebarTitle: "Hủy lệnh"
+  - target: "$.paths['/api/v3/trading/fco/list'].get"
+    update:
+      x-mint:
+        href: vi/ssi/openapi/conditional-orders/get-conditional-orders
+        metadata:
+          sidebarTitle: "Danh sách lệnh điều kiện"
+  - target: "$.paths['/api/v3/trading/fco/orderbook'].get"
+    update:
+      x-mint:
+        href: vi/ssi/openapi/conditional-orders/get-conditional-order-book
+        metadata:
+          sidebarTitle: "Sổ lệnh điều kiện"
+  - target: "$.paths['/api/v3/trading/fco/statusHistory'].get"
+    update:
+      x-mint:
+        href: vi/ssi/openapi/conditional-orders/get-conditional-order-status
+        metadata:
+          sidebarTitle: "Lịch sử trạng thái lệnh điều kiện"
+  - target: "$.paths['/api/v3/trading/fco/order'].post"
+    update:
+      x-mint:
+        href: vi/ssi/openapi/conditional-orders/place-conditional-order
+        metadata:
+          sidebarTitle: "Đặt lệnh điều kiện"
+  - target: "$.paths['/api/v3/trading/fco/order'].delete"
+    update:
+      x-mint:
+        href: vi/ssi/openapi/conditional-orders/cancel-conditional-order
+        metadata:
+          sidebarTitle: "Hủy lệnh điều kiện"

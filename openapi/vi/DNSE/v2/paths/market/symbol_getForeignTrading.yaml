@@ -1,0 +1,515 @@
+get:
+  operationId: symbol_getForeignTrading
+  tags:
+    - market
+  summary: Dữ liệu nhà đầu tư nước ngoài
+  parameters:
+    - $ref: ../../components/parameters/XApiKey.yaml
+    - $ref: ../../components/parameters/XAuxDate.yaml
+    - $ref: ../../components/parameters/XSignature.yaml
+    - name: symbol
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: boardId
+      in: query
+      schema:
+        $ref: ../../components/schemas/enums/BoardId.yaml
+      description: |-
+        Mã bảng giao dịch
+        - G1: Lô chẵn
+        - G4: Lô lẻ
+        - T1: Thỏa thuận trong giờ (9h - 14h45)
+        - T3: Thỏa thuận sau giờ (14h45 - 15h)
+        - T4: Thỏa thuận lô lẻ trong giờ (9h - 14h45)
+        - T6: Thỏa thuận lô lẻ sau giờ  (14h45 - 15h)
+      example: G1
+    - name: from
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Thời gian bắt đầu (timestamp)
+      example: "1785729607"
+    - name: to
+      in: query
+      required: true
+      schema:
+        type: string
+      description: Thời gian kết thúc (timestamp) (không vượt quá 1 ngày)
+      example: "1785731407"
+    - name: limit
+      in: query
+      schema:
+        type: integer
+      example: 100
+    - name: order
+      in: query
+      schema:
+        type: string
+      example: DESC
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/market/ForeignTradingResponse.yaml
+          example:
+            foreigners:
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:30:00.091"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:29:00.088"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:28:00.092"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:27:00.089"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:26:00.089"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:25:00.090"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:24:00.090"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:23:00.099"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:22:00.088"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:21:00.090"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:20:00.091"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:19:00.088"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:18:00.091"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:17:00.089"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:16:00.089"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:15:00.089"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:14:00.089"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:13:00.091"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:12:00.092"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:11:00.089"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:10:00.092"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:09:00.090"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:08:00.093"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:07:00.092"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:06:00.093"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:05:00.088"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:04:00.089"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:03:00.095"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:02:00.090"
+              - marketId: STO
+                boardId: G1
+                symbol: ACB
+                tradingSessionId: "40"
+                sellVolume: 200
+                sellTradedAmount: 19800000
+                buyVolume: 500
+                buyTradedAmount: 49350000
+                totalSellVolume: 200
+                totalSellTradedAmount: 19800000
+                totalBuyVolume: 500
+                totalBuyTradedAmount: 49350000
+                foreignerOrderLimitQuantity: 62397864
+                foreignerBuyPossibleQuantity: 265119351
+                time: "2026-08-03 11:01:00.089"
+            nextPageToken: Nl8yXzQwX0FDQl8yMDI2LTA2LTExVDA2OjU0OjAwLjM2OFo=
+    "400":
+      $ref: ../../components/responses/BadRequest.yaml
+    "500":
+      $ref: ../../components/responses/InternalError.yaml

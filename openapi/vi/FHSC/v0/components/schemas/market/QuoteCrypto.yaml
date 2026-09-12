@@ -1,0 +1,55 @@
+type: object
+description: Quote crypto realtime.
+required:
+  - symbol
+  - price
+properties:
+  symbol:
+    type: string
+    description: Mã crypto.
+    example: BTC
+  name:
+    type: string
+    description: Tên crypto.
+    example: Bitcoin
+  currency:
+    type: string
+    description: Tiền tệ.
+    example: USD
+  price:
+    type: number
+    description: Giá hiện tại.
+    example: 98420.15
+  open:
+    type: number
+    description: Mở cửa (00:00 UTC).
+    example: 97180.5
+  high:
+    type: number
+    description: Cao nhất.
+    example: 98745.2
+  low:
+    type: number
+    description: Thấp nhất.
+    example: 96920.1
+  reference:
+    type: number
+    description: Tham chiếu (phiên trước).
+    example: 97172.33
+  change:
+    type: number
+    description: Thay đổi tuyệt đối.
+    example: 1247.82
+  change_percent:
+    type: number
+    description: Thay đổi %.
+    example: 1.28
+  volume:
+    type: number
+    description: Khối lượng 24h.
+    example: 42815300000
+  updated_at:
+    type: string
+    description: Thời điểm dữ liệu (ISO 8601 kèm offset).
+    example: "2026-05-27T14:30:15+07:00"
+    format: date-time

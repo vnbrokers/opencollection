@@ -1,7 +1,8 @@
 get:
   operationId: fundamentalGetOverview
   tags:
-    - Phân tích cơ bản
+    - fundamental-analysis
+
   summary: Chỉ số tài chính tổng quan của doanh nghiệp
   description: |
     Các chỉ số tài chính quan trọng của 1 mã stock. `industry` chứa giá trị

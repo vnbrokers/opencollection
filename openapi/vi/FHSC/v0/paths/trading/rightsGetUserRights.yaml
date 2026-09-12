@@ -1,7 +1,8 @@
 get:
   operationId: rightsGetUserRights
   tags:
-    - Quyền cổ đông
+    - shareholder-rights
+
   security:
     - FinhayApiKey: []
       FinhayTimestamp: []

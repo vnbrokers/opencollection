@@ -1,7 +1,7 @@
 "get":
   operationId: getAionAccountsAccountNoPpseSymbol
   tags:
-    - Lệnh cổ phiếu
+    - stock-orders
   "summary": "Lấy sức mua theo mã"
   "description": "Lấy sức mua theo mã cổ phiếu cụ thể."
   "parameters":

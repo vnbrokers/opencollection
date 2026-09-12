@@ -1,6 +1,7 @@
 type: string
 description: |
   Phía của lệnh.
+
   | Giá trị | Ý nghĩa |
   |---------|---------|
   | `BUY`  | Lệnh mua |

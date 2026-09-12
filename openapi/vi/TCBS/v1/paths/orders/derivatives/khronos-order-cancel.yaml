@@ -1,7 +1,7 @@
 "post":
   operationId: postKhronosOrderCancel
   tags:
-    - Lệnh phái sinh
+    - derivative-orders
   "summary": "Hủy lệnh thường phái sinh"
   "description": "Hủy lệnh thường phái sinh."
   responses:

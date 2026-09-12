@@ -1,0 +1,36 @@
+type: string
+description: |-
+  Loại lệnh.
+
+  - `LO`: Lệnh giới hạn
+  - `MOK`: Lệnh thị trường khớp toàn bộ hoặc hủy
+  - `MAK`: Lệnh thị trường khớp một phần và hủy phần còn lại
+  - `MTL`: Lệnh thị trường khớp theo giá thị trường
+  - `ATO`: Lệnh phiên định kỳ mở cửa
+  - `ATC`: Lệnh phiên định kỳ đóng cửa
+  - `PLO`: Lệnh khớp lệnh sau giờ
+enum:
+  - LO
+  - MOK
+  - MAK
+  - MTL
+  - ATO
+  - ATC
+  - PLO
+x-enum-descriptions:
+  - "Lệnh giới hạn"
+  - "Lệnh thị trường khớp toàn bộ hoặc hủy"
+  - "Lệnh thị trường khớp một phần và hủy phần còn lại"
+  - "Lệnh thị trường khớp theo giá thị trường"
+  - "Lệnh phiên định kỳ mở cửa"
+  - "Lệnh phiên định kỳ đóng cửa"
+  - "Lệnh khớp lệnh sau giờ"
+x-enum-varnames:
+  - LIMIT
+  - MARKET_OR_CANCEL
+  - MARKET_AND_CANCEL
+  - MARKET_TO_LIMIT
+  - AT_OPEN
+  - AT_CLOSE
+  - POST_CLOSE
+example: LO

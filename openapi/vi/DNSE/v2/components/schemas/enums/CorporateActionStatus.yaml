@@ -1,0 +1,20 @@
+type: string
+description: |-
+  Trạng thái xử lý sự kiện quyền.
+
+  - `pending`: Đang chờ xử lý hoặc đang được thực hiện
+  - `completed`: Đã xử lý hoàn tất
+  - `canceled`: Đã hủy thành công
+enum:
+  - pending
+  - completed
+  - canceled
+x-enum-descriptions:
+  - "Đang chờ xử lý hoặc đang được thực hiện"
+  - "Đã xử lý hoàn tất"
+  - "Đã hủy thành công"
+x-enum-varnames:
+  - PENDING
+  - COMPLETED
+  - CANCELED
+example: pending

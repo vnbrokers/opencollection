@@ -1,6 +1,7 @@
 type: string
 description: |
   Phân loại lô của lệnh — chỉ xuất hiện ở response `OrderExecutionResult`.
+
   | Giá trị | Ý nghĩa |
   |---------|---------|
   | `EVEN` | Lô chẵn — quantity bội số của lot size (HOSE/HNX: 100). |

@@ -1,0 +1,23 @@
+type: object
+properties:
+  trades:
+    type: array
+    example:
+      - marketId: STO
+        boardId: G1
+        isin: VN000000ACB8
+        symbol: ACB
+        matchPrice: 23.35
+        matchQtty: 20
+        side: SELL
+        avgPrice: 23.435
+        totalVolumeTraded: 427980
+        grossTradeAmount: 100.295515
+        highestPrice: 23.55
+        lowestPrice: 23.35
+        openPrice: 23.5
+        time: "2026-03-19 04:08:29"
+    items:
+      $ref: ./TradeLatest.yaml
+    description: ""
+description: Thông tinh giao dịch khớp lệnh.

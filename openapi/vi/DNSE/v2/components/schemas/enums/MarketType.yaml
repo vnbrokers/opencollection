@@ -1,0 +1,20 @@
+type: string
+description: |-
+  Loại thị trường.
+
+  - `STOCK`: Giao dịch cơ sở
+  - `DERIVATIVE`: Giao dịch phái sinh
+  - `BOND`: Giao dịch trái phiếu
+enum:
+  - STOCK
+  - DERIVATIVE
+  - BOND
+x-enum-descriptions:
+  - "Giao dịch cơ sở"
+  - "Giao dịch phái sinh"
+  - "Giao dịch trái phiếu"
+x-enum-varnames:
+  - STOCK
+  - DERIVATIVE
+  - BOND
+example: STOCK

@@ -1,0 +1,159 @@
+type: object
+properties:
+  marketId:
+    allOf:
+      - $ref: ../enums/MarketId.yaml
+    example: STO
+    description: "Mã thị trường niêm yết mã chứng khoán
+
+      - DVX: Phái sinh sàn HNX
+
+      - HCX: Trái phiếu doanh nghiệp HNX
+
+      - STO: Cổ phiếu sàn HOSE
+
+      - STX: Cổ phiếu sàn HNX
+
+      - UPX: Cổ phiếu sàn Upcom"
+  boardId:
+    allOf:
+      - $ref: ../enums/BoardId.yaml
+    example: G1
+    description: "Mã bảng giao dịch
+
+      - G1: Lô chẵn
+
+      - G4: Lô lẻ
+
+      - T1: Thỏa thuận trong giờ (9h - 14h45)
+
+      - T3: Thỏa thuận sau giờ (14h45 - 15h)
+
+      - T4: Thỏa thuận lô lẻ trong giờ (9h - 14h45)
+
+      - T6: Thỏa thuận lô lẻ sau giờ (14h45 - 15h)"
+  isin:
+    type: string
+    example: VN000000HPG4
+    description: Mã định danh quốc tế
+  symbol:
+    type: string
+    example: HPG
+    description: Mã chứng khoán
+  productGrpId:
+    allOf:
+      - $ref: ../enums/ProductGrpId.yaml
+    example: STO
+    description: "Nhóm sản phẩm theo thị trường
+
+      -FBX: Hợp đồng tương lai Trái phiếu
+
+      -FIO: Hợp đồng tương lai Chỉ số
+
+      -HCX: Trái phiếu Doanh nghiệp HNX
+
+      -STO: Cổ phiếu sàn HOSE
+
+      -STX: Cổ phiếu sàn HNX
+
+      -UPX: Cổ phiếu sàn Upcom"
+  securityGroupId:
+    allOf:
+      - $ref: ../enums/SecurityGroupId.yaml
+    example: ST
+    description: "Nhóm chứng khoán
+
+      - BS: Trái phiếu doanh nghiệp
+
+      - EF: Quỹ ETF
+
+      - EW: Chứng quyền
+
+      - FU: Hợp đồng tương lai
+
+      - ST: Cổ phiếu"
+  basicPrice:
+    type: number
+    format: double
+    example: 26.8
+    description: Giá tham chiếu ngày giao dịch
+  ceilingPrice:
+    type: number
+    format: double
+    example: 28.65
+    description: Giá trần ngày giao dịch
+  floorPrice:
+    type: number
+    format: double
+    example: 24.95
+    description: Giá sàn ngày giao dịch
+  securityStatus:
+    allOf:
+      - $ref: ../enums/SecurityStatus.yaml
+    example: UNSPECIFIED
+    description: "Trạng thái giao dịch của mã chứng khoán
+
+      - HALT: Ngừng giao dịch
+
+      - NO_HALT: Không ngừng giao dịch"
+  symbolAdminStatusCode:
+    allOf:
+      - $ref: ../enums/SymbolAdminStatusCode.yaml
+    example: NRM
+    description: "Trạng thái quản lý hành chính mã chứng khoán
+
+      - CR: Kiểm soát và hạn chế giao dịch
+
+      - CTR: Kiểm soát
+
+      - NRM: Bình thường
+
+      - RES: Hạn chế giao dịch
+
+      - WFR: Cảnh báo vi phạm BCTC
+
+      - WID: Cảnh báo vi phạm CBTT
+
+      - WOV: Cảnh báo vi phạm khác"
+  symbolTradingMethodStatusCode:
+    allOf:
+      - $ref: ../enums/SymbolTradingMethodStatusCode.yaml
+    example: NRM
+    description: "Trạng thái cơ chế giao dịch mã chứng khoán
+
+      - NRM: Bình thường
+
+      - NWE: Niêm yết mới (biên độ đặc biệt)
+
+      - NWN: Niêm yết mới (biên độ thường)
+
+      - SLS: Giao dịch đặc biệt sau tạm ngưng
+
+      - SNE: Giao dịch đặc biệt không có giao dịch dài hạn"
+  symbolTradingSanctionStatusCode:
+    allOf:
+      - $ref: ../enums/SymbolTradingSanctionStatusCode.yaml
+    example: NRM
+    description: "Tình trạng giao dịch của mã chứng khoán
+
+      - NRM: Bình thường
+
+      - SUS: Tạm ngừng giao dịch
+
+      - DTL: Hủy niêm yết để chuyển sàn
+
+      - TFR: Ngưng giao dịch do hạn chế"
+  finalTradeDate:
+    type: string
+    example: null
+    description: Ngày giao dịch cuối cùng (nếu có)
+    nullable: true
+  listingDate:
+    type: string
+    format: date-time
+    example: "2007-11-15T00:00:00Z"
+    description: Ngày niêm yế
+  time:
+    type: string
+    example: "2026-08-04 08:00:24.008"
+    description: Thời gian ghi nhận (YYYY-MM-DD HH:mm:ss.SSS (GMT+7))

@@ -1,0 +1,149 @@
+get:
+  operationId: symbol_getInstruments
+  summary: Chi tiết mã chứng khoán
+  parameters:
+    - $ref: ../../components/parameters/XApiKey.yaml
+    - $ref: ../../components/parameters/XAuxDate.yaml
+    - $ref: ../../components/parameters/XSignature.yaml
+    - name: symbol
+      in: query
+      required: true
+      description: Danh sách mã chứng khoán
+      deprecated: false
+      schema:
+        type: string
+      example: SSI,SHS,ACB,HUT,DSE
+    - name: marketId
+      in: query
+      description: |-
+        Mã thị trường niêm yết
+        - STO: Cổ phiếu sàn HOSE
+        - STX: Cổ phiếu sàn HNX
+        - UPX: Cổ phiếu sàn UPCOM
+        - DVX: Phái sinh
+        - HCX: Trái phiếu doanh nghiệp
+      schema:
+        $ref: ../../components/schemas/enums/MarketId.yaml
+      example: STO
+    - name: securityGroupId
+      in: query
+      description: |-
+        Nhóm chứng khoán
+        - ST: Cổ phiếu
+        - EF: Quỹ ETF
+        - EW: Chứng quyền
+        - FU: Hợp đồng tương lai
+        - BS: Trái phiếu
+      schema:
+        $ref: ../../components/schemas/enums/SecurityGroupId.yaml
+      example: ST
+    - name: indexName
+      in: query
+      description: "Chỉ số thị trường \n- VN30: Top 30 cổ phiếu sàn HOSE\n- VN100: Top 100 cổ phiếu sàn HOSE\n- HNX30: Top 30 cổ phiếu sàn HNX"
+      schema:
+        $ref: ../../components/schemas/enums/MarketIndex.yaml
+      example: VN30
+    - name: limit
+      in: query
+      description: Số bản ghi trên mỗi trang
+      schema:
+        type: integer
+      example: 100
+    - name: page
+      in: query
+      description: Phân trang hiện tại
+      schema:
+        type: integer
+      example: 1
+  responses:
+    "200":
+      description: OK
+      headers:
+        Access-Control-Allow-Credentials:
+          $ref: ../../components/headers/AccessControlAllowCredentials.yaml
+        Content-Length:
+          $ref: ../../components/headers/ContentLength.yaml
+        Date:
+          $ref: ../../components/headers/Date.yaml
+        Vary:
+          $ref: ../../components/headers/Vary.yaml
+        X-Content-Type-Options:
+          $ref: ../../components/headers/XContentTypeOptions.yaml
+        X-Frame-Options:
+          $ref: ../../components/headers/XFrameOptions.yaml
+        X-Ratelimit-Limit:
+          $ref: ../../components/headers/XRateLimitLimit.yaml
+        X-Ratelimit-Remaining:
+          $ref: ../../components/headers/XRateLimitRemaining.yaml
+        X-Ratelimit-Reset:
+          $ref: ../../components/headers/XRateLimitReset.yaml
+        X-Request-Id:
+          $ref: ../../components/headers/XRequestId.yaml
+        X-Tyk-Api-Expires:
+          schema:
+            type: string
+          example: Thu, 02 Jan 3000 15:04:00 UTC
+        X-Xss-Protection:
+          $ref: ../../components/headers/XXssProtection.yaml
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/market/InstrumentsResponse.yaml
+          example:
+            data:
+              - symbol: ACB
+                marketId: STO
+                securityGroupId: ST
+                symbolType: ""
+                listedDate: "2020-12-09"
+                shortName: Ngân hàng Á Châu
+                name: Ngân hàng TMCP Á Châu
+                indexName:
+                  - VN100
+                  - VN30
+              - symbol: DSE
+                marketId: STO
+                securityGroupId: ST
+                symbolType: ""
+                listedDate: "2024-07-01"
+                shortName: Chứng khoán DNSE
+                name: CTCP Chứng khoán DNSE
+                indexName:
+                  - VN100
+              - symbol: HUT
+                marketId: STX
+                securityGroupId: ST
+                symbolType: ""
+                listedDate: "2008-04-11"
+                shortName: CTCP TASCO
+                name: CTCP Tasco
+                indexName:
+                  - HNX30
+              - symbol: SHS
+                marketId: STX
+                securityGroupId: ST
+                symbolType: ""
+                listedDate: "2009-06-25"
+                shortName: Chứng khoán SG HN
+                name: CTCP Chứng khoán Sài Gòn - Hà Nội
+                indexName:
+                  - HNX30
+              - symbol: SSI
+                marketId: STO
+                securityGroupId: ST
+                symbolType: ""
+                listedDate: "2007-10-29"
+                shortName: Chứng khoán SSI
+                name: CTCP Chứng khoán SSI
+                indexName:
+                  - VN100
+                  - VN30
+            total: 5
+            page: 1
+            pageSize: 100
+    "400":
+      $ref: ../../components/responses/BadRequest.yaml
+    "500":
+      $ref: ../../components/responses/InternalError.yaml
+  tags:
+    - market

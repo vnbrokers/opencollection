@@ -1,0 +1,12 @@
+type: object
+required:
+  - symbol
+properties:
+  symbol:
+    type: string
+    description: Mã chỉ số.
+    example: VNINDEX
+  name:
+    type: string
+    description: Tên chỉ số.
+    example: VN-Index

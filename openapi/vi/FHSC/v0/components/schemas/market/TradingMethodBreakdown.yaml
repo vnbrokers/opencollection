@@ -1,0 +1,15 @@
+type: object
+description: "Một chiều giao dịch tách theo phương thức: `matched` (khớp lệnh) + `put_through` (thoả thuận) = `total`."
+required:
+  - total
+properties:
+  total:
+    $ref: "TradedAmount.yaml"
+  matched:
+    allOf:
+      - $ref: "TradedAmount.yaml"
+    description: Phần khớp lệnh. `null` khi nguồn không tách được phương thức.
+  put_through:
+    allOf:
+      - $ref: "TradedAmount.yaml"
+    description: Phần thoả thuận. `null` khi nguồn không tách được phương thức.

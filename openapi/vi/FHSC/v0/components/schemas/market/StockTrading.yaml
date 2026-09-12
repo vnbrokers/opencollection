@@ -1,0 +1,31 @@
+type: object
+description: Giao dịch tổng của một mã trong một phiên (khớp lệnh + thoả thuận).
+required:
+  - symbol
+  - date
+  - total
+properties:
+  symbol:
+    type: string
+    description: Mã cổ phiếu.
+    example: HPG
+  date:
+    type: string
+    format: date
+    description: Ngày của phiên (`YYYY-MM-DD`).
+    example: "2026-05-27"
+  total:
+    $ref: "TradedAmount.yaml"
+  matched:
+    allOf:
+      - $ref: "TradedAmount.yaml"
+    description: Phần khớp lệnh. `null` khi nguồn không tách được phương thức.
+  put_through:
+    allOf:
+      - $ref: "TradedAmount.yaml"
+    description: Phần thoả thuận. `null` khi nguồn không tách được phương thức.
+  updated_at:
+    type: string
+    format: date-time
+    description: Thời điểm phiên được ghi lần cuối (ISO 8601 kèm offset).
+    example: "2026-05-27T14:45:02+07:00"

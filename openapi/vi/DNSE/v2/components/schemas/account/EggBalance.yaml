@@ -1,0 +1,10 @@
+type: object
+properties:
+  totalValue:
+    type: integer
+    format: int32
+    description: Tổng giá trị tài sản trứng
+    example: 6849005
+description: Thông tin tài sản trứng vàng
+example:
+  totalValue: 6849005

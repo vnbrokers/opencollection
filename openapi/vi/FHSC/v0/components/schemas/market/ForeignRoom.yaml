@@ -1,0 +1,44 @@
+type: object
+description: Room ngoại của một mã tại một phiên. `owned + available = max_volume`.
+required:
+  - symbol
+  - date
+properties:
+  symbol:
+    type: string
+    description: Mã cổ phiếu.
+    example: VNM
+  date:
+    type: string
+    format: date
+    description: Ngày của phiên (`YYYY-MM-DD`).
+    example: "2026-05-27"
+  max_pct:
+    type:
+      - number
+      - "null"
+    description: Trần sở hữu nước ngoài (%).
+    example: 100
+  max_volume:
+    type:
+      - number
+      - "null"
+    description: Trần sở hữu nước ngoài (số cổ phiếu).
+    example: 2089955445
+  owned:
+    type:
+      - number
+      - "null"
+    description: Khối lượng khối ngoại đang nắm.
+    example: 1969955445
+  available:
+    type:
+      - number
+      - "null"
+    description: Room ngoại còn lại (số cổ phiếu).
+    example: 120000000
+  updated_at:
+    type: string
+    format: date-time
+    description: Thời điểm dữ liệu (ISO 8601 kèm offset).
+    example: "2026-05-27T14:30:15+07:00"

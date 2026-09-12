@@ -1,7 +1,8 @@
 get:
   operationId: bootstrapGetMe
   tags:
-    - Khởi tạo
+    - bootstrap
+
   security:
     - FinhayApiKey: []
       FinhayTimestamp: []

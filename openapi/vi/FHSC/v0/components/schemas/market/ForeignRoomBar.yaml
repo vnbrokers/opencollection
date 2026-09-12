@@ -1,0 +1,34 @@
+type: object
+description: Room ngoại của một phiên trong chuỗi lịch sử. Mỗi bar mang theo trần sở hữu tại phiên đó vì `max_volume` đổi khi doanh nghiệp phát hành thêm.
+required:
+  - date
+properties:
+  date:
+    type: string
+    format: date
+    description: Ngày của phiên (`YYYY-MM-DD`).
+    example: "2026-05-27"
+  max_pct:
+    type:
+      - number
+      - "null"
+    description: Trần sở hữu nước ngoài (%).
+    example: 100
+  max_volume:
+    type:
+      - number
+      - "null"
+    description: Trần sở hữu nước ngoài (số cổ phiếu).
+    example: 2089955445
+  owned:
+    type:
+      - number
+      - "null"
+    description: Khối lượng khối ngoại đang nắm.
+    example: 1969955445
+  available:
+    type:
+      - number
+      - "null"
+    description: Room ngoại còn lại (số cổ phiếu).
+    example: 120000000

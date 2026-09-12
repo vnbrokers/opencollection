@@ -1,0 +1,16 @@
+type: string
+description: |-
+  Chiến lược kích hoạt chốt lời hoặc cắt lỗ.
+
+  - `PNL_RATE`: Kích hoạt theo tỷ lệ phần trăm
+  - `DELTA_PRICE`: Kích hoạt theo mức chênh lệch giá
+enum:
+  - PNL_RATE
+  - DELTA_PRICE
+x-enum-descriptions:
+  - "Kích hoạt theo tỷ lệ phần trăm"
+  - "Kích hoạt theo mức chênh lệch giá"
+x-enum-varnames:
+  - PNL_RATE
+  - DELTA_PRICE
+example: DELTA_PRICE

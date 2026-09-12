@@ -1,0 +1,11 @@
+name: subscribeMarketIndexInfluenceRequest
+title: Đăng ký luồng top cổ phiếu ảnh hưởng chỉ số
+summary: Đăng ký topic `market_index_influence.{index_name}.{resolution}.{encoding}`.
+payload:
+  $ref: ../../schemas/market_index_influence/SubscribeRequest.yaml
+examples:
+  - name: subscribeMarketIndexInfluence
+    payload:
+      action: subscribe
+      channels:
+        - name: market_index_influence.VN30.1.json

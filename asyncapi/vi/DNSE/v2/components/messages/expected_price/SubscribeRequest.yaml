@@ -1,6 +1,6 @@
 name: subscribeExpectedPriceRequest
 title: Đăng ký luồng giá dự kiến
-summary: Đăng ký topic `expected_price.{market_group}.json`.
+summary: Đăng ký topic `expected_price.{market_group}.{encoding}`.
 payload:
   $ref: ../../schemas/expected_price/SubscribeRequest.yaml
 examples:

@@ -1,6 +1,6 @@
 name: subscribeQuoteRequest
 title: Đăng ký luồng độ sâu thị trường
-summary: Đăng ký topic `top_price.{market_group}.json`.
+summary: Đăng ký topic `top_price.{market_group}.{encoding}`.
 payload:
   $ref: ../../schemas/top_price/SubscribeRequest.yaml
 examples:

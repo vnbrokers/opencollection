@@ -1,6 +1,6 @@
 name: subscribeTradeExtraRequest
 title: Đăng ký luồng khớp lệnh nâng cao
-summary: Đăng ký topic `tick_extra.{market_group}.json`.
+summary: Đăng ký topic `tick_extra.{market_group}.{encoding}`.
 payload:
   $ref: ../../schemas/tick_extra/SubscribeRequest.yaml
 examples:

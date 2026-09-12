@@ -13,8 +13,8 @@ parameters:
     description: Mã lệnh giao dịch
     deprecated: false
     schema:
-      type: integer
-    example: 96
+      type: string
+    example: "96"
 
 post:
   operationId: account_placeOrder
@@ -108,6 +108,7 @@ post:
 get:
   operationId: account_getOrderDetail
   summary: Chi tiết lệnh theo ID
+  description: Lấy thông tin chi tiết lệnh theo orderId, bao gồm lệnh thường (NORMAL), lệnh dừng có điều kiện (STOP) và lệnh OCO.
   parameters:
     - $ref: ../../components/parameters/XApiKey.yaml
     - $ref: ../../components/parameters/XAuxDate.yaml
@@ -153,7 +154,7 @@ get:
           schema:
             $ref: ../../components/schemas/trading/OrderDetailResponse.yaml
           example:
-            id: 966
+            id: "966"
             side: NS
             accountNo: "0001179019"
             symbol: 41I1G4000

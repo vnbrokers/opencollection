@@ -1,6 +1,6 @@
 name: subscribeBrokerPositionRequest
 title: Đăng ký luồng vị thế môi giới
-summary: Đăng ký topic `position.broker.{market_type}.{investor_id}.json`.
+summary: Đăng ký topic `position.broker.{market_type}.{investor_id}.{encoding}`.
 payload:
   $ref: ../../schemas/position_broker/SubscribeRequest.yaml
 examples:
@@ -9,4 +9,3 @@ examples:
       action: subscribe
       channels:
         - name: position.broker.STOCK.1000009250.json
-          symbols: []

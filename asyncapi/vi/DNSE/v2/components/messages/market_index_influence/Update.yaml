@@ -1,0 +1,22 @@
+name: marketIndexInfluenceUpdate
+title: Cập nhật top cổ phiếu ảnh hưởng chỉ số
+summary: Bản cập nhật thống kê top các cổ phiếu có mức độ ảnh hưởng tới chỉ số thị trường.
+payload:
+  $ref: ../../schemas/market_index_influence/Update.yaml
+examples:
+  - name: marketIndexInfluenceUpdate
+    payload:
+      index_name: VN30
+      data:
+        - symbol: STB
+          time:
+            Seconds: 1787122657
+            Nanos: 771733668
+          influence: 1.25
+          influenceRatio: 0.18
+          proportion: 0.04
+          changeRatio: 1.5
+          changeValue: 0.85
+          price: 56500
+          totalVolumeTraded: 182149117
+          grossTradeAmount: 5635.14857305

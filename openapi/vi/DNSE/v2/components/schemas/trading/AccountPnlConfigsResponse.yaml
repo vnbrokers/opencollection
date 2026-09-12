@@ -1,0 +1,25 @@
+type: object
+description: Cấu hình chốt lời, cắt lỗ của tiểu khoản.
+properties:
+  accountNo:
+    type: string
+    example: "0001179019"
+    description: Số tiểu khoản chứng khoán.
+  configs:
+    type: object
+    description: Cấu hình chốt lời và cắt lỗ của tiểu khoản.
+    properties:
+      takeProfit:
+        $ref: ./PnlConfig.yaml
+      stopLoss:
+        $ref: ./PnlConfig.yaml
+  createdDate:
+    type: string
+    format: date-time
+    example: "2026-09-10T02:47:36.384761Z"
+    description: Thời điểm cấu hình được tạo.
+  modifiedDate:
+    type: string
+    format: date-time
+    example: "2026-09-10T07:44:44.235941815Z"
+    description: Thời điểm cập nhật cấu hình gần nhất.

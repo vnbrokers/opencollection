@@ -1,0 +1,301 @@
+info:
+  name: Lịch sử chỉ số
+  type: http
+  seq: 9
+
+http:
+  method: GET
+  url: "{{baseUrl}}/price/:indexName/market-index?from=1788915600&to=1788922800&limit=100&nextPageToken="
+  params:
+    - name: from
+      value: "1788915600"
+      type: query
+      description: "Thời gian bắt đầu (timestamp)"
+    - name: to
+      value: "1788922800"
+      type: query
+      description: "Thời gian kết thúc (timestamp)"
+    - name: limit
+      value: "100"
+      type: query
+      description: "Số lượng bản ghi tối đa trả về"
+    - name: nextPageToken
+      value: ""
+      type: query
+      description: "Token dùng để lấy trang tiếp theo"
+    - name: indexName
+      value: "{{indexName}}"
+      type: path
+      description: "Tên chỉ số thị trường"
+  auth: inherit
+
+runtime:
+  variables:
+    - name: indexName
+      value: VN30
+  scripts:
+    - type: tests
+      code: |-
+        test("response matches the schema", function () {
+          const schema = {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "MarketIndexHistoryResponse",
+            "type": "object",
+            "properties": {
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "marketId": { "type": "string" },
+                    "indexName": { "type": "string" },
+                    "tradingSessionId": { "type": "string" },
+                    "marketIndexClass": { "type": "string" },
+                    "indexTypeCode": { "type": "string" },
+                    "currencyCode": { "type": "string" },
+                    "time": { "type": "string" },
+                    "valueIndexes": { "type": "number" },
+                    "totalVolumeTraded": { "type": "integer" },
+                    "grossTradeAmount": { "type": "number" },
+                    "contauctAccTrdVol": { "type": "integer" },
+                    "contauctAccTrdVal": { "type": "number" },
+                    "blkTrdAccTrdVol": { "type": "integer" },
+                    "blkTrdAccTrdVal": { "type": "number" },
+                    "fluctuationUpperLimitIssueCount": { "type": "integer" },
+                    "fluctuationUpIssueCount": { "type": "integer" },
+                    "fluctuationSteadinessIssueCount": { "type": "integer" },
+                    "fluctuationDownIssueCount": { "type": "integer" },
+                    "fluctuationLowerLimitIssueCount": { "type": "integer" },
+                    "fluctuationUpIssueVolume": { "type": "integer" },
+                    "fluctuationSteadinessIssueVolume": { "type": "integer" },
+                    "fluctuationDownIssueVolume": { "type": "integer" },
+                    "highestValueIndexes": { "type": "number" },
+                    "lowestValueIndexes": { "type": "number" },
+                    "changedValue": { "type": "number" },
+                    "changedRatio": { "type": "number" },
+                    "priorValueIndexes": { "type": "number" }
+                  }
+                }
+              },
+              "nextPageToken": {
+                "type": ["string", "null"]
+              }
+            }
+          }
+
+          res.status === 200 && expect(res.body).to.have.jsonSchema(schema);
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: 200 Response
+    description: Thành công - trả về lịch sử chỉ số theo khoảng thời gian
+    request:
+      url: "{{baseUrl}}/price/{{indexName}}/market-index"
+      method: GET
+      headers:
+        - name: X-Aux-Date
+          value: ""
+        - name: X-Signature
+          value: ""
+        - name: X-API-Key
+          value: "{{apiKey}}"
+        - name: version
+          value: "2026-09-10"
+      params:
+        - name: from
+          value: "1788915600"
+          type: query
+        - name: to
+          value: "1788922800"
+          type: query
+        - name: limit
+          value: "100"
+          type: query
+        - name: nextPageToken
+          value: ""
+          type: query
+        - name: indexName
+          value: ""
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "data": [
+              {
+                "marketId": "STO",
+                "indexName": "VNINDEX",
+                "tradingSessionId": "99",
+                "marketIndexClass": "HSX",
+                "indexTypeCode": "001",
+                "currencyCode": "VND",
+                "time": "2026-08-19 15:05:00.108",
+                "valueIndexes": 2735.41,
+                "totalVolumeTraded": 2059678,
+                "grossTradeAmount": 163.757653341,
+                "contauctAccTrdVol": 257579,
+                "contauctAccTrdVal": 17.11369539,
+                "blkTrdAccTrdVol": 1802099,
+                "blkTrdAccTrdVal": 146.643957951,
+                "fluctuationUpperLimitIssueCount": 11,
+                "fluctuationUpIssueCount": 19,
+                "fluctuationSteadinessIssueCount": 11,
+                "fluctuationDownIssueCount": 7,
+                "fluctuationLowerLimitIssueCount": 9,
+                "fluctuationUpIssueVolume": 1240687,
+                "fluctuationSteadinessIssueVolume": 52400,
+                "fluctuationDownIssueVolume": 184367,
+                "highestValueIndexes": 2735.41,
+                "lowestValueIndexes": 2681.97,
+                "changedValue": 1003.3899999999999,
+                "changedRatio": 57.93,
+                "priorValueIndexes": 1732.02
+              }
+            ],
+            "nextPageToken": "eyJ0cm...OjZ9"
+          }
+  - name: 400 Response
+    description: Yêu cầu không hợp lệ
+    request:
+      url: "{{baseUrl}}/price/{{indexName}}/market-index"
+      method: GET
+      headers:
+        - name: X-Aux-Date
+          value: ""
+        - name: X-Signature
+          value: ""
+        - name: X-API-Key
+          value: "{{apiKey}}"
+        - name: version
+          value: "2026-09-10"
+      params:
+        - name: from
+          value: ""
+          type: query
+        - name: to
+          value: ""
+          type: query
+        - name: limit
+          value: ""
+          type: query
+        - name: nextPageToken
+          value: ""
+          type: query
+        - name: indexName
+          value: ""
+          type: path
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "code": "",
+            "message": "",
+            "status": 0
+          }
+  - name: 500 Response
+    description: Lỗi máy chủ
+    request:
+      url: "{{baseUrl}}/price/{{indexName}}/market-index"
+      method: GET
+      headers:
+        - name: X-Aux-Date
+          value: ""
+        - name: X-Signature
+          value: ""
+        - name: X-API-Key
+          value: "{{apiKey}}"
+        - name: version
+          value: "2026-09-10"
+      params:
+        - name: from
+          value: ""
+          type: query
+        - name: to
+          value: ""
+          type: query
+        - name: limit
+          value: ""
+          type: query
+        - name: nextPageToken
+          value: ""
+          type: query
+        - name: indexName
+          value: ""
+          type: path
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "code": "",
+            "message": "",
+            "status": 0
+          }
+
+docs: |-
+  Truy vấn thông tin lịch sử các chỉ số thị trường theo khoảng thời gian.
+
+  <h3 id="getmarketindex-parameters">Parameters</h3>
+
+  |Name|In|Type|Required|Description|
+  |---|---|---|---|---|
+  |from|query|string|true|Thời gian bắt đầu (timestamp)|
+  |to|query|string|true|Thời gian kết thúc (timestamp), không vượt quá 1 ngày|
+  |limit|query|integer|false|Số lượng bản ghi tối đa trả về|
+  |nextPageToken|query|string|false|Token dùng để lấy trang tiếp theo|
+  |X-API-Key|header|string|false|API Key được cấp khi đăng ký dịch vụ|
+  |X-Aux-Date|header|string|false|Thời gian thực hiện yêu cầu|
+  |X-Signature|header|string|false|Chữ ký xác thực yêu cầu|
+  |version|header|string|false|API version (YYYY-MM-DD)|
+  |indexName|path|string|true|Chỉ số thị trường|
+
+  #### Detailed descriptions
+
+  **indexName**: Chỉ số thị trường
+  - HNX: Chỉ số sàn HNX
+  - HNX30: Chỉ số Top 30 cổ phiếu sàn HNX
+  - VN30: Chỉ số Top 30 cổ phiếu sàn HOSE
+  - VNINDEX: Chỉ số sàn HOSE
+  - UPCOM: Chỉ số sàn UPCOM
+  - VN100: Chỉ số Top 100 cổ phiếu sàn HOSE
+  - VNXALLSHARE: Chỉ số các cổ phiếu chọn lọc sàn HOSE
+
+  <h3 id="getmarketindex-responseschema">Response Schema</h3>
+
+  |Name|Type|Required|Restrictions|Description|
+  |---|---|---|---|---|
+  |» data|[object]|false|none|Danh sách dữ liệu lịch sử chỉ số|
+  |»» marketId|string|false|none|Mã thị trường|
+  |»» indexName|string|false|none|Tên chỉ số thị trường|
+  |»» tradingSessionId|string|false|none|Mã phiên giao dịch hiện tại|
+  |»» marketIndexClass|string|false|none|Phân loại chỉ số|
+  |»» indexTypeCode|string|false|none|Mã loại chỉ số|
+  |»» currencyCode|string|false|none|Đơn vị tiền tệ|
+  |»» time|string|false|none|Thời gian giao dịch|
+  |»» valueIndexes|number(double)|false|none|Giá trị hiện tại của chỉ số|
+  |»» totalVolumeTraded|integer(int32)|false|none|Tổng khối lượng giao dịch trong ngày|
+  |»» grossTradeAmount|number(double)|false|none|Tổng giá trị giao dịch trong ngày|
+  |» nextPageToken|string|false|none|Token dùng để phân trang kết quả|

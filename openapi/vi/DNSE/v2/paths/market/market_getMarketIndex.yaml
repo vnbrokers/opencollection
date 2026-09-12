@@ -1,0 +1,99 @@
+get:
+  operationId: market_getMarketIndex
+  tags:
+    - market
+  summary: Lịch sử chỉ số
+  description: Truy vấn thông tin lịch sử các chỉ số thị trường theo khoảng thời gian.
+  parameters:
+    - $ref: ../../components/parameters/XApiKey.yaml
+    - $ref: ../../components/parameters/XAuxDate.yaml
+    - $ref: ../../components/parameters/XSignature.yaml
+    - name: indexName
+      in: path
+      required: true
+      description: Tên chỉ số thị trường.
+      schema:
+        $ref: ../../components/schemas/enums/MarketIndex.yaml
+      example: VN30
+    - name: from
+      in: query
+      required: true
+      description: Thời gian bắt đầu (timestamp).
+      schema:
+        type: string
+      example: "1788915600"
+    - name: to
+      in: query
+      required: true
+      description: Thời gian kết thúc (timestamp).
+      schema:
+        type: string
+      example: "1788922800"
+    - name: limit
+      in: query
+      required: false
+      description: Số lượng bản ghi tối đa trả về.
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      example: 100
+    - name: order
+      in: query
+      required: false
+      description: Thứ tự dữ liệu theo thời gian.
+      schema:
+        type: string
+        enum:
+          - ASC
+          - DESC
+        default: DESC
+      example: DESC
+    - name: nextPageToken
+      in: query
+      required: false
+      description: Token dùng để lấy trang tiếp theo.
+      schema:
+        type: string
+      example: NDYwMTQ1XzIwMjYtMDMtMTJUMDQ6MjU6MDUuNTZa
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/market/MarketIndexHistoryResponse.yaml
+          example:
+            data:
+              - indexName: VN30
+                valueIndexes: 1867.57
+                changedValue: -8.57
+                changedRatio: -0.46
+                fluctuationUpIssueCount: 4
+                fluctuationDownIssueCount: 24
+                fluctuationSteadinessIssueCount: 2
+                fluctuationLowerLimitIssueCount: 1
+                fluctuationUpperLimitIssueCount: 0
+                fluctuationDownIssueVolume: 151005844
+                fluctuationUpIssueVolume: 12011382
+                fluctuationSteadinessIssueVolume: 19131891
+                currencyCode: VND
+                indexTypeCode: "101"
+                lowestValueIndexes: 1864.16
+                highestValueIndexes: 1879.66
+                priorValueIndexes: 1876.14
+                contauctAccTrdVal: 4001.6785832
+                contauctAccTrdVol: 119469304
+                blkTrdAccTrdVal: 1633.46998985
+                blkTrdAccTrdVol: 62679813
+                grossTradeAmount: 5635.14857305
+                totalVolumeTraded: 182149117
+                marketIndexClass: HSX
+                marketId: STO
+                tradingSessionId: "40"
+                time: "2026-09-10 09:15:00.000"
+            nextPageToken: NDYwMTQ1XzIwMjYtMDMtMTJUMDQ6MjU6MDUuNTZa
+    "400":
+      $ref: ../../components/responses/BadRequest.yaml
+    "500":
+      $ref: ../../components/responses/InternalError.yaml

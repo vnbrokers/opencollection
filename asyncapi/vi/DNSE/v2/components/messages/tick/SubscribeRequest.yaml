@@ -1,6 +1,6 @@
 name: subscribeTradeRequest
 title: Đăng ký luồng khớp lệnh
-summary: Đăng ký topic `tick.{market_group}.json`.
+summary: Đăng ký topic `tick.{market_group}.{encoding}`.
 payload:
   $ref: ../../schemas/tick/SubscribeRequest.yaml
 examples:

@@ -1,6 +1,6 @@
 name: subscribeSecurityDefinitionRequest
 title: Đăng ký luồng thông tin chứng khoán
-summary: Đăng ký topic `security_definition.{market_group}.json`.
+summary: Đăng ký topic `security_definition.{market_group}.{encoding}`.
 payload:
   $ref: ../../schemas/security_definition/SubscribeRequest.yaml
 examples:

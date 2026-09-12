@@ -1,51 +1,20 @@
 type: object
-description: Cập nhật từ topic `market_index.{index_name}.{encoding}`.
-required:
-  - T
-  - indexName
-  - valueIndexes
-  - changedValue
-  - changedRatio
-  - fluctuationSteadinessIssueCount
-  - fluctuationDownIssueCount
-  - fluctuationUpIssueCount
-  - fluctuationLowerLimitIssueCount
-  - fluctuationUpperLimitIssueCount
-  - fluctuationDownIssueVolume
-  - fluctuationUpIssueVolume
-  - fluctuationSteadinessIssueVolume
-  - currencyCode
-  - indexTypeCode
-  - lowestValueIndexes
-  - highestValueIndexes
-  - priorValueIndexes
-  - contauctAccTrdVal
-  - contauctAccTrdVol
-  - blkTrdAccTrdVal
-  - blkTrdAccTrdVol
-  - grossTradeAmount
-  - totalVolumeTraded
-  - marketIndexClass
-  - marketId
-  - tradingSessionId
-  - multicastReceiveTime
-  - transactTime
+description: Một bản ghi lịch sử chỉ số thị trường.
 properties:
-  T:
-    type: string
-    description: Mã loại message chỉ số thị trường.
-    const: mi
   indexName:
     type: string
     description: Tên chỉ số thị trường.
   valueIndexes:
     type: number
-    description: Giá trị hiện tại của chỉ số.
+    format: double
+    description: Giá trị chỉ số.
   changedValue:
     type: number
+    format: double
     description: Giá trị tăng hoặc giảm so với giá tham chiếu.
   changedRatio:
     type: number
+    format: double
     description: Tỷ lệ phần trăm tăng hoặc giảm so với giá tham chiếu.
   fluctuationSteadinessIssueCount:
     type: integer
@@ -57,9 +26,7 @@ properties:
     type: integer
     description: Số lượng mã có giá tăng.
   fluctuationLowerLimitIssueCount:
-    oneOf:
-      - type: integer
-      - type: "null"
+    type: integer
     description: Số lượng mã giảm sàn.
   fluctuationUpperLimitIssueCount:
     type: integer
@@ -84,15 +51,19 @@ properties:
     description: Mã loại chỉ số.
   lowestValueIndexes:
     type: number
-    description: Giá thấp nhất trong phiên.
+    format: double
+    description: Giá trị thấp nhất trong phiên.
   highestValueIndexes:
     type: number
-    description: Giá cao nhất trong phiên.
+    format: double
+    description: Giá trị cao nhất trong phiên.
   priorValueIndexes:
     type: number
+    format: double
     description: Giá trị tham chiếu.
   contauctAccTrdVal:
     type: number
+    format: double
     description: Tổng giá trị giao dịch theo phương thức khớp lệnh.
   contauctAccTrdVol:
     type: integer
@@ -100,6 +71,7 @@ properties:
     description: Tổng khối lượng giao dịch theo phương thức khớp lệnh.
   blkTrdAccTrdVal:
     type: number
+    format: double
     description: Tổng giá trị giao dịch theo phương thức thỏa thuận.
   blkTrdAccTrdVol:
     type: integer
@@ -107,6 +79,7 @@ properties:
     description: Tổng khối lượng giao dịch theo phương thức thỏa thuận.
   grossTradeAmount:
     type: number
+    format: double
     description: Tổng giá trị giao dịch trong ngày.
   totalVolumeTraded:
     type: integer
@@ -122,34 +95,8 @@ properties:
     description: Mã thị trường.
   tradingSessionId:
     type: string
-    description: Mã phiên giao dịch hiện tại.
-  multicastReceiveTime:
-    type: object
-    description: Thời gian nhận message qua multicast.
-    required:
-      - Seconds
-      - Nanos
-    properties:
-      Seconds:
-        type: integer
-        format: int64
-        description: Unix timestamp tính bằng giây.
-      Nanos:
-        type: integer
-        format: int32
-        description: Phần nanosecond của timestamp.
-  transactTime:
-    type: object
-    description: Thời gian trong các message giá của sàn trả về.
-    required:
-      - Seconds
-      - Nanos
-    properties:
-      Seconds:
-        type: integer
-        format: int64
-        description: Unix timestamp tính bằng giây.
-      Nanos:
-        type: integer
-        format: int32
-        description: Phần nanosecond của timestamp.
+    description: Mã phiên giao dịch.
+  time:
+    type: string
+    description: Thời điểm ghi nhận dữ liệu theo định dạng DNSE `YYYY-MM-DD HH:mm:ss.SSS`.
+    pattern: '^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}(\.\d{3})?$'

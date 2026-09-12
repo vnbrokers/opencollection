@@ -1,11 +1,13 @@
 openapi: 3.0.0
 info:
-  title: DNSE OpenAPI (2026-08-06)
+  title: DNSE OpenAPI (2026-09-10)
   version: 2.0.0
   description: DNSE OpenAPI spec
 servers:
   - url: https://openapi.dnse.com.vn
     description: Production
+  - url: https://sb-openapi.dnse.com.vn
+    description: Sanbox
 tags:
   - name: trading
     description: Xác thực và các hoạt động đặt lệnh.
@@ -41,6 +43,9 @@ paths:
 
   /accounts/{accountNo}/orders/history:
     $ref: paths/account/account_getOrdersHistory.yaml
+
+  /accounts/{accountNo}/pnl-configs:
+    $ref: paths/account/account_getPnlConfigs.yaml
 
   /accounts/{accountNo}/orders/{orderId}:
     $ref: paths/trading/account_order.yaml
@@ -93,6 +98,9 @@ paths:
   /price/{symbol}/expected-price:
     $ref: "./paths/market/symbol_getExpectedPrice.yaml"
 
+  /price/{indexName}/market-index:
+    $ref: paths/market/market_getMarketIndex.yaml
+
   /market/trading-session:
     $ref: paths/market/market_getTradingSession.yaml
 
@@ -136,6 +144,8 @@ components:
       $ref: "./components/schemas/trading/PnlConfigsRequest.yaml"
     PnlConfigsResponse:
       $ref: "./components/schemas/trading/PnlConfigsResponse.yaml"
+    AccountPnlConfigsResponse:
+      $ref: "./components/schemas/trading/AccountPnlConfigsResponse.yaml"
     Account:
       $ref: "./components/schemas/account/Account.yaml"
     BalancesResponse:
@@ -252,6 +262,10 @@ components:
       $ref: "./components/schemas/market/TradeLatest.yaml"
     WorkingDates:
       $ref: "./components/schemas/market/WorkingDates.yaml"
+    MarketIndexHistoryItem:
+      $ref: "./components/schemas/market/MarketIndexHistoryItem.yaml"
+    MarketIndexHistoryResponse:
+      $ref: "./components/schemas/market/MarketIndexHistoryResponse.yaml"
     TradingSession:
       $ref: "./components/schemas/market/TradingSession.yaml"
     TradingSessionResponse:

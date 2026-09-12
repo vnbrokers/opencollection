@@ -1,0 +1,12 @@
+type: object
+description: Danh sách dữ liệu lịch sử chỉ số thị trường.
+properties:
+  data:
+    type: array
+    description: Danh sách bản ghi lịch sử chỉ số.
+    items:
+      $ref: ./MarketIndexHistoryItem.yaml
+  nextPageToken:
+    type: string
+    description: Token dùng để lấy trang tiếp theo.
+    example: NDYwMTQ1XzIwMjYtMDMtMTJUMDQ6MjU6MDUuNTZa

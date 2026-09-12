@@ -1,6 +1,6 @@
 name: subscribeTradingSessionRequest
 title: Đăng ký luồng phiên giao dịch
-summary: Đăng ký topic `session.{market_id}.{market_group}.json`.
+summary: Đăng ký topic `session.{market_id}.{market_group}.{encoding}`.
 payload:
   $ref: ../../schemas/session/SubscribeRequest.yaml
 examples:

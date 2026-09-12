@@ -1,6 +1,6 @@
 name: subscribeOhlcRequest
 title: Đăng ký luồng nến đang hình thành
-summary: Đăng ký topic `ohlc.{resolution}.json`.
+summary: Đăng ký topic `ohlc.{resolution}.{encoding}`.
 payload:
   $ref: ../../schemas/ohlc/SubscribeRequest.yaml
 examples:

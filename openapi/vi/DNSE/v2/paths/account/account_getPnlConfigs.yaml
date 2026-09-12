@@ -1,0 +1,137 @@
+get:
+  operationId: account_getPnlConfigs
+  tags:
+    - account
+  summary: Cấu hình chốt lời, cắt lỗ của tiểu khoản
+  description: Lấy cấu hình chốt lời, cắt lỗ của tiểu khoản giao dịch, chỉ áp dụng cho giao dịch phái sinh.
+  parameters:
+    - $ref: ../../components/parameters/XApiKey.yaml
+    - $ref: ../../components/parameters/XAuxDate.yaml
+    - $ref: ../../components/parameters/XSignature.yaml
+    - name: accountNo
+      in: path
+      required: true
+      description: Số tiểu khoản
+      schema:
+        type: string
+      example: "0001179019"
+    - name: marketType
+      in: query
+      required: true
+      description: Loại thị trường, hiện chỉ hỗ trợ DERIVATIVE.
+      schema:
+        type: string
+        enum:
+          - DERIVATIVE
+      example: DERIVATIVE
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/trading/AccountPnlConfigsResponse.yaml
+          example:
+            accountNo: "0001179019"
+            configs:
+              takeProfit:
+                enabled: true
+                strategy: DELTA_PRICE
+                rate: 0.52
+                deltaPrice: 162.8
+                orderMethod: FASTEST
+                orderDeltaPrice: 2
+              stopLoss:
+                enabled: true
+                strategy: PNL_RATE
+                rate: -0.34
+                deltaPrice: 50.3
+                orderMethod: DELTA_PRICE
+                orderDeltaPrice: 10.5
+                trailingEnabled: true
+            createdDate: "2026-09-10T02:47:36.384761Z"
+            modifiedDate: "2026-09-10T07:44:44.235941815Z"
+    "400":
+      $ref: ../../components/responses/BadRequest.yaml
+    "500":
+      $ref: ../../components/responses/InternalError.yaml
+patch:
+  operationId: account_patchPnlConfigs
+  tags:
+    - trading
+  summary: Cài đặt chốt lời, cắt lỗ cho tiểu khoản
+  description: Cài đặt cấu hình chốt lời, cắt lỗ cho tiểu khoản giao dịch, chỉ áp dụng cho phái sinh và các vị thế mới mở sau khi cài đặt thành công.
+  parameters:
+    - $ref: ../../components/parameters/XApiKey.yaml
+    - $ref: ../../components/parameters/XAuxDate.yaml
+    - $ref: ../../components/parameters/XSignature.yaml
+    - $ref: ../../components/parameters/TradingToken.yaml
+    - name: accountNo
+      in: path
+      required: true
+      description: Số tiểu khoản
+      schema:
+        type: string
+      example: "0001179019"
+    - name: marketType
+      in: query
+      required: true
+      description: Loại thị trường, hiện chỉ hỗ trợ DERIVATIVE.
+      schema:
+        type: string
+        enum:
+          - DERIVATIVE
+      example: DERIVATIVE
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: ../../components/schemas/trading/PnlConfigsRequest.yaml
+        example:
+          takeProfit:
+            enabled: true
+            strategy: DELTA_PRICE
+            rate: 0.52
+            deltaPrice: 162.8
+            orderMethod: FASTEST
+            orderDeltaPrice: 2
+          stopLoss:
+            enabled: true
+            strategy: PNL_RATE
+            rate: -0.34
+            deltaPrice: 50.3
+            orderMethod: DELTA_PRICE
+            orderDeltaPrice: 10.5
+            trailingEnabled: true
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/trading/AccountPnlConfigsResponse.yaml
+          example:
+            accountNo: "0001179019"
+            configs:
+              takeProfit:
+                enabled: true
+                strategy: DELTA_PRICE
+                rate: 0.52
+                deltaPrice: 162.8
+                orderMethod: FASTEST
+                orderDeltaPrice: 2
+              stopLoss:
+                enabled: true
+                strategy: PNL_RATE
+                rate: -0.34
+                deltaPrice: 50.3
+                orderMethod: DELTA_PRICE
+                orderDeltaPrice: 10.5
+                trailingEnabled: true
+            createdDate: "2026-09-10T02:47:36.384761Z"
+            modifiedDate: "2026-09-10T07:44:44.235941815Z"
+    "400":
+      $ref: ../../components/responses/BadRequest.yaml
+    "500":
+      $ref: ../../components/responses/InternalError.yaml

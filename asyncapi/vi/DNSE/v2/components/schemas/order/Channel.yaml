@@ -1,12 +1,8 @@
 type: object
 additionalProperties: false
-required: [name, symbols]
+required: [name]
 properties:
   name:
     type: string
     description: Topic lệnh của nhà đầu tư hiện tại theo loại thị trường.
     pattern: '^order\.(STOCK|DERIVATIVE)\.json$'
-  symbols:
-    type: array
-    description: DNSE yêu cầu mảng rỗng cho topic lệnh.
-    maxItems: 0

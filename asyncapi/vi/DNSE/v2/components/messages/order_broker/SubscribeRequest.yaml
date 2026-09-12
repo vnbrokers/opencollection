@@ -1,6 +1,6 @@
 name: subscribeBrokerOrderRequest
 title: Đăng ký luồng lệnh môi giới
-summary: Đăng ký topic `order.broker.{market_type}.{investor_id}.json`.
+summary: Đăng ký topic `order.broker.{market_type}.{investor_id}.{encoding}`.
 payload:
   $ref: ../../schemas/order_broker/SubscribeRequest.yaml
 examples:
@@ -9,4 +9,3 @@ examples:
       action: subscribe
       channels:
         - name: order.broker.STOCK.1000009250.json
-          symbols: []

@@ -1,6 +1,6 @@
 name: subscribeOhlcClosedRequest
 title: Đăng ký luồng nến đã đóng
-summary: Đăng ký topic `ohlc_closed.{resolution}.json`.
+summary: Đăng ký topic `ohlc_closed.{resolution}.{encoding}`.
 payload:
   $ref: ../../schemas/ohlc_closed/SubscribeRequest.yaml
 examples:

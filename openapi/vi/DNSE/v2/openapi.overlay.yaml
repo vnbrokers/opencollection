@@ -110,7 +110,7 @@ actions:
   - target: "$.paths['/positions/{positionId}/pnl-configs'].post"
     update:
       x-mint:
-        href: vi/dnse/openapi/trading/set-pnl-config
+        href: vi/dnse/openapi/posistions/post-pnl-config
         metadata:
           sidebarTitle: Cài đặt chốt lời, cắt lỗ cho vị thế
   - target: "$.paths['/positions/{positionId}'].get"
@@ -179,6 +179,12 @@ actions:
         href: vi/dnse/openapi/market/get-expected-price
         metadata:
           sidebarTitle: Giá dự khớp
+  - target: "$.paths['/price/{indexName}/market-index'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/market/get-market-index
+        metadata:
+          sidebarTitle: Lịch sử chỉ số
   - target: "$.paths['/market/trading-session'].get"
     update:
       x-mint:
@@ -197,3 +203,15 @@ actions:
         href: vi/dnse/openapi/account/get-care-by
         metadata:
           sidebarTitle: Danh sách tiểu khoản quản lý
+  - target: "$.paths['/accounts/{accountNo}/pnl-configs'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/account/get-pnl-configs
+        metadata:
+          sidebarTitle: Cấu hình chốt lời, cắt lỗ của tiểu khoản
+  - target: "$.paths['/accounts/{accountNo}/pnl-configs'].patch"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/account/patch-pnl-configs
+        metadata:
+          sidebarTitle: Cài đặt chốt lời, cắt lỗ cho tiểu khoản

@@ -1,6 +1,6 @@
 name: subscribeEstimatedMarketIndexRequest
 title: Đăng ký luồng chỉ số VN30 dự tính
-summary: Đăng ký topic `estimated_market_index.VN30.json`.
+summary: Đăng ký topic `estimated_market_index.VN30.{encoding}`.
 payload:
   $ref: ../../schemas/estimated_market_index/SubscribeRequest.yaml
 examples:

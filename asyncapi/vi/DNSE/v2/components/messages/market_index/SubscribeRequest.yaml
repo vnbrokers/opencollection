@@ -1,6 +1,6 @@
 name: subscribeMarketIndexRequest
 title: Đăng ký luồng chỉ số thị trường
-summary: Đăng ký topic `market_index.{index_name}.json`.
+summary: Đăng ký topic `market_index.{index_name}.{encoding}`.
 payload:
   $ref: ../../schemas/market_index/SubscribeRequest.yaml
 examples:

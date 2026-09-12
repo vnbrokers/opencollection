@@ -1,0 +1,8 @@
+type: object
+additionalProperties: false
+required: [name]
+properties:
+  name:
+    type: string
+    description: Topic top cổ phiếu ảnh hưởng chỉ số theo tên chỉ số, độ phân giải và định dạng.
+    pattern: '^market_index_influence\.[A-Z0-9]+\.[0-9]+\.(json|msgpack)$'

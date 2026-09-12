@@ -1,0 +1,12 @@
+type: object
+additionalProperties: false
+required: [index_name, data]
+properties:
+  index_name:
+    type: string
+    description: Tên chỉ số thị trường.
+  data:
+    type: array
+    description: Danh sách cổ phiếu có mức độ ảnh hưởng tới chỉ số.
+    items:
+      $ref: ./InfluenceItem.yaml

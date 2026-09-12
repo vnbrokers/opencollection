@@ -4,7 +4,7 @@ info:
   type: workspace
 
 collections:
-  - name: "DNSE OpenAPI (outdate)"
+  - name: "DNSE OpenAPI (2026-09-10)"
     path: "collections/DNSE/v2"
   - name: "Entrade OpenAPI (outdate)"
     path: "collections/Entrade/v1"

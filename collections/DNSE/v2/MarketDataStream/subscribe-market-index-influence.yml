@@ -1,0 +1,110 @@
+info:
+  name: onMarketIndexInfluence
+  type: websocket
+  seq: 13
+
+websocket:
+  url: "{{wsBaseUrl}}/v1/stream?encoding=json"
+  message:
+    - title: message 1
+      selected: false
+      message:
+        type: json
+        data: |-
+          {
+            "action":"auth",
+            "api_key":"{{apiKey}}",
+            "signature":"{{wsSignature}}",
+            "timestamp":{{wsTimestamp}},
+            "nonce":"{{wsNonce}}"
+          }
+    - title: message 2
+      selected: false
+      message:
+        type: json
+        data: |-
+          {
+            "action": "pong"
+          }
+    - title: message 3
+      selected: true
+      message:
+        type: json
+        data: |-
+          {
+            "action": "subscribe",
+            "channels": [
+              {
+                "name": "market_index_influence.VN30.1.json"
+              }
+            ]
+          }
+
+settings:
+  timeout: 0
+  keepAliveInterval: 0
+
+docs: |-
+  ### Market Index Influence
+
+  Cung cap thong tin cac ma co muc do anh huong toi chi so thi truong theo thoi gian thuc.
+
+  #### Channel
+
+  Channel co dang `market_index_influence.{market_index}.{resolution}.{encoding}`.
+
+  - **market_index**: Ten chi so thi truong.
+
+    | Gia tri | Mo ta |
+    |---------|-------|
+    | VNINDEX | Chi so VNINDEX |
+    | VN30 | Chi so VN30 |
+    | VN100 | Chi so VN100 |
+    | HNX | Chi so HNX |
+    | HNX30 | Chi so HNX30 |
+
+  - **resolution**: Khoang thoi gian tong hop, tinh theo ngay. Gia tri ho tro: `1`, `7`, `14`, `30`.
+    VNINDEX va HNX chi ho tro resolution `1`.
+  - **encoding**: Dinh dang du lieu, `json` hoac `msgpack`.
+
+  #### Subscribe payload
+
+  ```json
+  {
+    "action": "subscribe",
+    "channels": [
+      {
+        "name": "market_index_influence.VN30.1.json"
+      }
+    ]
+  }
+  ```
+
+  #### Payload
+
+  Payload co top-level `index_name` va `data`. Moi phan tu trong `data` gom `symbol`,
+  `time.Seconds`, `time.Nanos`, `influence`, `influenceRatio`, `proportion`,
+  `changeRatio`, `changeValue`, `price`, `totalVolumeTraded`, va `grossTradeAmount`.
+
+  ```json
+  {
+    "index_name": "VN30",
+    "data": [
+      {
+        "symbol": "STB",
+        "time": {
+          "Seconds": 1760080137,
+          "Nanos": 346281171
+        },
+        "influence": 1.25,
+        "influenceRatio": 0.18,
+        "proportion": 0.04,
+        "changeRatio": 1.5,
+        "changeValue": 0.85,
+        "price": 56500,
+        "totalVolumeTraded": 182149117,
+        "grossTradeAmount": 5635.14857305
+      }
+    ]
+  }
+  ```

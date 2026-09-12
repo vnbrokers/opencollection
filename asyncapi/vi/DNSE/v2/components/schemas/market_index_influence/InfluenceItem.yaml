@@ -1,0 +1,63 @@
+type: object
+additionalProperties: false
+required:
+  - symbol
+  - time
+  - influence
+  - influenceRatio
+  - proportion
+  - changeRatio
+  - changeValue
+  - price
+  - totalVolumeTraded
+  - grossTradeAmount
+properties:
+  symbol:
+    type: string
+    description: Mã cổ phiếu.
+  time:
+    type: object
+    additionalProperties: false
+    description: Thời gian cập nhật dữ liệu, gồm Unix seconds và nanosecond fraction.
+    required: [Seconds, Nanos]
+    properties:
+      Seconds:
+        type: integer
+        format: int64
+        description: Unix timestamp tính bằng giây.
+      Nanos:
+        type: integer
+        format: int32
+        description: Phần nanosecond của timestamp.
+  influence:
+    type: number
+    format: double
+    description: Mức độ ảnh hưởng của cổ phiếu tới chỉ số.
+  influenceRatio:
+    type: number
+    format: double
+    description: Tỷ lệ ảnh hưởng của cổ phiếu tới chỉ số.
+  proportion:
+    type: number
+    format: double
+    description: Tỷ trọng cổ phiếu trong chỉ số.
+  changeRatio:
+    type: number
+    format: double
+    description: Tỷ lệ thay đổi giá cổ phiếu.
+  changeValue:
+    type: number
+    format: double
+    description: Giá trị thay đổi của cổ phiếu.
+  price:
+    type: number
+    format: double
+    description: Giá cổ phiếu.
+  totalVolumeTraded:
+    type: number
+    format: double
+    description: Tổng khối lượng giao dịch.
+  grossTradeAmount:
+    type: number
+    format: double
+    description: Tổng giá trị giao dịch.

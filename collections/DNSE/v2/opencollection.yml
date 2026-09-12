@@ -1,7 +1,7 @@
 opencollection: 1.0.0
 
 info:
-  name: DNSE Lightspeed v2
+  name: DNSE OpenAPI (2026-09-10)
 config:
   proxy:
     inherit: true
@@ -29,7 +29,7 @@ request:
       value: application/json
       description: "Định dạng dữ liệu của request."
     - name: version
-      value: "2026-07-23"
+      value: "2026-09-10"
       description: "Phiên bản API theo định dạng YYYY-MM-DD."
   auth:
     type: apikey

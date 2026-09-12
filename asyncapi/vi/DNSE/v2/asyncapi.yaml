@@ -12,6 +12,9 @@ servers:
   production:
     host: ws-openapi.dnse.com.vn
     protocol: wss
+  sanbox:
+    host: ws-sb-openapi.dnse.com.vn
+    protocol: wss
 channels:
   controlStream:
     address: /v1/stream
@@ -26,6 +29,7 @@ channels:
       5. Client xử lý các phản hồi `subscribed`, `unsubscribed`, `error` và `connection_expired`.
     servers:
       - $ref: "#/servers/production"
+      - $ref: "#/servers/sanbox"
     bindings:
       ws:
         method: GET
@@ -61,6 +65,7 @@ channels:
     description: Gửi cập nhật khớp lệnh theo danh sách mã chứng khoán trong một nhóm thị trường.
     servers:
       - $ref: "#/servers/production"
+      - $ref: "#/servers/sanbox"
     bindings:
       ws:
         method: GET
@@ -78,6 +83,7 @@ channels:
     description: Gửi cập nhật khớp lệnh nâng cao theo danh sách mã chứng khoán.
     servers:
       - $ref: "#/servers/production"
+      - $ref: "#/servers/sanbox"
     bindings:
       ws:
         method: GET
@@ -96,6 +102,7 @@ channels:
       Cung cấp thông tin phiên giao dịch của các sàn theo bảng giao dịch và nhóm sản phẩm thị trường.
     servers:
       - $ref: "#/servers/production"
+      - $ref: "#/servers/sanbox"
     bindings:
       ws:
         method: GET
@@ -118,6 +125,7 @@ channels:
       - Sàn HNX, UPCOM hỗ trợ 10 mức giá.
     servers:
       - $ref: "#/servers/production"
+      - $ref: "#/servers/sanbox"
     bindings:
       ws:
         method: GET
@@ -137,6 +145,7 @@ channels:
       trong các phiên giao dịch khớp lệnh định kỳ ATO và ATC.
     servers:
       - $ref: "#/servers/production"
+      - $ref: "#/servers/sanbox"
     bindings:
       ws:
         method: GET
@@ -157,6 +166,7 @@ channels:
       Phái sinh (derivative) và Chỉ số thị trường (index) với nhiều khung thời gian (resolution).
     servers:
       - $ref: "#/servers/production"
+      - $ref: "#/servers/sanbox"
     bindings:
       ws:
         method: GET
@@ -176,6 +186,7 @@ channels:
       Dữ liệu chỉ gửi khi kết thúc mỗi khung thời gian và không thay đổi sau đó.
     servers:
       - $ref: "#/servers/production"
+      - $ref: "#/servers/sanbox"
     bindings:
       ws:
         method: GET
@@ -196,6 +207,7 @@ channels:
       Dữ liệu được cập nhật trong phiên giao dịch khi có thay đổi.
     servers:
       - $ref: "#/servers/production"
+      - $ref: "#/servers/sanbox"
     bindings:
       ws:
         method: GET
@@ -216,6 +228,7 @@ channels:
       và vào đầu ngày giao dịch hôm sau (khoảng 8 giờ sáng).
     servers:
       - $ref: "#/servers/production"
+      - $ref: "#/servers/sanbox"
     bindings:
       ws:
         method: GET
@@ -236,6 +249,7 @@ channels:
       Dữ liệu được cập nhật liên tục trong phiên giao dịch.
     servers:
       - $ref: "#/servers/production"
+      - $ref: "#/servers/sanbox"
     bindings:
       ws:
         method: GET
@@ -246,6 +260,24 @@ channels:
         $ref: "#/components/messages/SubscribeMarketIndexRequest"
       update:
         $ref: "#/components/messages/MarketIndexUpdate"
+  marketIndexInfluenceStream:
+    address: /v1/stream
+    title: Top cổ phiếu ảnh hưởng chỉ số
+    summary: Đăng ký topic `market_index_influence.{index_name}.{resolution}.{encoding}`.
+    description: Cung cấp dữ liệu thống kê top các cổ phiếu có mức độ ảnh hưởng tới các chỉ số thị trường theo từng khung thời gian xác định.
+    servers:
+      - $ref: "#/servers/production"
+      - $ref: "#/servers/sanbox"
+    bindings:
+      ws:
+        method: GET
+        query: { $ref: "#/components/schemas/EncodingQuery" }
+        bindingVersion: 0.1.0
+    messages:
+      subscribeRequest:
+        $ref: "#/components/messages/SubscribeMarketIndexInfluenceRequest"
+      update:
+        $ref: "#/components/messages/MarketIndexInfluenceUpdate"
   estimatedMarketIndexStream:
     address: /v1/stream
     title: Chỉ số VN30 dự tính
@@ -256,6 +288,7 @@ channels:
       Dữ liệu được cập nhật theo thời gian thực khi có thay đổi.
     servers:
       - $ref: "#/servers/production"
+      - $ref: "#/servers/sanbox"
     bindings:
       ws:
         method: GET
@@ -276,6 +309,7 @@ channels:
       lệnh mới, thay đổi trạng thái, hoặc thay đổi giá khớp, khối lượng khớp.
     servers:
       - $ref: "#/servers/production"
+      - $ref: "#/servers/sanbox"
     bindings:
       ws:
         method: GET
@@ -296,6 +330,7 @@ channels:
       lệnh mới, thay đổi trạng thái, hoặc thay đổi giá khớp, khối lượng khớp.
     servers:
       - $ref: "#/servers/production"
+      - $ref: "#/servers/sanbox"
     bindings:
       ws:
         method: GET
@@ -317,6 +352,7 @@ channels:
       mở vị thế, đóng vị thế, thay đổi khối lượng, giá vốn, giá đóng, giá thị trường hoặc trạng thái vị thế.
     servers:
       - $ref: "#/servers/production"
+      - $ref: "#/servers/sanbox"
     bindings:
       ws:
         method: GET
@@ -337,6 +373,7 @@ channels:
       mở vị thế, đóng vị thế, thay đổi khối lượng, giá vốn, giá đóng, giá thị trường hoặc trạng thái vị thế.
     servers:
       - $ref: "#/servers/production"
+      - $ref: "#/servers/sanbox"
     bindings:
       ws:
         method: GET
@@ -536,6 +573,16 @@ operations:
     channel: { $ref: "#/channels/marketIndexStream" }
     title: Nhận cập nhật chỉ số thị trường
     messages: [{ $ref: "#/channels/marketIndexStream/messages/update" }]
+  onMarketIndexInfluenceSubscription:
+    action: receive
+    channel: { $ref: "#/channels/marketIndexInfluenceStream" }
+    title: Đăng ký luồng top cổ phiếu ảnh hưởng chỉ số
+    messages: [{ $ref: "#/channels/marketIndexInfluenceStream/messages/subscribeRequest" }]
+  onMarketIndexInfluenceUpdates:
+    action: send
+    channel: { $ref: "#/channels/marketIndexInfluenceStream" }
+    title: Nhận cập nhật top cổ phiếu ảnh hưởng chỉ số
+    messages: [{ $ref: "#/channels/marketIndexInfluenceStream/messages/update" }]
   onEstimatedMarketIndexSubscription:
     action: receive
     channel: { $ref: "#/channels/estimatedMarketIndexStream" }
@@ -597,7 +644,7 @@ components:
           type: string
           const: json
           default: json
-          description: Định dạng mã hóa dữ liệu WebSocket.
+          description: Định dạng mã hóa dữ liệu WebSocket (`json`, `msgpack`).
   messages:
     AuthRequest:
       $ref: ./components/messages/auth/AuthRequest.yaml
@@ -661,6 +708,10 @@ components:
       $ref: ./components/messages/market_index/SubscribeRequest.yaml
     MarketIndexUpdate:
       $ref: ./components/messages/market_index/Update.yaml
+    SubscribeMarketIndexInfluenceRequest:
+      $ref: ./components/messages/market_index_influence/SubscribeRequest.yaml
+    MarketIndexInfluenceUpdate:
+      $ref: ./components/messages/market_index_influence/Update.yaml
     SubscribeEstimatedMarketIndexRequest:
       $ref: ./components/messages/estimated_market_index/SubscribeRequest.yaml
     EstimatedMarketIndexUpdate:

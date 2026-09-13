@@ -8,7 +8,7 @@ collections:
     path: "collections/DNSE/v2"
   - name: "Entrade OpenAPI (outdate)"
     path: "collections/Entrade/v1"
-  - name: "FHSC OpenAPI (outdate)"
+  - name: "FHSC OpenAPI (2026-08-18)"
     path: "collections/FHSC/v0"
   - name: "SSI OpenAPI (outdate)"
     path: "collections/SSI/v3"

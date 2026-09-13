@@ -1,0 +1,20 @@
+info:
+  name: stocksGetForeignRoom
+  type: http
+  seq: 43
+http:
+  method: GET
+  url: "{{baseUrl}}/market/stocks/{{symbol}}/ownership/foreign-room"
+  params:
+    - name: symbol
+      value: "{{symbol}}"
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Room ngoại của 1 mã tại phiên gần nhất: trần sở hữu nước ngoài (`max_pct`, `max_volume`), khối lượng khối ngoại đang nắm (`owned`) và room còn lại (`available`). Chuỗi theo ngày xem ở `/market/stocks/{symbol}/ownership/foreign-room/history`.

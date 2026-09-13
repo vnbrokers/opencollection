@@ -1,0 +1,29 @@
+info:
+  name: getMacroIndicator
+  type: http
+  seq: 7
+http:
+  method: GET
+  url: "{{baseUrl}}/market/macro/indicators/{{indicator}}?from={{from}}&to={{to}}&limit={{limit}}"
+  params:
+    - name: indicator
+      value: "{{indicator}}"
+      type: path
+    - name: from
+      value: "{{from}}"
+      type: query
+    - name: to
+      value: "{{to}}"
+      type: query
+    - name: limit
+      value: "{{limit}}"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Giá trị của một chỉ tiêu vĩ mô cho một quốc gia (xác định bởi `indicator` slug lấy từ `/market/macro/indicators`). Bỏ trống `from`/`to` → chỉ trả về kỳ mới nhất; truyền khoảng thời gian → chuỗi theo kỳ (sort mới nhất ở đầu). `period` có dạng `yyyy`, `yyyy-Qn` hoặc `yyyy-MM`. `value` có thể `null` khi nguồn chưa có dữ liệu.

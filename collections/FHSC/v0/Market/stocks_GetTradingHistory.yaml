@@ -1,0 +1,29 @@
+info:
+  name: stocksGetTradingHistory
+  type: http
+  seq: 47
+http:
+  method: GET
+  url: "{{baseUrl}}/market/stocks/{{symbol}}/trading/history?from={{from}}&to={{to}}&resolution={{resolution}}"
+  params:
+    - name: symbol
+      value: "{{symbol}}"
+      type: path
+    - name: from
+      value: "{{from}}"
+      type: query
+    - name: to
+      value: "{{to}}"
+      type: query
+    - name: resolution
+      value: "{{resolution}}"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Chuỗi khối lượng / giá trị giao dịch theo phiên của 1 mã. `from`/`to` phải truyền cùng nhau (dạng `YYYY-MM-DD`, khoảng tối đa 5 năm); bỏ trống cả hai → 3 tháng gần nhất. Phiên không có giao dịch bị bỏ qua. Chưa phân trang.

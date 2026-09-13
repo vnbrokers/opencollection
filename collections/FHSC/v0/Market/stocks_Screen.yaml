@@ -1,0 +1,158 @@
+info:
+  name: stocksScreen
+  type: http
+  seq: 39
+http:
+  method: GET
+  url: "{{baseUrl}}/market/stocks?exchange={{exchange}}&index={{index}}&sector={{sector}}&window={{window}}&date={{date}}&sort={{sort}}&fields={{fields}}&price_gt={{price_gt}}&price_lt={{price_lt}}&change_percent_gt={{change_percent_gt}}&change_percent_lt={{change_percent_lt}}&market_cap_gt={{market_cap_gt}}&market_cap_lt={{market_cap_lt}}&shares_outstanding_gt={{shares_outstanding_gt}}&shares_outstanding_lt={{shares_outstanding_lt}}&pe_gt={{pe_gt}}&pe_lt={{pe_lt}}&pb_gt={{pb_gt}}&pb_lt={{pb_lt}}&eps_gt={{eps_gt}}&eps_lt={{eps_lt}}&volume_gt={{volume_gt}}&volume_lt={{volume_lt}}&value_gt={{value_gt}}&value_lt={{value_lt}}&foreign_net_value_gt={{foreign_net_value_gt}}&foreign_net_value_lt={{foreign_net_value_lt}}&foreign_net_volume_gt={{foreign_net_volume_gt}}&foreign_net_volume_lt={{foreign_net_volume_lt}}&foreign_buy_value_gt={{foreign_buy_value_gt}}&foreign_buy_value_lt={{foreign_buy_value_lt}}&foreign_sell_value_gt={{foreign_sell_value_gt}}&foreign_sell_value_lt={{foreign_sell_value_lt}}&foreign_room_available_gt={{foreign_room_available_gt}}&foreign_room_available_lt={{foreign_room_available_lt}}&foreign_room_available_pct_gt={{foreign_room_available_pct_gt}}&foreign_room_available_pct_lt={{foreign_room_available_pct_lt}}&proprietary_net_value_gt={{proprietary_net_value_gt}}&proprietary_net_value_lt={{proprietary_net_value_lt}}&proprietary_net_volume_gt={{proprietary_net_volume_gt}}&proprietary_net_volume_lt={{proprietary_net_volume_lt}}&proprietary_buy_value_gt={{proprietary_buy_value_gt}}&proprietary_buy_value_lt={{proprietary_buy_value_lt}}&proprietary_sell_value_gt={{proprietary_sell_value_gt}}&proprietary_sell_value_lt={{proprietary_sell_value_lt}}&page={{page}}&page_size={{page_size}}"
+  params:
+    - name: exchange
+      value: "{{exchange}}"
+      type: query
+    - name: index
+      value: "{{index}}"
+      type: query
+    - name: sector
+      value: "{{sector}}"
+      type: query
+    - name: window
+      value: "{{window}}"
+      type: query
+    - name: date
+      value: "{{date}}"
+      type: query
+    - name: sort
+      value: "{{sort}}"
+      type: query
+    - name: fields
+      value: "{{fields}}"
+      type: query
+    - name: price_gt
+      value: "{{price_gt}}"
+      type: query
+    - name: price_lt
+      value: "{{price_lt}}"
+      type: query
+    - name: change_percent_gt
+      value: "{{change_percent_gt}}"
+      type: query
+    - name: change_percent_lt
+      value: "{{change_percent_lt}}"
+      type: query
+    - name: market_cap_gt
+      value: "{{market_cap_gt}}"
+      type: query
+    - name: market_cap_lt
+      value: "{{market_cap_lt}}"
+      type: query
+    - name: shares_outstanding_gt
+      value: "{{shares_outstanding_gt}}"
+      type: query
+    - name: shares_outstanding_lt
+      value: "{{shares_outstanding_lt}}"
+      type: query
+    - name: pe_gt
+      value: "{{pe_gt}}"
+      type: query
+    - name: pe_lt
+      value: "{{pe_lt}}"
+      type: query
+    - name: pb_gt
+      value: "{{pb_gt}}"
+      type: query
+    - name: pb_lt
+      value: "{{pb_lt}}"
+      type: query
+    - name: eps_gt
+      value: "{{eps_gt}}"
+      type: query
+    - name: eps_lt
+      value: "{{eps_lt}}"
+      type: query
+    - name: volume_gt
+      value: "{{volume_gt}}"
+      type: query
+    - name: volume_lt
+      value: "{{volume_lt}}"
+      type: query
+    - name: value_gt
+      value: "{{value_gt}}"
+      type: query
+    - name: value_lt
+      value: "{{value_lt}}"
+      type: query
+    - name: foreign_net_value_gt
+      value: "{{foreign_net_value_gt}}"
+      type: query
+    - name: foreign_net_value_lt
+      value: "{{foreign_net_value_lt}}"
+      type: query
+    - name: foreign_net_volume_gt
+      value: "{{foreign_net_volume_gt}}"
+      type: query
+    - name: foreign_net_volume_lt
+      value: "{{foreign_net_volume_lt}}"
+      type: query
+    - name: foreign_buy_value_gt
+      value: "{{foreign_buy_value_gt}}"
+      type: query
+    - name: foreign_buy_value_lt
+      value: "{{foreign_buy_value_lt}}"
+      type: query
+    - name: foreign_sell_value_gt
+      value: "{{foreign_sell_value_gt}}"
+      type: query
+    - name: foreign_sell_value_lt
+      value: "{{foreign_sell_value_lt}}"
+      type: query
+    - name: foreign_room_available_gt
+      value: "{{foreign_room_available_gt}}"
+      type: query
+    - name: foreign_room_available_lt
+      value: "{{foreign_room_available_lt}}"
+      type: query
+    - name: foreign_room_available_pct_gt
+      value: "{{foreign_room_available_pct_gt}}"
+      type: query
+    - name: foreign_room_available_pct_lt
+      value: "{{foreign_room_available_pct_lt}}"
+      type: query
+    - name: proprietary_net_value_gt
+      value: "{{proprietary_net_value_gt}}"
+      type: query
+    - name: proprietary_net_value_lt
+      value: "{{proprietary_net_value_lt}}"
+      type: query
+    - name: proprietary_net_volume_gt
+      value: "{{proprietary_net_volume_gt}}"
+      type: query
+    - name: proprietary_net_volume_lt
+      value: "{{proprietary_net_volume_lt}}"
+      type: query
+    - name: proprietary_buy_value_gt
+      value: "{{proprietary_buy_value_gt}}"
+      type: query
+    - name: proprietary_buy_value_lt
+      value: "{{proprietary_buy_value_lt}}"
+      type: query
+    - name: proprietary_sell_value_gt
+      value: "{{proprietary_sell_value_gt}}"
+      type: query
+    - name: proprietary_sell_value_lt
+      value: "{{proprietary_sell_value_lt}}"
+      type: query
+    - name: page
+      value: "{{page}}"
+      type: query
+    - name: page_size
+      value: "{{page_size}}"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Sàng lọc cổ phiếu trên toàn thị trường: kết hợp filter phạm vi (`exchange`, `index`, `sector`), filter số dạng `<field>_gt` / `<field>_lt`, `sort`, `window` (hoặc `date`) và `fields`. Riêng `price_gt` / `price_lt` nhận thêm `ma50` / `ma200` để so giá với chính đường trung bình động của mã đó. `window` quét tới phiên đang chạy; `date` quét đúng một phiên quá khứ đã đóng, khi đó mọi số liệu lấy từ lịch sử lưu trữ nên các field không có giá trị quá khứ (`market_cap`, `shares_outstanding`, `pe`, `pb`, `eps`, `value`, `ma50`, `ma200`) trả về `null` và không dùng để `sort` / filter được. Kết quả phân trang, mặc định sắp xếp theo vốn hoá giảm dần (theo `volume` khi dùng `date`).

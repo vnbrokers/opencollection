@@ -1,0 +1,29 @@
+info:
+  name: quotesGetIndexHistory
+  type: http
+  seq: 15
+http:
+  method: GET
+  url: "{{baseUrl}}/market/quotes/indices/{{symbol}}/history?resolution={{resolution}}&from={{from}}&to={{to}}"
+  params:
+    - name: symbol
+      value: "{{symbol}}"
+      type: path
+    - name: resolution
+      value: "{{resolution}}"
+      type: query
+    - name: from
+      value: "{{from}}"
+      type: query
+    - name: to
+      value: "{{to}}"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Lịch sử chỉ số — chuỗi nến `{t, o, h, l, c, v}`. `resolution` mặc định `1D`. Chỉ số VN trả OHLCV đầy đủ; chỉ số quốc tế chỉ có giá đóng cửa (`o`/`h`/`l`/`v` = null). `from`/`to` là Unix timestamp tính bằng **giây**.

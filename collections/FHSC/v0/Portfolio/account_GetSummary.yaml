@@ -1,0 +1,17 @@
+info:
+  name: accountGetSummary
+  type: http
+  seq: 5
+http:
+  method: GET
+  url: "{{baseUrl}}/trading/accounts/{subAccountId}/summary"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Thông tin chi tiết của tiểu khoản — số dư, dư nợ, margin, tài sản ròng
+  và thông tin ngân hàng liên kết.

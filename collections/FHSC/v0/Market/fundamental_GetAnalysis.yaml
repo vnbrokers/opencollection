@@ -1,0 +1,32 @@
+info:
+  name: fundamentalGetAnalysis
+  type: http
+  seq: 4
+http:
+  method: GET
+  url: "{{baseUrl}}/market/company-financial/analysis?symbol={{symbol}}&period={{period}}"
+  params:
+    - name: symbol
+      value: "{{symbol}}"
+      type: query
+    - name: period
+      value: "{{period}}"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Các chỉ số tài chính theo kỳ. Mỗi row luôn có `year`; `quarter` chỉ có
+  khi `period=quarterly`.
+
+  **Kích thước payload**: API trả về **~200 metric code** mỗi row
+  (tên romanized tiếng Việt như `pe`, `pb`, `roa`, `bienlaigop`, `ebitda`,
+  `thanhtoan_hienhanh`, `novay_vonchu`, `lnst_yoy`, `vonhoa`, …). Bộ key
+  phụ thuộc vào loại doanh nghiệp (ngân hàng có `nim`; công ty chứng khoán
+  có `margin_loan_to_equity_ratio`, …). Nhiều code có thể `null` khi dữ
+  liệu nguồn thiếu. Example bên dưới chỉ là **subset đại diện** — tham
+  chiếu `additionalProperties` trong schema là nguồn chuẩn.

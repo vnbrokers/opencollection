@@ -1,0 +1,30 @@
+info:
+  name: stocksGetOrderStatisticHistory
+  type: http
+  seq: 53
+http:
+  method: GET
+  url: "{{baseUrl}}/market/stocks/{{symbol}}/trading/orders/history?from={{from}}&to={{to}}"
+  params:
+    - name: symbol
+      value: "{{symbol}}"
+      type: path
+    - name: from
+      value: "{{from}}"
+      type: query
+    - name: to
+      value: "{{to}}"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Đây KHÔNG phải lệnh chờ trong sổ lệnh: là **lệnh đã khớp, phân loại theo bên chủ động** — mua chủ động (lifted the offer) và bán chủ động (hit the bid), bao gồm cả thoả thuận.
+
+  Nguồn chỉ có dữ liệu **sau khi đóng phiên**: trong giờ giao dịch, request không kèm `date` trả về phiên đã đóng gần nhất, không phải hôm nay.
+
+  Chuỗi theo phiên. `from`/`to` phải truyền cùng nhau (dạng `YYYY-MM-DD`, khoảng tối đa 5 năm); bỏ trống cả hai → 3 tháng gần nhất. Lịch sử chỉ lưu **từ 2021-01-01** — xin sớm hơn sẽ được cắt về mốc này. Chưa phân trang.

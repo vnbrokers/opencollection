@@ -1,0 +1,42 @@
+info:
+  name: ordersModify
+  type: http
+  seq: 3
+http:
+  method: PUT
+  url: "{{baseUrl}}/trading/oa/sub-accounts/{subAccountId}/orders/{orderId}"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: device-id
+      value: "{{deviceId}}"
+  body:
+    type: json
+    data: "{}"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  > ⚠️ Endpoint đang ở giai đoạn **preview**.
+
+  Sửa `quantity` và / hoặc `price` của 1 lệnh đang chờ khớp. Yêu cầu
+  **Tier 2 HMAC + X-FH-BODYHASH + X-FH-2FA-TOKEN**.
+
+  **Bắt buộc** truyền header `device-id` — định danh thiết bị đặt
+  lệnh do client cung cấp (phục vụ tuân thủ quy định giao dịch).
+
+  **Pre-check bắt buộc**: gọi
+  `GET /trading/v1/accounts/{subAccountId}/order-book/{orderId}` trước
+  để xác nhận lệnh đang ở trạng thái sửa được (`SENT`,
+  `WAITING_TO_SEND`). Không sửa được khi `order_status` là `MATCHED`,
+  `MATCHED_ALL`, `CANCELLED`, `COMPLETED`, `FAILED`, `REJECTED`.
+
+  Với lệnh **đã khớp một phần**, server trả `result[].code = -701111`
+  và chỉ áp dụng thay đổi cho phần unmatched. Reference cũ giữ nguyên
+  `order_id`.
+
+  Body phải có **ít nhất 1** trong 2 field; bỏ trống cả 2 sẽ trả 400.

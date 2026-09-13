@@ -1,0 +1,20 @@
+info:
+  name: quotesGetIndex
+  type: http
+  seq: 14
+http:
+  method: GET
+  url: "{{baseUrl}}/market/quotes/indices/{{symbol}}"
+  params:
+    - name: symbol
+      value: "{{symbol}}"
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Dữ liệu realtime của 1 mã chỉ số. `symbol` không phân biệt hoa thường.

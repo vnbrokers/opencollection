@@ -1,0 +1,36 @@
+info:
+  name: calendarListEvents
+  type: http
+  seq: 8
+http:
+  method: GET
+  url: "{{baseUrl}}/market/calendar?country={{country}}&from={{from}}&to={{to}}&page={{page}}&page_size={{page_size}}"
+  params:
+    - name: country
+      value: "{{country}}"
+      type: query
+    - name: from
+      value: "{{from}}"
+      type: query
+    - name: to
+      value: "{{to}}"
+      type: query
+    - name: page
+      value: "{{page}}"
+      type: query
+    - name: page_size
+      value: "{{page_size}}"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Lịch các sự kiện thị trường theo ngày, **không gắn với mã cổ phiếu**. Hiện trả về sự kiện công bố số liệu vĩ mô (FOMC / quyết định lãi suất, CPI, GDP, PMI, …) của 6 nền kinh tế — Trung Quốc, Khu vực đồng Euro, Nhật Bản, Mỹ, Anh, Việt Nam.
+
+  Mỗi sự kiện có `type` phân loại (hiện chỉ `ECONOMIC`) và phần đặc thù nằm trong `detail`. Với sự kiện vĩ mô, `detail` gồm số liệu `actual` (thực tế), `previous` (kỳ trước), `consensus` (đồng thuận thị trường) và `forecast` (dự báo) — các trường này là `null` khi sự kiện chưa diễn ra hoặc nguồn chưa có số.
+
+  Khoảng thời gian lọc qua `from`/`to` (Unix timestamp tính bằng GIÂY). Bỏ trống cả hai thì mặc định lấy sự kiện từ hôm nay trở đi. Sort theo `detail.date` tăng dần, phân trang qua `page`/`page_size`.

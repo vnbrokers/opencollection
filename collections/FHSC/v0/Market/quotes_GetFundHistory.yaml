@@ -1,0 +1,26 @@
+info:
+  name: quotesGetFundHistory
+  type: http
+  seq: 27
+http:
+  method: GET
+  url: "{{baseUrl}}/market/quotes/funds/{{symbol}}/history?from={{from}}&to={{to}}"
+  params:
+    - name: symbol
+      value: "{{symbol}}"
+      type: path
+    - name: from
+      value: "{{from}}"
+      type: query
+    - name: to
+      value: "{{to}}"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Lịch sử NAV của 1 quỹ theo kỳ định giá — chuỗi điểm `{t, nav}`. **Không** có `resolution`; chỉ `from`/`to` (Unix giây).

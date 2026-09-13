@@ -1,0 +1,35 @@
+info:
+  name: stocksGetTechnicals
+  type: http
+  seq: 45
+http:
+  method: GET
+  url: "{{baseUrl}}/market/stocks/{{symbol}}/technicals?indicators={{indicators}}&from={{from}}&to={{to}}"
+  params:
+    - name: symbol
+      value: "{{symbol}}"
+      type: path
+    - name: indicators
+      value: "{{indicators}}"
+      type: query
+    - name: from
+      value: "{{from}}"
+      type: query
+    - name: to
+      value: "{{to}}"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Giá trị 16 chỉ báo kỹ thuật của 1 mã, tính trực tiếp từ lịch sử giá **khung ngày** (`1D` — không có khung intraday).
+
+  Chọn chỉ báo và tham số bằng ký pháp trader quen viết: `indicators=RSI(14),SMA(20),MACD(12,26,9)`. Viết tên trần (`RSI`) thì dùng bộ tham số mặc định của chỉ báo đó.
+
+  Một endpoint phục vụ cả hai chế độ: bỏ trống `from`/`to` → phiên gần nhất đã chốt; truyền cả cặp → chuỗi theo phiên. Một phiên trong quá khứ là `from` và `to` cùng đặt vào ngày đó — không có param `date` riêng. Hình dạng response không đổi giữa hai chế độ: snapshot là chuỗi có đúng một phần tử.
+
+  Chỉ trả **giá trị**, không quy ra khuyến nghị mua/bán.

@@ -1,0 +1,39 @@
+info:
+  name: ordersCancel
+  type: http
+  seq: 4
+http:
+  method: DELETE
+  url: "{{baseUrl}}/trading/oa/sub-accounts/{subAccountId}/orders/{orderId}"
+  headers:
+    - name: Content-Type
+      value: application/json
+    - name: device-id
+      value: "{{deviceId}}"
+  body:
+    type: json
+    data: "{}"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  > ⚠️ Endpoint đang ở giai đoạn **preview**.
+
+  Huỷ 1 lệnh đang chờ khớp. Yêu cầu **Tier 2 HMAC + X-FH-BODYHASH +
+  X-FH-2FA-TOKEN**.
+
+  **Bắt buộc** truyền header `device-id` — định danh thiết bị đặt
+  lệnh do client cung cấp (phục vụ tuân thủ quy định giao dịch).
+
+  **Pre-check bắt buộc**: gọi
+  `GET /trading/v1/accounts/{subAccountId}/order-book/{orderId}` trước
+  để xác nhận lệnh đang ở trạng thái huỷ được (`SENT`,
+  `WAITING_TO_SEND`, `SENDING`). Không huỷ được khi `order_status` là
+  `MATCHED`, `MATCHED_ALL`, `CANCELLED`, `COMPLETED`, `FAILED`.
+
+  Với lệnh **đã khớp một phần**, huỷ chỉ áp dụng cho phần unmatched —
+  phần đã khớp vẫn giữ trong `execute_quantity`.

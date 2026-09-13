@@ -1,0 +1,21 @@
+info:
+  name: macroGetBankInterestRates
+  type: http
+  seq: 2
+http:
+  method: GET
+  url: "{{baseUrl}}/market/financial-data/bank-interest-rates"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Lãi suất tiền gửi tiết kiệm của các ngân hàng tại Việt Nam, phân theo
+  kỳ hạn (`1 Tháng`, `3 Tháng`, `6 Tháng`, `12 Tháng`, …).
+
+  `data.bank_interest_rates` là danh sách ngân hàng; mỗi phần tử có
+  `bank_name` và mảng `rates` — lãi suất từng kỳ hạn, dạng chuỗi kèm dấu
+  `%` (phần thập phân dùng dấu phẩy, vd `4,4%`).

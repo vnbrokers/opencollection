@@ -1,0 +1,16 @@
+info:
+  name: quotesGetBondsCatalog
+  type: http
+  seq: 28
+http:
+  method: GET
+  url: "{{baseUrl}}/market/quotes/bonds"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Danh sách mã trái phiếu được hỗ trợ kèm metadata tĩnh, gồm cả trái phiếu Chính phủ 10 năm (VN10Y, US10Y, JP10Y, DE10Y — dữ liệu lấy từ vĩ mô, chỉ có lợi suất). Gọi `/market/quotes/bonds/{symbol}` để lấy dữ liệu realtime.

@@ -12,3 +12,5 @@ dist/
 Thumbs.db
 
 .agents/
+.worktree/
+.worktrees/

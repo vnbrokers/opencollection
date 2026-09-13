@@ -1,0 +1,20 @@
+info:
+  name: quotesGetEtf
+  type: http
+  seq: 33
+http:
+  method: GET
+  url: "{{baseUrl}}/market/quotes/etfs/{{symbol}}"
+  params:
+    - name: symbol
+      value: "{{symbol}}"
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Dữ liệu realtime của 1 mã ETF. `symbol` không phân biệt hoa thường.

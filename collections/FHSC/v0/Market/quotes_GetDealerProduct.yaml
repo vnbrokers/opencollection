@@ -1,0 +1,23 @@
+info:
+  name: quotesGetDealerProduct
+  type: http
+  seq: 37
+http:
+  method: GET
+  url: "{{baseUrl}}/market/quotes/commodities/{{symbol}}/dealer-products/{{code}}"
+  params:
+    - name: symbol
+      value: "{{symbol}}"
+      type: path
+    - name: code
+      value: "{{code}}"
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Báo giá realtime của 1 sản phẩm dealer cụ thể theo `code` (lấy từ danh sách dealer-products).

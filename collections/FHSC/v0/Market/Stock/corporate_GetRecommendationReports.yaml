@@ -1,0 +1,27 @@
+info:
+  name: corporateGetRecommendationReports
+  type: http
+  seq: 4
+http:
+  method: GET
+  url: "{{baseUrl}}/market/recommendation-reports/{{symbol}}"
+  params:
+    - name: symbol
+      value: "{{symbol}}"
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Báo cáo khuyến nghị (research report) của các công ty chứng khoán cho 1
+  mã stock. Khi stock có báo cáo, `data` là object chứa `recommendation`
+  (khuyến nghị mới nhất, plain text) và `recommendationReports[]` (danh
+  sách báo cáo gốc kèm download URL). Khi stock không có báo cáo nào,
+  `data` là `[]`.
+
+  Source: VietStock và một số nhà phân tích khác — xem field `source` của
+  mỗi report.

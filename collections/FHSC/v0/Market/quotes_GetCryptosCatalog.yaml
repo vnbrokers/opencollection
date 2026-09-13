@@ -1,0 +1,16 @@
+info:
+  name: quotesGetCryptosCatalog
+  type: http
+  seq: 19
+http:
+  method: GET
+  url: "{{baseUrl}}/market/quotes/cryptos"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Danh sách mã crypto được hỗ trợ kèm metadata tĩnh. Gọi `/market/quotes/cryptos/{symbol}` để lấy dữ liệu realtime.

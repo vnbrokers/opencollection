@@ -1,0 +1,17 @@
+info:
+  name: rightsGetUserRights
+  type: http
+  seq: 8
+http:
+  method: GET
+  url: "{{baseUrl}}/trading/v5/account/{subAccountId}/user-rights"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Quyền cổ đông (cổ tức, quyền mua stock, bỏ phiếu, …) của tiểu khoản.
+  Kết quả được sort theo `reportDate` giảm dần.

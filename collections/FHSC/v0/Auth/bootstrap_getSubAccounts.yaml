@@ -1,0 +1,26 @@
+info:
+  name: bootstrapGetSubAccounts
+  type: http
+  seq: 3
+http:
+  method: GET
+  url: "{{baseUrl}}/users/v1/users/{userId}/sub-accounts"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Trả về danh sách tiểu khoản của user. Mỗi entry có `id` (dùng làm path
+  variable `{subAccountId}`), `type` (`Normal` hoặc `Margin`),
+  `sub_account_ext`, cùng các field hồ sơ user (`cust_id`, `name`,
+  `depository_number`, `product_type_name`).
+
+  Đây là **bước 2 của bootstrap flow**, gọi sau `bootstrapGetMe`. Cache
+  danh sách tiểu khoản tương tự `user_id`. Khi user thao tác trading thì
+  chọn entry có `type` đúng nhu cầu — `Normal` cho tài khoản thường,
+  `Margin` cho tài khoản ký quỹ.
+
+  Là endpoint Tier 2 → cần đủ 4 header HMAC.

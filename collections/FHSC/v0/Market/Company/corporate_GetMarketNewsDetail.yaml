@@ -1,0 +1,20 @@
+info:
+  name: corporateGetMarketNewsDetail
+  type: http
+  seq: 13
+http:
+  method: GET
+  url: "{{baseUrl}}/market/market-news/{{id}}"
+  params:
+    - name: id
+      value: "{{id}}"
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Nội dung đầy đủ của một bài tin tức thị trường theo `id` (lấy từ danh sách `/market/market-news`). Khác với item trong danh sách, chi tiết có thêm `content` (toàn văn).

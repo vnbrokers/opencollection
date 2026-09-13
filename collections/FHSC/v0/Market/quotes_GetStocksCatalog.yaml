@@ -1,0 +1,16 @@
+info:
+  name: quotesGetStocksCatalog
+  type: http
+  seq: 9
+http:
+  method: GET
+  url: "{{baseUrl}}/market/quotes/stocks"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Danh sách mã cổ phiếu được hỗ trợ kèm metadata tĩnh. Gọi `/market/quotes/stocks/{symbol}` để lấy dữ liệu realtime.

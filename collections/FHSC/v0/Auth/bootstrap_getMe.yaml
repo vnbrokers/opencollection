@@ -1,0 +1,25 @@
+info:
+  name: bootstrapGetMe
+  type: http
+  seq: 2
+http:
+  method: GET
+  url: "{{baseUrl}}/users/v1/users/me"
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Trả về thông tin user hiện tại — đặc biệt là `data.user_id`, giá trị bắt
+  buộc cần truyền vào path variable `{userId}` ở mọi endpoint user-scoped
+  (assets summary, pnl-today, …).
+
+  Đây là **bước 1 của bootstrap flow** — gọi đúng 1 lần khi khởi tạo client,
+  cache `user_id` lại để dùng cho toàn bộ vòng đời client. Re-fetch khi
+  nhận `401` từ endpoint user-scoped (account có thể bị disable / rotate).
+
+  Là endpoint Tier 2 → cần đủ 4 header HMAC (`X-FH-APIKEY`,
+  `X-FH-TIMESTAMP`, `X-FH-NONCE`, `X-FH-SIGNATURE`).

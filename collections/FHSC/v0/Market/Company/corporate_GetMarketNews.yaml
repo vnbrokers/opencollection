@@ -1,0 +1,29 @@
+info:
+  name: corporateGetMarketNews
+  type: http
+  seq: 12
+http:
+  method: GET
+  url: "{{baseUrl}}/market/market-news?topic={{topic}}&symbol={{symbol}}&page={{page}}&page_size={{page_size}}"
+  params:
+    - name: topic
+      value: "{{topic}}"
+      type: query
+    - name: symbol
+      value: "{{symbol}}"
+      type: query
+    - name: page
+      value: "{{page}}"
+      type: query
+    - name: page_size
+      value: "{{page_size}}"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Dòng tin tức tài chính, gồm cả quốc tế và thị trường Việt Nam, kèm phân trang. Lọc tùy chọn theo `topic` (forex / hàng hoá / chứng khoán / crypto / vĩ mô); phân trang qua `page`/`page_size`. Khi `topic=stock`, có thể kết hợp tham số `symbol` để lọc theo mã chứng khoán. Mỗi item là bản tóm tắt (không có toàn văn); dùng `id` gọi `/market/market-news/{id}` để lấy nội dung đầy đủ.

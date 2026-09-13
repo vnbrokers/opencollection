@@ -1,0 +1,35 @@
+info:
+  name: stocksGetForeignRoomHistory
+  type: http
+  seq: 44
+http:
+  method: GET
+  url: "{{baseUrl}}/market/stocks/{{symbol}}/ownership/foreign-room/history?from={{from}}&to={{to}}&resolution={{resolution}}&page={{page}}&page_size={{page_size}}"
+  params:
+    - name: symbol
+      value: "{{symbol}}"
+      type: path
+    - name: from
+      value: "{{from}}"
+      type: query
+    - name: to
+      value: "{{to}}"
+      type: query
+    - name: resolution
+      value: "{{resolution}}"
+      type: query
+    - name: page
+      value: "{{page}}"
+      type: query
+    - name: page_size
+      value: "{{page_size}}"
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Chuỗi room ngoại theo ngày của 1 mã. `from`/`to` phải truyền cùng nhau (dạng `YYYY-MM-DD`, khoảng tối đa 5 năm); bỏ trống cả hai → 3 tháng gần nhất. Kết quả phân trang, `total` là tổng số phiên trong khoảng.

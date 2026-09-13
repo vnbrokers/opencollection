@@ -1,0 +1,20 @@
+info:
+  name: stocksGetProfile
+  type: http
+  seq: 40
+http:
+  method: GET
+  url: "{{baseUrl}}/market/stocks/{{symbol}}/profile"
+  params:
+    - name: symbol
+      value: "{{symbol}}"
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Hồ sơ doanh nghiệp của 1 mã: tên tiếng Việt/tiếng Anh, cây ngành và mô tả hoạt động kinh doanh. Dữ liệu tham chiếu tĩnh.

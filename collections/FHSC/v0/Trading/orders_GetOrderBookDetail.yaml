@@ -1,0 +1,23 @@
+info:
+  name: ordersGetOrderBookDetail
+  type: http
+  seq: 7
+http:
+  method: GET
+  url: "{{baseUrl}}/trading/v1/accounts/{subAccountId}/order-book/{{orderId}}"
+  params:
+    - name: orderId
+      value: "{{orderId}}"
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+docs: |-
+  Chi tiết đầy đủ 1 lệnh — toàn bộ field giống item trong order-book list,
+  nhưng trả về single object thay vì array. Status code map (`status_code`):
+  `01` = SENT (đã gửi sàn), `02` = PARTIAL (khớp 1 phần), `03` = FILLED
+  (khớp đủ), `04` = CANCELLED, `05` = REJECTED.

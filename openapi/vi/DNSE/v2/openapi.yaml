@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: DNSE OpenAPI (2026-09-10)
+  title: DNSE OpenAPI (2026-09-15)
   version: 2.0.0
   description: DNSE OpenAPI spec
 servers:
@@ -35,6 +35,9 @@ paths:
   /accounts/{accountNo}/loan-packages:
     $ref: paths/account/account_getLoanPackages.yaml
 
+  /accounts/{accountNo}/loans:
+    $ref: paths/account/account_getLoans.yaml
+
   /accounts/{accountNo}/ppse:
     $ref: paths/account/account_getPpse.yaml
 
@@ -61,6 +64,9 @@ paths:
 
   /positions/{positionId}/close:
     $ref: paths/trading/account_closePosition.yaml
+
+  /positions/{positionId}/reverse:
+    $ref: paths/trading/account_reversePosition.yaml
 
   /positions/{positionId}/pnl-configs:
     $ref: paths/account/position_PnlConfigs.yaml
@@ -174,6 +180,10 @@ components:
       $ref: "./components/schemas/account/LoanPackage.yaml"
     LoanPackagesResponse:
       $ref: "./components/schemas/account/LoanPackagesResponse.yaml"
+    Loan:
+      $ref: "./components/schemas/account/Loan.yaml"
+    LoansResponse:
+      $ref: "./components/schemas/account/LoansResponse.yaml"
     Order:
       $ref: "./components/schemas/account/Order.yaml"
     OrdersHistoryItem:
@@ -278,6 +288,8 @@ components:
       $ref: "./components/schemas/trading/OrderCancelResponse.yaml"
     PositionCloseResponse:
       $ref: "./components/schemas/trading/PositionCloseResponse.yaml"
+    PositionReverseResponse:
+      $ref: "./components/schemas/trading/PositionReverseResponse.yaml"
     OrderDetailResponse:
       $ref: "./components/schemas/trading/OrderDetailResponse.yaml"
     OrderReplaceRequest:

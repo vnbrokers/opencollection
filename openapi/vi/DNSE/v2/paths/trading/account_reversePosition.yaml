@@ -1,0 +1,59 @@
+parameters:
+  - name: positionId
+    in: path
+    required: true
+    description: Id vị thế
+    schema:
+      type: string
+    example: "177410795472387"
+post:
+  operationId: account_reversePosition
+  summary: Đảo vị thế
+  description: |-
+    Đóng toàn bộ vị thế phái sinh hiện tại và mở ngay vị thế mới theo hướng ngược lại. 
+    Lệnh LO ngược chiều, khối lượng đặt gấp đôi khối lượng mở của vị thế hiện tại, giá đặt bằng giá sàn (đảo Mua→Bán) hoặc giá trần (đảo Bán→Mua).
+
+    Chỉ áp dụng cho giao dịch phái sinh. Hỗ trợ các vị thế có khối lượng mở tối đa 250 HĐ. 
+    Không áp dụng cho các vị thế trong trường hợp: đang bị bán xử lý (force sell), đang chờ đóng hoặc đang chờ đảo vị thế.
+  parameters:
+    - $ref: ../../components/parameters/XApiKey.yaml
+    - $ref: ../../components/parameters/XAuxDate.yaml
+    - $ref: ../../components/parameters/XSignature.yaml
+    - $ref: ../../components/parameters/TradingToken.yaml
+    - name: version
+      in: header
+      required: false
+      description: API version (YYYY-MM-DD)
+      schema:
+        type: string
+    - name: marketType
+      in: query
+      required: false
+      description: "Loại thị trường\n- STOCK: Danh sách Deal cơ sở\n- DERIVATIVE: Danh sách Deal phái sinh\nHiện tại chỉ hỗ trợ phái sinh"
+      schema:
+        $ref: ../../components/schemas/enums/MarketType.yaml
+      example: DERIVATIVE
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/trading/PositionReverseResponse.yaml
+          example:
+            id: 446
+            side: NS
+            accountNo: "0001179019"
+            symbol: 41I1G9000
+            price: 1804.2
+            quantity: 46
+            orderType: LO
+            loanPackageId: 2279
+            createdDate: "2026-09-14T03:07:16.806Z"
+            modifiedDate: "2026-09-14T03:07:16.806Z"
+    "400":
+      $ref: ../../components/responses/BadRequest.yaml
+    "500":
+      $ref: ../../components/responses/InternalError.yaml
+  tags:
+    - trading

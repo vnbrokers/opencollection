@@ -1,0 +1,70 @@
+type: object
+properties:
+  id:
+    type: integer
+    format: int32
+    example: 8117
+    description: ID khoản vay
+  accountNo:
+    type: string
+    example: "0001179019"
+    description: Số tiểu khoản
+  positionId:
+    type: integer
+    format: int32
+    example: 8426
+    description: ID vị thế liên kết với khoản vay
+  symbol:
+    type: string
+    example: ACB
+    description: Mã chứng khoán
+  disbursementDate:
+    type: string
+    format: date
+    example: "2026-09-10"
+    description: Ngày giải ngân khoản vay
+  dueDate:
+    type: string
+    format: date
+    example: "2026-12-09"
+    description: Ngày đến hạn của khoản vay
+  initialRate:
+    type: integer
+    format: int32
+    example: 1
+    description: Tỷ lệ cho vay ban đầu
+  interestRate:
+    type: number
+    format: double
+    example: 0.115
+    description: Lãi suất áp dụng cho khoản vay
+  overdueInterestRate:
+    type: number
+    format: double
+    example: 0.18
+    description: Lãi suất áp dụng khi khoản vay quá hạn
+  preferentialPeriod:
+    type: integer
+    format: int32
+    example: 0
+    description: Thời gian áp dụng lãi suất ưu đãi
+  preferentialInterestRate:
+    type: integer
+    format: int32
+    example: 0
+    description: Lãi suất ưu đãi áp dụng cho khoản vay
+  principal:
+    type: integer
+    format: int32
+    example: 1191245
+    description: Giá trị dư nợ gốc ban đầu của khoản vay
+  remainPrincipal:
+    type: integer
+    format: int32
+    example: 1191245
+    description: Giá trị dư nợ gốc còn lại
+  remainInterest:
+    type: integer
+    format: int32
+    example: 1501
+    description: Giá trị lãi vay còn lại

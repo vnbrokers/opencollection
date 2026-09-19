@@ -41,6 +41,12 @@ actions:
         href: vi/dnse/openapi/trading/close-position
         metadata:
           sidebarTitle: Đóng vị thế
+  - target: "$.paths['/positions/{positionId}/reverse'].post"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/trading/reverse-position
+        metadata:
+          sidebarTitle: Đảo vị thế
   - target: "$.paths['/accounts/{accountNo}/balances'].get"
     update:
       x-mint:
@@ -59,6 +65,12 @@ actions:
         href: vi/dnse/openapi/account/get-loan-packages
         metadata:
           sidebarTitle: Danh sách gói vay
+  - target: "$.paths['/accounts/{accountNo}/loans'].get"
+    update:
+      x-mint:
+        href: vi/dnse/openapi/account/get-loans
+        metadata:
+          sidebarTitle: Danh sách khoản vay
   - target: "$.paths['/accounts/{accountNo}/ppse'].get"
     update:
       x-mint:
@@ -71,7 +83,7 @@ actions:
         href: vi/dnse/openapi/account/get-orders
         metadata:
           sidebarTitle: Sổ lệnh
-  - target: "$.paths['/accounts/{accountNo}/orders'].post"
+  - target: "$.paths['/accounts/{accountNo}/orders/{orderId}'].post"
     update:
       x-mint:
         href: vi/dnse/openapi/trading/place-order
@@ -110,7 +122,7 @@ actions:
   - target: "$.paths['/positions/{positionId}/pnl-configs'].post"
     update:
       x-mint:
-        href: vi/dnse/openapi/posistions/post-pnl-config
+        href: vi/dnse/openapi/positions/post-pnl-config
         metadata:
           sidebarTitle: Cài đặt chốt lời, cắt lỗ cho vị thế
   - target: "$.paths['/positions/{positionId}'].get"

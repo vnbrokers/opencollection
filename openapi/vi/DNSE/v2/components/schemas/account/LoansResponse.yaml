@@ -1,0 +1,46 @@
+type: object
+properties:
+  loans:
+    type: array
+    description: Danh sách các khoản vay
+    items:
+      $ref: ./Loan.yaml
+    example:
+      - id: 8117
+        accountNo: "0001179019"
+        positionId: 8426
+        symbol: ACB
+        disbursementDate: "2026-09-10"
+        dueDate: "2026-12-09"
+        initialRate: 1
+        interestRate: 0.115
+        overdueInterestRate: 0.18
+        preferentialPeriod: 0
+        preferentialInterestRate: 0
+        principal: 1191245
+        remainPrincipal: 1191245
+        remainInterest: 1501
+  pagination:
+    type: object
+    description: Thông tin phân trang của danh sách kết quả.
+    properties:
+      pageIndex:
+        type: integer
+        format: int32
+        example: 0
+        description: Chỉ số trang hiện tại, bắt đầu từ 0
+      pageSize:
+        type: integer
+        format: int32
+        example: 20
+        description: Số lượng bản ghi tối đa trên mỗi trang
+      totalRecords:
+        type: integer
+        format: int32
+        example: 2
+        description: Tổng số bản ghi
+      totalPages:
+        type: integer
+        format: int32
+        example: 1
+        description: Tổng số trang

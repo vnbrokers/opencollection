@@ -1,0 +1,119 @@
+get:
+  operationId: account_getLoans
+  summary: Danh sách khoản vay
+  description: Lấy danh sách các khoản vay trên tiểu khoản theo bộ lọc. Hiện tại chỉ hỗ trợ các khoản vay cơ sở.
+  parameters:
+    - $ref: ../../components/parameters/XApiKey.yaml
+    - $ref: ../../components/parameters/XAuxDate.yaml
+    - $ref: ../../components/parameters/XSignature.yaml
+    - name: version
+      in: header
+      required: false
+      description: API version (YYYY-MM-DD)
+      schema:
+        type: string
+    - name: marketType
+      in: query
+      required: false
+      description: "Loại thị trường\n- STOCK: Danh sách vị thế cơ sở\n- DERIVATIVE: Danh sách vị thế phái sinh"
+      schema:
+        $ref: ../../components/schemas/enums/MarketType.yaml
+      example: STOCK
+    - name: disbursementFrom
+      in: query
+      required: false
+      description: Ngày giải ngân bắt đầu (YYYY-MM-DD)
+      schema:
+        type: string
+        format: date
+      example: "2026-09-01"
+    - name: disbursementTo
+      in: query
+      required: false
+      description: Ngày giải ngân kết thúc (YYYY-MM-DD)
+      schema:
+        type: string
+        format: date
+      example: "2026-09-30"
+    - name: dueDateFrom
+      in: query
+      required: false
+      description: Ngày đến hạn bắt đầu (YYYY-MM-DD)
+      schema:
+        type: string
+        format: date
+      example: "2026-12-01"
+    - name: dueDateTo
+      in: query
+      required: false
+      description: Ngày đến hạn kết thúc (YYYY-MM-DD)
+      schema:
+        type: string
+        format: date
+      example: "2026-12-31"
+    - name: pageSize
+      in: query
+      required: false
+      description: Số bản ghi trên mỗi trang
+      schema:
+        type: integer
+        format: int32
+      example: 20
+    - name: pageIndex
+      in: query
+      required: false
+      description: Vị trí của trang hiện tại
+      schema:
+        type: integer
+        format: int32
+      example: 0
+    - name: positionId
+      in: query
+      required: false
+      description: Id vị thế
+      schema:
+        type: integer
+        format: int32
+      example: 8426
+  responses:
+    "200":
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/account/LoansResponse.yaml
+          example:
+            loans:
+              - id: 8117
+                accountNo: "0001179019"
+                positionId: 8426
+                symbol: ACB
+                disbursementDate: "2026-09-10"
+                dueDate: "2026-12-09"
+                initialRate: 1
+                interestRate: 0.115
+                overdueInterestRate: 0.18
+                preferentialPeriod: 0
+                preferentialInterestRate: 0
+                principal: 1191245
+                remainPrincipal: 1191245
+                remainInterest: 1501
+            pagination:
+              pageIndex: 0
+              pageSize: 20
+              totalRecords: 2
+              totalPages: 1
+    "400":
+      $ref: ../../components/responses/BadRequest.yaml
+    "500":
+      $ref: ../../components/responses/InternalError.yaml
+  tags:
+    - account
+parameters:
+  - name: accountNo
+    in: path
+    required: true
+    description: Số tiểu khoản
+    schema:
+      type: string
+    example: "0001179019"

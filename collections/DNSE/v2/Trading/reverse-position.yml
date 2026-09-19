@@ -1,0 +1,187 @@
+info:
+  name: Đảo vị thế
+  type: http
+  seq: 24
+
+http:
+  method: POST
+  url: "{{baseUrl}}/positions/:positionId/reverse?marketType=DERIVATIVE"
+  headers:
+    - name: trading-token
+      value: "{{tradingToken}}"
+      description: "Token đặt lệnh."
+  params:
+    - name: marketType
+      value: DERIVATIVE
+      type: query
+      description: "Loại thị trường. Hiện tại chỉ hỗ trợ phái sinh."
+    - name: positionId
+      value: "{{positionId}}"
+      type: path
+      description: "Id vị thế"
+  auth: inherit
+
+runtime:
+  variables:
+    - name: positionId
+      value: "177410795472387"
+  scripts:
+    - type: tests
+      code: |-
+        test("response matches the schema", function () {
+          const schema = {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "ReversePositionResponse",
+            "type": "object",
+            "properties": {
+              "id": {"type": "integer"},
+              "side": {"type": "string"},
+              "accountNo": {"type": "string"},
+              "symbol": {"type": "string"},
+              "price": {"type": "number"},
+              "quantity": {"type": "integer"},
+              "orderType": {"type": "string"},
+              "loanPackageId": {"type": "integer"},
+              "createdDate": {"type": "string"},
+              "modifiedDate": {"type": "string"}
+            }
+          }
+
+          res.status === 200 && expect(res.body).to.have.jsonSchema(schema);
+        });
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: 200 Response
+    description: Thành công - tạo lệnh đảo vị thế
+    request:
+      url: "{{baseUrl}}/positions/{{positionId}}/reverse"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: X-API-Key
+          value: "{{apiKey}}"
+        - name: X-Signature
+          value: ""
+        - name: X-Aux-Date
+          value: ""
+        - name: trading-token
+          value: "{{tradingToken}}"
+        - name: version
+          value: "2026-09-10"
+      params:
+        - name: marketType
+          value: DERIVATIVE
+          type: query
+        - name: positionId
+          value: "{{positionId}}"
+          type: path
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "id": 446,
+            "side": "NS",
+            "accountNo": "0001179019",
+            "symbol": "41I1G9000",
+            "price": 1804.2,
+            "quantity": 46,
+            "orderType": "LO",
+            "loanPackageId": 2279,
+            "createdDate": "2026-09-14T03:07:16.806Z",
+            "modifiedDate": "2026-09-14T03:07:16.806Z"
+          }
+  - name: 400 Response
+    description: Yêu cầu không hợp lệ
+    request:
+      url: "{{baseUrl}}/positions/{{positionId}}/reverse"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: X-API-Key
+          value: "{{apiKey}}"
+        - name: X-Signature
+          value: ""
+        - name: X-Aux-Date
+          value: ""
+        - name: trading-token
+          value: "{{tradingToken}}"
+        - name: version
+          value: "2026-09-10"
+      params:
+        - name: marketType
+          value: DERIVATIVE
+          type: query
+        - name: positionId
+          value: "{{positionId}}"
+          type: path
+    response:
+      status: 400
+      statusText: Bad Request
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "code": "",
+            "message": "",
+            "status": 0
+          }
+  - name: 500 Response
+    description: Lỗi máy chủ
+    request:
+      url: "{{baseUrl}}/positions/{{positionId}}/reverse"
+      method: POST
+      headers:
+        - name: Accept
+          value: application/json
+        - name: X-API-Key
+          value: "{{apiKey}}"
+        - name: X-Signature
+          value: ""
+        - name: X-Aux-Date
+          value: ""
+        - name: trading-token
+          value: "{{tradingToken}}"
+        - name: version
+          value: "2026-09-10"
+      params:
+        - name: marketType
+          value: DERIVATIVE
+          type: query
+        - name: positionId
+          value: "{{positionId}}"
+          type: path
+    response:
+      status: 500
+      statusText: Internal Server Error
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "code": "",
+            "message": "",
+            "status": 0
+          }
+
+docs: |-
+  Đóng toàn bộ vị thế phái sinh hiện tại và mở ngay vị thế mới theo hướng ngược lại. Lệnh LO ngược chiều, khối lượng đặt gấp đôi khối lượng mở của vị thế hiện tại, giá đặt bằng giá sàn (đảo Mua→Bán) hoặc giá trần (đảo Bán→Mua).
+
+  Chỉ áp dụng cho giao dịch phái sinh. Hỗ trợ các vị thế có khối lượng mở tối đa 250 HĐ. Không áp dụng cho các vị thế trong trường hợp: đang bị bán xử lý (force sell), đang chờ đóng hoặc đang chờ đảo vị thế.

@@ -1,0 +1,32 @@
+type: object
+properties:
+  cmd:
+    type: string
+    default: Web.changeOrder
+    description: Tên lệnh.
+  rc:
+    type: string
+    description: Mã kết quả, 1 = thành công.
+  data:
+    type: array
+    items:
+      type: object
+      properties:
+        orderNo:
+          type: string
+          description: Số hiệu lệnh.
+        msg_type:
+          type: string
+          description: Loại lệnh (1P = sửa lệnh).
+        status:
+          type: string
+          description: Trạng thái (PC = pending change).
+        showPrice:
+          type: string
+          description: Giá mới.
+        volume:
+          type: string
+          description: Khối lượng mới.
+        pk_orderNo:
+          type: string
+          description: Key lệnh.

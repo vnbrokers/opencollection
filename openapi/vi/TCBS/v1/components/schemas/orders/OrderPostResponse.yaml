@@ -1,0 +1,11 @@
+type: object
+properties:
+  error:
+    type: string
+    description: Mã lỗi, 0 = thành công.
+  message:
+    type: string
+    description: Thông báo kết quả.
+  orderId:
+    type: string
+    description: Mã lệnh được tạo.

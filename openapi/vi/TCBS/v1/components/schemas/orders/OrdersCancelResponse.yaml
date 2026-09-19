@@ -1,0 +1,8 @@
+type: object
+properties:
+  error:
+    type: string
+    description: Mã lỗi, 0 = thành công.
+  message:
+    type: string
+    description: Mô tả mã lỗi nếu có.

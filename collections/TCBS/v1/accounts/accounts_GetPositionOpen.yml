@@ -1,0 +1,165 @@
+info:
+  name: Tài sản, vị thế mở
+  type: http
+  seq: 2
+  tags:
+    - accounts
+http:
+  method: GET
+  url: "{{baseUrl}}/khronos/v1/account/portfolio/status"
+  params:
+    - name: accountId
+      value: 105C031402
+      type: query
+      description: số tài khoản lưu kí
+    - name: subAccountId
+      value: 105C031402A
+      type: query
+      description: Tiểu khoản phái sinh
+  auth: inherit
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("response matches the schema", function () {
+          const schema = {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "cmd": {
+                "type": "string"
+              },
+              "rc": {
+                "type": "string"
+              },
+              "rs": {
+                "type": "string"
+              },
+              "oID": {
+                "type": "string"
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "symbol": {
+                      "type": "string"
+                    },
+                    "im": {
+                      "type": "string"
+                    },
+                    "deliver": {
+                      "type": "string"
+                    },
+                    "receive": {
+                      "type": "string"
+                    },
+                    "net": {
+                      "type": "number"
+                    },
+                    "side": {
+                      "type": "string"
+                    },
+                    "account": {
+                      "type": "string"
+                    },
+                    "wasp": {
+                      "type": "number"
+                    },
+                    "wapb": {
+                      "type": "number"
+                    },
+                    "lastPrice": {
+                      "type": "number"
+                    },
+                    "imValue": {
+                      "type": "number"
+                    },
+                    "vmValue": {
+                      "type": "number"
+                    },
+                    "mrValue": {
+                      "type": "number"
+                    },
+                    "duedate": {
+                      "type": "string"
+                    },
+                    "netoffvol": {
+                      "type": "number"
+                    },
+                    "avg_remain": {
+                      "type": "number"
+                    },
+                    "vm_remain": {
+                      "type": "number"
+                    },
+                    "pc_remain": {
+                      "type": "string"
+                    },
+                    "stoploss": {
+                      "type": "string"
+                    },
+                    "takeprofit": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          res.status === 200 && expect(res.body).to.have.jsonSchema(schema);
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: 200 Response
+    description: OK Loại bút toán
+    request:
+      url: "{{baseUrl}}/khronos/v1/account/portfolio/status"
+      method: GET
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "cmd": "Web.Portfolio.PortfolioStatus2",
+            "rc": "1",
+            "rs": "",
+            "oID": "",
+            "data": [
+              {
+                "symbol": "VN30F2303",
+                "im": "13%",
+                "deliver": "4",
+                "receive": "11",
+                "net": 7,
+                "side": "L",
+                "account": "000111A",
+                "wasp": 1120,
+                "wapb": 1159.2,
+                "lastPrice": 1198.4,
+                "imValue": 109054400,
+                "vmValue": 70560000,
+                "mrValue": 109054400,
+                "duedate": "29/06/2021",
+                "netoffvol": 7,
+                "avg_remain": 1120,
+                "vm_remain": 54880000,
+                "pc_remain": "53.85",
+                "stoploss": "",
+                "takeprofit": ""
+              }
+            ]
+          }

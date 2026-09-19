@@ -1,0 +1,83 @@
+type: object
+properties:
+  cmd:
+    type: string
+    description: Lệnh gọi (echo).
+  rc:
+    type: string
+    description: Mã kết quả, 1 = thành công.
+  data:
+    type: array
+    description: Danh sách lệnh thường.
+    items:
+      type: object
+      properties:
+        orderNo:
+          type: string
+          description: Số hiệu lệnh.
+        pk_orderNo:
+          type: string
+          description: Key lệnh.
+        refId:
+          type: string
+          description: Reference ID của lệnh.
+        orderTime:
+          type: string
+          description: Thời gian đặt lệnh.
+        accountCode:
+          type: string
+          description: Mã tài khoản.
+        side:
+          $ref: ../enums/DerivativeSide.yaml
+        symbol:
+          type: string
+          description: Mã hợp đồng.
+        volume:
+          type: number
+          format: double
+          description: Khối lượng đặt.
+        showPrice:
+          type: string
+          description: Giá đặt.
+        matchVolume:
+          type: number
+          format: double
+          description: Khối lượng khớp.
+        status:
+          type: string
+          description: Trạng thái lệnh.
+        orderStatus:
+          type: string
+          description: Mã trạng thái lệnh.
+        channel:
+          type: string
+          description: Kênh đặt lệnh.
+        group:
+          type: string
+          description: Nhóm sản phẩm.
+        isCancel:
+          type: string
+          description: 0 = không thể hủy, 1 = có thể hủy.
+        isAmend:
+          type: string
+          description: 0 = không thể sửa, 1 = có thể sửa.
+        orderType:
+          type: string
+          description: Loại lệnh.
+        source:
+          type: string
+          description: Nguồn đặt lệnh.
+      required:
+        - orderNo
+        - pk_orderNo
+        - side
+        - symbol
+        - volume
+        - showPrice
+        - matchVolume
+        - status
+        - isCancel
+        - isAmend
+required:
+  - rc
+  - data

@@ -1,0 +1,60 @@
+type: object
+properties:
+  basicInfo:
+    type: object
+    description: Thông tin cơ bản tài khoản.
+  bankSubAccounts:
+    type: array
+    description: Danh sách tiểu khoản.
+    items:
+      type: object
+      properties:
+        accountNo:
+          type: string
+          description: Số tiểu khoản.
+        accountName:
+          type: string
+          description: Tên chủ tài khoản.
+        bankCode:
+          type: string
+          nullable: true
+          description: Mã ngân hàng (có thể null).
+        accountType:
+          type: string
+          description: "Loại tiểu khoản: NORMAL, MARGIN, DERIVATIVE."
+        accountTypeName:
+          type: string
+          description: Tên loại tiểu khoản.
+        status:
+          type: string
+          description: Trạng thái tiểu khoản.
+        isDefault:
+          type: string
+          description: Là tiểu khoản mặc định (Y/N).
+example:
+  basicInfo:
+    custodyCode: 105C334455
+    fullName: NGUYEN VAN A
+    status: ACTIVE
+  bankSubAccounts:
+    - accountNo: 0001K36265
+      accountName: Khuynh Thanh Chi Luyen
+      bankCode: null
+      accountType: NORMAL
+      accountTypeName: Thường
+      status: "1"
+      isDefault: N
+    - accountNo: 0001G75216
+      accountName: Khuynh Thanh Chi Luyen
+      bankCode: null
+      accountType: MARGIN
+      accountTypeName: Ký quỹ
+      status: "1"
+      isDefault: N
+    - accountNo: 105C738764A
+      accountName: Khuynh Thanh Chi Luyen
+      bankCode: 105C738764A
+      accountType: DERIVATIVE
+      accountTypeName: Phái sinh
+      status: "1"
+      isDefault: N

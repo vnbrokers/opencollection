@@ -1,0 +1,44 @@
+type: object
+properties:
+  cmd:
+    type: string
+    description: Lệnh gọi (echo).
+  rc:
+    type: string
+    description: Mã kết quả, 1 = thành công.
+  data:
+    type: array
+    description: Danh sách kết quả đặt lệnh.
+    items:
+      type: object
+      properties:
+        symbol:
+          type: string
+        status:
+          type: string
+        msg_type:
+          type: string
+        showPrice:
+          type: string
+        orderTime:
+          type: string
+        accountCode:
+          type: string
+        orderNo:
+          type: integer
+          format: int64
+        matchVolume:
+          type: number
+          format: double
+        side:
+          $ref: ../enums/DerivativeSide.yaml
+        volume:
+          type: string
+        pk_orderNo:
+          type: string
+        channel:
+          type: string
+        group:
+          type: string
+        quote:
+          type: string

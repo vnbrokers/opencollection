@@ -1,0 +1,304 @@
+info:
+  name: Lấy thông tin tiểu khoản
+  type: http
+  seq: 1
+  tags:
+    - accounts
+
+http:
+  method: GET
+  url: "{{baseUrl}}/eros/v2/get-profile/by-username/:custodyCode?fields=basicInfo,personalInfo,bankSubAccounts"
+  params:
+    - name: fields
+      value: basicInfo,personalInfo,bankSubAccounts
+      type: query
+      description: Danh sách thông tin cần lấy
+    - name: custodyCode
+      value: "{{custodyCode}}"
+      type: path
+      description: Số tài khoản
+  auth: inherit
+
+runtime:
+  scripts:
+    - type: tests
+      code: |-
+        test("response matches the schema", function () {
+          const schema = {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "type": "object",
+            "properties": {
+              "basicInfo": {
+                "type": "object",
+                "properties": {
+                  "tcbsId": {
+                    "type": "string"
+                  },
+                  "code105C": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "type": {
+                    "type": "string"
+                  },
+                  "depository": {
+                    "type": "string"
+                  }
+                }
+              },
+              "personalInfo": {
+                "type": "object",
+                "properties": {
+                  "fullName": {
+                    "type": "string"
+                  },
+                  "fullNameNoAccent": {
+                    "type": "string"
+                  },
+                  "firstName": {
+                    "type": "string"
+                  },
+                  "lastName": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "phoneNumber": {
+                    "type": "string"
+                  },
+                  "gender": {
+                    "type": "string"
+                  },
+                  "birthday": {
+                    "type": "string"
+                  },
+                  "contactAddress": {
+                    "type": "string"
+                  },
+                  "permanentAddress": {
+                    "type": "string"
+                  },
+                  "nationality": {
+                    "type": "string"
+                  },
+                  "nationalityName": {
+                    "type": "string"
+                  },
+                  "taxIdNumber": {
+                    "type": "string"
+                  },
+                  "acronym": {
+                    "type": "string"
+                  },
+                  "createdDate": {
+                    "type": "string"
+                  },
+                  "updatedDate": {
+                    "type": "string"
+                  },
+                  "flowOpenAccount": {
+                    "type": "string"
+                  },
+                  "avatarUrl": {
+                    "type": "string"
+                  },
+                  "businessType": {
+                    "type": "string"
+                  },
+                  "ppBusinessType": {
+                    "type": "string"
+                  },
+                  "ppBusinessField": {
+                    "type": "string"
+                  },
+                  "ppBusinessTypeName": {
+                    "type": "string"
+                  },
+                  "ppBusinessFieldName": {
+                    "type": "string"
+                  },
+                  "identityCard": {
+                    "type": "object",
+                    "properties": {
+                      "object": {
+                        "type": "string"
+                      },
+                      "idNumner": {
+                        "type": "string"
+                      },
+                      "idPlace": {
+                        "type": "string"
+                      },
+                      "idDate": {
+                        "type": "string"
+                      },
+                      "expireDate": {
+                        "type": "string"
+                      },
+                      "idType": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "bankAccounts": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "accountNo": {
+                      "type": "string"
+                    },
+                    "accountName": {
+                      "type": "string"
+                    },
+                    "accountNameNoAccent": {
+                      "type": "string"
+                    },
+                    "bankCode": {
+                      "type": "string"
+                    },
+                    "bankName": {
+                      "type": "string"
+                    },
+                    "branchCode": {
+                      "type": "string"
+                    },
+                    "bankType": {
+                      "type": "string"
+                    },
+                    "bankSys": {
+                      "type": "string"
+                    },
+                    "authorized": {
+                      "type": "string"
+                    },
+                    "bankAccountType": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "bankSubAccounts": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "accountNo": {
+                      "type": "string"
+                    },
+                    "accountName": {
+                      "type": "string"
+                    },
+                    "accountType": {
+                      "type": "string"
+                    },
+                    "accountTypeName": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "isDefault": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+
+          res.status === 200 && expect(res.body).to.have.jsonSchema(schema);
+        });
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+examples:
+  - name: 200 Response
+    description: OK
+    request:
+      url: "{{baseUrl}}/eros/v2/get-profile/by-username/:custodyCode?fields=basicInfo,personalInfo,bankSubAccounts"
+      method: GET
+    response:
+      status: 200
+      statusText: OK
+      headers:
+        - name: Content-Type
+          value: application/json
+      body:
+        type: json
+        data: |-
+          {
+            "basicInfo": {
+              "tcbsId": "0001738764",
+              "code105C": "105C334455",
+              "status": "ACTIVE",
+              "type": "INDIVIDUAL",
+              "depository": "true"
+            },
+            "personalInfo": {
+              "fullName": "Nguyễn Văn Nam",
+              "fullNameNoAccent": "Nguyen Van Nam",
+              "firstName": "Nam",
+              "lastName": "Nguyen Van",
+              "email": "namnv@email.com",
+              "phoneNumber": "0367611245",
+              "gender": "MALE",
+              "birthday": "1996-05-24T00:00:00.000Z",
+              "contactAddress": "117 Trần Duy Hưng, Cầu Giấy, Hà Nội",
+              "permanentAddress": "117 Trần Duy Hưng, Cầu Giấy, Hà Nội",
+              "nationality": "VN",
+              "nationalityName": "Việt Nam",
+              "taxIdNumber": "6477273733",
+              "acronym": "",
+              "createdDate": "2019-06-27T09:56:19.000Z",
+              "updatedDate": "2024-07-05T08:07:35.000Z",
+              "flowOpenAccount": "2",
+              "avatarUrl": "",
+              "businessType": "",
+              "ppBusinessType": "",
+              "ppBusinessField": "",
+              "ppBusinessTypeName": "",
+              "ppBusinessFieldName": "",
+              "identityCard": {
+                "object": "",
+                "idNumner": "024561782211",
+                "idPlace": "Cục CS QLHC về TTXH",
+                "idDate": "2023-09-25T00:00:00.000+07:00",
+                "expireDate": "2026-10-12",
+                "idType": "0"
+              }
+            },
+            "bankAccounts": [
+              {
+                "accountNo": "02848283883",
+                "accountName": "Nguyễn Văn Nam",
+                "accountNameNoAccent": "Nguyen Van Nam",
+                "bankCode": "01310001",
+                "bankName": "Ngân hàng TMCP Kỹ Thương Việt Nam",
+                "branchCode": "NH TMCP KY THUONG VN HOI SO CHINH",
+                "bankType": "CENTRALIZED_PAYMENT",
+                "bankSys": "310",
+                "authorized": "1",
+                "bankAccountType": "STOCK_FUND"
+              }
+            ],
+            "bankSubAccounts": [
+              {
+                "accountNo": "0001170730",
+                "accountName": "Nguyen Van Nam",
+                "accountType": "NORMAL",
+                "accountTypeName": "Thường",
+                "status": "1",
+                "isDefault": "Y"
+              }
+            ]
+          }

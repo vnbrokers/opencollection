@@ -1,0 +1,17 @@
+type: object
+properties:
+  cmd:
+    type: string
+    default: Web.cancelActivatedOrder
+    description: Tên lệnh.
+  rc:
+    type: string
+    description: Mã kết quả, 1 = thành công.
+  rs:
+    type: string
+    description: Chi tiết lỗi (nếu có).
+  data:
+    type: array
+    items:
+      type: object
+    description: Mảng rỗng nếu thành công.

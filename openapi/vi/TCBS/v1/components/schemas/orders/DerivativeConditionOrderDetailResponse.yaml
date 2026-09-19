@@ -1,0 +1,61 @@
+type: object
+properties:
+  cmd:
+    type: string
+    default: Web.Order.ConditionOrder
+    description: Tên lệnh.
+  rc:
+    type: string
+    description: Mã kết quả, 1 = thành công.
+  data:
+    type: array
+    description: Danh sách lệnh điều kiện.
+    items:
+      type: object
+      properties:
+        orderNo:
+          type: string
+          description: Số hiệu lệnh.
+        groupOrder:
+          type: string
+          description: Mã nhóm lệnh.
+        pk_orderNo:
+          type: string
+          description: Key lệnh.
+        accountCode:
+          type: string
+          description: Mã tài khoản.
+        side:
+          $ref: ../enums/DerivativeSide.yaml
+        symbol:
+          type: string
+          description: Mã hợp đồng.
+        showPrice:
+          type: number
+          format: double
+          description: Giá đặt.
+        volume:
+          type: number
+          format: double
+          description: Khối lượng đặt.
+        soPrice:
+          type: number
+          format: double
+          description: Giá stop.
+        orderType:
+          type: string
+          description: SL = giá >=, SU = giá <=.
+        from_time:
+          type: string
+          description: Thời gian bắt đầu hiệu lực.
+        exp_time:
+          type: string
+          description: Thời gian hết hạn.
+        status:
+          $ref: ../enums/DerivativeConditionalStatus.yaml
+        send_time:
+          type: string
+          description: Thời gian gửi lệnh.
+        notes:
+          type: string
+          description: "Loại lệnh: SL/TP, Stop order, Arbitrage."

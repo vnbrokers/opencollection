@@ -1,0 +1,25 @@
+"get":
+  operationId: accounts_getPpse
+  tags:
+    - stock-orders
+  "summary": "Lấy sức mua"
+  "description": "Lấy sức mua của tiểu khoản."
+  "parameters":
+    - "name": "accountNo"
+      "in": "path"
+      "required": true
+      "description": "Số tiểu khoản."
+      "schema":
+        "type": "string"
+  responses:
+    "401":
+      $ref: ../../../components/responses/Unauthorized.yaml
+    "200":
+      description: Phản hồi thành công
+      content:
+        application/json:
+          schema:
+            $ref: ../../../components/schemas/orders/PpseResponse.yaml
+          example:
+            purchasingPower: 150000000
+            maxQuantity: 2884

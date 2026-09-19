@@ -1,0 +1,27 @@
+type: object
+properties:
+  orders:
+    type: array
+    description: Danh sách lệnh trong sổ lệnh.
+    items:
+      type: object
+      properties:
+        orderId:
+          type: string
+          description: Mã lệnh.
+        symbol:
+          type: string
+          description: Mã chứng khoán.
+        execType:
+          $ref: ../enums/StockOrderDirection.yaml
+        price:
+          type: integer
+          format: int64
+          description: Giá đặt.
+        quantity:
+          type: integer
+          format: int64
+          description: Khối lượng đặt.
+        status:
+          type: string
+          description: Trạng thái lệnh.

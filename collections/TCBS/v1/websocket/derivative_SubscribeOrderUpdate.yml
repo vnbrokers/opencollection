@@ -1,0 +1,47 @@
+info:
+  name: Thay đổi thông tin lệnh phái sinh (realtime)
+  type: websocket
+  seq: 3
+  tags:
+    - trading
+
+websocket:
+  url: "{{wsBaseUrl}}/ws/nesoi"
+  message:
+    - title: Xác thực
+      selected: false
+      message:
+        type: text
+        data: |-
+          authenticate|{{wsJwtBase64Token}}
+    - title: Giữ kết nối (ping mỗi 45s)
+      selected: false
+      message:
+        type: text
+        data: |-
+          ping|1
+    - title: Đăng ký vị thế mở (DE_OPEN_POSITION)
+      selected: true
+      message:
+        type: text
+        data: |-
+          subscribe|eyJ0b3BpYyI6IkRFX09QRU5fUE9TSVRJT04ifQ==
+    - title: Đăng ký sổ lệnh điều kiện (DE_CONDITIONAL_ORDER)
+      selected: true
+      message:
+        type: text
+        data: |-
+          subscribe|eyJ0b3BpYyI6IkRFX0NPTkRJVElPTkFMX09SREVSIn0=
+    - title: Đăng ký sổ lệnh thường (DE_ORDER)
+      selected: true
+      message:
+        type: text
+        data: |-
+          subscribe|eyJ0b3BpYyI6IkRFX09SREVSIn0=
+
+settings:
+  timeout: 0
+  keepAliveInterval: 0
+
+docs: |-
+  # WebSocket thay đổi thông tin lệnh phái sinh

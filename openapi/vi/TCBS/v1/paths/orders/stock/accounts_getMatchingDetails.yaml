@@ -1,0 +1,36 @@
+"get":
+  operationId: accounts_getMatchingDetails
+  tags:
+    - stock-orders
+  "summary": "Thông tin khớp lệnh"
+  "description": "Lấy thông tin khớp lệnh của tiểu khoản."
+  "parameters":
+    - "name": "accountNo"
+      "in": "path"
+      "required": true
+      "description": "Số tiểu khoản."
+      "schema":
+        "type": "string"
+  responses:
+    "401":
+      $ref: ../../../components/responses/Unauthorized.yaml
+    "200":
+      description: Phản hồi thành công
+      content:
+        application/json:
+          schema:
+            $ref: ../../../components/schemas/orders/OrderMatchingDetailsResponse.yaml
+          example:
+            totalCount: 25
+            pageSize: 25
+            pageIndex: 0
+            data:
+              - orderId: "9202407170000280679"
+                side: B
+                symbol: FPT
+                quoteQtty: 800
+                quotePrice: 54000
+                tradeId: "202409160000220391"
+                qtty: 200
+                price: 53000
+                timeExec: 2024-09-16T17:05:20

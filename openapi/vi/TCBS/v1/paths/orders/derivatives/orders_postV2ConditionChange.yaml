@@ -1,0 +1,56 @@
+"post":
+  operationId: orders_postV2ConditionChange
+  tags:
+    - derivative-orders
+  "summary": "Sửa lệnh điều kiện phái sinh"
+  "description": "Sửa lệnh điều kiện phái sinh."
+  responses:
+    "401":
+      $ref: ../../../components/responses/Unauthorized.yaml
+    "200":
+      description: Phản hồi thành công
+      content:
+        application/json:
+          schema:
+            $ref: ../../../components/schemas/orders/DerivativeConditionOrderChangeV2Response.yaml
+          example:
+            cmd: "Web.Order.ChangeConditionOrder"
+            rc: "1"
+            data:
+              - showPrice: "1453.9"
+                price: "1362.2"
+                volume: "1"
+                pkOrderNo: "901943"
+                notes: Stop order
+
+  "requestBody":
+    "required": true
+    "content":
+      "application/json":
+        "schema":
+          "type": "object"
+          "properties":
+            "accountId":
+              "type": "string"
+              "description": "Mã tài khoản lưu ký."
+            "pkOrderNo":
+              "type": "string"
+              "description": "pk_orderNo từ API tra cứu sổ lệnh."
+            "refId":
+              "type": "string"
+              "description": "Unique reference ID."
+            "soPrice":
+              "type": "number"
+              "format": "double"
+              "description": "Giá kích hoạt mới."
+            "type":
+              "type": "string"
+              "description": "Loại (empty)."
+            "cmd":
+              "type": "string"
+              "description": "Web.Order.ChangeCondition."
+          "required":
+            - "accountId"
+            - "pkOrderNo"
+            - "refId"
+            - "soPrice"

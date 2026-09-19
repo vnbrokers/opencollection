@@ -1,0 +1,42 @@
+get:
+  operationId: ticker_getIntradayBsaExt
+  tags:
+    - market
+  summary: Cung cầu trong phiên (15 phút)
+  description: Lấy dữ liệu cung cầu trong phiên theo khoảng thời gian 15 phút.
+  parameters:
+    - name: ticker
+      in: path
+      required: true
+      description: Mã cổ phiếu, ví dụ TCB.
+      schema:
+        type: string
+    - name: timeWindow
+      in: query
+      required: true
+      description: "Khung thời gian tính bằng phút: 15 hoặc 60."
+      schema:
+        $ref: ../../components/schemas/enums/IntradayTimeWindow.yaml
+    - name: tWindow
+      in: query
+      required: true
+      description: "Khung thời gian: 15 phút."
+      schema:
+        $ref: ../../components/schemas/enums/IntradayTWindow.yaml
+    - name: type
+      in: query
+      required: false
+      description:
+        "Loại nhà đầu tư: sheep (small retail), wolf (medium institutional), shark (large institutional), all (mặc
+        định)."
+      schema:
+        $ref: ../../components/schemas/enums/InvestorType.yaml
+  responses:
+    "401":
+      $ref: ../../components/responses/Unauthorized.yaml
+    "200":
+      description: Phản hồi thành công
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/market/TickerIntradayBsaExtResponse.yaml

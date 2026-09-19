@@ -1,0 +1,31 @@
+type: object
+properties:
+  cmd:
+    type: string
+  rc:
+    type: string
+  rs:
+    type: string
+  oID:
+    type: string
+  data:
+    type: array
+    items:
+      type: object
+      properties:
+        orderNo:
+          type: string
+        pk_orderNo:
+          type: string
+        showPrice:
+          type: string
+      required:
+        - orderNo
+        - pk_orderNo
+        - showPrice
+required:
+  - cmd
+  - rc
+  - rs
+  - oID
+  - data

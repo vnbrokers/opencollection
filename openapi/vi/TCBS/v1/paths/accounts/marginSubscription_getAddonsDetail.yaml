@@ -1,0 +1,35 @@
+"get":
+  operationId: marginSubscription_getAddonsDetail
+  tags:
+    - account
+  "summary": "Gói vay bổ trợ"
+  "description": "Lấy chi tiết gói vay bổ trợ của tài khoản margin."
+  "parameters":
+    - "name": "accountNo"
+      "in": "path"
+      "required": true
+      "description": "Số tiểu khoản margin."
+      "schema":
+        "type": "string"
+  responses:
+    "401":
+      $ref: ../../components/responses/Unauthorized.yaml
+    "200":
+      description: Phản hồi thành công
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/accounts/AddonsDetailResponse.yaml
+          example:
+            marginSureViews:
+              - id: 37
+                name: Phòng ngự_E2E
+                code: MRX_INSURANCE_PREMIUM
+                subscriptionFee: 0.12
+                status: INACTIVE
+            tplus:
+              data:
+                - id: 153
+                  name: E2E MARGIN T5
+                  firstRate: 5
+                  status: ACTIVE

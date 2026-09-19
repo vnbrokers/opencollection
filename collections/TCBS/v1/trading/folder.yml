@@ -1,0 +1,6 @@
+info:
+  name: Giao dịch
+  type: folder
+  seq: 1
+request:
+  auth: inherit

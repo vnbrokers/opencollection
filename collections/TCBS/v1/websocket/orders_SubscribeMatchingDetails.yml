@@ -1,0 +1,35 @@
+info:
+  name: Lấy thông tin khớp lệnh (realtime)
+  type: websocket
+  seq: 4
+  tags:
+    - trading
+
+websocket:
+  url: "{{wsBaseUrl}}/ws/aither"
+  message:
+    - title: Xác thực
+      selected: false
+      message:
+        type: text
+        data: |-
+          authenticate|{{wsJwtBase64Token}}
+    - title: Giữ kết nối (ping mỗi 7s)
+      selected: false
+      message:
+        type: text
+        data: |-
+          ping|1
+    - title: Đăng ký thông tin lệnh cơ sở (STOCK_ORDER)
+      selected: true
+      message:
+        type: text
+        data: |-
+          subscribe|eyJ0b3BpYyI6IlNUT0NLX09SREVSIn0=
+
+settings:
+  timeout: 0
+  keepAliveInterval: 0
+
+docs: |-
+  ## WebSocket thay đổi thông tin lệnh cơ sở

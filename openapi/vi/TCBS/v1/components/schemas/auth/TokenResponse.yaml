@@ -1,0 +1,5 @@
+type: object
+properties:
+  token:
+    type: string
+    description: JWT token dùng cho các request tiếp theo.

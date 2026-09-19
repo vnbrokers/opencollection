@@ -1,0 +1,122 @@
+type: object
+properties:
+  data:
+    type: array
+    description: Danh sách hợp đồng phái sinh.
+    items:
+      type: object
+      properties:
+        symbol:
+          type: string
+          description: Mã hợp đồng.
+        ceilPrice:
+          type: number
+          format: double
+          description: Giá trần.
+        floorPrice:
+          type: number
+          format: double
+          description: Giá sàn.
+        refPrice:
+          type: number
+          format: double
+          description: Giá tham chiếu.
+        bidPrice01:
+          type: number
+          format: double
+          description: Giá mua 1.
+        bidPrice02:
+          type: number
+          format: double
+          description: Giá mua 2.
+        bidPrice03:
+          type: number
+          format: double
+          description: Giá mua 3.
+        bidQtty01:
+          type: number
+          format: double
+          description: Khối lượng mua 1.
+        bidQtty02:
+          type: number
+          format: double
+          description: Khối lượng mua 2.
+        bidQtty03:
+          type: number
+          format: double
+          description: Khối lượng mua 3.
+        offerPrice01:
+          type: number
+          format: double
+          description: Giá bán 1.
+        offerPrice02:
+          type: number
+          format: double
+          description: Giá bán 2.
+        offerPrice03:
+          type: number
+          format: double
+          description: Giá bán 3.
+        offerQtty01:
+          type: number
+          format: double
+          description: Khối lượng bán 1.
+        offerQtty02:
+          type: number
+          format: double
+          description: Khối lượng bán 2.
+        offerQtty03:
+          type: number
+          format: double
+          description: Khối lượng bán 3.
+        matchPrice:
+          type: number
+          format: double
+          description: Giá khớp.
+        matchQtty:
+          type: number
+          format: double
+          description: Khối lượng khớp.
+        change:
+          type: number
+          format: double
+          description: Thay đổi giá.
+        changePercent:
+          type: number
+          format: double
+          description: "% thay đổi."
+        open:
+          type: number
+          format: double
+          description: Giá mở cửa.
+        high:
+          type: number
+          format: double
+          description: Giá cao nhất.
+        low:
+          type: number
+          format: double
+          description: Giá thấp nhất.
+        totalVol:
+          type: number
+          format: double
+          description: Tổng khối lượng.
+        openVol:
+          type: number
+          format: double
+          description: Khối lượng mở.
+        buyForeignQtty:
+          type: number
+          format: double
+          description: Khối lượng mua của nhà đầu tư nước ngoài.
+        sellForeignQtty:
+          type: number
+          format: double
+          description: Khối lượng bán của nhà đầu tư nước ngoài.
+        expiryDate:
+          type: string
+          description: Ngày đáo hạn.
+        avg:
+          type: number
+          format: double
+          description: Giá trị giao dịch trung bình.

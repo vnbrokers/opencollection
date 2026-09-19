@@ -1,0 +1,59 @@
+type: object
+properties:
+  object:
+    type: string
+    description: Mặc định = 'List'.
+  pageSize:
+    type: integer
+    format: int64
+    description: Kích thước trang.
+  pageIndex:
+    type: integer
+    format: int64
+    description: Mục lục trang.
+  totalCount:
+    type: integer
+    format: int64
+    description: Tổng số bản ghi.
+  data:
+    type: array
+    items:
+      type: object
+      properties:
+        orderID:
+          type: string
+          description: Số hiệu lệnh.
+        accountNo:
+          type: string
+          description: Số tiểu khoản.
+        symbol:
+          type: string
+          description: Mã chứng khoán.
+        execType:
+          $ref: ../enums/StockOrderDirection.yaml
+        orderQtty:
+          type: number
+          format: double
+          description: Khối lượng đặt.
+        execQtty:
+          type: number
+          format: double
+          description: Khối lượng khớp.
+        priceType:
+          $ref: ../enums/StockPriceType.yaml
+        limitPrice:
+          type: number
+          format: double
+          description: Giá đặt lệnh.
+        matchPrice:
+          type: number
+          format: double
+          description: Giá khớp trung bình.
+        orStatus:
+          $ref: ../enums/StockOrderStatus.yaml
+        txdate:
+          type: string
+          description: Ngày đặt lệnh (RFC 3339).
+        txtime:
+          type: string
+          description: Giờ đặt lệnh.

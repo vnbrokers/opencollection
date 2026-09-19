@@ -1,0 +1,28 @@
+"get":
+  operationId: accounts_getStockAsset
+  tags:
+    - account
+  "summary": "Tra cứu tài sản cổ phiếu"
+  "description": "Tra cứu tài sản cổ phiếu theo tiểu khoản. Số dư tiền dùng /cashInvestments; sao kê tiền dùng /erebos/v2/digital/trans-hist-cashStatements."
+  "parameters":
+    - "name": "accountNo"
+      "in": "path"
+      "required": true
+      "description": "Số tiểu khoản."
+      "schema":
+        "type": "string"
+  responses:
+    "401":
+      $ref: ../../../components/responses/Unauthorized.yaml
+    "200":
+      description: Phản hồi thành công
+      content:
+        application/json:
+          schema:
+            $ref: ../../../components/schemas/orders/StockAssetResponse.yaml
+          example:
+            assets:
+              - symbol: VNM
+                quantity: 500
+                avgPrice: 78500
+                marketValue: 40250000

@@ -1,0 +1,57 @@
+type: object
+properties:
+  ticker:
+    type: string
+    description: Mã cổ phiếu.
+  data:
+    type: array
+    items:
+      type: object
+      properties:
+        bu:
+          type: number
+          format: double
+          description: Khối lượng mua tích cực.
+        bms:
+          type: number
+          format: double
+          description: Tổng tích lũy mua.
+        bup:
+          type: number
+          format: double
+          description: Tỷ lệ % mua tích cực.
+        sd:
+          type: number
+          format: double
+          description: Khối lượng bán tiêu cực.
+        sms:
+          type: number
+          format: double
+          description: Tổng tích lũy bán.
+        sdp:
+          type: number
+          format: double
+          description: Tỷ lệ % bán tiêu cực.
+        bsr:
+          type: number
+          format: double
+          description: Tỷ lệ mua/bán.
+        t:
+          type: string
+          description: Thời gian (HH:mm:ss).
+        s:
+          type: number
+          format: double
+          description: Thời gian (timestamp).
+example:
+  ticker: TCB
+  data:
+    - bu: 1000000
+      bms: 5000000
+      bup: 0.65
+      sd: 800000
+      sms: 3000000
+      sdp: 0.35
+      bsr: 1.25
+      t: 09:15:00
+      s: 1640995200000

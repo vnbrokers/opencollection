@@ -1,0 +1,32 @@
+"get":
+  operationId: accounts_getCashInvestments
+  tags:
+    - account
+  "summary": "Thông tin số dư tiền"
+  "description": "Lấy thông tin số dư tiền của tiểu khoản."
+  "parameters":
+    - "name": "accountNo"
+      "in": "path"
+      "required": true
+      "description": "Số tiểu khoản."
+      "schema":
+        "type": "string"
+  responses:
+    "401":
+      $ref: ../../components/responses/Unauthorized.yaml
+    "200":
+      description: Phản hồi thành công
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/accounts/CashInvestmentsResponse.yaml
+          example:
+            totalCount: 20
+            pageSize: 20
+            pageIndex: 1
+            data:
+              - bodBalance: 918000000
+                cashBalance: 918000000
+                pp0forBF: 2057323960
+                bankAvlBalanceBF: 6500000
+                accountNo: "0001170730"

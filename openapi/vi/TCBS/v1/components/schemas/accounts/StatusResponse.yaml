@@ -1,0 +1,11 @@
+type: object
+properties:
+  cmd:
+    type: string
+    description: Tên lệnh phản hồi.
+  rc:
+    type: string
+    description: Mã kết quả, 1 = thành công.
+  data:
+    type: object
+    description: Dữ liệu tổng quan tiền và ký quỹ.

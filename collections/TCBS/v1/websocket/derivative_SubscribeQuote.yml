@@ -1,0 +1,47 @@
+info:
+  name: Bảng giá phái sinh
+  type: websocket
+  seq: 2
+  tags:
+    - market
+
+websocket:
+  url: "{{wsBaseUrl}}/ws/thesis/v1/stream/derivative"
+  message:
+    - title: Xác thực
+      selected: false
+      message:
+        type: text
+        data: |-
+          d|a|||{{wsBase64Token}}
+    - title: Giữ kết nối (ping)
+      selected: false
+      message:
+        type: text
+        data: |-
+          d|p|||
+    - title: Đăng ký bảng giá theo mã (ticker)
+      selected: true
+      message:
+        type: text
+        data: |-
+          d|s|tk|bp+bi+tm+mp+op+fe|VN30F1M,VN30F2M
+    - title: Đăng ký bảng giá theo sàn (8=VN30, 9=VGB5)
+      selected: false
+      message:
+        type: text
+        data: |-
+          d|s|ro|bp+bi+tm+mp+op+fe|8,9
+    - title: Đăng ký thay đổi index phái sinh
+      selected: false
+      message:
+        type: text
+        data: |-
+          d|s|si|rt|8,9
+
+settings:
+  timeout: 0
+  keepAliveInterval: 0
+
+docs: |-
+  # WebSocket bảng giá phái sinh

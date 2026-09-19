@@ -1,0 +1,8 @@
+type: object
+properties:
+  code:
+    type: string
+    description: Code trả về, 200 là thành công, khác 200 là lỗi.
+  message:
+    type: string
+    description: Mô tả mã lỗi nếu có.

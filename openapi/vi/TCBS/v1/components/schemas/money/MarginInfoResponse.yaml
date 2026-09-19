@@ -1,0 +1,60 @@
+type: object
+properties:
+  response:
+    type: object
+    properties:
+      totalRow:
+        type: integer
+        format: int64
+        description: Số bản ghi.
+      totalPage:
+        type: integer
+        format: int64
+        description: Số trang.
+      data:
+        type: array
+        items:
+          type: object
+          properties:
+            releaseDate:
+              type: string
+              description: Ngày giải ngân.
+            overDueDate:
+              type: string
+              description: Ngày đáo hạn.
+            releasedAmount:
+              type: number
+              format: double
+              description: Gốc giải ngân.
+            printAmount:
+              type: number
+              format: double
+              description: Nợ gốc hiện tại.
+            intAmount:
+              type: number
+              format: double
+              description: Nợ lãi và phí hiện tại.
+            remainingInterestFee:
+              type: number
+              format: double
+              description: Tổng nợ lãi và phí hiện tại.
+            paidInterestFee:
+              type: number
+              format: double
+              description: Tổng lãi và phí đã trả.
+            rate2:
+              type: number
+              format: double
+              description: Lãi suất.
+            releasedDay:
+              type: number
+              format: double
+              description: Số ngày vay.
+            paidFee:
+              type: number
+              format: double
+              description: Phí đã trả.
+            remainingFee:
+              type: number
+              format: double
+              description: Phí còn lại.

@@ -1,0 +1,6 @@
+info:
+  name: Tài khoản & Tiền
+  type: folder
+  seq: 1
+request:
+  auth: inherit

@@ -1,0 +1,55 @@
+type: array
+items:
+  type: object
+  properties:
+    accountNo:
+      type: string
+      description: Số tiểu khoản.
+    rtt:
+      type: number
+      format: double
+      description: Rtt thực tế.
+    outstanding:
+      type: number
+      format: double
+      description: Tổng nợ gốc.
+    accruedInterest:
+      type: number
+      format: double
+      description: Tổng nợ lãi.
+    dueAmount:
+      type: number
+      format: double
+      description: Nợ đến hạn.
+    overdueAmount:
+      type: number
+      format: double
+      description: Nợ quá hạn.
+    totalFeeDebt:
+      type: number
+      format: double
+      description: Tổng nợ phí (Phí marginsure).
+    riskPolicy:
+      type: object
+      properties:
+        initialMargin:
+          type: number
+          format: double
+          description: Tỷ lệ ký quỹ ban đầu.
+        maintenanceMargin:
+          type: number
+          format: double
+          description: Tỷ lệ duy trì.
+        liquidationMargin:
+          type: number
+          format: double
+          description: Tỷ lệ cảnh báo.
+    riskStatus:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Trạng thái RTT.
+        description:
+          type: string
+          description: Mô tả trạng thái RTT.

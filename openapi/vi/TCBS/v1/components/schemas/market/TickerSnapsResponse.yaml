@@ -1,0 +1,124 @@
+type: object
+properties:
+  tradingDate:
+    type: string
+    description: Ngày giao dịch.
+  data:
+    type: array
+    items:
+      type: object
+      properties:
+        symbol:
+          type: string
+          description: Mã cổ phiếu.
+        ceilPrice:
+          type: number
+          format: double
+          description: Giá trần.
+        floorPrice:
+          type: number
+          format: double
+          description: Giá sàn.
+        refPrice:
+          type: number
+          format: double
+          description: Giá tham chiếu.
+        bidPrice01:
+          type: number
+          format: double
+          description: Giá mua 1.
+        bidPrice02:
+          type: number
+          format: double
+          description: Giá mua 2.
+        bidPrice03:
+          type: number
+          format: double
+          description: Giá mua 3.
+        bidQtty01:
+          type: number
+          format: double
+          description: KL mua 1.
+        bidQtty02:
+          type: number
+          format: double
+          description: KL mua 2.
+        bidQtty03:
+          type: number
+          format: double
+          description: KL mua 3.
+        offerPrice01:
+          type: number
+          format: double
+          description: Giá bán 1.
+        offerPrice02:
+          type: number
+          format: double
+          description: Giá bán 2.
+        offerPrice03:
+          type: number
+          format: double
+          description: Giá bán 3.
+        offerQtty01:
+          type: number
+          format: double
+          description: KL bán 1.
+        offerQtty02:
+          type: number
+          format: double
+          description: KL bán 2.
+        offerQtty03:
+          type: number
+          format: double
+          description: KL bán 3.
+        matchPrice:
+          type: number
+          format: double
+          description: Giá khớp.
+        matchQtty:
+          type: number
+          format: double
+          description: Khối lượng khớp.
+        change:
+          type: number
+          format: double
+          description: Thay đổi giá.
+        changePercent:
+          type: number
+          format: double
+          description: "% thay đổi."
+        avg:
+          type: number
+          format: double
+          description: Giá bình quân.
+        high:
+          type: number
+          format: double
+          description: Giá cao nhất.
+        low:
+          type: number
+          format: double
+          description: Giá thấp nhất.
+        totalValue:
+          type: number
+          format: double
+          description: Tổng giá trị.
+        totalVolume:
+          type: number
+          format: double
+          description: Tổng khối lượng.
+        buyForeignQtty:
+          type: number
+          format: double
+          description: KL nước ngoài mua.
+        sellForeignQtty:
+          type: number
+          format: double
+          description: KL nước ngoài bán.
+        room:
+          type: string
+          description: Room nước ngoài.
+        open:
+          type: number
+          format: double
+          description: Giá mở cửa.

@@ -1,0 +1,28 @@
+type: object
+properties:
+  cmd:
+    type: string
+    description: Lệnh gọi (echo).
+  rc:
+    type: string
+    description: Mã kết quả, 1 = thành công.
+  data:
+    type: array
+    items:
+      type: object
+      properties:
+        showPrice:
+          type: string
+          description: Giá kích hoạt.
+        price:
+          type: string
+          description: Giá đặt.
+        volume:
+          type: string
+          description: Khối lượng.
+        pkOrderNo:
+          type: string
+          description: Số hiệu lệnh.
+        notes:
+          type: string
+          description: Loại lệnh điều kiện.

@@ -1,0 +1,36 @@
+"get":
+  operationId: accounts_getLoan
+  tags:
+    - account
+  "summary": "Danh sách khoản vay"
+  "description": "Lấy danh sách khoản vay của tài khoản margin."
+  "parameters":
+    - "name": "accountNo"
+      "in": "path"
+      "required": true
+      "description": "Số tiểu khoản margin."
+      "schema":
+        "type": "string"
+  responses:
+    "401":
+      $ref: ../../components/responses/Unauthorized.yaml
+    "200":
+      description: Phản hồi thành công
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/accounts/LoanResponse.yaml
+          example:
+            size: 10
+            content:
+              - openingDate: 2024-09-06
+                dueDate: 2024-12-04
+                renewTime: 0
+                maxRenewTime: 1
+                isRenewable: false
+                reasonList:
+                  - Chưa đến ngày xin gia hạn
+                insurance:
+                  insuranceName: Phòng ngự
+                  insuranceCode: MRX_INSURANCE_PREMIUM_1
+                  insuranceFee: 0.15

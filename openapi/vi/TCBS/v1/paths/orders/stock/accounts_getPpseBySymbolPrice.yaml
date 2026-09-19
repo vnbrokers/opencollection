@@ -1,0 +1,37 @@
+"get":
+  operationId: accounts_getPpseBySymbolPrice
+  tags:
+    - stock-orders
+  "summary": "Lấy sức mua theo mã, giá"
+  "description": "Lấy sức mua theo mã cổ phiếu và mức giá cụ thể."
+  "parameters":
+    - "name": "accountNo"
+      "in": "path"
+      "required": true
+      "description": "Số tiểu khoản."
+      "schema":
+        "type": "string"
+    - "name": "symbol"
+      "in": "path"
+      "required": true
+      "description": "Mã chứng khoán, ví dụ FPT."
+      "schema":
+        "type": "string"
+    - "name": "price"
+      "in": "path"
+      "required": true
+      "description": "Giá dùng để tính sức mua."
+      "schema":
+        "type": "string"
+  responses:
+    "401":
+      $ref: ../../../components/responses/Unauthorized.yaml
+    "200":
+      description: Phản hồi thành công
+      content:
+        application/json:
+          schema:
+            $ref: ../../../components/schemas/orders/PpseBySymbolPriceResponse.yaml
+          example:
+            pp0: 2057323960
+            maxQtty: 39564

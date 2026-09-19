@@ -1,0 +1,55 @@
+get:
+  operationId: ticker_getSnaps
+  tags:
+    - market
+  summary: Thông tin room nước ngoài
+  description: Lấy thông tin room nước ngoài và snapshot thị trường.
+  parameters:
+    - name: index
+      in: query
+      required: false
+      description:
+        "Rổ chứng khoán: 1 = HOSE, 2 = VN30, 3 = HNX, 4 = HNX30, 5 = Upcom, 10 = Midcap, 11 = VN100, 12 = VNAllshare,
+        13 = VNSmallcap, 14 = VNXAllshare, 15 = VN50, 16 = VNSI."
+      schema:
+        $ref: ../../components/schemas/enums/MarketBasket.yaml
+  responses:
+    "401":
+      $ref: ../../components/responses/Unauthorized.yaml
+    "200":
+      description: Phản hồi thành công
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/market/TickerSnapsResponse.yaml
+          example:
+            tradingDate: 07/08/2025
+            data:
+              - symbol: PLP
+                ceilPrice: 4550
+                floorPrice: 3970
+                refPrice: 4260
+                bidPrice01: 4270
+                bidPrice02: 4260
+                bidPrice03: 4250
+                bidQtty01: 200
+                bidQtty02: 800
+                bidQtty03: 900
+                offerPrice01: 4350
+                offerPrice02: 4380
+                offerPrice03: 4390
+                offerQtty01: 400
+                offerQtty02: 400
+                offerQtty03: 2900
+                matchPrice: 4350
+                matchQtty: 100
+                change: 90
+                changePercent: 2.112676056338028
+                avg: 4300
+                high: 4390
+                low: 4140
+                totalValue: 128278000
+                totalVolume: 29800
+                sellForeignQtty: 14000
+                room: "44759594"
+                open: 4350

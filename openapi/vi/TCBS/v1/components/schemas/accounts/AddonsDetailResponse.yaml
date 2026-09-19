@@ -1,0 +1,46 @@
+type: object
+properties:
+  marginSureViews:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: number
+          format: double
+          description: Id gói marginsure.
+        name:
+          type: string
+          description: Tên gói marginsure.
+        code:
+          type: string
+          description: Mã gói marginsure.
+        subscriptionFee:
+          type: number
+          format: double
+          description: Phí tham gia.
+        status:
+          type: string
+          description: Trạng thái đăng ký gói.
+  tplus:
+    type: object
+    properties:
+      data:
+        type: array
+        items:
+          type: object
+          properties:
+            id:
+              type: number
+              format: double
+              description: ID gói T+.
+            name:
+              type: string
+              description: Tên gói T+.
+            firstRate:
+              type: number
+              format: double
+              description: Lãi suất bậc 1 của gói T+.
+            status:
+              type: string
+              description: Trạng thái gói T+.

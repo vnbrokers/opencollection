@@ -1,0 +1,25 @@
+type: object
+properties:
+  ticker:
+    type: string
+    description: Mã cổ phiếu.
+  data:
+    type: array
+    items:
+      type: object
+      properties:
+        bup:
+          type: number
+          format: double
+          description: Tỷ lệ % mua tích cực.
+        sdp:
+          type: number
+          format: double
+          description: Tỷ lệ % bán tiêu cực.
+        bsr:
+          type: number
+          format: double
+          description: Tỷ lệ mua/bán.
+        t:
+          type: string
+          description: Thời gian giao dịch.

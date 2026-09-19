@@ -1,0 +1,53 @@
+info:
+  name: Bảng giá cơ sở
+  type: websocket
+  seq: 2
+  tags:
+    - market
+
+websocket:
+  url: "{{wsBaseUrl}}/ws/thesis/v1/stream/normal"
+  message:
+    - title: Xác thực
+      selected: false
+      message:
+        type: text
+        data: |-
+          d|a|||{{wsBase64Token}}
+    - title: Giữ kết nối (ping mỗi 2s)
+      selected: false
+      message:
+        type: text
+        data: |-
+          d|p|||
+    - title: Đăng ký bảng giá theo mã (ticker)
+      selected: true
+      message:
+        type: text
+        data: |-
+          d|s|tk|bp+bi+tm+mp+op+fe|FPT,VCS,PNJ,PTB
+    - title: Đăng ký bảng giá theo sàn (1=VN-INDEX, 2=VN30)
+      selected: false
+      message:
+        type: text
+        data: |-
+          d|s|ro|bp+bi+tm+mp+op+fe|1,2
+    - title: Đăng ký thay đổi index
+      selected: false
+      message:
+        type: text
+        data: |-
+          d|s|si|rt|1,2
+    - title: Đăng ký giao dịch thỏa thuận
+      selected: false
+      message:
+        type: text
+        data: |-
+          d|s|pt|ptm+ptb+pts|1,2,3
+
+settings:
+  timeout: 0
+  keepAliveInterval: 0
+
+docs: |-
+  ## WebSocket bảng giá cơ sở

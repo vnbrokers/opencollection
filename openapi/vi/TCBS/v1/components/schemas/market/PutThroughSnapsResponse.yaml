@@ -1,0 +1,93 @@
+type: object
+properties:
+  buyAdv:
+    type: array
+    items:
+      type: object
+      properties:
+        symbol:
+          type: string
+          description: Mã cổ phiếu.
+        price:
+          type: number
+          format: double
+          description: Giá.
+        vol:
+          type: number
+          format: double
+          description: Khối lượng.
+        time:
+          type: string
+          description: Thời gian.
+        status:
+          type: integer
+          description: Trạng thái.
+        color:
+          type: integer
+          description: Màu.
+        orderId:
+          type: string
+          description: Mã lệnh.
+        side:
+          $ref: ../enums/StockOrderSide.yaml
+  sellAdv:
+    type: array
+    items:
+      type: object
+      properties:
+        symbol:
+          type: string
+          description: Mã cổ phiếu.
+        price:
+          type: number
+          format: double
+          description: Giá.
+        vol:
+          type: number
+          format: double
+          description: Khối lượng.
+        time:
+          type: string
+          description: Thời gian.
+        status:
+          type: integer
+          description: Trạng thái.
+        color:
+          type: integer
+          description: Màu.
+        orderId:
+          type: string
+          description: Mã lệnh.
+        side:
+          $ref: ../enums/StockOrderSide.yaml
+  match:
+    type: array
+    items:
+      type: object
+      properties:
+        symbol:
+          type: string
+          description: Mã cổ phiếu.
+        price:
+          type: number
+          format: double
+          description: Giá khớp.
+        vol:
+          type: number
+          format: double
+          description: Khối lượng khớp.
+        val:
+          type: number
+          format: double
+          description: Giá trị.
+        time:
+          type: number
+          format: double
+          description: Thời gian khớp (timestamp).
+        color:
+          type: integer
+          description: Màu.
+        accumulatedValue:
+          type: number
+          format: double
+          description: Giá trị tích lũy.

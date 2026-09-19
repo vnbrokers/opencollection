@@ -1,0 +1,29 @@
+"post":
+  operationId: oauth2_postRequestOtp
+  tags:
+    - authentication
+  "summary": "Yêu cầu OTP để lấy JWT Token"
+  "description": "Trao đổi API Key để lấy JWT Token."
+  responses:
+    "401":
+      $ref: ../../components/responses/Unauthorized.yaml
+    "200":
+      description: Phản hồi thành công
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/auth/OtpRequestResponse.yaml
+          example:
+            otpId: f944da47-63fc-4095-b7d7-b80a90389d23
+  "requestBody":
+    "required": true
+    "content":
+      "application/json":
+        "schema":
+          "type": "object"
+          "properties":
+            "apiKey":
+              "type": "string"
+              "description": "API Key generated on TCInvest."
+          "required":
+            - "apiKey"

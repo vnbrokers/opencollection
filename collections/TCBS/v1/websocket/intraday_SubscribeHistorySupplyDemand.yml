@@ -1,0 +1,35 @@
+info:
+  name: Lấy thông tin lịch sử giá khớp, cung cầu (realtime)
+  type: websocket
+  seq: 9
+  tags:
+    - market
+
+websocket:
+  url: "{{wsBaseUrl}}/ws/ouranos/v1/stream"
+  message:
+    - title: Xác thực
+      selected: false
+      message:
+        type: text
+        data: |-
+          d|a|||{{wsBase64Token}}
+    - title: Giữ kết nối (ping)
+      selected: false
+      message:
+        type: text
+        data: |-
+          d|po
+    - title: Đăng ký lịch sử giá và cung cầu
+      selected: true
+      message:
+        type: text
+        data: |-
+          d|st|C001+C002S60+C002S900|POW,TCB,VIC
+
+settings:
+  timeout: 0
+  keepAliveInterval: 0
+
+docs: |-
+  # WebSocket lịch sử giá, cung cầu

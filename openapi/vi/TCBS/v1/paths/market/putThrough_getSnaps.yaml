@@ -1,0 +1,49 @@
+get:
+  operationId: putThrough_getSnaps
+  tags:
+    - market
+  summary: Thông tin thỏa thuận
+  description: Lấy thông tin giao dịch thỏa thuận.
+  parameters:
+    - name: floor
+      in: query
+      required: false
+      description: "Rổ chứng khoán: 1 = HOSE, 2 = HNX, 3 = Upcom."
+      schema:
+        $ref: ../../components/schemas/enums/MarketFloor.yaml
+  responses:
+    "401":
+      $ref: ../../components/responses/Unauthorized.yaml
+    "200":
+      description: Phản hồi thành công
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/market/PutThroughSnapsResponse.yaml
+          example:
+            buyAdv:
+              - symbol: DHT
+                price: 24300
+                vol: 50
+                time: 20231220-02:16:13.588
+                status: 1
+                color: 3
+                orderId: DHT00000000000036
+                side: B
+            sellAdv:
+              - symbol: TCB
+                price: 24300
+                vol: 50
+                time: 20231220-02:16:13.588
+                status: 1
+                color: 3
+                orderId: TCB00000000000036
+                side: S
+            match:
+              - symbol: TCB
+                price: 23455.5
+                vol: 5000
+                val: 117275000
+                time: 72003
+                color: 5
+                accumulatedValue: 254440000

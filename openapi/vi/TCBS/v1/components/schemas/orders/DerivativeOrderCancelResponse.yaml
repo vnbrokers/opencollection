@@ -1,0 +1,29 @@
+type: object
+properties:
+  cmd:
+    type: string
+    default: Web.changeOrder
+    description: Web.changeOrder.
+  rc:
+    type: string
+    description: Mã kết quả, 1 = thành công.
+  data:
+    type: array
+    items:
+      type: object
+      properties:
+        orderNo:
+          type: string
+          description: Số hiệu lệnh.
+        msg_type:
+          type: string
+          description: Loại lệnh (1C = hủy lệnh).
+        status:
+          type: string
+          description: Trạng thái (PW = pending withdrawal).
+        pk_orderNo:
+          type: string
+          description: Key lệnh.
+        cancelTime:
+          type: string
+          description: Thời gian hủy.

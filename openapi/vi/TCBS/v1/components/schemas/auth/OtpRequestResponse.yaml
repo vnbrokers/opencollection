@@ -1,0 +1,5 @@
+type: object
+properties:
+  otpId:
+    type: string
+    description: ID của OTP, dùng ở bước 2 để đổi token.

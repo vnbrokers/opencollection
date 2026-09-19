@@ -1,0 +1,30 @@
+"get":
+  operationId: accounts_getOrders
+  tags:
+    - stock-orders
+  "summary": "Lấy sổ lệnh"
+  "description": "Lấy sổ lệnh của tiểu khoản."
+  "parameters":
+    - "name": "accountNo"
+      "in": "path"
+      "required": true
+      "description": "Số tiểu khoản, ví dụ: 0001170730."
+      "schema":
+        "type": "string"
+  responses:
+    "401":
+      $ref: ../../../components/responses/Unauthorized.yaml
+    "200":
+      description: Phản hồi thành công
+      content:
+        application/json:
+          schema:
+            $ref: ../../../components/schemas/orders/OrdersResponse.yaml
+          example:
+            orders:
+              - orderId: "9202205230000324355"
+                symbol: VNM
+                execType: NB
+                price: 10000
+                quantity: 100
+                status: FILLED

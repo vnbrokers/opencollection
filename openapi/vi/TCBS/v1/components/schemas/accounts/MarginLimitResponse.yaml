@@ -1,0 +1,33 @@
+type: array
+items:
+  type: object
+  properties:
+    custodyID:
+      type: string
+      description: Số tài khoản lưu ký.
+    accountNo:
+      type: string
+      description: Số tiểu khoản.
+    aftype:
+      type: string
+      description: Loại hình hợp đồng.
+    vsdStatus:
+      type: string
+      description: Trạng thái VSD.
+    accountStatus:
+      $ref: ../enums/SubAccountStatus.yaml
+    marginLimit:
+      type: number
+      format: double
+      description: Hạn mức margin của tiểu khoản.
+    accountType:
+      $ref: ../enums/SubAccountType.yaml
+    isIA:
+      type: string
+      description: "Có kết nối IA: Y = Có, N = Không."
+    bankName:
+      type: string
+      description: Tên ngân hàng kết nối IA.
+    bankAccount:
+      type: string
+      description: Số tài khoản kết nối IA.

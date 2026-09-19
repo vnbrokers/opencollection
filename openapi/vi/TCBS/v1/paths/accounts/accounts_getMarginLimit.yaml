@@ -1,0 +1,33 @@
+"get":
+  operationId: accounts_getMarginLimit
+  tags:
+    - account
+  "summary": "Hạn mức margin"
+  "description": "Lấy thông tin hạn mức margin của khách hàng theo số tài khoản lưu ký."
+  "parameters":
+    - "name": "custodyId"
+      "in": "path"
+      "required": true
+      "description": "Mã tài khoản lưu ký."
+      "schema":
+        "type": "string"
+  responses:
+    "401":
+      $ref: ../../components/responses/Unauthorized.yaml
+    "200":
+      description: Phản hồi thành công
+      content:
+        application/json:
+          schema:
+            $ref: ../../components/schemas/accounts/MarginLimitResponse.yaml
+          example:
+            - custodyID: 105C738764
+              accountNo: "0001000075"
+              aftype: "0075"
+              vsdStatus: Y
+              accountStatus: A
+              marginLimit: 0
+              isIA: Y
+              bankName: TCB
+              bankAccount: "11520154590019"
+              accountType: normal

@@ -17,7 +17,7 @@ tags:
   - name: account
     description: Thông tin tài khoản, tài sản và hạn mức.
     x-group: Tài khoản
-  - name: market-data
+  - name: market
     description: Dữ liệu chứng khoán và phái sinh.
     x-group: Dữ liệu thị trường
   - name: cash
@@ -31,95 +31,91 @@ tags:
     x-group: Lệnh phái sinh
 paths:
   /aion/v1/accounts/{accountNo}/cashInvestments:
-    $ref: "./paths/accounts/aion-accounts-account-no-cash-investments.yaml"
+    $ref: "./paths/accounts/accounts_getCashInvestments.yaml"
   /aion/v1/accounts/{accountNo}/matching-details:
-    $ref: "./paths/orders/stock/aion-accounts-account-no-matching-details.yaml"
+    $ref: "./paths/orders/stock/accounts_getMatchingDetails.yaml"
   /aion/v1/accounts/{accountNo}/orders:
-    $ref: "./paths/orders/stock/aion-accounts-account-no-orders.yaml"
+    $ref: "./paths/orders/stock/accounts_getOrders.yaml"
   /aion/v1/accounts/{accountNo}/orders/{orderID}:
-    $ref: "./paths/orders/stock/aion-accounts-account-no-orders-order-id.yaml"
+    $ref: "./paths/orders/stock/accounts_getOrder.yaml"
   /aion/v1/accounts/{accountNo}/ppse:
-    $ref: "./paths/orders/stock/aion-accounts-account-no-ppse.yaml"
+    $ref: "./paths/orders/stock/accounts_getPpse.yaml"
   /aion/v1/accounts/{accountNo}/ppse/{symbol}:
-    $ref: "./paths/orders/stock/aion-accounts-account-no-ppse-symbol.yaml"
+    $ref: "./paths/orders/stock/accounts_getPpseBySymbol.yaml"
   /aion/v1/accounts/{accountNo}/ppse/{symbol}/{price}:
-    $ref: "./paths/orders/stock/aion-accounts-account-no-ppse-symbol-price.yaml"
+    $ref: "./paths/orders/stock/accounts_getPpseBySymbolPrice.yaml"
   /aion/v1/accounts/{accountNo}/se:
-    $ref: "./paths/orders/stock/aion-accounts-account-no-se.yaml"
+    $ref: "./paths/orders/stock/accounts_getStockAsset.yaml"
   /aion/v1/customers/{custodyId}/accounts:
-    $ref: "./paths/accounts/aion-customers-custody-id-accounts.yaml"
+    $ref: "./paths/accounts/accounts_getMarginLimit.yaml"
   /akhlys/v1/accounts/{accountNo}/cancel-orders:
-    $ref: "./paths/orders/stock/akhlys-accounts-account-no-cancel-orders.yaml"
+    $ref: "./paths/orders/stock/orders_putCancelOrders.yaml"
   /akhlys/v1/accounts/{accountNo}/orders:
-    $ref: "./paths/orders/stock/akhlys-accounts-account-no-orders.yaml"
+    $ref: "./paths/orders/stock/orders_postOrder.yaml"
   /akhlys/v1/accounts/{accountNo}/orders/{orderId}:
-    $ref: "./paths/orders/stock/akhlys-accounts-account-no-orders-order-id.yaml"
+    $ref: "./paths/orders/stock/orders_putOrder.yaml"
   /ananke/v1/securities:
-    $ref: "./paths/market-data/ananke-securities.yaml"
-  /api/v1/derivatives/contracts:
-    $ref: "./paths/market-data/api-derivatives-contracts.yaml"
+    $ref: "./paths/market/market_getSecurities.yaml"
   /campaign-management/v1/margin/subscription/{accountNo}/addons/detail:
-    $ref: "./paths/accounts/campaign-management-margin-subscription-account-no-addons-detail.yaml"
+    $ref: "./paths/accounts/marginSubscription_getAddonsDetail.yaml"
   /erebos/v2/digital/margin-info:
-    $ref: "./paths/money/erebos-digital-margin-info.yaml"
-  /erebos/v2/digital/trans-hist-cashStatements:
-    $ref: "./paths/money/erebos-digital-trans-hist-cash-statements.yaml"
+    $ref: "./paths/money/margin_getInfo.yaml"
   /eros/v2/get-profile/by-username/{custodyCode}:
-    $ref: "./paths/accounts/eros-get-profile-by-username-custody-code.yaml"
+    $ref: "./paths/accounts/profiles_getByCustodyCode.yaml"
   /gaia/v1/oauth2/openapi/request-otp:
-    $ref: "./paths/auth/gaia-oauth2-openapi-request-otp.yaml"
+    $ref: "./paths/auth/oauth2_postRequestOtp.yaml"
   /gaia/v1/oauth2/openapi/token:
-    $ref: "./paths/auth/gaia-oauth2-openapi-token.yaml"
+    $ref: "./paths/auth/oauth2_postToken.yaml"
   /hydros/v1/account/{accountNo}/pricing-policy:
-    $ref: "./paths/accounts/hydros-account-account-no-pricing-policy.yaml"
+    $ref: "./paths/accounts/accounts_getPricingPolicy.yaml"
   /hydros/v1/account/{accountNo}/risk:
-    $ref: "./paths/accounts/hydros-account-account-no-risk.yaml"
+    $ref: "./paths/accounts/accounts_getRisk.yaml"
   /khaos/v1/loan/{accountNo}:
-    $ref: "./paths/accounts/khaos-loan-account-no.yaml"
+    $ref: "./paths/accounts/accounts_getLoan.yaml"
   /khronos/v1/account/portfolio/position/close:
-    $ref: "./paths/accounts/khronos-account-portfolio-position-close.yaml"
+    $ref: "./paths/accounts/positions_getClosed.yaml"
   /khronos/v1/account/portfolio/status:
-    $ref: "./paths/accounts/khronos-account-portfolio-status.yaml"
+    $ref: "./paths/accounts/positions_getOpen.yaml"
   /khronos/v1/account/status:
-    $ref: "./paths/accounts/khronos-account-status.yaml"
+    $ref: "./paths/accounts/accounts_getStatus.yaml"
   /khronos/v1/cash/deposit/update:
-    $ref: "./paths/money/khronos-cash-deposit-update.yaml"
+    $ref: "./paths/money/cash_postDepositUpdate.yaml"
   /khronos/v1/cash/withdraw/update:
-    $ref: "./paths/money/khronos-cash-withdraw-update.yaml"
+    $ref: "./paths/money/cash_postWithdrawUpdate.yaml"
   /khronos/v1/order/cancel:
-    $ref: "./paths/orders/derivatives/khronos-order-cancel.yaml"
+    $ref: "./paths/orders/derivatives/orders_postCancel.yaml"
   /khronos/v1/order/change:
-    $ref: "./paths/orders/derivatives/khronos-order-change.yaml"
+    $ref: "./paths/orders/derivatives/orders_postChange.yaml"
   /khronos/v1/order/condition/cancel:
-    $ref: "./paths/orders/derivatives/khronos-order-condition-cancel.yaml"
+    $ref: "./paths/orders/derivatives/orders_postConditionCancel.yaml"
   /khronos/v1/order/condition/detail:
-    $ref: "./paths/orders/derivatives/khronos-order-condition-detail.yaml"
+    $ref: "./paths/orders/derivatives/orders_getConditionDetail.yaml"
   /khronos/v1/order/condition/place:
-    $ref: "./paths/orders/derivatives/khronos-order-condition-place.yaml"
+    $ref: "./paths/orders/derivatives/orders_postConditionPlace.yaml"
   /khronos/v1/order/in-day:
-    $ref: "./paths/orders/derivatives/khronos-order-in-day.yaml"
+    $ref: "./paths/orders/derivatives/orders_getInDay.yaml"
   /khronos/v1/order/place:
-    $ref: "./paths/orders/derivatives/khronos-order-place.yaml"
+    $ref: "./paths/orders/derivatives/orders_postPlace.yaml"
   /khronos/v2/order/condition/change:
-    $ref: "./paths/orders/derivatives/khronos-v2-order-condition-change.yaml"
+    $ref: "./paths/orders/derivatives/orders_postV2ConditionChange.yaml"
   /nyx/v1/intraday/{ticker}/bsa:
-    $ref: "./paths/market-data/nyx-intraday-ticker-bsa.yaml"
+    $ref: "./paths/market/ticker_getIntradayBsa.yaml"
   /nyx/v1/intraday/{ticker}/bsa-ext:
-    $ref: "./paths/market-data/nyx-intraday-ticker-bsa-ext.yaml"
+    $ref: "./paths/market/ticker_getIntradayBsaExt.yaml"
   /nyx/v1/intraday/{ticker}/bsa-month:
-    $ref: "./paths/market-data/nyx-intraday-ticker-bsa-month.yaml"
+    $ref: "./paths/market/ticker_getIntradayBsaMonth.yaml"
   /nyx/v1/intraday/{ticker}/his/paging:
-    $ref: "./paths/market-data/nyx-intraday-ticker-his-paging.yaml"
+    $ref: "./paths/market/ticker_getIntradayHisPaging.yaml"
   /physis/v1/stock/transfer:
-    $ref: "./paths/money/physis-stock-transfer.yaml"
+    $ref: "./paths/money/stocks_postTransfer.yaml"
   /tartarus/v1/derivatives:
-    $ref: "./paths/market-data/tartarus-derivatives.yaml"
+    $ref: "./paths/market/market_getDerivatives.yaml"
   /tartarus/v1/putThroughSnaps:
-    $ref: "./paths/market-data/tartarus-put-through-snaps.yaml"
+    $ref: "./paths/market/putThrough_getSnaps.yaml"
   /tartarus/v1/tickerCommons:
-    $ref: "./paths/market-data/tartarus-ticker-commons.yaml"
+    $ref: "./paths/market/ticker_getCommons.yaml"
   /tartarus/v1/tickerSnaps:
-    $ref: "./paths/market-data/tartarus-ticker-snaps.yaml"
+    $ref: "./paths/market/ticker_getSnaps.yaml"
 components:
   schemas:
     Security:

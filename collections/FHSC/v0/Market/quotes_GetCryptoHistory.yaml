@@ -1,5 +1,5 @@
 info:
-  name: quotesGetCryptoHistory
+  name: Lịch sử giá crypto
   type: http
   seq: 21
 http:

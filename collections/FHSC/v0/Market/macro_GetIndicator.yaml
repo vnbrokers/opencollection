@@ -1,5 +1,5 @@
 info:
-  name: getMacroIndicator
+  name: Giá trị chỉ tiêu vĩ mô
   type: http
   seq: 7
 http:

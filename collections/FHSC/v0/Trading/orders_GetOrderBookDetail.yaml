@@ -1,5 +1,5 @@
 info:
-  name: ordersGetOrderBookDetail
+  name: Chi tiết 1 lệnh trong sổ lệnh
   type: http
   seq: 7
 http:

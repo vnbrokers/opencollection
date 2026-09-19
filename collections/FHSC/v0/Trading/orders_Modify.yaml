@@ -1,5 +1,5 @@
 info:
-  name: ordersModify
+  name: Sửa lệnh
   type: http
   seq: 3
 http:
@@ -12,7 +12,11 @@ http:
       value: "{{deviceId}}"
   body:
     type: json
-    data: "{}"
+    data: |-
+      {
+        "quantity": 200,
+        "price": 26000
+      }
   auth: inherit
 
 settings:
@@ -40,3 +44,10 @@ docs: |-
   `order_id`.
 
   Body phải có **ít nhất 1** trong 2 field; bỏ trống cả 2 sẽ trả 400.
+
+  **Request body**
+
+  | Field | Type | Required | Description |
+  | --- | --- | --- | --- |
+  | `quantity` | integer (int64) | Không | Số lượng mới (bội số lot size). |
+  | `price` | integer (int64) | Không | Giá limit mới, đơn vị **VND** (không nhân 1000). |

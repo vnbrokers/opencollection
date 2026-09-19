@@ -1,5 +1,5 @@
 info:
-  name: listMacroIndicators
+  name: Danh mục chỉ tiêu vĩ mô
   type: http
   seq: 6
 http:

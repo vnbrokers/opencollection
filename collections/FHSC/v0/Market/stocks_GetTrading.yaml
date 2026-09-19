@@ -1,5 +1,5 @@
 info:
-  name: stocksGetTrading
+  name: Giao dịch tổng (phiên gần nhất)
   type: http
   seq: 46
 http:

@@ -1,5 +1,5 @@
 info:
-  name: quotesGetStocksCatalog
+  name: Danh mục cổ phiếu
   type: http
   seq: 9
 http:

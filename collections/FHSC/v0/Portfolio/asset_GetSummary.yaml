@@ -1,5 +1,5 @@
 info:
-  name: assetGetSummary
+  name: Tổng quan tài sản của user
   type: http
   seq: 11
 http:

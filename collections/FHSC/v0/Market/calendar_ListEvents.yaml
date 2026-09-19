@@ -1,5 +1,5 @@
 info:
-  name: calendarListEvents
+  name: Lịch sự kiện thị trường
   type: http
   seq: 8
 http:

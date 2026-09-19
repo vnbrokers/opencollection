@@ -1,5 +1,5 @@
 info:
-  name: quotesGetCommodityHistory
+  name: Lịch sử giá hàng hoá
   type: http
   seq: 24
 http:

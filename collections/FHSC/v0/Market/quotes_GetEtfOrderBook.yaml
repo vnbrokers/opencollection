@@ -1,5 +1,5 @@
 info:
-  name: quotesGetEtfOrderBook
+  name: Sổ lệnh (bid/ask) ETF
   type: http
   seq: 34
 http:

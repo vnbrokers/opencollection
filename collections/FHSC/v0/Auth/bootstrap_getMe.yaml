@@ -1,5 +1,5 @@
 info:
-  name: bootstrapGetMe
+  name: Lấy thông tin user hiện tại
   type: http
   seq: 2
 http:

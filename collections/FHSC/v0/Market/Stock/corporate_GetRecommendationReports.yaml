@@ -1,5 +1,5 @@
 info:
-  name: corporateGetRecommendationReports
+  name: Báo cáo khuyến nghị theo stock
   type: http
   seq: 4
 http:

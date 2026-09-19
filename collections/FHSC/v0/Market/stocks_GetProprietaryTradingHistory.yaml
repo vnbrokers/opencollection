@@ -1,5 +1,5 @@
 info:
-  name: stocksGetProprietaryTradingHistory
+  name: Lịch sử giao dịch tự doanh
   type: http
   seq: 51
 http:

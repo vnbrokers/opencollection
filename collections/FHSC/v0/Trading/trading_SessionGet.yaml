@@ -1,5 +1,5 @@
 info:
-  name: tradingSessionGet
+  name: Trạng thái phiên giao dịch
   type: http
   seq: 10
 http:

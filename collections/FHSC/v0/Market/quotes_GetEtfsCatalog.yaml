@@ -1,5 +1,5 @@
 info:
-  name: quotesGetEtfsCatalog
+  name: Danh mục ETF
   type: http
   seq: 32
 http:

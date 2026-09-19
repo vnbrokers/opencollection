@@ -1,5 +1,5 @@
 info:
-  name: stocksGetForeignRoom
+  name: Room ngoại (phiên gần nhất)
   type: http
   seq: 43
 http:

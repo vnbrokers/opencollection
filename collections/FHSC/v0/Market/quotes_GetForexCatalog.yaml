@@ -1,5 +1,5 @@
 info:
-  name: quotesGetForexCatalog
+  name: Danh mục forex
   type: http
   seq: 16
 http:

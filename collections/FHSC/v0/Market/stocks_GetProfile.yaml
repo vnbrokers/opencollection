@@ -1,5 +1,5 @@
 info:
-  name: stocksGetProfile
+  name: Hồ sơ doanh nghiệp
   type: http
   seq: 40
 http:

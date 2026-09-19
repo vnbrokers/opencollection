@@ -1,5 +1,5 @@
 info:
-  name: fundamentalGetAnalysis
+  name: Phân tích tài chính doanh nghiệp theo kỳ
   type: http
   seq: 4
 http:

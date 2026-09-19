@@ -1,5 +1,5 @@
 info:
-  name: performanceGetPnlToday
+  name: Lãi-lỗ hôm nay
   type: http
   seq: 9
 http:

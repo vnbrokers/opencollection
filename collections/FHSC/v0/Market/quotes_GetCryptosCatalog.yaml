@@ -1,5 +1,5 @@
 info:
-  name: quotesGetCryptosCatalog
+  name: Danh mục crypto
   type: http
   seq: 19
 http:

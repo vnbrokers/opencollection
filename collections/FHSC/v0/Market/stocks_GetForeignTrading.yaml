@@ -1,5 +1,5 @@
 info:
-  name: stocksGetForeignTrading
+  name: Giao dịch khối ngoại (phiên gần nhất)
   type: http
   seq: 48
 http:

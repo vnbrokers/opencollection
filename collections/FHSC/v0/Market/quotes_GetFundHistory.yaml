@@ -1,5 +1,5 @@
 info:
-  name: quotesGetFundHistory
+  name: Lịch sử giá quỹ mở
   type: http
   seq: 27
 http:

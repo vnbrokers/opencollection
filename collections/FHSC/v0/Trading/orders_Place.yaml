@@ -1,5 +1,5 @@
 info:
-  name: ordersPlace
+  name: Đặt lệnh mới
   type: http
   seq: 2
 http:
@@ -12,7 +12,17 @@ http:
       value: "{{deviceId}}"
   body:
     type: json
-    data: "{}"
+    data: |-
+      {
+        "sub_account": "120C000008.1",
+        "side": "BUY",
+        "symbol": "HPG",
+        "quantity": 100,
+        "type": "LIMIT",
+        "limit_price": 25500,
+        "market_price": null,
+        "stock_type": "STOCK"
+      }
   auth: inherit
 
 settings:
@@ -48,3 +58,16 @@ docs: |-
   - UPCOM / HCX: chỉ `LO`
 
   ORS auto-convert: HOSE `MP → MTL`; HNX `MAK → FAK`, `MOK → FOK`.
+
+  **Request body**
+
+  | Field | Type | Required | Description |
+  | --- | --- | --- | --- |
+  | `sub_account` | string | Có | Sub-account ID dạng extended (kèm hậu tố `.1` / `.6` …), khác với `subAccountId` ở path param. Lấy từ field `sub_account_ext` của response `GET /users/v1/users/{userId}/sub-accounts`. |
+  | `side` | string | Có | Phía của lệnh: `BUY` là lệnh mua; `SELL` là lệnh bán. |
+  | `symbol` | string | Có | Mã chứng khoán cần đặt lệnh. |
+  | `quantity` | integer (int64) | Có | Số lượng cổ phiếu. Lô chẵn HOSE/HNX là bội số 100. Đặt 1..99 là lô lẻ và chỉ chấp nhận `type = LIMIT`. |
+  | `type` | string | Có | Kiểu định giá khi đặt lệnh — quyết định field giá nào phải set trong request body. `LIMIT` dùng `limit_price`; `MARKET` dùng `market_price`. |
+  | `limit_price` | integer (int64) \| null | Không | Giá đặt khi `type = LIMIT`, đơn vị **VND** (không nhân 1000). Để `null` khi `type = MARKET`. |
+  | `market_price` | string \| null | Không | Mã loại lệnh thị trường khi `type = MARKET`. Để `null` khi `type = LIMIT`. |
+  | `stock_type` | string | Không | Phân loại công cụ tài chính. Mặc định `STOCK` nếu bỏ trống. |

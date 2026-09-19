@@ -1,5 +1,5 @@
 info:
-  name: quotesGetIndexHistory
+  name: Lịch sử giá chỉ số
   type: http
   seq: 15
 http:

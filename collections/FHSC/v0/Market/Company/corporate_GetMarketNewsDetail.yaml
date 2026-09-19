@@ -1,5 +1,5 @@
 info:
-  name: corporateGetMarketNewsDetail
+  name: Chi tiết tin tức thị trường
   type: http
   seq: 13
 http:

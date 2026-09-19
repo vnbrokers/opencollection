@@ -1,5 +1,5 @@
 info:
-  name: ordersCancel
+  name: Huỷ lệnh
   type: http
   seq: 4
 http:
@@ -12,7 +12,10 @@ http:
       value: "{{deviceId}}"
   body:
     type: json
-    data: "{}"
+    data: |-
+      {
+        "sub_account": "120C000008.1"
+      }
   auth: inherit
 
 settings:
@@ -37,3 +40,9 @@ docs: |-
 
   Với lệnh **đã khớp một phần**, huỷ chỉ áp dụng cho phần unmatched —
   phần đã khớp vẫn giữ trong `execute_quantity`.
+
+  **Request body**
+
+  | Field | Type | Required | Description |
+  | --- | --- | --- | --- |
+  | `sub_account` | string | Có | Sub-account ID dạng extended (kèm hậu tố `.1` / `.6` …) — cùng giá trị dùng cho `sub_account` trong place-order. |

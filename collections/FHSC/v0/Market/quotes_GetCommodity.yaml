@@ -1,5 +1,5 @@
 info:
-  name: quotesGetCommodity
+  name: Giá realtime hàng hoá
   type: http
   seq: 23
 http:

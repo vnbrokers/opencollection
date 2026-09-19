@@ -1,5 +1,5 @@
 info:
-  name: quotesGetEtfHistory
+  name: Lịch sử giá ETF
   type: http
   seq: 35
 http:

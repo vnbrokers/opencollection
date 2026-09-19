@@ -1,5 +1,5 @@
 info:
-  name: quotesGetCommoditiesCatalog
+  name: Danh mục hàng hoá
   type: http
   seq: 22
 http:

@@ -1,5 +1,5 @@
 info:
-  name: quotesGetFundsCatalog
+  name: Danh mục quỹ mở
   type: http
   seq: 25
 http:

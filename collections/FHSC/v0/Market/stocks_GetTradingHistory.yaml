@@ -1,5 +1,5 @@
 info:
-  name: stocksGetTradingHistory
+  name: Lịch sử giao dịch tổng
   type: http
   seq: 47
 http:

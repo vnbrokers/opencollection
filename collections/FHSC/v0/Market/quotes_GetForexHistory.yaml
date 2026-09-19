@@ -1,5 +1,5 @@
 info:
-  name: quotesGetForexHistory
+  name: Lịch sử giá forex
   type: http
   seq: 18
 http:

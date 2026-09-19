@@ -1,5 +1,5 @@
 info:
-  name: portfolioGetHoldings
+  name: Danh mục stock đang nắm giữ của tiểu khoản
   type: http
   seq: 2
 http:

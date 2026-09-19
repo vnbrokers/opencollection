@@ -1,5 +1,5 @@
 info:
-  name: rightsGetUserRights
+  name: Quyền cổ đông của tiểu khoản
   type: http
   seq: 8
 http:

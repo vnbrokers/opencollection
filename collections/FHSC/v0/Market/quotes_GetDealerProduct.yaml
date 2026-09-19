@@ -1,5 +1,5 @@
 info:
-  name: quotesGetDealerProduct
+  name: Báo giá 1 sản phẩm dealer
   type: http
   seq: 37
 http:

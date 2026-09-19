@@ -1,5 +1,5 @@
 info:
-  name: quotesGetDealerProducts
+  name: Sản phẩm dealer nội địa (hàng hoá)
   type: http
   seq: 36
 http:

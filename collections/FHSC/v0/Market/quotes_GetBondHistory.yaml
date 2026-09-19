@@ -1,5 +1,5 @@
 info:
-  name: quotesGetBondHistory
+  name: Lịch sử giá trái phiếu
   type: http
   seq: 31
 http:

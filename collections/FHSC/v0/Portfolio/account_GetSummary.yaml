@@ -1,5 +1,5 @@
 info:
-  name: accountGetSummary
+  name: Chi tiết số dư, margin, dư nợ của tiểu khoản
   type: http
   seq: 5
 http:

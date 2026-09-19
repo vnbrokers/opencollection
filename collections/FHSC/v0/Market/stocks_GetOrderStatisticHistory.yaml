@@ -1,5 +1,5 @@
 info:
-  name: stocksGetOrderStatisticHistory
+  name: Lịch sử lệnh mua/bán chủ động
   type: http
   seq: 53
 http:

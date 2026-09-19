@@ -1,5 +1,5 @@
 info:
-  name: stocksGetOrderStatistic
+  name: Thống kê lệnh mua/bán chủ động (phiên gần nhất)
   type: http
   seq: 52
 http:

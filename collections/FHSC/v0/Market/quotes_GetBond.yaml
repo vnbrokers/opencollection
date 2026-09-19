@@ -1,5 +1,5 @@
 info:
-  name: quotesGetBond
+  name: Giá realtime trái phiếu
   type: http
   seq: 29
 http:

@@ -1,5 +1,5 @@
 info:
-  name: stocksGetForeignTradingHistory
+  name: Lịch sử giao dịch khối ngoại
   type: http
   seq: 49
 http:

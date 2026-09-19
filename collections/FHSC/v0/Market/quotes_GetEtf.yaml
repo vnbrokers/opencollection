@@ -1,5 +1,5 @@
 info:
-  name: quotesGetEtf
+  name: Giá realtime ETF
   type: http
   seq: 33
 http:

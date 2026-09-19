@@ -1,5 +1,5 @@
 info:
-  name: ordersGetOrderBook
+  name: Lấy sổ lệnh trong ngày
   type: http
   seq: 6
 http:

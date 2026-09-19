@@ -1,5 +1,5 @@
 info:
-  name: quotesGetIndex
+  name: Giá realtime chỉ số
   type: http
   seq: 14
 http:

@@ -1,5 +1,5 @@
 info:
-  name: quotesGetStock
+  name: Giá realtime cổ phiếu
   type: http
   seq: 10
 http:

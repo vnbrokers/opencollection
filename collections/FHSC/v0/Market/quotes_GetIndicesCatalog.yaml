@@ -1,5 +1,5 @@
 info:
-  name: quotesGetIndicesCatalog
+  name: Danh mục chỉ số
   type: http
   seq: 13
 http:

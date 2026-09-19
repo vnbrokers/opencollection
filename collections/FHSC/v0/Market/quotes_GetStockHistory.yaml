@@ -1,5 +1,5 @@
 info:
-  name: quotesGetStockHistory
+  name: Lịch sử giá cổ phiếu
   type: http
   seq: 12
 http:

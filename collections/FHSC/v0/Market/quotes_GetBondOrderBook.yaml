@@ -1,5 +1,5 @@
 info:
-  name: quotesGetBondOrderBook
+  name: Sổ lệnh (bid/ask) trái phiếu
   type: http
   seq: 30
 http:

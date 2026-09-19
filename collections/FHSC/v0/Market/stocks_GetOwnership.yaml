@@ -1,5 +1,5 @@
 info:
-  name: stocksGetOwnership
+  name: Cơ cấu sở hữu
   type: http
   seq: 42
 http:

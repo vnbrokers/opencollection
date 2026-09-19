@@ -1,5 +1,5 @@
 info:
-  name: stocksGetListing
+  name: Thông tin niêm yết
   type: http
   seq: 41
 http:

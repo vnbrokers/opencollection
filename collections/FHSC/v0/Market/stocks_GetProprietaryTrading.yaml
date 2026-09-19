@@ -1,5 +1,5 @@
 info:
-  name: stocksGetProprietaryTrading
+  name: Giao dịch tự doanh (phiên gần nhất)
   type: http
   seq: 50
 http:

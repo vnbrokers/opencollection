@@ -1,5 +1,5 @@
 info:
-  name: quotesGetCrypto
+  name: Giá realtime crypto
   type: http
   seq: 20
 http:

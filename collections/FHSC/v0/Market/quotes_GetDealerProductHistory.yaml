@@ -1,5 +1,5 @@
 info:
-  name: quotesGetDealerProductHistory
+  name: Lịch sử giá sản phẩm dealer
   type: http
   seq: 38
 http:

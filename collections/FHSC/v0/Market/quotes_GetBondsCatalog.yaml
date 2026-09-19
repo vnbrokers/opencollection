@@ -1,5 +1,5 @@
 info:
-  name: quotesGetBondsCatalog
+  name: Danh mục trái phiếu
   type: http
   seq: 28
 http:

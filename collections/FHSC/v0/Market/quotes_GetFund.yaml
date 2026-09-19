@@ -1,5 +1,5 @@
 info:
-  name: quotesGetFund
+  name: Giá realtime quỹ mở
   type: http
   seq: 26
 http:

@@ -1,5 +1,5 @@
 info:
-  name: quotesGetForex
+  name: Giá realtime forex
   type: http
   seq: 17
 http:

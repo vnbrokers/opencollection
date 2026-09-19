@@ -1,5 +1,5 @@
 info:
-  name: stocksScreen
+  name: Sàng lọc cổ phiếu (screener)
   type: http
   seq: 39
 http:

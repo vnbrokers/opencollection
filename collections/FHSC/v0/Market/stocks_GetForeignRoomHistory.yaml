@@ -1,5 +1,5 @@
 info:
-  name: stocksGetForeignRoomHistory
+  name: Lịch sử room ngoại
   type: http
   seq: 44
 http:
